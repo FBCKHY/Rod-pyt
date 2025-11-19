@@ -6,19 +6,21 @@ const ProductTag = require('./productTag');
 const User = require('./User');
 const Role = require('./Role');
 const Permission = require('./Permission');
+const UserRole = require('./UserRole');
+const RolePermission = require('./RolePermission');
 
 // 设置模型关联关系
 
 // 用户与角色的多对多关联
 User.belongsToMany(Role, {
-  through: 'user_roles',
+  through: UserRole,
   foreignKey: 'user_id',
   otherKey: 'role_id',
   as: 'roles'
 });
 
 Role.belongsToMany(User, {
-  through: 'user_roles',
+  through: UserRole,
   foreignKey: 'role_id',
   otherKey: 'user_id',
   as: 'users'
@@ -26,14 +28,14 @@ Role.belongsToMany(User, {
 
 // 角色与权限的多对多关联
 Role.belongsToMany(Permission, {
-  through: 'role_permissions',
+  through: RolePermission,
   foreignKey: 'role_id',
   otherKey: 'permission_id',
   as: 'permissions'
 });
 
 Permission.belongsToMany(Role, {
-  through: 'role_permissions',
+  through: RolePermission,
   foreignKey: 'permission_id',
   otherKey: 'role_id',
   as: 'roles'

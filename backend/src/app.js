@@ -124,7 +124,7 @@ app.use('/uploads', (req, res, next) => {
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
   res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
   next()
-}, express.static(path.join(process.cwd(), 'public', 'uploads')));
+}, express.static(path.join(__dirname, '../uploads')));
 app.use('/products', (req, res, next) => {
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
   res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
@@ -173,8 +173,7 @@ app.use('/api/permissions', permissionRoutes);
 app.use('/api/operation-logs', operationLogRoutes);
 app.use('/api/upload', uploadRoutes);
 
-// 静态文件服务 - 提供上传的文件访问
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+// API路由继续
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/products', productRoutes);
