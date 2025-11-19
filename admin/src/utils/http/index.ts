@@ -64,10 +64,12 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse<Api.Http.BaseResponse>) => {
-    const { code, msg } = response.data
+    const { code, msg, data } = response.data
 
     switch (code) {
       case ApiStatus.success:
+        // 将实际数据放到response.data中，这样request函数返回res.data时就是实际数据
+        response.data = data as any
         return response
       case ApiStatus.unauthorized:
         logOut()
