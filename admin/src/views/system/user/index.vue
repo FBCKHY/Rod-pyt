@@ -170,13 +170,23 @@
         {
           prop: 'operation',
           label: '操作',
-          width: 120,
+          width: 280,
           fixed: 'right', // 固定列
           formatter: (row) =>
-            h('div', [
+            h('div', { style: 'display: flex; gap: 4px; flex-wrap: wrap;' }, [
               h(ArtButtonTable, {
                 type: 'edit',
                 onClick: () => showDialog('edit', row)
+              }),
+              h(ArtButtonTable, {
+                type: 'view',
+                text: row.status === 'active' ? '禁用' : '启用',
+                onClick: () => toggleStatus(row)
+              }),
+              h(ArtButtonTable, {
+                type: 'view',
+                text: '重置密码',
+                onClick: () => resetPassword(row)
               }),
               h(ArtButtonTable, {
                 type: 'delete',
@@ -225,9 +235,58 @@
   }
 
   /**
+   * 切换用户状态
+   */
+  const toggleStatus = async (row: any): Promise<void> => {
+    try {
+      const newStatus = row.status === 'active' ? 'inactive' : 'active'
+      const action = newStatus === 'active' ? '启用' : '禁用'
+      
+      await ElMessageBox.confirm(`确定要${action}用户 "${row.username}" 吗？`, `${action}用户`, {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+      
+      await UserService.toggleUserStatus(row.id, newStatus)
+      ElMessage.success(`${action}成功`)
+      refreshAll()
+    } catch (error: any) {
+      if (error !== 'cancel') {
+        console.error('切换状态失败:', error)
+        ElMessage.error(error.msg || '操作失败')
+      }
+    }
+  }
+
+  /**
+   * 重置密码
+   */
+  const resetPassword = async (row: any): Promise<void> => {
+    try {
+      const { value: newPassword } = await ElMessageBox.prompt('请输入新密码(至少6位)', '重置密码', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        inputPattern: /.{6,}/,
+        inputErrorMessage: '密码长度不能少于6位'
+      })
+      
+      if (newPassword) {
+        await UserService.resetPassword(row.id, newPassword)
+        ElMessage.success('密码重置成功')
+      }
+    } catch (error: any) {
+      if (error !== 'cancel') {
+        console.error('重置密码失败:', error)
+        ElMessage.error(error.msg || '操作失败')
+      }
+    }
+  }
+
+  /**
    * 删除用户
    */
-  const deleteUser = async (row: UserListItem): Promise<void> => {
+  const deleteUser = async (row: any): Promise<void> => {
     try {
       await ElMessageBox.confirm(`确定要删除用户 "${row.username}" 吗？`, '删除用户', {
         confirmButtonText: '确定',
@@ -238,9 +297,10 @@
       await UserService.deleteUser(row.id)
       ElMessage.success('删除成功')
       refreshAll()
-    } catch (error) {
+    } catch (error: any) {
       if (error !== 'cancel') {
         console.error('删除失败:', error)
+        ElMessage.error(error.msg || '操作失败')
       }
     }
   }
