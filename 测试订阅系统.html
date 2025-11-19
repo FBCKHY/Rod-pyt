@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订阅系统测试页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .status-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .status-icon.success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status-icon.error {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .status-icon.loading {
+            background: #f59e0b;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        
+        .message.show {
+            display: block;
+            animation: slideIn 0.3s;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .links {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .links a {
+            display: inline-block;
+            margin-right: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 订阅系统测试</h1>
+        <p class="subtitle">测试客户端订阅表单与后台管理系统的实时同步</p>
+        
+        <div class="status-card">
+            <h3 style="margin-bottom: 15px; font-size: 16px;">系统状态</h3>
+            <div class="status-item">
+                <div class="status-icon loading" id="backendStatus">⏳</div>
+                <div>
+                    <strong>后端服务</strong>
+                    <span id="backendText" style="margin-left: 10px; color: #666;">检查中...</span>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-icon loading" id="adminStatus">⏳</div>
+                <div>
+                    <strong>管理后台</strong>
+                    <span id="adminText" style="margin-left: 10px; color: #666;">检查中...</span>
+                </div>
+            </div>
+        </div>
+        
+        <form id="testForm">
+            <div class="form-group">
+                <label for="contactType">联系方式类型</label>
+                <select id="contactType" required>
+                    <option value="email">邮箱</option>
+                    <option value="wechat">微信</option>
+                    <option value="phone">手机</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="contactValue">联系方式</label>
+                <input 
+                    type="text" 
+                    id="contactValue" 
+                    placeholder="请输入邮箱、微信号或手机号"
+                    required
+                >
+            </div>
+            
+            <button type="submit" class="btn" id="submitBtn">
+                提交测试订阅
+            </button>
+        </form>
+        
+        <div id="message" class="message"></div>
+        
+        <div class="links">
+            <a href="http://localhost:8080" target="_blank">📱 客户端网站</a>
+            <a href="http://localhost:3007/subscription/list" target="_blank">🎛️ 管理后台</a>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        
+        // 检查后端状态
+        async function checkBackend() {
+            try {
+                const response = await fetch(`${API_BASE}/subscriptions`, {
+                    method: 'HEAD'
+                });
+                updateStatus('backend', true, '运行中 (端口3000)');
+            } catch (error) {
+                updateStatus('backend', false, '未启动');
+            }
+        }
+        
+        // 检查管理后台状态
+        async function checkAdmin() {
+            try {
+                const response = await fetch('http://localhost:3007', {
+                    method: 'HEAD'
+                });
+                updateStatus('admin', true, '运行中 (端口3007)');
+            } catch (error) {
+                updateStatus('admin', false, '未启动');
+            }
+        }
+        
+        // 更新状态显示
+        function updateStatus(type, success, text) {
+            const icon = document.getElementById(`${type}Status`);
+            const textEl = document.getElementById(`${type}Text`);
+            
+            icon.className = `status-icon ${success ? 'success' : 'error'}`;
+            icon.textContent = success ? '✓' : '✗';
+            textEl.textContent = text;
+            textEl.style.color = success ? '#10b981' : '#ef4444';
+        }
+        
+        // 显示消息
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message ${type} show`;
+            
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 5000);
+        }
+        
+        // 处理表单提交
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const contactType = document.getElementById('contactType').value;
+            const contactValue = document.getElementById('contactValue').value;
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = '提交中...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/subscriptions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contactType,
+                        contactValue,
+                        source: 'test_page'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showMessage(`✅ 订阅成功！请在30秒内查看管理后台，应该会自动刷新并显示新订阅。`, 'success');
+                    document.getElementById('testForm').reset();
+                } else {
+                    showMessage(`❌ ${data.msg || '订阅失败'}`, 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ 连接失败: ${error.message}`, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '提交测试订阅';
+            }
+        });
+        
+        // 页面加载时检查状态
+        window.addEventListener('load', () => {
+            checkBackend();
+            checkAdmin();
+            
+            // 每10秒检查一次状态
+            setInterval(() => {
+                checkBackend();
+                checkAdmin();
+            }, 10000);
+        });
+    </script>
+</body>
+</html>

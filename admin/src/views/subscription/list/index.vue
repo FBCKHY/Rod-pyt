@@ -460,6 +460,10 @@ const fetchData = async () => {
     if (res && res.data) {
       tableData.value = res.data.list || []
       pagination.total = res.data.total || 0
+      // 初始化lastTotal，避免首次加载时误报新订阅
+      if (lastTotal.value === 0) {
+        lastTotal.value = res.data.total || 0
+      }
     }
   } catch (error) {
     console.error('获取数据失败:', error)
