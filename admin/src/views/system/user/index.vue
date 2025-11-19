@@ -40,7 +40,6 @@
 
 <script setup lang="ts">
   import ArtButtonTable from '@/components/core/forms/art-button-table/index.vue'
-  import { ACCOUNT_TABLE_DATA } from '@/mock/temp/formData'
   import { ElMessageBox, ElMessage, ElTag } from 'element-plus'
   import { useTable } from '@/composables/useTable'
   import { UserService } from '@/api/usersApi'
@@ -63,19 +62,17 @@
 
   // 表单搜索初始值
   const defaultFilter = ref({
-    name: undefined,
-    level: 'normal',
-    date: '2025-01-05',
-    daterange: ['2025-01-01', '2025-02-10'],
-    status: '1'
+    keyword: '',
+    status: '',
+    department: '',
+    role: ''
   })
 
   // 用户状态配置
   const USER_STATUS_CONFIG = {
-    '1': { type: 'success' as const, text: '在线' },
-    '2': { type: 'info' as const, text: '离线' },
-    '3': { type: 'warning' as const, text: '异常' },
-    '4': { type: 'danger' as const, text: '注销' }
+    'active': { type: 'success' as const, text: '正常' },
+    'inactive': { type: 'info' as const, text: '禁用' },
+    'deleted': { type: 'danger' as const, text: '已删除' }
   } as const
 
   /**
@@ -107,11 +104,13 @@
     core: {
       apiFn: getUserList,
       apiParams: {
-        current: 1,
+        page: 1,
         size: 20,
         ...defaultFilter.value
-        // pageNum: 1,
-        // pageSize: 20
+      },
+      paginationKey: {
+        current: 'page',
+        size: 'size'
       },
       // 自定义分页字段映射，同时需要在 apiParams 中配置字段名
       // paginationKey: {
@@ -122,27 +121,35 @@
         { type: 'selection' }, // 勾选列
         { type: 'index', width: 60, label: '序号' }, // 序号
         {
-          prop: 'avatar',
+          prop: 'username',
           label: '用户名',
-          minWidth: width.value < 500 ? 220 : '',
-          formatter: (row) => {
-            return h('div', { class: 'user', style: 'display: flex; align-items: center' }, [
-              h('img', { class: 'avatar', src: row.avatar }),
-              h('div', {}, [
-                h('p', { class: 'user-name' }, row.userName),
-                h('p', { class: 'email' }, row.userEmail)
-              ])
-            ])
-          }
+          minWidth: 150
         },
         {
-          prop: 'userGender',
-          label: '性别',
-          sortable: true,
-          // checked: false, // 隐藏列
-          formatter: (row) => row.userGender
+          prop: 'nickname',
+          label: '昵称',
+          minWidth: 120
         },
-        { prop: 'userPhone', label: '手机号' },
+        {
+          prop: 'email',
+          label: '邮箱',
+          minWidth: 180
+        },
+        {
+          prop: 'department',
+          label: '部门',
+          minWidth: 120
+        },
+        {
+          prop: 'roles',
+          label: '角色',
+          formatter: (row) => {
+            if (!row.roles || row.roles.length === 0) return '-'
+            return h('div', {}, row.roles.map((role: any) => 
+              h(ElTag, { size: 'small', style: 'margin-right: 5px' }, () => role.name)
+            ))
+          }
+        },
         {
           prop: 'status',
           label: '状态',
@@ -152,9 +159,13 @@
           }
         },
         {
-          prop: 'createTime',
-          label: '创建日期',
-          sortable: true
+          prop: 'created_at',
+          label: '创建时间',
+          minWidth: 160,
+          formatter: (row) => {
+            if (!row.created_at) return '-'
+            return new Date(row.created_at).toLocaleString('zh-CN')
+          }
         },
         {
           prop: 'operation',
@@ -177,21 +188,12 @@
     },
     // 数据处理
     transform: {
-      // 数据转换器 - 替换头像
       dataTransformer: (records: any) => {
-        // 类型守卫检查
         if (!Array.isArray(records)) {
           console.warn('数据转换器: 期望数组类型，实际收到:', typeof records)
           return []
         }
-
-        // 使用本地头像替换接口返回的头像
-        return records.map((item: any, index: number) => {
-          return {
-            ...item,
-            avatar: ACCOUNT_TABLE_DATA[index % ACCOUNT_TABLE_DATA.length].avatar
-          }
-        })
+        return records
       }
     }
   })
@@ -225,15 +227,22 @@
   /**
    * 删除用户
    */
-  const deleteUser = (row: UserListItem): void => {
-    console.log('删除用户:', row)
-    ElMessageBox.confirm(`确定要注销该用户吗？`, '注销用户', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'error'
-    }).then(() => {
-      ElMessage.success('注销成功')
-    })
+  const deleteUser = async (row: UserListItem): Promise<void> => {
+    try {
+      await ElMessageBox.confirm(`确定要删除用户 "${row.username}" 吗？`, '删除用户', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+      
+      await UserService.deleteUser(row.id)
+      ElMessage.success('删除成功')
+      refreshAll()
+    } catch (error) {
+      if (error !== 'cancel') {
+        console.error('删除失败:', error)
+      }
+    }
   }
 
   /**
