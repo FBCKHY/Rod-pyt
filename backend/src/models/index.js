@@ -3,8 +3,41 @@ const Subscription = require('./subscription');
 const Product = require('./product');
 const ProductCategory = require('./productCategory');
 const ProductTag = require('./productTag');
+const User = require('./User');
+const Role = require('./Role');
+const Permission = require('./Permission');
 
 // 设置模型关联关系
+
+// 用户与角色的多对多关联
+User.belongsToMany(Role, {
+  through: 'user_roles',
+  foreignKey: 'user_id',
+  otherKey: 'role_id',
+  as: 'roles'
+});
+
+Role.belongsToMany(User, {
+  through: 'user_roles',
+  foreignKey: 'role_id',
+  otherKey: 'user_id',
+  as: 'users'
+});
+
+// 角色与权限的多对多关联
+Role.belongsToMany(Permission, {
+  through: 'role_permissions',
+  foreignKey: 'role_id',
+  otherKey: 'permission_id',
+  as: 'permissions'
+});
+
+Permission.belongsToMany(Role, {
+  through: 'role_permissions',
+  foreignKey: 'permission_id',
+  otherKey: 'role_id',
+  as: 'roles'
+});
 
 // 产品与分类的关联
 Product.belongsTo(ProductCategory, {
@@ -38,5 +71,8 @@ module.exports = {
   Subscription,
   Product,
   ProductCategory,
-  ProductTag
-}; 
+  ProductTag,
+  User,
+  Role,
+  Permission
+};

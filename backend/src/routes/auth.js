@@ -83,6 +83,30 @@ router.post('/register', authController.register);
 
 /**
  * @swagger
+ * /api/auth/refresh:
+ *   post:
+ *     summary: 刷新Token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - refreshToken
+ *             properties:
+ *               refreshToken:
+ *                 type: string
+ *                 description: Refresh Token
+ *     responses:
+ *       200:
+ *         description: Token刷新成功
+ */
+router.post('/refresh', authController.refreshToken);
+
+/**
+ * @swagger
  * /api/auth/logout:
  *   post:
  *     summary: 退出登录
