@@ -2,6 +2,7 @@ const subscriptionService = require('../services/subscriptionService');
 const statsService = require('../services/statsService');
 const { formatResponse } = require('../utils/response');
 const logger = require('../utils/logger');
+const ExcelJS = require('exceljs');
 
 class AdminController {
   /**
@@ -214,6 +215,104 @@ class AdminController {
       res.status(500).json(formatResponse(500, '服务器内部错误'));
     }
   }
+
+  /**
+   * 导出订阅数据为Excel
+   */
+  async exportSubscriptions(req, res) {
+    try {
+      const {
+        status,
+        contactType,
+        source,
+        contact,
+        startDate,
+        endDate
+      } = req.query;
+
+      // 获取所有符合条件的数据（不分页）
+      const result = await subscriptionService.getSubscriptionList({
+        page: 1,
+        size: 10000, // 最多导出10000条
+        status,
+        contactType,
+        source,
+        contact,
+        startDate,
+        endDate
+      });
+
+      // 创建工作簿
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet('订阅用户');
+
+      // 设置列
+      worksheet.columns = [
+        { header: 'ID', key: 'id', width: 10 },
+        { header: '联系方式类型', key: 'contactType', width: 15 },
+        { header: '联系方式', key: 'contactValue', width: 30 },
+        { header: '来源', key: 'source', width: 20 },
+        { header: '状态', key: 'status', width: 15 },
+        { header: 'IP地址', key: 'ipAddress', width: 20 },
+        { header: '订阅时间', key: 'subscribedAt', width: 20 }
+      ];
+
+      // 设置表头样式
+      worksheet.getRow(1).font = { bold: true };
+      worksheet.getRow(1).fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'FFE0E0E0' }
+      };
+
+      // 添加数据
+      result.list.forEach(item => {
+        worksheet.addRow({
+          id: item.id,
+          contactType: this.getContactTypeText(item.contact_type),
+          contactValue: item.contact_value,
+          source: this.getSourceText(item.source),
+          status: item.status === 'subscribed' ? '已订阅' : '已取消',
+          ipAddress: item.ip_address || '-',
+          subscribedAt: new Date(item.subscribed_at).toLocaleString('zh-CN')
+        });
+      });
+
+      // 设置响应头
+      const filename = `订阅用户_${new Date().toISOString().split('T')[0]}.xlsx`;
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(filename)}"`);
+
+      // 写入响应
+      await workbook.xlsx.write(res);
+      
+      logger.info('导出订阅数据成功', { count: result.list.length });
+      res.end();
+    } catch (error) {
+      logger.error('导出订阅数据失败', error);
+      res.status(500).json(formatResponse(500, '导出失败'));
+    }
+  }
+
+  // 辅助方法：获取联系方式类型文本
+  getContactTypeText(type) {
+    const types = {
+      'email': '邮箱',
+      'wechat': '微信',
+      'phone': '电话'
+    };
+    return types[type] || type;
+  }
+
+  // 辅助方法：获取来源文本
+  getSourceText(source) {
+    const sources = {
+      'website_footer': '网站底部',
+      'contact_form': '联系表单',
+      'manual': '手动添加'
+    };
+    return sources[source] || source;
+  }
 }
 
-module.exports = new AdminController(); 
+module.exports = new AdminController();

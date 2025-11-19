@@ -240,4 +240,36 @@ router.get('/subscriptions/stats', adminController.getStats);
  */
 router.get('/subscriptions/check', adminController.checkExists);
 
-module.exports = router; 
+/**
+ * @swagger
+ * /api/admin/subscriptions/export:
+ *   get:
+ *     summary: 导出订阅数据为Excel
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: status
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: contactType
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: source
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: 导出成功
+ *         content:
+ *           application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+ *             schema:
+ *               type: string
+ *               format: binary
+ */
+router.get('/subscriptions/export', adminController.exportSubscriptions);
+
+module.exports = router;
