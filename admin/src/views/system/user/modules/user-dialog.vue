@@ -14,6 +14,8 @@
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
+          :on-error="handleAvatarError"
+          name="avatar"
           accept="image/*"
         >
           <img v-if="formData.avatar" :src="getAvatarUrl(formData.avatar)" class="avatar" />
@@ -266,12 +268,19 @@
 
   // 头像上传成功
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
+    console.log('上传响应:', response)
     if (response.code === 200) {
       formData.avatar = response.data.url
       ElMessage.success('头像上传成功')
     } else {
       ElMessage.error(response.msg || '上传失败')
     }
+  }
+
+  // 头像上传失败
+  const handleAvatarError: UploadProps['onError'] = (error) => {
+    console.error('上传失败:', error)
+    ElMessage.error('头像上传失败,请重试')
   }
 
   // 上传前验证
