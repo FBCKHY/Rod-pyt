@@ -249,9 +249,12 @@
   // 统一监听对话框状态变化
   watch(
     () => [props.visible, props.type, props.userData],
-    ([visible]) => {
+    async ([visible]) => {
       if (visible) {
-        fetchRoleList()
+        // 先加载角色列表,再初始化表单数据
+        await fetchRoleList()
+        // 等待一下确保roleList已更新
+        await nextTick()
         initFormData()
         nextTick(() => {
           formRef.value?.clearValidate()
