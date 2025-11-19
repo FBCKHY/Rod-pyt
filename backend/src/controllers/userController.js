@@ -329,7 +329,8 @@ exports.updateUser = async (req, res) => {
       email,
       mobile,
       avatar,
-      department
+      department,
+      updated_at: new Date()
     });
 
     // 更新角色
