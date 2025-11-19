@@ -329,8 +329,10 @@ exports.updateUser = async (req, res) => {
       email,
       mobile,
       avatar,
-      department,
-      updated_at: new Date()
+      department
+    }, {
+      fields: ['nickname', 'email', 'mobile', 'avatar', 'department'],
+      silent: false
     });
 
     // 更新角色
