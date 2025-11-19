@@ -27,13 +27,14 @@ export default ({ mode }: { mode: string }) => {
     base: VITE_BASE_URL,
     server: {
       port: parseInt(VITE_PORT),
-      // 代理配置已移除，使用直连后端API方式
-      // proxy: {
-      //   '/api': {
-      //     target: VITE_API_URL,
-      //     changeOrigin: true
-      //   }
-      // },
+      // 代理配置 - 解决开发环境跨域问题
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          rewrite: (path) => path
+        }
+      },
       host: true
     },
     // 路径别名
