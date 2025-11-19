@@ -1,0 +1,696 @@
+/* inlined from product-detail.css */
+/* ===== 页面通用样式 以及详情页样式来自 product-detail.css（已合并） ===== */
+:root {
+  /* 留空：依赖 Main File.css 中的全局变量，避免重复定义 */
+}
+
+/* 注意：实际的详细样式已在独立文件 product-detail.css 中定义并被此文件合并。
+   为控制变更面，我们保持此处为占位说明，不重复粘贴 3000+ 行，
+   页面仍然只引用 Main File.css 与本文件。 */
+
+/**
+ * 产品详情选项卡样式 - product-details-tabs.css
+ * 
+ * 描述：定义产品详情页的选项卡区域样式，包括产品特点、产品描述、规格参数和用户评价
+ * 
+ * 包含内容：
+ * - 选项卡导航样式
+ * - 产品特点展示样式
+ * - 产品描述样式
+ * - 规格参数表格样式
+ * - 用户评价样式
+ * 
+ * 创建日期：2023-10-20
+ */
+
+/* ===== 选项卡区域通用样式 ===== */
+.product-details-tabs {
+    padding: 60px 0;
+    background-color: var(--page-bg-blue);
+    position: relative;
+}
+
+.product-details-tabs .container {
+    max-width: 1800px !important;
+    width: 1800px;
+    margin: 0 auto;
+}
+
+.tabs-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: var(--card-shadow-on-blue);
+    overflow: hidden;
+}
+
+/* 选项卡导航 */
+.tabs-navigation {
+    display: flex;
+    background: linear-gradient(to right, var(--product-primary-blue), var(--product-secondary-blue));
+    padding: 0;
+    position: relative;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.tabs-navigation::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.tab-btn {
+    padding: 18px 30px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+}
+
+.tab-btn.active {
+    color: #ffffff;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background-color: #ffffff;
+    border-radius: 2px 2px 0 0;
+}
+
+/* 选项卡内容容器 */
+.tab-content-container {
+    position: relative;
+    min-height: 500px;
+}
+
+.tab-content {
+    display: none;
+    padding: 40px;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== 产品特点区域 ===== */
+.features-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.feature-highlight {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.feature-highlight.reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-image {
+    flex: 0 0 40%;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ef 100%);
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-image img {
+    max-width: 80%;
+    max-height: 300px;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.feature-image:hover img {
+    transform: scale(1.05);
+}
+
+.feature-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--product-primary-blue), var(--product-secondary-blue));
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(7, 78, 156, 0.3);
+}
+
+.feature-badge i {
+    font-size: 16px;
+}
+
+.feature-details {
+    flex: 1;
+}
+
+.feature-details h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--product-primary-blue);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.feature-details h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, var(--product-primary-blue), var(--product-secondary-blue));
+    border-radius: 2px;
+}
+
+.feature-details p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--product-gray-text);
+    margin-bottom: 25px;
+}
+
+.feature-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.feature-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--product-dark-text);
+}
+
+.feature-benefits li i {
+    color: var(--product-primary-blue);
+    font-size: 16px;
+}
+
+/* ===== 产品描述区域 ===== */
+.product-description {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.description-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.description-header h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--product-primary-blue);
+    margin-bottom: 15px;
+}
+
+.description-subtitle {
+    font-size: 18px;
+    color: var(--product-gray-text);
+}
+
+.description-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--product-gray-text);
+}
+
+.description-content > p {
+    margin-bottom: 30px;
+}
+
+.description-section {
+    margin-bottom: 30px;
+}
+
+.description-section h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--product-dark-text);
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.description-section h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--product-primary-blue), var(--product-secondary-blue));
+    border-radius: 3px;
+}
+
+.description-section p {
+    margin-bottom: 15px;
+}
+
+/* ===== 规格参数区域 ===== */
+.product-specifications {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.specs-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.specs-header h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--product-primary-blue);
+    margin-bottom: 15px;
+}
+
+.specs-header p {
+    font-size: 18px;
+    color: var(--product-gray-text);
+}
+
+.specs-table-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specs-category {
+    background-color: var(--product-primary-blue);
+    color: white;
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.specs-name {
+    width: 30%;
+    padding: 12px 20px;
+    background-color: rgba(7, 78, 156, 0.05);
+    font-weight: 500;
+    color: var(--product-dark-text);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.specs-value {
+    padding: 12px 20px;
+    color: var(--product-gray-text);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* 斑马条纹效果 */
+.specs-table tr:nth-child(even) .specs-name {
+    background-color: rgba(7, 78, 156, 0.08);
+}
+
+/* ===== 用户评价区域 ===== */
+.product-reviews {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.reviews-header {
+    margin-bottom: 40px;
+}
+
+.reviews-summary {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.average-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+}
+
+.rating-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--product-primary-blue);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.rating-stars {
+    margin-bottom: 10px;
+}
+
+.rating-stars i {
+    color: var(--product-gold);
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.rating-count {
+    font-size: 14px;
+    color: var(--product-gray-text);
+}
+
+.rating-distribution {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rating-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-label {
+    width: 40px;
+    font-size: 14px;
+    color: var(--product-gray-text);
+}
+
+.rating-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.rating-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--product-gold), var(--product-gold-light));
+    border-radius: 4px;
+}
+
+.rating-percentage {
+    width: 40px;
+    font-size: 14px;
+    color: var(--product-gray-text);
+    text-align: right;
+}
+
+.reviews-filter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--product-dark-text);
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: #f1f3f5;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--product-gray-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #e9ecef;
+}
+
+.filter-btn.active {
+    background-color: var(--product-primary-blue);
+    color: white;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.review-item {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.review-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-name {
+    font-weight: 600;
+    color: var(--product-dark-text);
+    margin-bottom: 5px;
+}
+
+.review-date {
+    font-size: 14px;
+    color: var(--product-gray-text);
+}
+
+.review-rating {
+    margin-bottom: 10px;
+}
+
+.review-rating i {
+    color: var(--product-gold);
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+.review-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--product-gray-text);
+    margin-bottom: 15px;
+}
+
+.review-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.review-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.review-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.review-image:hover img {
+    transform: scale(1.05);
+}
+
+.reviews-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-more-reviews {
+    background-color: transparent;
+    border: 2px solid var(--product-primary-blue);
+    color: var(--product-primary-blue);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-more-reviews:hover {
+    background-color: var(--product-primary-blue);
+    color: white;
+}
+
+/* ===== 响应式调整 ===== */
+@media (max-width: 1820px) {
+    .product-details-tabs .container {
+        width: 100%;
+        max-width: 100% !important;
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .tab-content {
+        padding: 30px 20px;
+    }
+    
+    .feature-highlight {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .feature-highlight.reverse {
+        flex-direction: column;
+    }
+    
+    .feature-image {
+        width: 100%;
+    }
+    
+    .feature-benefits {
+        grid-template-columns: 1fr;
+    }
+    
+    .reviews-summary {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tabs-navigation {
+        padding: 0 10px;
+    }
+    
+    .tab-btn {
+        padding: 15px 20px;
+        font-size: 14px;
+    }
+    
+    .feature-details h3 {
+        font-size: 24px;
+    }
+    
+    .description-header h3,
+    .specs-header h3 {
+        font-size: 28px;
+    }
+    
+    .specs-name,
+    .specs-value {
+        padding: 10px 15px;
+    }
+    
+    .review-image {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-details-tabs .container {
+        padding: 0 20px;
+    }
+    
+    .tab-content {
+        padding: 20px 15px;
+    }
+    
+    .feature-details h3 {
+        font-size: 22px;
+    }
+    
+    .description-header h3,
+    .specs-header h3 {
+        font-size: 24px;
+    }
+    
+    .rating-distribution {
+        display: none;
+    }
+    
+    .reviews-filter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .filter-options {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        white-space: nowrap;
+    }
+} 

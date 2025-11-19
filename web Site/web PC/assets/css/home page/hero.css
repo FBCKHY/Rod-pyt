@@ -1,0 +1,480 @@
+/**
+ * 英雄区块样式 - hero.css
+ * 
+ * 描述：定义网站首页英雄区块（Hero Section）的样式
+ * 用途：设置轮播图、标题、内容和按钮的样式
+ * 
+ * 包含内容：
+ * - 英雄区块布局
+ * - 轮播图样式
+ * - 内容样式
+ * - 控制按钮样式
+ * - 指示器样式
+ * - 响应式调整
+ * 
+ * 创建日期：2025-07-08
+ * 最后修改：2025-07-08
+ */
+
+/* 英雄区块基础样式 */
+.hero-section {
+    position: relative;
+    height: 102vh; /* 调整为102%视口高度，适当减少之前的高度 */
+    min-height: 680px; /* 适当减少最小高度 */
+    max-height: none; /* 保持无最大高度限制 */
+    overflow: hidden;
+    margin-bottom: 0; /* 移除了底部间隔 */
+    box-shadow: 0 5px 20px var(--shadow-color-medium);
+    background-color: var(--brand-blue-darker);
+    /* 移除了白色间隔: border-top: 20px solid var(--brand-white); */
+    /* 最终高度会由JavaScript动态计算，这里提供初始值 */
+    
+    /* 添加顶部负边距使其向上延伸15px，被导航栏覆盖 */
+    margin-top: -15px;
+    /* 删除之前添加的底部内边距 */
+}
+
+/* 轮播图样式 */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    /* 移除整体幻灯片的过渡效果，分别为背景和内容设置过渡 */
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 3;
+}
+
+/* 精致的文字过渡动画 */
+.slide .slide-content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.slide.active .slide-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 标题动画 */
+.slide .hero-title-wrapper {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s, transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s;
+}
+
+.slide.active .hero-title-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 段落动画 */
+.slide .slide-content p {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s, transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+}
+
+.slide.active .slide-content p {
+    opacity: 0.9;
+    transform: translateY(0);
+}
+
+/* 按钮动画 */
+.slide .hero-button {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all var(--transition-fast), opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s, transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 0.5s;
+}
+
+.slide.active .hero-button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 淡出动画 */
+.slide.fade-out .slide-content {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.slide.fade-out .hero-title-wrapper {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.slide.fade-out .slide-content p {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.slide.fade-out .hero-button {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.slide.next-up {
+    opacity: 0;
+    z-index: 2;
+}
+
+/* 背景图片层 */
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 1.2s ease-out, transform 1.5s ease-out;
+    z-index: 1;
+}
+
+.slide.active .slide-bg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.slide.next-up .slide-bg {
+    opacity: 0;
+    transform: scale(1.05);
+}
+
+/* 背景渐变叠加层 */
+.slide-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(10, 40, 80, 0.5) 0%,
+        rgba(10, 40, 80, 0.2) 50%,
+        rgba(10, 40, 80, 0.1) 100%
+    );
+    /* 降低不透明度，使图片更加清晰 */
+    opacity: 0.6;
+}
+
+/* 内容样式 */
+.slide-content {
+    position: absolute;
+    color: var(--brand-white);
+    padding: 0;
+    max-width: 650px;
+    bottom: 150px; /* 向上移动50px，从100px改为150px */
+    left: 130px; /* 向右移动100px，从30px改为130px */
+    z-index: 2; /* 确保内容在背景上层 */
+}
+
+.hero-title-wrapper {
+    margin-bottom: 20px;
+}
+
+.hero-main-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: var(--brand-white);
+    text-shadow: var(--text-shadow-strong), 0 0 15px rgba(0, 0, 0, 0.5); /* 增强阴影效果 */
+    letter-spacing: 1px;
+}
+
+.slide-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-shadow: var(--text-shadow-dark), 0 0 10px rgba(0, 0, 0, 0.4); /* 增强阴影效果 */
+    opacity: 0.9;
+}
+
+/* 按钮样式 */
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: var(--gold-gradient);
+    color: var(--brand-blue-dark);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 10px var(--gold-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform var(--transition-fast);
+    transform: skewX(-15deg);
+}
+
+.hero-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--gold-shadow);
+    color: var(--brand-blue-darker);
+}
+
+.hero-button:hover::before {
+    transform: translateX(200%) skewX(-15deg);
+}
+
+/* 轮播控制 */
+.hero-controls {
+    position: absolute;
+    bottom: 30px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    right: 30px;
+    z-index: 10;
+}
+
+.hero-controls button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.hero-controls button:hover {
+    background: rgba(255, 215, 0, 0.2); /* 添加淡金黄色背景 */
+    border-color: var(--brand-gold-primary);
+}
+
+.hero-controls button .hover-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: transparent;
+    transition: all var(--transition-fast);
+}
+
+.hero-controls button:hover .hover-effect {
+    box-shadow: 0 0 15px 5px var(--glow-color-yellow);
+}
+
+.arrow-left, .arrow-right {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+    transition: all var(--transition-fast);
+}
+
+.hero-controls button:hover .arrow-left,
+.hero-controls button:hover .arrow-right {
+    border-color: var(--brand-gold-primary);
+}
+
+.arrow-left {
+    transform: rotate(135deg);
+}
+
+.arrow-right {
+    transform: rotate(-45deg);
+}
+
+/* 轮播指示器 */
+.hero-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    /* 添加箭头指示下一个 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 添加顺序指示器 - 小点之间的连接线 */
+.indicator:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    right: -15px;
+    top: 5px;
+}
+
+.indicator:hover {
+    background-color: rgba(255, 215, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.indicator.active {
+    width: 16px;
+    height: 16px;
+    background-color: var(--brand-gold-primary);
+    border-color: var(--brand-gold-primary);
+    box-shadow: 0 0 10px var(--glow-color-yellow);
+}
+
+/* 增加当前活动指示器的后续指示器的强调 */
+.indicator.active + .indicator {
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+}
+
+/* 轮播指示器内部的数字 */
+.indicator-number {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    display: none; /* 默认隐藏 */
+}
+
+.indicator.active .indicator-number {
+    display: block; /* 在活动指示器上显示 */
+    color: var(--brand-blue-darker);
+    font-weight: bold;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .hero-section {
+        min-height: 680px; /* 适当减少最小高度 */
+        height: 102vh; /* 调整为102%视口高度 */
+        max-height: none; /* 保持无最大高度限制 */
+        /* 保持顶部负边距在所有断点中一致 */
+        margin-top: -15px;
+    }
+    
+    .hero-main-title {
+        font-size: 2.8rem;
+    }
+    
+    .slide-content p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-controls {
+        right: 20px;
+        gap: 10px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 630px; /* 适当减少最小高度 */
+        height: 102vh; /* 调整为102%视口高度 */
+        max-height: none; /* 保持无最大高度限制 */
+        /* 保持顶部负边距在所有断点中一致 */
+        margin-top: -15px;
+    }
+    
+    .slide-content {
+        bottom: 130px; /* 向上移动50px，从80px改为130px */
+        left: 50px; /* 减少左侧空间，更适合小屏幕 */
+        max-width: 85%; /* 减小最大宽度，避免文字溢出 */
+    }
+    
+    .hero-main-title {
+        font-size: 2.2rem;
+    }
+    
+    .slide-content p {
+        font-size: 1rem;
+    }
+    
+    .hero-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 580px; /* 适当减少最小高度 */
+        height: 102vh; /* 调整为102%视口高度 */
+        max-height: none; /* 保持无最大高度限制 */
+        /* 保持顶部负边距在所有断点中一致 */
+        margin-top: -15px;
+    }
+    
+    .slide-content {
+        bottom: 120px; /* 向上移动50px，从70px改为120px */
+        left: 30px; /* 进一步减少左侧空间，适应最小屏幕 */
+        max-width: 90%; /* 增加宽度利用率 */
+        padding: 0 10px; /* 添加内边距避免内容贴边 */
+    }
+    
+    .hero-main-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .slide-content p {
+        margin-bottom: 20px;
+    }
+    
+    .hero-controls button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .arrow-left, .arrow-right {
+        padding: 4px;
+    }
+} 

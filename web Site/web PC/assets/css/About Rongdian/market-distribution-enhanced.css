@@ -1,0 +1,274 @@
+/**
+ * 关于容电 - 市场分布图表增强样式
+ * 
+ * 描述：全新设计市场分布图表，提供更现代化、更具视觉吸引力的展示效果
+ * 用途：增强用户体验和数据可视化效果
+ * 
+ * 创建日期：2025-07-26
+ */
+
+/* 市场分布卡片整体样式 */
+.market-distribution-card {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #0a4c95 0%, #074e9c 100%);
+    box-shadow: 0 15px 35px rgba(7, 78, 156, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.market-distribution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(7, 78, 156, 0.35), 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 卡片标题区域 */
+.market-distribution-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.market-distribution-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* 图例样式 */
+.market-legend {
+    display: flex;
+    gap: 15px;
+}
+
+.market-legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.market-legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+}
+
+/* 世界地图容器 */
+.world-map-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    min-height: 200px;
+}
+
+/* 世界地图SVG样式 */
+.world-map {
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* 市场分布数据容器 */
+.market-data-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* 市场数据项 */
+.market-data-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    width: 45%;
+}
+
+.market-data-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+/* 市场数据值 */
+.market-data-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.4);
+    display: flex;
+    align-items: center;
+}
+
+.market-data-percent {
+    font-size: 18px;
+    margin-left: 2px;
+}
+
+/* 市场数据标签 */
+.market-data-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 5px;
+}
+
+/* 市场数据描述 */
+.market-data-description {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+/* 国家和地区统计 */
+.countries-regions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.countries-regions-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFD700;
+    margin-right: 8px;
+    text-shadow: 0 2px 5px rgba(255, 215, 0, 0.3);
+}
+
+.countries-regions-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* 分布点样式 */
+.distribution-point {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: pulse-point 2s infinite;
+}
+
+.distribution-point.domestic {
+    background-color: var(--brand-primary-blue);
+    box-shadow: 0 0 10px rgba(7, 78, 156, 0.5);
+}
+
+.distribution-point.overseas {
+    background-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* 动画效果 */
+@keyframes pulse-point {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.3;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .market-data-value {
+        font-size: 32px;
+    }
+    
+    .market-data-percent {
+        font-size: 16px;
+    }
+    
+    .countries-regions-value {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .market-distribution-card {
+        padding: 20px;
+    }
+    
+    .market-data-value {
+        font-size: 28px;
+    }
+    
+    .market-data-percent {
+        font-size: 14px;
+    }
+    
+    .market-data-label {
+        font-size: 12px;
+    }
+    
+    .countries-regions-value {
+        font-size: 20px;
+    }
+    
+    .countries-regions-label {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .market-distribution-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .market-legend {
+        margin-top: 10px;
+    }
+    
+    .market-data-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .market-data-item {
+        width: 100%;
+    }
+} 

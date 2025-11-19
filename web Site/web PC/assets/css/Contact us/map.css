@@ -1,0 +1,234 @@
+/**
+ * 联系我们 - 地图样式
+ * 
+ * 描述：定义联系我们页面地图相关样式
+ * 用途：美化地图显示和相关元素
+ * 
+ * 创建日期：2025-07-15
+ */
+
+/* 地图区块 */
+.map-section {
+    padding: 80px 0;
+    background-color: var(--neutral-gray-background);
+}
+
+/* 地图容器 */
+.contact-map {
+    width: 100%;
+    height: 450px;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* 地图占位图 */
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background-color: var(--neutral-gray-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.map-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+    opacity: 0.7;
+}
+
+/* 地图加载提示 */
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-white);
+}
+
+.map-overlay i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.map-overlay p {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* 自定义地图弹窗样式 */
+.map-popup {
+    padding: 5px;
+}
+
+.map-popup h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--brand-primary-blue);
+}
+
+.map-popup p {
+    margin: 5px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.map-popup p i {
+    margin-right: 8px;
+    color: var(--brand-primary-blue);
+}
+
+.headquarters-badge {
+    display: inline-block;
+    background-color: var(--brand-gold-primary);
+    color: var(--brand-blue-darker);
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+/* Leaflet地图自定义样式 */
+.leaflet-popup-content-wrapper {
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-tip {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-content {
+    margin: 12px 15px;
+}
+
+/* 静态地图样式（备用方案） */
+.static-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.static-map img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.static-map-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+}
+
+.map-location-marker {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.map-location-marker i {
+    color: var(--brand-primary-blue);
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.map-location-marker span {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--brand-primary-blue);
+}
+
+.map-address,
+.map-phone {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* 动画效果 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .map-section {
+        padding: 60px 0;
+    }
+    
+    .contact-map {
+        height: 350px;
+    }
+    
+    .static-map-overlay {
+        bottom: 20px;
+        left: 20px;
+        padding: 12px;
+        max-width: 260px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-map {
+        height: 300px;
+    }
+    
+    .map-overlay i {
+        font-size: 30px;
+    }
+    
+    .map-overlay p {
+        font-size: 16px;
+    }
+    
+    .static-map-overlay {
+        bottom: 15px;
+        left: 15px;
+        padding: 10px;
+        max-width: 220px;
+    }
+    
+    .map-location-marker i {
+        font-size: 20px;
+    }
+    
+    .map-location-marker span {
+        font-size: 16px;
+    }
+} 

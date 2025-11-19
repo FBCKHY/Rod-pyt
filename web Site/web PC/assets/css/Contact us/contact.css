@@ -1,0 +1,244 @@
+/**
+ * 联系我们 - 主要样式
+ * 
+ * 描述：定义联系我们页面的整体布局和基本组件样式
+ * 用途：设置页面框架、标题区域和信息卡片样式
+ * 
+ * 创建日期：2025-07-15
+ */
+
+/* 页面标题区域 */
+.contact-hero-section {
+    padding: 130px 0 80px; /* 上方内边距从100px增加到130px */
+    background: var(--gradient-brand-solid);
+    color: var(--brand-white);
+    position: relative;
+    overflow: hidden;
+    margin-top: 0; /* 移除顶部边距 */
+    text-align: center;
+}
+
+.contact-hero-section::before {
+    content: '';
+    position: absolute;
+    top: -80px; /* 背景图向上延伸80px，完全覆盖导航栏 */
+    left: 0;
+    width: 100%;
+    height: calc(100% + 80px); /* 高度增加80px */
+    background-image: url('../../../assets/images/Contact us/pattern-bg.png');
+    background-size: cover;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* 添加伪元素填充导航栏区域 */
+.contact-hero-section::after {
+    content: '';
+    position: absolute;
+    top: -80px; /* 与导航栏高度一致 */
+    left: 0;
+    width: 100%;
+    height: 80px; /* 与导航栏高度一致 */
+    background: var(--gradient-brand-solid); /* 使用与hero区域相同的背景 */
+    z-index: -1; /* 确保在导航栏下方 */
+}
+
+.contact-hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    text-shadow: var(--text-shadow-dark);
+}
+
+.contact-hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--brand-gold-primary);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--glow-color-yellow);
+}
+
+.contact-hero-subtitle {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* 信息卡片区域 */
+.contact-info-section {
+    padding: 80px 0;
+    background-color: var(--brand-white);
+}
+
+.contact-card {
+    background-color: var(--brand-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    height: 100%;
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--brand-primary-blue);
+    transition: height var(--transition-normal);
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card:hover::before {
+    height: 100%;
+}
+
+.contact-card-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--brand-blue-soft);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    transition: all var(--transition-normal);
+}
+
+.contact-card:hover .contact-card-icon {
+    background: var(--brand-primary-blue);
+    box-shadow: 0 5px 15px rgba(7, 78, 156, 0.3);
+}
+
+.contact-card-icon i {
+    font-size: 32px;
+    color: var(--brand-primary-blue);
+    transition: all var(--transition-normal);
+}
+
+.contact-card:hover .contact-card-icon i {
+    color: var(--brand-white);
+    transform: scale(1.1);
+}
+
+.contact-card-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--brand-primary-blue);
+}
+
+.contact-card-text {
+    color: var(--neutral-gray-text-medium);
+    margin-bottom: 10px;
+}
+
+/* 联系页面标题样式 */
+.section-heading {
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--brand-primary-blue);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--brand-primary-blue);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: var(--neutral-gray-text-medium);
+    max-width: 700px;
+}
+
+.text-center .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .contact-card {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero-section {
+        padding: 80px 0 60px;
+    }
+    
+    .contact-hero-title {
+        font-size: 36px;
+    }
+    
+    .contact-hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .contact-info-section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .section-subtitle {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-hero-title {
+        font-size: 30px;
+    }
+    
+    .contact-card {
+        padding: 25px;
+    }
+    
+    .contact-card-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 20px;
+    }
+    
+    .contact-card-icon i {
+        font-size: 28px;
+    }
+    
+    .contact-card-title {
+        font-size: 20px;
+    }
+} 

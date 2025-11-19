@@ -1,0 +1,710 @@
+/* 容电科技 - 公司概览重新设计 CSS */
+:root {
+    --brand-blue-gradient: linear-gradient(135deg, #074e9c 0%, #0a6ad1 100%);
+    --brand-blue-dark: #053b76;
+    --brand-blue-light: #3a8dff;
+    --brand-gold: #d4af37;
+    --brand-gold-light: #f0d078;
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --shadow-soft: 0 10px 30px rgba(7, 78, 156, 0.2);
+    --shadow-strong: 0 15px 35px rgba(7, 78, 156, 0.3);
+    --animation-time: 0.5s;
+}
+
+/* 主容器样式 */
+.company-overview-redesigned {
+    position: relative;
+    background: linear-gradient(135deg, #0d3266 0%, #071b36 60%, #05101f 100%);
+    padding: 80px 0;
+    margin-bottom: 80px;
+    margin-top: -130px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* 背景装饰元素 */
+.overview-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.overview-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.circle-1 {
+    width: 500px;
+    height: 500px;
+    top: -200px;
+    left: 5%;
+}
+
+.circle-2 {
+    width: 400px;
+    height: 400px;
+    bottom: -100px;
+    right: 10%;
+}
+
+.circle-3 {
+    width: 300px;
+    height: 300px;
+    top: 30%;
+    right: 25%;
+}
+
+.circle-4 {
+    width: 250px;
+    height: 250px;
+    bottom: 20%;
+    left: 15%;
+}
+
+.circle-5 {
+    width: 350px;
+    height: 350px;
+    top: 10%;
+    right: 5%;
+}
+
+.overview-bg-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    transform: rotate(45deg);
+}
+
+.line-1 {
+    width: 4px;
+    height: 300px;
+    top: 5%;
+    left: 20%;
+}
+
+.line-2 {
+    width: 4px;
+    height: 250px;
+    bottom: 10%;
+    right: 30%;
+}
+
+.line-3 {
+    width: 4px;
+    height: 200px;
+    top: 40%;
+    left: 40%;
+}
+
+.line-4 {
+    width: 4px;
+    height: 350px;
+    top: 20%;
+    right: 15%;
+}
+
+/* 标题区域 */
+.overview-header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+    max-width: 1660px; /* 增加最大宽度，与内容区域一致 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.overview-subtitle {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--brand-gold-light);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    position: relative;
+    padding: 5px 15px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 20px;
+    transform: translateY(0);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.overview-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.overview-title span {
+    position: relative;
+    display: inline-block;
+}
+
+.overview-title span::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: var(--brand-gold);
+    opacity: 0.5;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+.title-separator {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.title-separator span {
+    width: 100px;
+    height: 4px;
+    background: var(--brand-gold);
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
+}
+
+.title-separator span::before,
+.title-separator span::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--brand-gold);
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
+}
+
+.title-separator span::before {
+    left: -6px;
+}
+
+.title-separator span::after {
+    right: -6px;
+}
+
+.overview-description {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 内容区域 */
+.overview-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 30px auto 60px;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 270px; /* 增加左右内边距，从70px增加到270px */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1660px; /* 增加最大宽度，从1260px增加到1660px */
+    width: 98%; /* 增加宽度比例，从95%增加到98% */
+}
+
+/* 图片区域 */
+.overview-image-wrapper {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    transform: translateY(0);
+    transition: transform var(--animation-time) ease;
+}
+
+.overview-image-wrapper:hover {
+    transform: translateY(-10px);
+}
+
+.overview-image-main {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    z-index: 1;
+}
+
+.overview-image-main img {
+    width: 100%;
+    height: auto;
+    transition: transform var(--animation-time) ease;
+    filter: brightness(1.05) contrast(1.05);
+}
+
+.overview-image-wrapper:hover .overview-image-main img {
+    transform: scale(1.05);
+}
+
+.overview-image-badge {
+    position: absolute;
+    right: -25px;
+    bottom: 30px;
+    width: 120px;
+    height: 120px;
+    background: var(--brand-gold);
+    color: var(--text-dark);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+    z-index: 2;
+    border: 5px solid rgba(255, 255, 255, 0.9);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.badge-year {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.badge-text {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* 文本区域 */
+.overview-text-wrapper {
+    flex: 1;
+    min-width: 300px;
+}
+
+.overview-text-content {
+    color: var(--text-light);
+}
+
+.overview-subtitle-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.overview-subtitle-text::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: var(--brand-gold);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.overview-paragraph {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+}
+
+.text-highlight {
+    color: var(--brand-gold-light);
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.text-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--brand-gold);
+    opacity: 0.7;
+}
+
+/* 特点列表 */
+.overview-features {
+    margin-bottom: 35px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    transition: transform var(--animation-time) ease;
+}
+
+.feature-item:hover {
+    transform: translateX(10px);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all var(--animation-time) ease;
+}
+
+.feature-item:hover .feature-icon {
+    background: var(--brand-gold);
+    transform: rotate(360deg);
+}
+
+.feature-icon i {
+    font-size: 24px;
+    color: var(--text-light);
+    transition: all var(--animation-time) ease;
+}
+
+.feature-item:hover .feature-icon i {
+    color: var(--text-dark);
+}
+
+.feature-text h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--brand-gold-light);
+    margin-bottom: 8px;
+}
+
+.feature-text p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+}
+
+/* CTA按钮 */
+.overview-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.overview-cta .btn {
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border-width: 2px;
+}
+
+.overview-cta .btn-primary {
+    background: var(--brand-gold);
+    border-color: var(--brand-gold);
+    color: var(--text-dark);
+}
+
+.overview-cta .btn-primary:hover {
+    background: var(--brand-gold-light);
+    border-color: var(--brand-gold-light);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.overview-cta .btn-outline-primary {
+    border-color: #e7b925;
+    color: #e7b925;
+    font-weight: 600;
+    border-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.overview-cta .btn-outline-primary:hover {
+    background: rgba(231, 185, 37, 0.15);
+    border-color: #e7b925;
+    color: #e7b925;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(231, 185, 37, 0.25);
+}
+
+/* 品牌优势 */
+.brand-advantages {
+    position: relative;
+    z-index: 2;
+    margin: 60px auto 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 270px; /* 增加左右内边距，与内容区域一致 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1660px; /* 增加最大宽度，与内容区域一致 */
+    width: 98%; /* 增加宽度比例，与内容区域一致 */
+}
+
+.brand-advantages .row {
+    margin: 0 -15px;
+}
+
+.advantage-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all var(--animation-time) ease;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.advantage-box:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-soft);
+}
+
+.advantage-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: all var(--animation-time) ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.advantage-box:hover .advantage-icon {
+    background: var(--brand-gold);
+    transform: rotateY(180deg);
+}
+
+.advantage-icon i {
+    font-size: 28px;
+    color: var(--text-light);
+    transition: all var(--animation-time) ease;
+}
+
+.advantage-box:hover .advantage-icon i {
+    color: var(--text-dark);
+    transform: rotateY(180deg);
+}
+
+.advantage-box h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--brand-gold-light);
+    margin-bottom: 15px;
+}
+
+.advantage-box p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .company-overview-redesigned {
+        padding: 50px 30px;
+    }
+    
+    .overview-title {
+        font-size: 40px;
+    }
+    
+    .overview-content-wrapper {
+        padding: 30px;
+    }
+    
+    .overview-image-badge {
+        width: 100px;
+        height: 100px;
+        right: -15px;
+    }
+    
+    .badge-year {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .overview-title {
+        font-size: 36px;
+    }
+    
+    .overview-description {
+        font-size: 18px;
+    }
+    
+    .overview-content-wrapper {
+        gap: 40px;
+    }
+    
+    .overview-subtitle-text {
+        font-size: 24px;
+    }
+    
+    .advantage-box {
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .company-overview-redesigned {
+        padding: 40px 20px;
+        margin-bottom: 60px;
+    }
+    
+    .overview-title {
+        font-size: 32px;
+    }
+    
+    .overview-description {
+        font-size: 16px;
+    }
+    
+    .overview-content-wrapper {
+        padding: 25px;
+        gap: 30px;
+    }
+    
+    .overview-image-badge {
+        width: 90px;
+        height: 90px;
+        right: -10px;
+        bottom: 20px;
+    }
+    
+    .badge-year {
+        font-size: 32px;
+    }
+    
+    .badge-text {
+        font-size: 14px;
+    }
+    
+    .overview-subtitle-text {
+        font-size: 22px;
+        padding-left: 15px;
+    }
+    
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+    
+    .feature-icon i {
+        font-size: 20px;
+    }
+    
+    .feature-text h4 {
+        font-size: 18px;
+    }
+    
+    .overview-cta {
+        flex-direction: column;
+    }
+    
+    .overview-cta .btn {
+        width: 100%;
+    }
+    
+    .brand-advantages {
+        padding: 30px 15px;
+    }
+    
+    .advantage-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .advantage-icon i {
+        font-size: 24px;
+    }
+    
+    .advantage-box h4 {
+        font-size: 18px;
+    }
+} 
+
+/* 图标颜色定制 */
+.feature-icon i.bi-award-fill,
+.feature-icon i.bi-shield-check,
+.feature-icon i.bi-globe2 {
+    color: #e7b925;
+    transition: all var(--animation-time) ease;
+}
+
+.feature-icon i.bi-award-fill::before,
+.feature-icon i.bi-shield-check::before,
+.feature-icon i.bi-globe2::before {
+    color: inherit;
+}
+
+.feature-item:hover .feature-icon i.bi-award-fill,
+.feature-item:hover .feature-icon i.bi-shield-check,
+.feature-item:hover .feature-icon i.bi-globe2 {
+    color: var(--text-dark);
+} 
+
+/* 图标颜色定制 - 品牌优势区块 */
+.advantage-icon i.bi-gear-wide-connected,
+.advantage-icon i.bi-flower1,
+.advantage-icon i.bi-tools,
+.advantage-icon i.bi-headset {
+    color: #e7b925;
+    transition: all var(--animation-time) ease;
+}
+
+.advantage-icon i.bi-gear-wide-connected::before,
+.advantage-icon i.bi-flower1::before,
+.advantage-icon i.bi-tools::before,
+.advantage-icon i.bi-headset::before {
+    color: inherit;
+}
+
+/* 保留原有的悬停效果，但确保颜色一致 */
+.advantage-box:hover .advantage-icon i {
+    color: var(--text-dark);
+    transform: rotateY(180deg);
+} 

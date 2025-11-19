@@ -1,0 +1,332 @@
+/**
+ * 关于容电 - 行业对比表格重新设计样式
+ * 
+ * 描述：重新设计行业对比表格，提高在蓝色背景下的可读性和视觉吸引力
+ * 用途：增强用户体验和数据可视化效果
+ * 
+ * 创建日期：2025-07-20
+ * 更新日期：2025-07-24 - 修复提示框显示问题
+ * 更新日期：2025-07-25 - 重写提示框样式解决显示问题
+ */
+
+/* 表格容器样式增强 */
+.comparison-table-container {
+    border-radius: 15px;
+    overflow: auto; /* 默认允许滚动 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+    background: linear-gradient(145deg, rgba(10, 76, 149, 0.9) 0%, rgba(7, 78, 156, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 5px;
+    position: relative;
+    max-height: 300px; /* 限制最大高度 */
+    transition: all 0.4s ease-out;
+    margin-bottom: 30px; /* 为提示框预留空间 */
+}
+
+/* 表格容器动画效果 */
+.comparison-table-container.animated-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0.5;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 表格容器悬停效果 */
+.comparison-table-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 25px rgba(0, 0, 0, 0.15) inset;
+}
+
+/* 自定义滚动条样式 */
+.comparison-table-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.comparison-table-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.comparison-table-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 3px;
+}
+
+.comparison-table-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 215, 0, 0.5);
+}
+
+/* 装饰背景元素 */
+.comparison-table-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='rgba(255,255,255,0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 表格基础样式增强 */
+.comparison-table {
+    color: #ffffff;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    font-family: 'Roboto', 'Microsoft YaHei', sans-serif;
+    table-layout: fixed; /* 固定表格布局 */
+}
+
+/* 表头样式 */
+.comparison-table thead {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.3) 100%);
+    position: sticky; /* 固定表头 */
+    top: 0;
+    z-index: 2;
+}
+
+.comparison-table th {
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.5);
+    position: relative;
+}
+
+/* 表头装饰 */
+.comparison-table th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #FFD700;
+    transition: width 0.3s ease;
+}
+
+.comparison-table th:hover::after {
+    width: 80%;
+}
+
+/* 表格内容行样式 */
+.comparison-table tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative; /* 确保定位上下文 */
+    z-index: 1; /* 设置基础层级 */
+}
+
+.comparison-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.comparison-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* 提高悬浮时的层级，确保提示框不被遮挡 */
+}
+
+/* 表格单元格样式 */
+.comparison-table td {
+    padding: 12px 10px; /* 减少内边距 */
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* 防止文本换行 */
+    overflow: hidden; /* 隐藏溢出内容 */
+    text-overflow: ellipsis; /* 显示省略号 */
+}
+
+/* 第一列（指标名称）样式 */
+.comparison-table td:first-child {
+    font-weight: 500;
+    text-align: left;
+    padding-left: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* 第二列（容电科技数据）样式 */
+.comparison-table td:nth-child(2) {
+    font-weight: 700;
+}
+
+/* 第三列（行业平均）样式 */
+.comparison-table td:nth-child(3) {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 高亮数据样式 */
+.comparison-table .highlight {
+    color: #FFD700;
+    font-weight: 700;
+    font-size: 18px;
+    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* 高亮数据悬停效果 */
+.comparison-table tbody tr:hover .highlight {
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+/* 上升趋势指示器 */
+.comparison-table .up-trend::after {
+    content: '↑';
+    margin-left: 5px;
+    color: #4caf50;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+    font-weight: bold;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* 下降趋势指示器 */
+.comparison-table .down-trend::after {
+    content: '↓';
+    margin-left: 5px;
+    color: #f44336;
+    text-shadow: 0 0 10px rgba(244, 67, 54, 0.4);
+    font-weight: bold;
+    animation: float 2s ease-in-out infinite reverse;
+}
+
+/* 表格行交替颜色 */
+.comparison-table tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.comparison-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* 表格行悬停高亮 */
+.comparison-table tbody tr:hover td {
+    color: #ffffff;
+}
+
+/* 数据差异可视化 - 容电科技与行业平均值的对比 */
+.comparison-table tbody tr td:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.comparison-table tbody tr:hover td:nth-child(2)::after {
+    opacity: 1;
+}
+
+/* 动画效果 */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .comparison-table th,
+    .comparison-table td {
+        padding: 12px 8px;
+    }
+    
+    .comparison-table .highlight {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px 5px;
+    }
+    
+    .comparison-table td:first-child {
+        padding-left: 10px;
+    }
+    
+    .comparison-table .highlight {
+        font-size: 15px;
+    }
+} 
+
+/* 完全重写数据比较提示样式 */
+.comparison-tip {
+    position: fixed; /* 使用固定定位，确保不会被容器裁剪 */
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    z-index: 9999; /* 非常高的z-index确保显示在最上层 */
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    min-width: 180px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, -100%); /* 默认位置调整 */
+    margin-top: -10px; /* 与三角形的间距 */
+}
+
+/* 提示框小三角形 */
+.comparison-tip::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.9);
+}
+
+/* 提示框动画效果 */
+@keyframes fadeInTooltip {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 表格行悬浮时的提示框显示 */
+.comparison-tip.visible {
+    animation: fadeInTooltip 0.3s forwards;
+} 

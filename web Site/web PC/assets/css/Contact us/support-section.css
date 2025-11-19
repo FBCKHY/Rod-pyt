@@ -1,0 +1,214 @@
+/**
+ * 联系我们 - 支持服务区块样式
+ * 
+ * 描述：定义"随时为您提供支持"区块的样式
+ * 用途：在联系我们页面展示支持服务信息
+ * 
+ * 创建日期：2025-07-15
+ */
+
+/* 支持服务区块 */
+.support-section {
+    background: var(--gradient-brand-solid);
+    padding: 80px 0;
+    color: var(--brand-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 背景装饰 */
+.support-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--ultimate-gold-pattern) 2px, transparent 2px);
+    background-size: 30px 30px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.support-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gold-gradient);
+    z-index: 1;
+}
+
+/* 标题样式 */
+.support-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.support-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.support-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--brand-gold-primary);
+    border-radius: 2px;
+}
+
+.support-subtitle {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 支持服务卡片容器 */
+.support-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* 支持服务卡片 */
+.support-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-md);
+    padding: 30px;
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.support-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.support-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--brand-gold-primary);
+    transform: scaleX(0);
+    transition: transform var(--transition-normal);
+}
+
+.support-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* 卡片图标 */
+.support-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: all var(--transition-normal);
+}
+
+.support-card:hover .support-icon {
+    background: var(--brand-gold-primary);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.support-icon i {
+    font-size: 32px;
+    color: var(--brand-white);
+    transition: all var(--transition-normal);
+}
+
+.support-card:hover .support-icon i {
+    color: var(--brand-blue-darker);
+    transform: scale(1.1);
+}
+
+/* 卡片内容 */
+.support-card-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.support-card-text {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+/* 卡片按钮 */
+.support-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid var(--brand-gold-primary);
+    color: var(--brand-gold-primary);
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.support-btn:hover {
+    background: var(--brand-gold-primary);
+    color: var(--brand-blue-darker);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .support-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .support-section {
+        padding: 60px 0;
+    }
+    
+    .support-title {
+        font-size: 30px;
+    }
+    
+    .support-subtitle {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .support-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .support-card {
+        padding: 25px;
+    }
+    
+    .support-title {
+        font-size: 26px;
+    }
+} 

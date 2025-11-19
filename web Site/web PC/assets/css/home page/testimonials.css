@@ -1,0 +1,769 @@
+/**
+ * 用户评价区块样式 - testimonials.css
+ * 
+ * 描述：定义网站用户评价区块的样式
+ * 用途：展示客户反馈和评价
+ * 
+ * 包含内容：
+ * - 区块基础布局
+ * - 评价卡片样式
+ * - 轮播控制样式
+ * - 动画效果
+ * 
+ * 创建日期：2025-07-10
+ * 最后修改：2025-07-10
+ */
+
+/* 用户评价区块基础样式 */
+.testimonials-section {
+    position: relative;
+    padding: var(--section-spacing) 0;
+    background-color: var(--bg-light);
+    overflow: hidden;
+    /* 删除边框，使用装饰元素代替 */
+    border-top: none;
+    border-bottom: none;
+    /* 添加固定的最小高度，确保区块大小稳定 */
+    min-height: 700px;
+}
+
+/* 顶部装饰 - 优雅的波浪形分隔 */
+.testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background-image: 
+        linear-gradient(135deg, transparent 33.33%, var(--gold-light) 33.33%, var(--gold-light) 66.66%, transparent 66.66%),
+        linear-gradient(45deg, transparent 33.33%, var(--gold-medium) 33.33%, var(--gold-medium) 66.66%, transparent 66.66%);
+    background-size: 30px 30px;
+    background-position: 0 0;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    z-index: 2;
+}
+
+/* 底部装饰 - 优雅的波浪形分隔 */
+.testimonials-section::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background-image: 
+        linear-gradient(135deg, transparent 33.33%, var(--gold-light) 33.33%, var(--gold-light) 66.66%, transparent 66.66%),
+        linear-gradient(45deg, transparent 33.33%, var(--gold-medium) 33.33%, var(--gold-medium) 66.66%, transparent 66.66%);
+    background-size: 30px 30px;
+    background-position: 0 0;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    z-index: 2;
+}
+
+/* 顶部渐变过渡效果 */
+.testimonials-section .wave-top-separator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, 
+        rgba(var(--bg-light-rgb), 0) 0%, 
+        rgba(var(--bg-light-rgb), 1) 100%);
+    z-index: 1;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* 底部渐变过渡效果 */
+.testimonials-section .wave-bottom-separator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, 
+        rgba(var(--bg-light-rgb), 0) 0%, 
+        rgba(var(--bg-light-rgb), 1) 100%);
+    z-index: 1;
+    transform: translateY(50%);
+    pointer-events: none;
+}
+
+/* 金色背景效果 */
+.testimonials-section .gold-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 10% 10%, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+    animation: goldShimmer 15s infinite alternate ease-in-out;
+}
+
+/* 金色粒子效果 */
+.testimonials-section .gold-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0) 1px),
+        radial-gradient(circle at 40% 70%, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 1px),
+        radial-gradient(circle at 60% 30%, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0) 1px),
+        radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 1px),
+        radial-gradient(circle at 10% 90%, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0) 1px),
+        radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 1px),
+        radial-gradient(circle at 70% 10%, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0) 1px),
+        radial-gradient(circle at 90% 40%, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 1px);
+    background-size: 150px 150px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    animation: particleFloat 20s infinite linear;
+}
+
+/* 左上角金色装饰 */
+.testimonials-section .corner-decoration-top-left {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 120px;
+    height: 120px;
+    background-image: 
+        radial-gradient(circle at center, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 70%),
+        linear-gradient(45deg, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
+    border-top: 2px solid rgba(255, 215, 0, 0.2);
+    border-left: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 30px 0 0 0;
+    z-index: 1;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: cornerPulse 4s infinite alternate ease-in-out;
+}
+
+/* 右下角金色装饰 */
+.testimonials-section .corner-decoration-bottom-right {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 120px;
+    height: 120px;
+    background-image: 
+        radial-gradient(circle at center, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0) 70%),
+        linear-gradient(225deg, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+    border-right: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 0 0 30px 0;
+    z-index: 1;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: cornerPulse 4s infinite alternate-reverse ease-in-out;
+}
+
+/* 悬浮金色圆点 - 大 */
+.testimonials-section .floating-dot-large {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.4) 0%, rgba(255, 215, 0, 0) 70%);
+    z-index: 5; /* 提高z-index确保不被卡片遮挡 */
+    pointer-events: none;
+}
+
+.testimonials-section .floating-dot-large:nth-child(1) {
+    top: 8%;
+    right: 12%;
+    animation: floatDot 8s infinite alternate ease-in-out;
+}
+
+.testimonials-section .floating-dot-large:nth-child(2) {
+    top: 70%; /* 修改位置，避开卡片区域 */
+    right: 5%;
+    animation: floatDot 10s infinite alternate-reverse ease-in-out;
+}
+
+.testimonials-section .floating-dot-large:nth-child(8) {
+    top: 25%;
+    left: 8%;
+    width: 50px;
+    height: 50px;
+    animation: floatDot 12s infinite alternate ease-in-out;
+}
+
+.testimonials-section .floating-dot-large:nth-child(9) {
+    bottom: 15%;
+    left: 12%;
+    width: 45px;
+    height: 45px;
+    animation: floatDot 11s infinite alternate-reverse ease-in-out;
+}
+
+/* 悬浮金色圆点 - 小 */
+.testimonials-section .floating-dot-small {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.5) 0%, rgba(255, 215, 0, 0) 70%);
+    z-index: 5; /* 提高z-index确保不被卡片遮挡 */
+    pointer-events: none;
+}
+
+.testimonials-section .floating-dot-small:nth-child(3) {
+    top: 20%;
+    right: 25%;
+    animation: floatDot 6s infinite alternate ease-in-out;
+}
+
+.testimonials-section .floating-dot-small:nth-child(4) {
+    top: 80%; /* 修改位置，避开卡片区域 */
+    left: 25%;
+    animation: floatDot 7s infinite alternate-reverse ease-in-out;
+}
+
+.testimonials-section .floating-dot-small:nth-child(5) {
+    top: 40%;
+    left: 15%;
+    animation: floatDot 9s infinite alternate ease-in-out;
+}
+
+.testimonials-section .floating-dot-small:nth-child(10) {
+    top: 15%;
+    left: 35%;
+    width: 12px;
+    height: 12px;
+    animation: floatDot 5s infinite alternate ease-in-out;
+}
+
+.testimonials-section .floating-dot-small:nth-child(11) {
+    top: 60%;
+    right: 30%;
+    width: 10px;
+    height: 10px;
+    animation: floatDot 7.5s infinite alternate-reverse ease-in-out;
+}
+
+.testimonials-section .floating-dot-small:nth-child(12) {
+    top: 30%;
+    right: 40%;
+    width: 8px;
+    height: 8px;
+    animation: floatDot 6.5s infinite alternate ease-in-out;
+}
+
+.testimonials-section .floating-dot-small:nth-child(13) {
+    bottom: 25%;
+    right: 15%;
+    width: 10px;
+    height: 10px;
+    animation: floatDot 8.5s infinite alternate-reverse ease-in-out;
+}
+
+/* 光芒效果 */
+.testimonials-section .light-ray {
+    position: absolute;
+    width: 300px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0) 0%, rgba(255, 215, 0, 0.3) 50%, rgba(255, 215, 0, 0) 100%);
+    z-index: 5; /* 提高z-index确保不被卡片遮挡 */
+    pointer-events: none;
+    transform-origin: center;
+    opacity: 0.5;
+}
+
+.testimonials-section .light-ray:nth-child(6) {
+    top: 10%;
+    left: -50px;
+    transform: rotate(25deg);
+    animation: rayShine 8s infinite alternate ease-in-out;
+}
+
+.testimonials-section .light-ray:nth-child(7) {
+    top: 85%;
+    right: -50px;
+    transform: rotate(-15deg);
+    animation: rayShine 10s infinite alternate-reverse ease-in-out;
+}
+
+/* 金色背景动画 */
+@keyframes goldShimmer {
+    0% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 10% 20%;
+    }
+    50% {
+        background-position: 20% 10%;
+    }
+    75% {
+        background-position: 10% 0%;
+    }
+    100% {
+        background-position: 0% 10%;
+    }
+}
+
+/* 粒子漂浮动画 */
+@keyframes particleFloat {
+    0% {
+        background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    }
+    100% {
+        background-position: 300px 300px, -300px 300px, 300px -300px, -300px -300px, 
+                             150px 150px, -150px 150px, 150px -150px, -150px -150px;
+    }
+}
+
+/* 角落装饰动画 */
+@keyframes cornerPulse {
+    0% {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* 悬浮圆点动画 */
+@keyframes floatDot {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(15px, 15px);
+    }
+    100% {
+        transform: translate(-15px, -15px);
+    }
+}
+
+/* 光芒闪烁动画 */
+@keyframes rayShine {
+    0% {
+        opacity: 0.2;
+        width: 200px;
+    }
+    50% {
+        opacity: 0.5;
+        width: 300px;
+    }
+    100% {
+        opacity: 0.2;
+        width: 250px;
+    }
+}
+
+/* 标题区域样式 */
+.testimonials-title-area {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonials-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 标题装饰 */
+.testimonials-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gold-gradient);
+    border-radius: 3px;
+    box-shadow: 0 0 10px var(--gold-shadow);
+}
+
+.testimonials-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 30px auto 0;
+}
+
+/* 评价轮播容器 */
+.testimonials-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    overflow: hidden;
+    z-index: 10;
+    /* 添加固定高度，确保轮播区域大小稳定 */
+    height: 450px;
+}
+
+.testimonials-carousel.carousel-paused {
+    /* 暂停状态的视觉反馈 */
+    opacity: 1;
+}
+
+/* 评价卡片轨道 */
+.testimonials-track {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    transition: transform 0.5s ease;
+    margin: 0 auto;
+    /* 确保轨道高度与轮播容器一致 */
+    height: 100%;
+}
+
+/* 评价卡片 */
+.testimonial-card {
+    position: relative;
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: 380px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    z-index: 5;
+    display: none; /* 默认隐藏所有卡片 */
+    /* 设置固定高度，确保所有卡片高度一致 */
+    height: 400px;
+    /* 使用flex布局确保内容正确分布 */
+    display: none;
+    flex-direction: column;
+}
+
+/* 确保前三个卡片默认可见（第一页） */
+.testimonial-card:nth-child(1),
+.testimonial-card:nth-child(2),
+.testimonial-card:nth-child(3) {
+    display: flex; /* 默认显示第一页的卡片 */
+    flex-direction: column;
+}
+
+/* 在小屏幕上调整默认显示 */
+@media (max-width: 992px) {
+    .testimonial-card:nth-child(3) {
+        display: none; /* 平板上默认只显示两个卡片 */
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial-card:nth-child(2) {
+        display: none; /* 手机上默认只显示一个卡片 */
+    }
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* 引号装饰 */
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 120px;
+    line-height: 1;
+    font-family: serif;
+    color: var(--brand-gold-soft);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* 评价内容 */
+.testimonial-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+}
+
+/* 用户信息区域 */
+.testimonial-user {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* 用户头像 */
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--brand-white);
+    box-shadow: 0 0 0 2px var(--brand-gold-soft);
+    margin-right: 15px;
+    background-color: var(--brand-blue-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-primary-blue);
+    font-weight: bold;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.user-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px var(--brand-gold-primary), 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* 用户信息 */
+.user-info {
+    flex-grow: 1;
+}
+
+.user-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 5px;
+}
+
+.user-title {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* 评分星星 */
+.rating {
+    display: flex;
+    margin-top: 10px;
+}
+
+.star {
+    color: var(--brand-gold-primary);
+    margin-right: 3px;
+}
+
+/* 轮播控制按钮 */
+.testimonials-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 100%;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.testimonial-prev {
+    margin-right: auto;
+}
+
+.testimonial-next {
+    margin-left: auto;
+}
+
+.testimonial-btn {
+    background: var(--brand-white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+}
+
+.testimonial-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--brand-blue-soft);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform var(--transition-fast);
+}
+
+.testimonial-btn:hover::before {
+    transform: scale(1);
+}
+
+.testimonial-btn svg {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    z-index: 2;
+    color: var(--brand-primary-blue);
+    transition: color var(--transition-fast);
+}
+
+.testimonial-btn:hover svg {
+    color: var(--brand-blue-darker);
+}
+
+/* 轮播指示器 */
+.testimonials-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--brand-gray-silver);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.testimonial-indicator.active {
+    background-color: var(--brand-primary-blue);
+    transform: scale(1.2);
+}
+
+/* 卡片装饰元素 */
+.testimonial-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gold-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-normal);
+}
+
+.testimonial-card:hover::after {
+    transform: scaleX(1);
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .testimonial-card {
+        flex: 0 0 calc(50% - 30px);
+        max-width: calc(50% - 30px);
+    }
+    
+    .testimonials-title {
+        font-size: 2.4rem;
+    }
+    
+    /* 调整平板设备的高度 */
+    .testimonials-section {
+        min-height: 650px;
+    }
+    
+    .testimonials-carousel {
+        height: 420px;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-track {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .testimonial-card {
+        flex: 0 0 calc(100% - 30px);
+        max-width: calc(100% - 30px);
+        min-height: 350px;
+        /* 在手机上调整卡片高度 */
+        height: 350px;
+    }
+    
+    .testimonials-title {
+        font-size: 2rem;
+    }
+    
+    .testimonials-subtitle {
+        font-size: 1.1rem;
+    }
+
+    /* 响应式调整 - 小屏幕上的控制按钮 */
+    .testimonials-controls {
+        padding: 0 10px;
+    }
+    
+    .testimonial-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .testimonial-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* 在手机上调整区块和轮播高度 */
+    .testimonials-section {
+        min-height: 600px;
+    }
+    
+    .testimonials-carousel {
+        height: 380px;
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonial-card {
+        padding: 20px;
+        min-height: 300px;
+    }
+    
+    .testimonial-content {
+        font-size: 1rem;
+    }
+    
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .testimonials-title {
+        font-size: 1.8rem;
+    }
+} 

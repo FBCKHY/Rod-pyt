@@ -1,0 +1,1155 @@
+/**
+ * 合并样式文件 - style-merged.css
+ * 
+ * 描述：合并了style.css和footer.css的内容
+ * 用途：定义网站整体风格、导航栏、页脚等核心组件的样式
+ * 
+ * 包含内容：
+ * - 全局变量（颜色、过渡时间等）
+ * - 导航栏样式
+ * - 按钮样式
+ * - 页脚样式
+ * - 响应式调整
+ * 
+ * 创建日期：2025-07-11
+ * 最后修改：2025-07-11
+ */
+
+/* ===== 全局样式 ===== */
+:root {
+    -webkit-text-size-adjust: 100%;
+    /* 品牌主色 */
+    --brand-primary-blue: #074E9C;
+    --brand-primary-blue-rgb: 7, 78, 156;
+    --brand-blue-darker: #043166;
+    --brand-blue-dark: #043166;
+    --brand-blue-deep: #043166;
+    --brand-blue-light: #1976D2;
+    --brand-blue-lighter: #3e7abf;
+    --brand-blue-lightest: #5f91d0;
+    --brand-blue-soft: rgba(7, 78, 156, 0.1);
+    
+    /* 金色系列 */
+    --brand-gold-primary: #FFD700;
+    --brand-gold-dark: #E6C200;
+    --brand-gold-light: #FFF176;
+    --brand-gold-soft: rgba(255, 215, 0, 0.1);
+    --brand-gold-glow: rgba(255, 215, 0, 0.6);
+    --gold-light: #fff6c8;
+    --gold-medium: #ffd700;
+    --gold-medium-dark: #e6c400;
+    --gold-dark: #c6a600;
+    --gold-elegant: #B08D57;
+    --gold-shadow: rgba(198, 166, 0, 0.6);
+    --gold-fluorescent: #FFE55C;
+    --gold-fluorescent-light: #FFF0A0;
+    --gold-fluorescent-glow: rgba(255, 229, 92, 0.4);
+    --accent-yellow: #FFD700;
+    --accent-yellow-dark: #E6C200;
+    --accent-yellow-light: #FFEB99;
+    
+    /* 灰色系列 */
+    --brand-gray-platinum: #F8FAFC;
+    --brand-gray-silver: #E2E8F0;
+    --brand-gray-warm: #F5F7FA;
+    --brand-gray-text: #64748B;
+    --neutral-gray-background: #F0F2F5;
+    --neutral-gray-lighter: #F8F9FA;
+    --neutral-gray-text-dark: #333333;
+    --neutral-gray-text-medium: #495057;
+    --neutral-gray-text-light: #ABB8C3;
+    --neutral-gray-border: rgba(0, 0, 0, 0.08);
+    
+    /* 白色系列 */
+    --brand-white: #FFFFFF;
+    --brand-white-soft: rgba(255, 255, 255, 0.95);
+    --bg-white: #FFFFFF;
+    --bg-light: #F8F9FA;
+    
+    /* 文本颜色 */
+    --text-dark: #333333;
+    --text-light: #666666;
+    
+    /* 渐变色 */
+    --header-bg: var(--brand-primary-blue);
+    --header-gradient: linear-gradient(to bottom, var(--brand-primary-blue), var(--brand-blue-darker));
+    --hero-overlay-gradient: linear-gradient(135deg, rgba(7, 78, 156, 0.35), rgba(4, 49, 102, 0.45));
+    --gradient-brand-solid: linear-gradient(135deg, var(--brand-primary-blue), var(--brand-blue-darker));
+    --gradient-brand-dark: linear-gradient(135deg, var(--brand-blue-darker), var(--brand-blue-dark));
+    --gradient-blue-light: linear-gradient(to right, var(--brand-blue-lighter), var(--brand-primary-blue));
+    --gradient-blue-yellow: linear-gradient(135deg, var(--brand-primary-blue), var(--accent-yellow));
+    --gradient-yellow: linear-gradient(to right, var(--accent-yellow), var(--accent-yellow-dark));
+    --gradient-yellow-hover: linear-gradient(to right, var(--accent-yellow-light), var(--accent-yellow));
+    --gold-gradient: linear-gradient(to bottom, #ffd700, #e6c400);
+    --ultimate-gray-gradient: linear-gradient(135deg, #F0F2F5 0%, #F8F9FA 100%);
+    
+    /* 阴影效果 */
+    --text-shadow-light: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --text-shadow-dark: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --text-shadow-strong: 0 2px 4px rgba(0, 0, 0, 0.5);
+    --text-shadow-glow-blue: 0 0 8px rgba(7, 78, 156, 0.5);
+    --text-shadow-glow-yellow: 0 0 8px rgba(255, 215, 0, 0.5);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-medium: rgba(0, 0, 0, 0.2);
+    --shadow-color-dark: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --border-light: #E9ECEF;
+    
+    /* 悬停效果 */
+    --hover-bg-blue: rgba(7, 78, 156, 0.08);
+    --hover-bg-yellow: rgba(255, 215, 0, 0.15);
+    --glow-color-blue: rgba(7, 78, 156, 0.5);
+    --glow-color-blue-soft: rgba(7, 78, 156, 0.3);
+    --glow-color-yellow: rgba(255, 215, 0, 0.5);
+    --glow-color-yellow-soft: rgba(255, 215, 0, 0.3);
+    --ultimate-gold-pattern: rgba(255, 215, 0, 0.08);
+    --ultimate-gold-glow: rgba(255, 215, 0, 0.12);
+    
+    /* 功能色 */
+    --button-success: #28a745;
+    --button-success-dark: #218838;
+    --button-danger: #dc3545;
+    --button-danger-dark: #c82333;
+    --button-info: #17a2b8;
+    --button-info-dark: #138496;
+    --button-contrast: #6c757d;
+    --button-contrast-dark: #5a6268;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    
+    /* 尺寸与间距 */
+    --container-width: 1200px;
+    --section-spacing: 80px;
+    --element-spacing: 20px;
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 20px;
+    
+    /* 过渡动画 */
+    --transition-fast: 0.3s;
+    --transition-normal: 0.5s;
+    --transition-slow: 0.8s;
+    --animation-smooth: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --animation-gentle: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    --animation-elegant: 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* 字体 */
+    --font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--neutral-gray-text-dark);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+} 
+
+/* ===== 导航栏样式 ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--header-bg);
+    background-image: var(--header-gradient);
+    box-shadow: 0 3px 10px var(--shadow-color-medium);
+    z-index: 1000;
+    transition: all 0.25s ease-out; /* 加快过渡速度，增强动画效果 */
+    padding: 0; /* 移除内边距以便更好地控制logo大小 */
+    height: 80px; /* 保持导航栏高度 */
+    transform: translateY(0);
+}
+
+/* 导航栏滚动状态 */
+.navbar-scrolled {
+    box-shadow: 0 5px 15px var(--shadow-color-dark);
+    height: 75px !important; /* 减小高度差距，从80px变为75px */
+    /* 移除向上位移效果，防止露出白色 */
+    transform: translateY(0);
+}
+
+/* 导航栏上拉状态（向上滚动到顶再上拉时） */
+.navbar-pull {
+    /* 修改为不向上移动，而是向下拉伸 */
+    transform: translateY(0);
+    height: 90px; /* 向下拉伸而不是向上移动 */
+    box-shadow: 0 10px 25px var(--shadow-color-dark); /* 增强阴影效果 */
+}
+
+.navbar-brand {
+    margin-left: -100px; /* 保持左边距不变 */
+    padding: 0; /* 移除内边距 */
+    display: block; /* 改为块级元素 */
+    width: 220px; /* 增加宽度，与logo宽度一致 */
+    height: 80px; /* 固定高度与导航栏一致 */
+    overflow: hidden; /* 防止内容溢出 */
+    position: relative; /* 添加相对定位 */
+    transition: height 0.25s ease-out; /* 添加过渡效果 */
+}
+
+.navbar-scrolled .navbar-brand {
+    height: 75px !important; /* 跟随导航栏高度变化 */
+}
+
+.navbar-brand img {
+    height: 60px; /* 减小高度，不再使用100%填满 */
+    width: 220px; /* 拉长宽度50px，从原来的170px增加到220px */
+    object-fit: cover; /* 改为cover模式进行裁剪 */
+    object-position: left center; /* 左侧对齐，保留左侧内容 */
+    background-color: var(--brand-blue-darker); /* 与导航栏背景色一致 */
+    position: absolute; /* 绝对定位 */
+    top: 50%; /* 垂直居中 */
+    transform: translateY(-50%); /* 垂直居中偏移 */
+    left: 0; /* 左侧对齐 */
+    transition: height 0.25s ease-out; /* 添加过渡效果 */
+}
+
+.navbar-scrolled .navbar-brand img {
+    height: 56px !important; /* 滚动时轻微减小logo高度 */
+    /* 保持宽度不变，确保logo显示正常 */
+    width: 220px;
+}
+
+/* 导航项间距 */
+.nav-item {
+    margin: 0 15px; /* 增加间距 */
+}
+
+/* 统一导航链接样式 - 精确匹配首页样式 */
+.nav-link {
+    list-style: none;
+    box-sizing: border-box;
+    background: 0 0;
+    border: 0;
+    font-family: var(--font-family);
+    margin: 0;
+    position: relative;
+    transition: color 0.25s ease-out, line-height 0.25s ease-out; /* 添加line-height过渡 */
+    letter-spacing: 0.5px;
+    padding: 0 25px; /* 增加内边距 */
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    line-height: 80px; /* 与导航栏高度匹配 */
+    color: var(--brand-white) !important;
+    font-size: 17px; /* 增加字体大小 */
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2); /* 增强文字阴影效果 */
+}
+
+.navbar-scrolled .nav-link {
+    line-height: 75px !important; /* 滚动时轻微减小行高 */
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px; /* 增加下横线高度，与active状态一致 */
+    bottom: 15px; /* 减小与文字的距离 */
+    left: 0;
+    background-color: var(--accent-yellow);
+    transition: all 0.25s ease-out; /* 加快过渡速度 */
+    border-radius: 2px;
+    box-shadow: 0 0 6px 0 var(--glow-color-yellow);
+}
+
+.nav-link:hover {
+    color: var(--accent-yellow) !important;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3); /* 增强悬停时的文字阴影 */
+    transform: translateY(-2px); /* 添加轻微的上浮效果 */
+}
+
+.nav-link:hover:after {
+    width: 100%;
+    box-shadow: 0 0 8px 0 var(--glow-color-yellow);
+    /* 高度已经在基础样式中设置为4px，与active状态一致 */
+}
+
+.nav-link.active {
+    color: var(--accent-yellow) !important;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 2px 5px rgba(0, 0, 0, 0.4); /* 增强激活状态的文字阴影 */
+}
+
+.nav-link.active:after {
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-yellow);
+    box-shadow: 0 0 10px 0 var(--glow-color-yellow);
+}
+
+/* 外部链接特殊标识 */
+.nav-link.external-link {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link.external-link i {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.nav-link.external-link:after {
+    background-color: var(--accent-yellow-light);
+    /* 高度已经在基础样式中设置为4px，与其他导航项一致 */
+}
+
+/* 主导航悬停效果 */
+.main-nav a:hover {
+    color: var(--accent-yellow) !important;
+    /* 悬停效果已在.nav-link:hover中定义 */
+}
+
+.navbar-nav {
+    --bs-nav-link-padding-x: 0;
+    --bs-nav-link-padding-y: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .container {
+    padding: 0; /* 移除容器内边距 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 确保logo和导航菜单之间有足够空间 */
+}
+
+/* 白色间隔 */
+.hero-section {
+    margin-top: 80px; /* 与导航栏高度一致 */
+    /* 注释掉这里的border-top，因为已经在hero.css中定义了 */
+    /* border-top: 20px solid var(--brand-white); */
+} 
+
+/* ===== 按钮样式 ===== */
+.btn-gold {
+    background: var(--gold-gradient);
+    border: none;
+    color: var(--brand-blue-dark);
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--gold-shadow);
+}
+
+.btn-outline-gold {
+    background: transparent;
+    border: 2px solid var(--brand-gold-primary);
+    color: var(--brand-gold-primary);
+    font-weight: 600;
+    padding: 8px 22px;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-outline-gold:hover {
+    background-color: var(--brand-gold-primary);
+    color: var(--brand-white);
+} 
+
+/* ===== 页脚样式 ===== */
+/* 页脚整体样式 */
+.footer, .global-footer {
+    background: var(--gradient-brand-solid);
+    color: var(--brand-white);
+    padding: 60px 0 30px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0; /* 删除了页脚顶部的白色间隔 */
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10; /* 提升页脚的z-index */
+}
+
+/* 为联系我们页面提供更高优先级的样式 */
+.global-footer .footer-content {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 40px !important;
+    margin-bottom: 40px !important;
+}
+
+.global-footer .footer-subscribe-button {
+    padding: 12px 20px !important;
+    border: none !important;
+    background: var(--brand-gold-primary) !important;
+    color: var(--brand-blue-darker) !important;
+    font-weight: 600 !important;
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0 !important;
+    cursor: pointer !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.global-footer .footer-social-icon {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.global-footer .footer-social-icon:hover {
+    background: var(--brand-gold-primary) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 页脚装饰元素 */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gold-gradient);
+    z-index: 1;
+}
+
+.footer-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--ultimate-gold-pattern) 2px, transparent 2px);
+    background-size: 30px 30px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* 页脚内容布局 */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* 页脚公司信息区域 */
+.footer-company {
+    grid-column: 1 / 2;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+    display: block;
+}
+
+.footer-logo img {
+    height: 50px;
+    width: auto;
+}
+
+.footer-company-info {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--brand-gray-silver);
+    margin-bottom: 20px;
+}
+
+/* 社交媒体图标 */
+.footer-social {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.social-icon:hover {
+    background: var(--brand-gold-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon i {
+    color: var(--brand-white);
+    font-size: 18px;
+}
+
+/* 页脚导航区域 */
+.footer-nav {
+    grid-column: 2 / 3;
+}
+
+.footer-nav-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--brand-white);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-nav-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--brand-gold-primary);
+}
+
+.footer-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav-links li {
+    margin-bottom: 12px;
+}
+
+.footer-nav-links a {
+    color: var(--brand-gray-silver);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-block;
+    position: relative;
+}
+
+.footer-nav-links a::before {
+    content: '›';
+    margin-right: 8px;
+    color: var(--brand-gold-primary);
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all var(--transition-fast);
+}
+
+.footer-nav-links a:hover {
+    color: var(--brand-white);
+    transform: translateX(5px);
+}
+
+.footer-nav-links a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 页脚联系信息区域 */
+.footer-contact {
+    grid-column: 3 / 4;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.contact-icon {
+    margin-right: 15px;
+    width: 20px;
+    color: var(--brand-gold-primary);
+}
+
+.contact-text {
+    color: var(--brand-gray-silver);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* 页脚订阅区域 */
+.footer-subscribe {
+    grid-column: 4 / 5;
+}
+
+.subscribe-form {
+    margin-top: 20px;
+}
+
+.form-input-group {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.subscribe-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--brand-white);
+    font-size: 14px;
+}
+
+.subscribe-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.subscribe-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.subscribe-button {
+    padding: 12px 20px;
+    border: none;
+    background: var(--brand-gold-primary);
+    color: var(--brand-blue-darker);
+    font-weight: 600;
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.subscribe-button:hover {
+    background: var(--brand-gold-light);
+}
+
+.subscribe-info {
+    font-size: 12px;
+    color: var(--brand-gray-silver);
+    margin-top: 10px;
+}
+
+/* 页脚版权区域 */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--brand-gray-silver);
+}
+
+.footer-copyright {
+    display: flex;
+    align-items: center;
+}
+
+.footer-copyright img {
+    height: 20px;
+    margin-right: 10px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: var(--brand-gray-silver);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--brand-gold-primary);
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--brand-primary-blue);
+    color: var(--brand-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition-fast);
+    z-index: 99;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--brand-gold-primary);
+    transform: translateY(-5px);
+}
+
+.back-to-top i {
+    font-size: 20px;
+} 
+
+/* ===== 响应式调整 ===== */
+/* 导航栏响应式 */
+@media (max-width: 992px) {
+    .navbar-nav {
+        background-color: var(--brand-blue-darker);
+        border-radius: 0 0 8px 8px;
+    }
+    
+    .navbar-brand {
+        margin-left: -80px; /* 在中等屏幕上减少左移距离 */
+        width: 220px; /* 与非响应式状态保持一致 */
+        height: 70px; /* 调整高度 */
+    }
+    
+    .navbar-brand img {
+        width: 220px; /* 与非响应式状态保持一致 */
+        height: 55px; /* 调整高度 */
+        /* 垂直居中已通过transform实现，无需额外设置 */
+    }
+    
+    .nav-link {
+        padding: 12px 20px;
+        text-align: left;
+        height: auto;
+        line-height: normal;
+    }
+    
+    .nav-link:after {
+        bottom: 5px;
+    }
+    
+    /* 页脚响应式 */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-company {
+        grid-column: 1 / 2;
+    }
+    
+    .footer-nav {
+        grid-column: 2 / 3;
+    }
+    
+    .footer-contact {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    
+    .footer-subscribe {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 导航栏响应式 */
+    .navbar {
+        height: 70px; /* 减小导航栏高度 */
+    }
+    
+    .navbar-brand {
+        margin-left: -50px; /* 在小屏幕上进一步减少左移距离 */
+        width: 200px; /* 在小屏幕上稍微减小宽度，但仍保持拉长效果 */
+        height: 70px; /* 与导航栏高度一致 */
+    }
+    
+    .navbar-brand img {
+        width: 200px; /* 在小屏幕上稍微减小宽度，但仍保持拉长效果 */
+        height: 50px; /* 调整高度 */
+        /* 垂直居中已通过transform实现，无需额外设置 */
+    }
+    
+    .nav-link {
+        line-height: 70px; /* 与导航栏高度同步 */
+    }
+    
+    /* 页脚响应式 */
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-content {
+        gap: 30px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .footer-copyright {
+        justify-content: center;
+    }
+    
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    /* 导航栏响应式 */
+    .navbar {
+        height: 60px; /* 在移动设备上使用更小的高度 */
+    }
+    
+    .navbar-brand {
+        margin-left: 0; /* 在超小屏幕上不进行左移 */
+        width: 180px; /* 在极小屏幕上减小宽度，但仍保持拉长效果 */
+        height: 60px; /* 与导航栏高度一致 */
+    }
+    
+    .navbar-brand img {
+        width: 180px; /* 在极小屏幕上减小宽度，但仍保持拉长效果 */
+        height: 45px; /* 调整高度 */
+        /* 垂直居中已通过transform实现，无需额外设置 */
+    }
+    
+    .nav-link {
+        line-height: 60px; /* 与导航栏高度同步 */
+    }
+    
+    /* 页脚响应式 */
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-company,
+    .footer-nav,
+    .footer-contact,
+    .footer-subscribe {
+        grid-column: 1;
+    }
+    
+    .footer-nav,
+    .footer-contact,
+    .footer-subscribe {
+        grid-row: auto;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+} 
+
+/* ===== 全局统一样式覆盖规则 ===== */
+/* 这些规则用于确保导航栏和页脚在任何页面上都保持一致样式，优先级最高 */
+
+/* 通用选择器确保全局页脚样式优先级 */
+.global-footer,
+.footer.global-footer,
+footer.footer.global-footer,
+body .global-footer,
+body footer.global-footer,
+html body .global-footer {
+    background: var(--gradient-brand-solid) !important;
+    color: var(--brand-white) !important;
+    padding: 60px 0 30px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15) !important;
+    z-index: 10 !important; /* 确保全局页脚也有更高的z-index */
+}
+
+/* 页脚内容布局 */
+.global-footer .footer-content {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 40px !important;
+    margin-bottom: 40px !important;
+}
+
+/* 页脚社交图标样式 */
+.footer-social-icon,
+.global-footer .social-icon.footer-social-icon {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.footer-social-icon:hover,
+.global-footer .social-icon.footer-social-icon:hover {
+    background: var(--brand-gold-primary) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 页脚订阅按钮样式 */
+.footer-subscribe-button,
+.global-footer .subscribe-button.footer-subscribe-button {
+    padding: 12px 20px !important;
+    border: none !important;
+    background: var(--brand-gold-primary) !important;
+    color: var(--brand-blue-darker) !important;
+    font-weight: 600 !important;
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0 !important;
+    cursor: pointer !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.footer-subscribe-button:hover,
+.global-footer .subscribe-button.footer-subscribe-button:hover {
+    background: var(--brand-gold-light) !important;
+}
+
+/* 页脚公司信息区域 */
+.global-footer .footer-company {
+    grid-column: 1 / 2 !important;
+}
+
+/* 页脚导航区域 */
+.global-footer .footer-nav {
+    grid-column: 2 / 3 !important;
+}
+
+/* 页脚联系信息区域 */
+.global-footer .footer-contact {
+    grid-column: 3 / 4 !important;
+}
+
+/* 页脚订阅区域 */
+.global-footer .footer-subscribe {
+    grid-column: 4 / 5 !important;
+}
+
+/* 确保导航栏样式在所有页面上保持一致 */
+.navbar.fixed-top,
+header .navbar.fixed-top,
+body .navbar.fixed-top {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background-color: var(--header-bg) !important;
+    background-image: var(--header-gradient) !important;
+    box-shadow: 0 3px 10px var(--shadow-color-medium) !important;
+    z-index: 1000 !important;
+    transition: all 0.25s ease-out !important;
+    padding: 0 !important;
+    height: 80px !important;
+    transform: translateY(0) !important;
+}
+
+/* 添加滚动状态样式覆盖 */
+.navbar.fixed-top.navbar-scrolled,
+header .navbar.fixed-top.navbar-scrolled,
+body .navbar.fixed-top.navbar-scrolled {
+    height: 75px !important;
+    box-shadow: 0 5px 15px var(--shadow-color-dark) !important;
+}
+
+/* 响应式规则 */
+@media (max-width: 992px) {
+    .global-footer .footer-content {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .global-footer .footer-company {
+        grid-column: 1 / 2 !important;
+    }
+    
+    .global-footer .footer-nav {
+        grid-column: 2 / 3 !important;
+    }
+    
+    .global-footer .footer-contact {
+        grid-column: 1 / 2 !important;
+        grid-row: 2 / 3 !important;
+    }
+    
+    .global-footer .footer-subscribe {
+        grid-column: 2 / 3 !important;
+        grid-row: 2 / 3 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .global-footer .footer-content {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .global-footer .footer-company,
+    .global-footer .footer-nav,
+    .global-footer .footer-contact,
+    .global-footer .footer-subscribe {
+        grid-column: 1 !important;
+    }
+    
+    .global-footer .footer-nav,
+    .global-footer .footer-contact,
+    .global-footer .footer-subscribe {
+        grid-row: auto !important;
+    }
+}
+
+/* 修复content-sections背景色问题 */
+.content-sections,
+body > main > div,
+body > main > div.content-sections {
+    background-color: #ffffff !important;
+    /* 移除 z-index 和 position，防止覆盖页脚 */
+}
+
+/* 确保主要内容区域的背景色为白色，并设置其层级 */
+main {
+    background-color: #ffffff !important;
+    position: relative; /* 添加相对定位以控制层级 */
+    z-index: 5; /* 设置一个低于页脚的z-index */
+}
+
+/* 确保company-overview-redesigned类的背景色不被覆盖 */
+.company-overview-redesigned {
+    background: linear-gradient(135deg, #074e9c 0%, #0a6ad1 100%) !important;
+}
+
+/* 修复公司概览标题和元素的颜色 - 使用更强大的选择器和直接颜色值 */
+.content-sections #company-intro .company-overview-redesigned .overview-header h2.overview-title,
+#company-intro .company-overview-redesigned .overview-header h2.overview-title,
+body main .content-sections #company-intro .company-overview-redesigned .overview-header h2.overview-title {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.content-sections #company-intro .company-overview-redesigned .overview-text-wrapper h3.overview-subtitle-text,
+#company-intro .company-overview-redesigned .overview-text-wrapper h3.overview-subtitle-text,
+body main .content-sections #company-intro .company-overview-redesigned .overview-text-wrapper h3.overview-subtitle-text {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+.content-sections #company-intro .company-overview-redesigned .overview-features .feature-text h4,
+#company-intro .company-overview-redesigned .overview-features .feature-text h4,
+body main .content-sections #company-intro .company-overview-redesigned .overview-features .feature-text h4 {
+    color: #f0d078 !important; /* 使用直接的颜色值替代var(--brand-gold-light) */
+    font-weight: 600 !important;
+}
+
+.content-sections #company-intro .company-overview-redesigned .brand-advantages .advantage-box h4,
+#company-intro .company-overview-redesigned .brand-advantages .advantage-box h4,
+body main .content-sections #company-intro .company-overview-redesigned .brand-advantages .advantage-box h4 {
+    color: #f0d078 !important; /* 使用直接的颜色值替代var(--brand-gold-light) */
+    font-weight: 600 !important;
+}
+
+/* 确保分隔符的颜色 */
+.content-sections #company-intro .company-overview-redesigned .title-separator span,
+#company-intro .company-overview-redesigned .title-separator span {
+    background: #d4af37 !important; /* 使用直接的颜色值替代var(--brand-gold) */
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5) !important;
+}
+
+.content-sections #company-intro .company-overview-redesigned .title-separator span::before,
+.content-sections #company-intro .company-overview-redesigned .title-separator span::after,
+#company-intro .company-overview-redesigned .title-separator span::before,
+#company-intro .company-overview-redesigned .title-separator span::after {
+    background: #d4af37 !important; /* 使用直接的颜色值替代var(--brand-gold) */
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5) !important;
+}
+
+/* 确保图标和高亮颜色 */
+.content-sections #company-intro .company-overview-redesigned .text-highlight,
+#company-intro .company-overview-redesigned .text-highlight {
+    color: #f0d078 !important; /* 使用直接的颜色值替代var(--brand-gold-light) */
+    font-weight: 600 !important;
+}
+
+.content-sections #company-intro .company-overview-redesigned .text-highlight::after,
+#company-intro .company-overview-redesigned .text-highlight::after {
+    background: #d4af37 !important; /* 使用直接的颜色值替代var(--brand-gold) */
+    opacity: 0.7 !important;
+}
+
+.content-sections #company-intro .company-overview-redesigned .overview-subtitle-text::before,
+#company-intro .company-overview-redesigned .overview-subtitle-text::before {
+    background: #d4af37 !important; /* 使用直接的颜色值替代var(--brand-gold) */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5) !important;
+}
+
+/* 图标悬停效果 */
+.content-sections #company-intro .company-overview-redesigned .feature-item:hover .feature-icon,
+.content-sections #company-intro .company-overview-redesigned .advantage-box:hover .advantage-icon,
+#company-intro .company-overview-redesigned .feature-item:hover .feature-icon,
+#company-intro .company-overview-redesigned .advantage-box:hover .advantage-icon {
+    background: #d4af37 !important; /* 使用直接的颜色值替代var(--brand-gold) */
+}
+
+/* 确保所有文本颜色 */
+.content-sections #company-intro .company-overview-redesigned .overview-paragraph,
+#company-intro .company-overview-redesigned .overview-paragraph {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.content-sections #company-intro .company-overview-redesigned .overview-description,
+#company-intro .company-overview-redesigned .overview-description {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* 设置超高优先级修复 - 直接添加到HTML元素 */
+/* 这将在页面加载时执行，直接修改DOM元素的样式 */
+body::after {
+    content: "";
+    display: none;
+}
+
+/* 强制处理 - 最后的尝试 */
+html body main .content-sections #company-intro .company-overview-redesigned *[class*="title"],
+html body main .content-sections #company-intro .company-overview-redesigned h2,
+html body main .content-sections #company-intro .company-overview-redesigned .overview-header h2 {
+    color: #ffffff !important;
+}
+
+html body main .content-sections #company-intro .company-overview-redesigned .feature-text h4,
+html body main .content-sections #company-intro .company-overview-redesigned .advantage-box h4,
+html body main .content-sections #company-intro .company-overview-redesigned *[class*="highlight"] {
+    color: #f0d078 !important;
+} 
+/* 新增规则，确保页脚内的链接可点击 */
+.footer a, .global-footer a {
+    position: relative;
+    z-index: 15; /* 确保链接在页脚内部也是最高层级 */
+} 
+
+/* 修复页脚交互问题 - 为订阅表单区域添加更高的z-index */
+.footer-subscribe {
+    position: relative;
+    z-index: 2; /* 高于同级其他元素 */
+}
+
+/* 确保订阅按钮可点击 */
+.subscribe-button, .footer-subscribe-button {
+    position: relative;
+    z-index: 3; /* 确保按钮在订阅区域中有更高层级 */
+}
+
+/* 确保社交媒体图标可点击 */
+.footer-social {
+    position: relative;
+    z-index: 2;
+} 

@@ -1,0 +1,1580 @@
+<!--
+ * 首页 - index.html
+ * 
+ * 描述：公司官网首页，展示核心内容和导航
+ * 用途：作为网站入口，提供导航和主要内容展示
+ * 
+ * 包含内容：
+ * - 导航栏（固定在顶部）
+ * - 英雄区块（轮播图）
+ * - 核心产品区块
+ * - 厨房解决方案区块
+ * - 技术亮点区块
+ * - 公司实力区块
+ * - 用户评价区块
+ * - 合作伙伴区块
+ * - 公司新闻区块
+ * - 页脚
+ * 
+ * 创建日期：2025-07-07
+ * 最后修改：2025-07-11
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <title>高端厨电 - 专业品质生活</title>
+    <meta name="description" content="提供高端厨房电器解决方案，专业品质，智能科技，为您打造理想厨房体验。">
+    <script>
+        // 立即重置滚动位置，保证在任何脚本执行前执行
+        window.addEventListener('beforeunload', function() {
+            // 设置一个会话存储标记，表示页面正在刷新
+            sessionStorage.setItem('pageIsRefreshing', 'true');
+        });
+        
+        if(sessionStorage.getItem('pageIsRefreshing')) {
+            // 如果是刷新，立即滚动到顶部
+            window.scrollTo(0, 0);
+            sessionStorage.removeItem('pageIsRefreshing');
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- 外部库 -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- 组件样式（按照页面顺序排列） -->
+    <link rel="stylesheet" href="assets/css/home page/hero.css">
+    <link rel="stylesheet" href="assets/css/home page/core-products.css">
+    <link rel="stylesheet" href="assets/css/home page/kitchen-solutions.css">
+    <link rel="stylesheet" href="assets/css/home page/tech-highlights.css">
+    <link rel="stylesheet" href="assets/css/home page/company-strength.css">
+    <link rel="stylesheet" href="assets/css/home page/testimonials.css">
+    <link rel="stylesheet" href="assets/css/home page/partners.css">
+    <link rel="stylesheet" href="assets/css/home page/news.css">
+    
+    <!-- 全局样式最后加载，确保最高优先级 -->
+    <link rel="stylesheet" href="assets/css/Main File.css">
+    <!-- API相关样式 -->
+    <link rel="stylesheet" href="assets/css/api.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <!-- 公司logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/Main File/容电log.png" alt="容电Logo" class="logo">
+            </a>
+            
+            <!-- 移动端汉堡菜单按钮 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- 导航菜单 -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto main-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/products.html">产品中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/about.html">关于容电</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/contact.html">联系我们</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link external-link" href="https://mall.jd.com/" target="_blank">京东商城 <i class="bi bi-box-arrow-up-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区块 -->
+    <section class="hero-section" id="hero">
+        <div class="hero-slider">
+            <div class="slide active">
+                <!-- 背景图片层 -->
+                <div class="slide-bg" style="background-image: url('assets/images/home page/hero/容电创新，变革未来.png');"></div>
+                <!-- 内容层 -->
+                <div class="container">
+                    <div class="slide-content">
+                        <div class="hero-title-wrapper">
+                            <h1 class="hero-main-title">容电创新，变革未来</h1>
+                        </div>
+                        <p>打造现代智能厨房，享受品质生活。探索尖端科技与卓越设计的完美融合，为您的家庭带来前所未有的便捷与舒适。</p>
+                        <a class="hero-button" href="pages/about.html">
+                            <span>了解容电科技</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <!-- 背景图片层 -->
+                <div class="slide-bg" style="background-image: url('assets/images/home page/hero/创新科技，匠心品质.png');"></div>
+                <!-- 内容层 -->
+                <div class="container">
+                    <div class="slide-content">
+                        <div class="hero-title-wrapper">
+                            <h1 class="hero-main-title">创新科技，匠心品质</h1>
+                        </div>
+                        <p>专注厨卫电器研发15年，融合智能科技与人性化设计，打造高品质、高颜值、高性能的厨卫产品，让烹饪更轻松，生活更美好。</p>
+                        <a class="hero-button" href="#tech-highlights">
+                            <span>了解我们的技术</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <!-- 背景图片层 -->
+                <div class="slide-bg" style="background-image: url('assets/images/home page/hero/安全环保，节能减排.png');"></div>
+                <!-- 内容层 -->
+                <div class="container">
+                    <div class="slide-content">
+                        <div class="hero-title-wrapper">
+                            <h1 class="hero-main-title">安全环保，节能减排</h1>
+                        </div>
+                        <p>采用绿色环保材料与节能技术，打造安全可靠的厨卫产品。省电省气又省心，呵护您的家人健康，也为环保事业贡献一份力量。</p>
+                        <a class="hero-button" href="pages/products.html#eco-friendly">
+                            <span>查看节能产品</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <!-- 背景图片层 -->
+                <div class="slide-bg" style="background-image: url('assets/images/home page/hero/全球服务，品质保障.png');"></div>
+                <!-- 内容层 -->
+                <div class="container">
+                    <div class="slide-content">
+                        <div class="hero-title-wrapper">
+                            <h1 class="hero-main-title">全球服务，品质保障</h1>
+                        </div>
+                        <p>全国2000+服务网点，24小时响应，专业技师上门安装调试。购买容电产品，即享受五年质保服务，让您的选择更安心。</p>
+                        <a class="hero-button" href="pages/contact.html">
+                            <span>联系我们</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 轮播控制 -->
+        <div class="hero-controls">
+            <button class="prev" aria-label="上一张幻灯片">
+                <div class="hover-effect"></div>
+                <span class="arrow-left"></span>
+            </button>
+            <button class="next" aria-label="下一张幻灯片">
+                <div class="hover-effect"></div>
+                <span class="arrow-right"></span>
+            </button>
+        </div>
+        
+        <!-- 轮播指示器 -->
+        <div class="hero-indicators">
+            <div class="indicator active" data-slide="0">
+                <span class="indicator-number">1</span>
+            </div>
+            <div class="indicator" data-slide="1">
+                <span class="indicator-number">2</span>
+            </div>
+            <div class="indicator" data-slide="2">
+                <span class="indicator-number">3</span>
+            </div>
+            <div class="indicator" data-slide="3">
+                <span class="indicator-number">4</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 厨房解决方案区块 -->
+    <section class="kitchen-solutions-section" id="kitchen-solutions">
+        <!-- 顶部现代金色装饰 -->
+        <div class="modern-gold-decoration"></div>
+        <div class="geometric-decoration">
+            <div class="geo-container">
+                <!-- 中央圆形元素 -->
+                <div class="geo-circle"></div>
+                
+                <!-- 环形装饰 -->
+                <div class="geo-ring"></div>
+                <div class="geo-ring outer"></div>
+                
+                <!-- 线条装饰 -->
+                <div class="geo-line left"></div>
+                <div class="geo-line right"></div>
+                
+                <!-- 线上小装饰点 -->
+                <div class="geo-accent left"></div>
+                <div class="geo-accent right"></div>
+                
+                <!-- 底部射线装饰 -->
+                <div class="geo-rays">
+                    <div class="geo-ray"></div>
+                    <div class="geo-ray"></div>
+                    <div class="geo-ray"></div>
+                    <div class="geo-ray"></div>
+                    <div class="geo-ray"></div>
+                </div>
+                
+                <!-- 粒子效果 -->
+                <div class="geo-particles">
+                    <div class="geo-particle" style="--x-offset: 1; --y-offset: -1.2; animation-delay: 0.2s;"></div>
+                    <div class="geo-particle" style="--x-offset: -0.8; --y-offset: -1.5; animation-delay: 0.5s;"></div>
+                    <div class="geo-particle" style="--x-offset: 1.3; --y-offset: -0.6; animation-delay: 0.8s;"></div>
+                    <div class="geo-particle" style="--x-offset: -1.5; --y-offset: -0.3; animation-delay: 1.1s;"></div>
+                    <div class="geo-particle" style="--x-offset: 0.6; --y-offset: -1.7; animation-delay: 1.4s;"></div>
+                    <div class="geo-particle" style="--x-offset: -1.2; --y-offset: -0.8; animation-delay: 1.7s;"></div>
+                    <div class="geo-particle" style="--x-offset: 0.9; --y-offset: -1.1; animation-delay: 2.0s;"></div>
+                    <div class="geo-particle" style="--x-offset: -0.5; --y-offset: -1.4; animation-delay: 2.3s;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 装饰点 -->
+        <div class="decoration-dot-left"></div>
+        <div class="decoration-dot-right"></div>
+        
+        <!-- 底部装饰元素 -->
+        <div class="bottom-decoration"></div>
+        <div class="bottom-dot-left"></div>
+        <div class="bottom-dot-right"></div>
+        
+        <div class="container">
+            <!-- 隐藏的数据容器，供JavaScript使用 -->
+            <div id="allKitchenSolutionsDataContainer" data-solutions-json='{
+                "all": [
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/一站式厨房解决方案.png",
+                        "altText": "现代集成厨房全景",
+                        "title": "一站式厨房解决方案",
+                        "description": "整合烟机、灶具、消毒柜、蒸烤箱等全品类产品，打造协调统一的高端厨房",
+                        "link": "/products#integrated-kitchen"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/智能互联生态系统.png",
+                        "altText": "智能互联厨房系统",
+                        "title": "智能互联生态系统",
+                        "description": "通过IoT技术实现全屋智能互联，手机APP远程控制，语音操控，让烹饪更智能",
+                        "link": "/products#smart-kitchen"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/个性化定制服务.png",
+                        "altText": "定制化厨房设计",
+                        "title": "个性化定制服务",
+                        "description": "根据厨房空间和使用习惯，提供专业设计和产品配置方案，满足个性化需求",
+                        "link": "/contact#custom-design"
+                    }
+                ],
+                "smoke": [
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/smoke-scene-1.jpg",
+                        "altText": "集成烹饪中心",
+                        "title": "集成烹饪中心",
+                        "description": "烟灶联动，智能温控，多重安全保护，打造高效便捷的现代化烹饪体验",
+                        "link": "/products#cooking-center"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/smoke-scene-2.jpg",
+                        "altText": "蒸烤一体机",
+                        "title": "蒸烤一体解决方案",
+                        "description": "蒸、烤、烧、炖多功能合一，精准控温，营养美味兼得，满足多样化烹饪需求",
+                        "link": "/products#steam-oven"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/smoke-scene-3.jpg",
+                        "altText": "智能烹饪助手",
+                        "title": "智能烹饪助手",
+                        "description": "内置食谱，智能烹饪程序，语音交互，让厨房小白也能做出大厨级美食",
+                        "link": "/products#smart-cooking"
+                    }
+                ],
+                "wash": [
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/wash-scene-1.jpg",
+                        "altText": "洗碗机消毒柜组合",
+                        "title": "洗消一体化方案",
+                        "description": "洗碗机与消毒柜完美组合，70°C高温洗涤，紫外线+臭氧双重消毒",
+                        "link": "/products#dishwasher-sterilizer"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/wash-scene-2.jpg",
+                        "altText": "净水饮水系统",
+                        "title": "全屋净饮水系统",
+                        "description": "RO反渗透净水器配合即热式饮水机，提供安全健康的饮用水解决方案",
+                        "link": "/products#water-purifier"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/wash-scene-3.jpg",
+                        "altText": "水槽洗碗机方案",
+                        "title": "水槽式洗碗机",
+                        "description": "集水槽、洗碗、果蔬清洗于一体，节省空间的同时提升清洗效率",
+                        "link": "/products#sink-dishwasher"
+                    }
+                ],
+                "fresh": [
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/fresh-scene-1.jpg",
+                        "altText": "多温区冰箱方案",
+                        "title": "精准温控保鲜",
+                        "description": "多温区独立控制，干湿分储，-1°C恒温保鲜，锁住食材营养与口感",
+                        "link": "/products#multi-zone-fridge"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/fresh-scene-2.jpg",
+                        "altText": "嵌入式冷藏系统",
+                        "title": "嵌入式冷藏方案",
+                        "description": "与橱柜完美融合的嵌入式设计，大容量存储，静音节能，保持厨房整体美观",
+                        "link": "/products#built-in-fridge"
+                    },
+                    {
+                        "imagePath": "assets/images/home page/kitchen-solutions/fresh-scene-3.jpg",
+                        "altText": "专业储酒方案",
+                        "title": "专业储酒方案",
+                        "description": "恒温恒湿环境，双温区设计，为不同类型美酒提供最佳储存条件",
+                        "link": "/products#wine-cooler"
+                    }
+                ]
+            }' style="display: none;"></div>
+
+            <!-- 创建固定高度的包装器 -->
+            <div class="kitchen-solutions-wrapper">
+            <!-- 标题区域 -->
+            <div class="solution-title-area" data-aos="fade-up">
+                <h2 class="main-solution-title">容电 高端全场景厨电解决方案</h2>
+                <nav class="scene-categories">
+                    <ul>
+                        <li class="category-item active" data-category-id="all">
+                            <a href="#all">高端全场景厨电</a>
+                        </li>
+                        <li class="category-item" data-category-id="smoke">
+                            <a href="#smoke">排烟烹饪场景</a>
+                        </li>
+                        <li class="category-item" data-category-id="wash">
+                            <a href="#wash">洗消饮用场景</a>
+                        </li>
+                        <li class="category-item" data-category-id="fresh">
+                            <a href="#fresh">保鲜冷储场景</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="section-subtitle" data-aos="fade-up">
+                为您的厨房打造全方位高端电器配套，满足不同烹饪场景需求
+            </div>
+
+            <!-- 场景解决方案容器 - 动态内容区域 -->
+            <div class="solution-scenes-container" id="solutionScenesContainer">
+                <!-- 初始内容将由JavaScript动态生成 -->
+            </div>
+
+            <div class="solution-cta">
+                    <div class="btn-wrapper">
+                        <a class="custom-solution-btn" href="pages/contact.html">
+                            <span>
+                                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                咨询定制方案
+                            </span>
+                            <div class="shine-effect"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心产品区块 -->
+    <section class="core-products-section" id="core-products">
+        <div class="container core-products-container">
+            <div class="core-products-title" data-aos="fade-up">
+                <h2>核心产品系列</h2>
+                <p>容电精选高端厨房电器，匠心打造品质生活，为您带来舒适便捷的烹饪体验</p>
+            </div>
+            
+            <div class="products-showcase">
+                <!-- 燃气灶产品卡片 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-tag">畅销款</div>
+                    <div class="product-image-container">
+                        <img src="assets/images/home page/core-products/星火Pro 燃气灶.png" alt="容电高效燃气灶" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">星火Pro 燃气灶</h3>
+                        <p class="product-description">采用先进燃烧技术，高热效率节能环保，多重安全保护系统，为家庭烹饪保驾护航。</p>
+                        <ul class="product-features">
+                            <li class="feature-item">5.0kW大火力，热效率高达65%</li>
+                            <li class="feature-item">全自动熄火保护，安全可靠</li>
+                            <li class="feature-item">一体式钢化玻璃面板，易清洁</li>
+                            <li class="feature-item">智能温控系统，精准控温</li>
+                        </ul>
+                        <a href="pages/products.html#gas-stove" class="product-button">了解详情</a>
+                    </div>
+                </div>
+                
+                <!-- 抽油烟机产品卡片 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-tag">新品</div>
+                    <div class="product-image-container">
+                        <img src="assets/images/home page/core-products/云魔方 抽油烟机.png" alt="容电静音抽油烟机" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">云魔方 抽油烟机</h3>
+                        <p class="product-description">大吸力低噪音设计，高效除油烟，智能感应系统，让厨房空间清新无油烟。</p>
+                        <ul class="product-features">
+                            <li class="feature-item">23m³/min超大吸力，油烟不残留</li>
+                            <li class="feature-item">智能风量调节，节能省电</li>
+                            <li class="feature-item">双重静音系统，低至38分贝</li>
+                            <li class="feature-item">自动清洗技术，免除清洁烦恼</li>
+                        </ul>
+                        <a href="pages/products.html#range-hood" class="product-button">了解详情</a>
+                    </div>
+                </div>
+                
+                <!-- 热水器产品卡片 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-tag">高能效</div>
+                    <div class="product-image-container">
+                        <img src="assets/images/home page/core-products/恒温星 热水器.png" alt="容电智能热水器" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">恒温星 热水器</h3>
+                        <p class="product-description">智能恒温技术，精准控温不忽冷忽热，节能环保设计，为您提供舒适洗浴体验。</p>
+                        <ul class="product-features">
+                            <li class="feature-item">±0.5°C精准恒温，舒适沐浴</li>
+                            <li class="feature-item">智能变频技术，节能省气</li>
+                            <li class="feature-item">多重安全防护，使用无忧</li>
+                            <li class="feature-item">WiFi远程控制，随时预热</li>
+                        </ul>
+                        <a href="pages/products.html#water-heater" class="product-button">了解详情</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <div class="btn-wrapper">
+                    <a href="pages/products.html" class="core-products-view-all">
+                        <span>查看全部产品</span>
+                        <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术亮点区块 -->
+    <section class="tech-highlights-section" id="tech-highlights">
+        <!-- 删除底部波浪渐变分隔装饰 -->
+        
+        <div class="container">
+            <!-- 标题区域 -->
+            <div class="tech-title-area" data-aos="fade-up">
+                <h2 class="main-tech-title">尖端科技，卓越品质</h2>
+                <div class="tech-subtitle">
+                    容电厨电采用行业领先技术，为您带来高效、安全、智能的烹饪体验
+                </div>
+            </div>
+
+            <!-- 技术亮点卡片容器 -->
+            <div class="tech-highlights-container">
+                <!-- 技术亮点卡片1 - 智能温控 -->
+                <div id="tech-card-temperature" class="tech-highlight-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-wrapper">
+                            <svg class="tech-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 9V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 17H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="tech-content-wrapper">
+                        <h3 class="tech-highlight-title">智能精准温控</h3>
+                        <p class="tech-highlight-description">
+                            采用先进温度传感技术，精确控制烹饪温度，实现±0.5°C的精准控温，为食材提供最佳烹饪环境。
+                        </p>
+                        <ul class="tech-data-list">
+                            <li class="tech-data-item">多点温度传感，全方位监测</li>
+                            <li class="tech-data-item">智能算法动态调节，温度更稳定</li>
+                            <li class="tech-data-item">自动火力调节，避免过热或温度不足</li>
+                        </ul>
+                        <a href="pages/about.html#technology" class="tech-more-btn">
+                            了解更多
+                            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 技术亮点卡片2 - 高效燃烧 -->
+                <div id="tech-card-combustion" class="tech-highlight-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-wrapper">
+                            <svg class="tech-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C10.6868 4.68677 8 7.37333 8 10C8 12.6267 9.79086 15 12 15C14.2091 15 16 12.6267 16 10C16 7.37333 13.3132 4.68677 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4.53 15C3.15 16.45 2 18.26 2 19.5C2 21.43 3.57 22 5.5 22H18.5C20.43 22 22 21.43 22 19.5C22 18.26 20.85 16.45 19.47 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="tech-content-wrapper">
+                        <h3 class="tech-highlight-title">高效燃烧系统</h3>
+                        <p class="tech-highlight-description">
+                            创新旋涡式燃烧技术，提高热效率达65%以上，比传统燃气灶节省30%燃气，同时减少有害气体排放。
+                        </p>
+                        <ul class="tech-data-list">
+                            <li class="tech-data-item">专利旋涡燃烧器设计，火力更强</li>
+                            <li class="tech-data-item">优化空气与燃气混合比例，燃烧更充分</li>
+                            <li class="tech-data-item">热能定向传导，减少热量损失</li>
+                        </ul>
+                        <a href="pages/about.html#technology" class="tech-more-btn">
+                            了解更多
+                            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 技术亮点卡片3 - 智能互联 -->
+                <div id="tech-card-connectivity" class="tech-highlight-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tech-icon-container">
+                        <div class="tech-icon-wrapper">
+                            <svg class="tech-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 2H15C20 2 22 4 22 9V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6.7 9.27V14.73" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 8.73V15.27" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17.3 6.77002V17.23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="tech-content-wrapper">
+                        <h3 class="tech-highlight-title">智能互联生态</h3>
+                        <p class="tech-highlight-description">
+                            全屋厨电智能互联，通过WiFi、蓝牙和云端技术，实现远程控制、设备协同和智能场景联动。
+                        </p>
+                        <ul class="tech-data-list">
+                            <li class="tech-data-item">手机APP远程控制，随时掌握厨电状态</li>
+                            <li class="tech-data-item">语音控制支持，解放双手</li>
+                            <li class="tech-data-item">智能场景联动，烹饪更高效</li>
+                        </ul>
+                        <a href="pages/about.html#technology" class="tech-more-btn">
+                            了解更多
+                            <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用户评价区块 -->
+    <section class="testimonials-section" id="testimonials">
+        <!-- 渐变过渡元素 -->
+        <div class="wave-top-separator"></div>
+        <div class="wave-bottom-separator"></div>
+        
+        <!-- 金色背景效果 -->
+        <div class="gold-bg"></div>
+        <div class="gold-particles"></div>
+        
+        <!-- 角落装饰元素 -->
+        <div class="corner-decoration-top-left"></div>
+        <div class="corner-decoration-bottom-right"></div>
+        
+        <!-- 悬浮金色圆点 -->
+        <div class="floating-dot-large"></div>
+        <div class="floating-dot-large"></div>
+        <div class="floating-dot-small"></div>
+        <div class="floating-dot-small"></div>
+        <div class="floating-dot-small"></div>
+        
+        <!-- 光芒效果 -->
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        
+        <!-- 新增的圆点装饰 -->
+        <div class="floating-dot-large"></div>
+        <div class="floating-dot-large"></div>
+        <div class="floating-dot-small"></div>
+        <div class="floating-dot-small"></div>
+        <div class="floating-dot-small"></div>
+        <div class="floating-dot-small"></div>
+        
+        <div class="container">
+            <!-- 标题区域 -->
+            <div class="testimonials-title-area" data-aos="fade-up">
+                <h2 class="testimonials-title">用户真实评价</h2>
+                <div class="testimonials-subtitle">
+                    来自全国各地用户的真实使用体验，见证容电产品的卓越品质与服务
+                </div>
+            </div>
+
+            <!-- 评价轮播 -->
+            <div class="testimonials-carousel">
+                <div class="testimonials-track">
+                    <!-- 评价卡片1 -->
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="testimonial-content">
+                            "使用容电的厨房电器已经三年了，品质和耐用性都非常出色。特别是他们的燃气灶，火力十足，而且很省气。最近又购入了他们家的抽油烟机，噪音小，吸力大，厨房再也没有油烟问题了。"
+                        </div>
+                        <div class="testimonial-user">
+                            <img src="assets/images/home page/testimonials/王女士.png" alt="王女士" class="user-avatar">
+                            <div class="user-info">
+                                <h4 class="user-name">王女士</h4>
+                                <p class="user-title">北京 | 家庭主妇</p>
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评价卡片2 -->
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="testimonial-content">
+                            "作为一名美食博主，我对厨房电器的要求非常高。容电的产品让我非常惊喜，尤其是他们的智能互联系统，可以通过手机控制所有厨电，烹饪过程变得更加精准和便捷。客服响应速度也很快，非常专业。"
+                        </div>
+                        <div class="testimonial-user">
+                            <img src="assets/images/home page/testimonials/李先生.png" alt="李先生" class="user-avatar">
+                            <div class="user-info">
+                                <h4 class="user-name">李先生</h4>
+                                <p class="user-title">上海 | 美食博主</p>
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评价卡片3 -->
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="testimonial-content">
+                            "去年装修新房时选择了容电的一站式厨房解决方案，从设计到安装都非常专业。所有产品的风格统一，品质上乘，使用起来特别方便。最让我满意的是他们的售后服务，有任何问题都能及时解决。"
+                        </div>
+                        <div class="testimonial-user">
+                            <img src="assets/images/home page/testimonials/张女士.png" alt="张女士" class="user-avatar">
+                            <div class="user-info">
+                                <h4 class="user-name">张女士</h4>
+                                <p class="user-title">广州 | 设计师</p>
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评价卡片4 -->
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="testimonial-content">
+                            "我经营一家小型餐厅，厨房设备的质量对我们至关重要。使用容电的商用厨电系列后，不仅提高了烹饪效率，还节省了能源成本。他们的设备经久耐用，即使在高强度使用环境下也表现出色。"
+                        </div>
+                        <div class="testimonial-user">
+                            <img src="assets/images/home page/testimonials/陈先生.png" alt="陈先生" class="user-avatar">
+                            <div class="user-info">
+                                <h4 class="user-name">陈先生</h4>
+                                <p class="user-title">成都 | 餐厅老板</p>
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评价卡片5 -->
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="testimonial-content">
+                            "作为一名对环保非常关注的消费者，我选择容电主要是因为他们的节能环保理念。他们的产品不仅节能减排，而且使用环保材料制造。使用一年多来，确实感受到了电费和燃气费的明显降低。"
+                        </div>
+                        <div class="testimonial-user">
+                            <img src="assets/images/home page/testimonials/林女士.png" alt="林女士" class="user-avatar">
+                            <div class="user-info">
+                                <h4 class="user-name">林女士</h4>
+                                <p class="user-title">深圳 | 环保顾问</p>
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 轮播控制 -->
+            <div class="testimonials-controls">
+                <button class="testimonial-btn testimonial-prev" aria-label="上一个评价">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="testimonial-btn testimonial-next" aria-label="下一个评价">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 轮播指示器 -->
+            <div class="testimonials-indicators">
+                <div class="testimonial-indicator active" data-index="0"></div>
+                <div class="testimonial-indicator" data-index="1"></div>
+                <div class="testimonial-indicator" data-index="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 公司新闻区块 -->
+    <section class="news-section" id="news">
+        <!-- 装饰元素-->
+        <div class="wave-bottom"></div>
+        
+        <!-- 新设计的12个装饰圆点 -->
+        <div class="news-decoration-dots">
+            <!-- 第一组6个圆点 -->
+            <div class="news-dot news-dot-1"></div>
+            <div class="news-dot news-dot-2"></div>
+            <div class="news-dot news-dot-3"></div>
+            <div class="news-dot news-dot-4"></div>
+            <div class="news-dot news-dot-5"></div>
+            <div class="news-dot news-dot-6"></div>
+            
+            <!-- 第二组6个圆点 -->
+            <div class="news-dot news-dot-7"></div>
+            <div class="news-dot news-dot-8"></div>
+            <div class="news-dot news-dot-9"></div>
+            <div class="news-dot news-dot-10"></div>
+            <div class="news-dot news-dot-11"></div>
+            <div class="news-dot news-dot-12"></div>
+        </div>
+        
+        <!-- 删除了金色光芒装饰 -->
+        
+        <!-- 删除了闪烁星星装饰 -->
+        
+        <!-- 删除了金色线条装饰 -->
+        
+        <div class="container">
+            <!-- 标题区域 - 与其他部分保持一致的风格-->
+            <div class="news-title-container" data-aos="fade-up">
+                <!-- 标题装饰元素 -->
+                <!-- 删除了gold-accent-left和gold-accent-right装饰元素 -->
+                
+                <!-- 删除了金色装饰圆点 -->
+                
+                <!-- 删除了四个星星装饰元素 -->
+                
+                <!-- 标题内容 -->
+                <h2 class="news-title">公司新闻</h2>
+                <!-- 删除了标题下方的横线 -->
+                <p class="news-subtitle">记录容电品牌的辉煌历程与行业创新成就</p>
+            </div>
+            <!-- 新的新闻布局 - 卡片式设计-->
+            <div class="news-cards-container">
+                <!-- 主要新闻 - 大卡片 - 改进内部排版-->
+                <div class="news-card news-card-primary" data-aos="fade-up">
+                    <div class="news-card-inner">
+                        <div class="news-card-image">
+                            <div class="news-card-overlay"></div>
+                            <img src="assets/images/home page/news/容电智能厨电新品发布会圆满成功.png" alt="容电智能厨电新品发布会圆满成功">
+                            <div class="news-card-date">
+                                <span class="news-date-day">02</span>
+                                <span class="news-date-month">6月</span>
+                            </div>
+                            <div class="news-card-tag">
+                                <span class="tag-icon">📣</span>
+                                <span class="tag-text">头条新闻</span>
+                            </div>
+                        </div>
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-card-category">
+                                    <i class="category-icon">🔍</i>
+                                    <span>重要公告</span>
+                                </span>
+                                <span class="news-card-dot">•</span>
+                                <span class="news-card-category">
+                                    <i class="category-icon">🚀</i>
+                                    <span>产品发布</span>
+                                </span>
+                                <span class="news-card-dot">•</span>
+                                <span class="news-card-time">
+                                    <i class="time-icon">🕒</i>
+                                    <span>发布时间：2025年6月2日</span>
+                                </span>
+                            </div>
+                            <h3 class="news-card-title">容电智能厨电新品发布会圆满成功</h3>
+                            <div class="news-card-divider"></div>
+                            <p class="news-card-summary">近日，容电公司在广州举办了2023年度智能厨电新品发布会，重磅推出了融合AI语音控制、远程监控等智能科技的抽油烟机、燃气灶及热水器系列产品，吸引了众多行业专家、媒体与合作伙伴参与。新产品凭借领先的科技创新和卓越的用户体验获得广泛好评。</p>
+                            <!-- 添加亮点图标栏，丰富视觉内容-->
+                            <div class="news-highlights">
+                                <div class="highlight-item">
+                                    <i class="highlight-icon">🔧</i>
+                                    <span class="highlight-text">智能科技</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="highlight-icon">💡</i>
+                                    <span class="highlight-text">节能环保</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="highlight-icon">✨</i>
+                                    <span class="highlight-text">精工品质</span>
+                                </div>
+                            </div>
+                            <div class="news-card-footer">
+                                <a class="news-card-link" href="pages/about.html#news">
+                                    <span>了解详情</span>
+                                    <i class="arrow-icon">→</i>
+                                </a>
+                                <div class="news-card-stats">
+                                    <span class="views-count">
+                                        <i class="views-icon">👁️</i>
+                                        <span>1,258</span>
+                                    </span>
+                                    <span class="comments-count">
+                                        <i class="comments-icon">💬</i>
+                                        <span>68</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 新闻列表 - 右侧3个小卡片 - 改进内部排版-->
+                <div class="news-cards-secondary">
+                    <div class="news-card news-card-secondary" data-aos="fade-up" data-aos-delay="0">
+                        <div class="news-card-inner">
+                            <div class="news-card-top">
+                                <div class="news-card-meta-header">
+                                    <span class="card-badge">
+                                        <i class="badge-icon">🏆</i>
+                                        <span>行业荣誉</span>
+                                    </span>
+                                    <span class="news-card-date-compact">4月 15日</span>
+                                </div>
+                            </div>
+                            <div class="news-card-content">
+                                <h3 class="news-card-title">容电荣获"年度优质厨卫品牌"称号</h3>
+                                <div class="news-card-divider"></div>
+                                <p class="news-card-summary">在近日举办的2023中国厨卫行业峰会上，容电凭借过硬的产品质量、出色的用户口碑和持续的技术创新，从众多参评企业中脱颖而出，荣获"年度优质厨卫品牌"称号。这是容电连续第三年获此殊荣，彰显了品牌在行业中的领先地位和消费者的高度认可。</p>
+                                <div class="news-card-footer">
+                                    <a class="news-card-link" href="pages/about.html#news">
+                                        <span>了解详情</span>
+                                        <i class="arrow-icon">→</i>
+                                    </a>
+                                    <div class="news-card-stats">
+                                        <span class="views-count">
+                                            <i class="views-icon">👁️</i>
+                                            <span>534</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card news-card-secondary" data-aos="fade-up" data-aos-delay="100">
+                        <div class="news-card-inner">
+                            <div class="news-card-top">
+                                <div class="news-card-meta-header">
+                                    <span class="card-badge">
+                                        <i class="badge-icon">🤝</i>
+                                        <span>战略合作</span>
+                                    </span>
+                                    <span class="news-card-date-compact">3月 08日</span>
+                                </div>
+                            </div>
+                            <div class="news-card-content">
+                                <h3 class="news-card-title">容电与多家一线家居品牌达成战略合作</h3>
+                                <div class="news-card-divider"></div>
+                                <p class="news-card-summary">为进一步提升用户体验，打造整体智慧家居解决方案，容电近日与国内多家一线家居品牌达成战略合作，将在产品研发、技术共享、渠道整合和售后服务等方面展开深入合作。此次合作将为消费者带来更加便捷、智能、美观的整体家居体验。</p>
+                                <div class="news-card-footer">
+                                    <a class="news-card-link" href="pages/about.html#news">
+                                        <span>了解详情</span>
+                                        <i class="arrow-icon">→</i>
+                                    </a>
+                                    <div class="news-card-stats">
+                                        <span class="views-count">
+                                            <i class="views-icon">👁️</i>
+                                            <span>971</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card news-card-secondary" data-aos="fade-up" data-aos-delay="200">
+                        <div class="news-card-inner">
+                            <div class="news-card-top">
+                                <div class="news-card-meta-header">
+                                    <span class="card-badge">
+                                        <i class="badge-icon">📈</i>
+                                        <span>企业动态</span>
+                                    </span>
+                                    <span class="news-card-date-compact">1月 20日</span>
+                                </div>
+                            </div>
+                            <div class="news-card-content">
+                                <h3 class="news-card-title">容电2023年经销商大会成功举办</h3>
+                                <div class="news-card-divider"></div>
+                                <p class="news-card-summary">1月20日，容电2023年经销商大会在佛山总部成功举办，全国300多位经销商代表参加了此次盛会。会上，容电发布了全新市场战略和产品规划，宣布将加大渠道扶持力度，优化售后服务体系，并与核心经销商签署了年度合作协议。多款即将上市的新品也在会上进行了首次亮相。</p>
+                                <div class="news-card-footer">
+                                    <a class="news-card-link" href="pages/about.html#news">
+                                        <span>了解详情</span>
+                                        <i class="arrow-icon">→</i>
+                                    </a>
+                                    <div class="news-card-stats">
+                                        <span class="views-count">
+                                            <i class="views-icon">👁️</i>
+                                            <span>763</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 底部新闻卡片 - 小型卡片横向排列 - 全新改进布局-->
+            <div class="news-cards-bottom">
+                <!-- 第一个新闻卡片 - 改进标签位置-->
+                <div class="news-card news-card-small" data-aos="fade-up" data-aos-delay="100">
+                    <div class="news-card-inner">
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-card-date-small">
+                                    <i class="calendar-icon">📅</i>
+                                    <span>12月5日</span>
+                                </span>
+                            </div>
+                            <h3 class="news-card-title" title="容电获评&quot;绿色制造示范企业&quot;，引领行业可持续发展">容电获评"绿色制造示范企业"，引领行业可持续发展</h3>
+                            <!-- 标签移到标题下方-->
+                            <div class="news-card-tag-row">
+                                <div class="news-card-tag tag-green">
+                                    <i class="tag-icon">🌱</i>
+                                    <span>绿色发展</span>
+                                </div>
+                            </div>
+                            <div class="news-card-divider divider-small"></div>
+                            <a class="news-card-link link-small" href="pages/about.html#news">
+                                <span>了解详情</span>
+                                <i class="arrow-icon">→</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 第二个新闻卡片 - 改进标签位置-->
+                <div class="news-card news-card-small" data-aos="fade-up" data-aos-delay="200">
+                    <div class="news-card-inner">
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-card-date-small">
+                                    <i class="calendar-icon">📅</i>
+                                    <span>6月18日</span>
+                                </span>
+                            </div>
+                            <h3 class="news-card-title" title="容电推出厨房能源管理系统，助力绿色家庭建设">容电推出厨房能源管理系统，助力绿色家庭建设</h3>
+                            <!-- 标签移到标题下方-->
+                            <div class="news-card-tag-row">
+                                <div class="news-card-tag tag-blue">
+                                    <i class="tag-icon">💡</i>
+                                    <span>技术创新</span>
+                                </div>
+                            </div>
+                            <div class="news-card-divider divider-small"></div>
+                            <a class="news-card-link link-small" href="pages/about.html#news">
+                                <span>了解详情</span>
+                                <i class="arrow-icon">→</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 第三个新闻卡片 - 改进标签位置-->
+                <div class="news-card news-card-small" data-aos="fade-up" data-aos-delay="300">
+                    <div class="news-card-inner">
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-card-date-small">
+                                    <i class="calendar-icon">📅</i>
+                                    <span>6月10日</span>
+                                </span>
+                            </div>
+                            <h3 class="news-card-title" title="容电启动&quot;智慧厨房创新计划&quot;，推动行业数字化转型">容电启动"智慧厨房创新计划"，推动行业数字化转型</h3>
+                            <!-- 标签移到标题下方-->
+                            <div class="news-card-tag-row">
+                                <div class="news-card-tag tag-orange">
+                                    <i class="tag-icon">📊</i>
+                                    <span>行业动态</span>
+                                </div>
+                            </div>
+                            <div class="news-card-divider divider-small"></div>
+                            <a class="news-card-link link-small" href="pages/about.html#news">
+                                <span>了解详情</span>
+                                <i class="arrow-icon">→</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 第四个新闻卡片 - 改进标签位置-->
+                <div class="news-card news-card-small" data-aos="fade-up" data-aos-delay="400">
+                    <div class="news-card-inner">
+                        <div class="news-card-content">
+                            <div class="news-card-meta">
+                                <span class="news-card-date-small">
+                                    <i class="calendar-icon">📅</i>
+                                    <span>5月28日</span>
+                                </span>
+                            </div>
+                            <h3 class="news-card-title" title="容电新款厨房电器荣获2025年度国际设计大奖">容电新款厨房电器荣获2025年度国际设计大奖</h3>
+                            <!-- 标签移到标题下方-->
+                            <div class="news-card-tag-row">
+                                <div class="news-card-tag tag-red">
+                                    <i class="tag-icon">🔥</i>
+                                    <span>热点关注</span>
+                                </div>
+                            </div>
+                            <div class="news-card-divider divider-small"></div>
+                            <a class="news-card-link link-small" href="pages/about.html#news">
+                                <span>了解详情</span>
+                                <i class="arrow-icon">→</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 查看更多按钮 - 独立空间确保动画效果不被遮挡-->
+            <div class="news-section-footer">
+                <div class="news-view-all" data-aos="fade-up">
+                    <div class="decorative-dot-left"></div>
+                    <div class="decorative-dot-right"></div>
+                    <div class="star-decoration-left">★</div>
+                    <div class="star-decoration-right">★</div>
+                    <a class="btn-view-all" href="pages/about.html#news"> 
+                        <i class="view-all-icon">📰</i>
+                        <span>查看更多新闻</span>
+                        <i class="arrow-icon">→</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 公司实力区块 -->
+    <section class="company-strength-section" id="company-strength">
+        <!-- 背景形状 -->
+        <div class="strength-bg-shape strength-bg-shape-1"></div>
+        <div class="strength-bg-shape strength-bg-shape-2"></div>
+        
+        <!-- 装饰元素 -->
+        <div class="strength-decoration decoration-circle-1"></div>
+        <div class="strength-decoration decoration-circle-2"></div>
+        <div class="strength-decoration decoration-dot-pattern"></div>
+        <div class="strength-decoration decoration-line-pattern"></div>
+        
+        <div class="container">
+            <!-- 标题 -->
+            <div class="strength-title-container">
+                <h2 class="strength-title">企业实力</h2>
+                <p class="strength-subtitle">15年专注高端厨电研发制造，以创新科技引领行业发展，打造智能厨房生态系统</p>
+            </div>
+            
+            <!-- 数据统计卡片 -->
+            <div class="strength-stats-container">
+                <!-- 研发投入 -->
+                <div class="strength-stat-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="stat-icon">💡</div>
+                    <div class="stat-number" data-value="15" data-unit="%">0%</div>
+                    <h3 class="stat-title">研发投入</h3>
+                    <p class="stat-description">年营收的15%持续投入研发创新，远高于行业平均水平</p>
+                </div>
+                
+                <!-- 专利数量 -->
+                <div class="strength-stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon">📜</div>
+                    <div class="stat-number" data-value="1280" data-unit="+">0+</div>
+                    <h3 class="stat-title">专利数量</h3>
+                    <p class="stat-description">累计获得发明专利、实用新型专利及外观设计专利</p>
+                </div>
+                
+                <!-- 市场份额 -->
+                <div class="strength-stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-number" data-value="23" data-unit="%">0%</div>
+                    <h3 class="stat-title">市场份额</h3>
+                    <p class="stat-description">在高端厨电细分市场占有率领先，持续稳步增长</p>
+                </div>
+                
+                <!-- 服务网点 -->
+                <div class="strength-stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-icon">🏢</div>
+                    <div class="stat-number" data-value="2000" data-unit="+">0+</div>
+                    <h3 class="stat-title">服务网点</h3>
+                    <p class="stat-description">覆盖全国各省市的专业服务网点，24小时响应</p>
+                </div>
+            </div>
+            
+            <!-- 实力展示卡片 -->
+            <div class="strength-showcase-container">
+                <!-- 研发实力 -->
+                <div class="strength-showcase-card">
+                    <div class="showcase-content">
+                        <h3 class="showcase-title">领先研发实力</h3>
+                        <p class="showcase-description">拥有国家级企业技术中心和工业设计中心，汇聚行业顶尖人才，持续推动厨电技术创新。</p>
+                        <ul class="strength-highlights">
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>300+人研发团队，60%硕博比例</span>
+                            </li>
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>国家级企业技术中心</span>
+                            </li>
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>智能厨电物联网实验室</span>
+                            </li>
+                        </ul>
+                        <a href="pages/about.html#research" class="showcase-link">
+                            <span>了解更多</span>
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 制造实力 -->
+                <div class="strength-showcase-card">
+                    <div class="showcase-content">
+                        <h3 class="showcase-title">智能制造基地</h3>
+                        <p class="showcase-description">投资20亿打造的现代化智能制造基地，采用工业4.0标准，实现高效精准生产。</p>
+                        <ul class="strength-highlights">
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>10万平方米现代化生产基地</span>
+                            </li>
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>100+自动化生产线</span>
+                            </li>
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>全流程质量控制系统</span>
+                            </li>
+                        </ul>
+                        <a href="pages/about.html#manufacturing" class="showcase-link">
+                            <span>了解更多</span>
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 品牌实力 -->
+                <div class="strength-showcase-card">
+                    <div class="showcase-content">
+                        <h3 class="showcase-title">品牌影响力</h3>
+                        <p class="showcase-description">连续多年获得行业权威奖项，品牌价值持续提升，成为高端厨电领域的领导者。</p>
+                        <ul class="strength-highlights">
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>中国厨电行业十大品牌</span>
+                            </li>
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>国家级绿色制造示范企业</span>
+                            </li>
+                            <li class="strength-highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>年度消费者信赖品牌</span>
+                            </li>
+                        </ul>
+                        <a href="pages/about.html#awards" class="showcase-link">
+                            <span>了解更多</span>
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作伙伴区块 -->
+    <section class="partners-section" id="partners-section">
+        <!-- 装饰元素 -->
+        <div class="partners-wave-top"></div>
+        <div class="partners-wave-bottom"></div>
+
+        <!-- 动态背景元素 -->
+        <div class="dynamic-bg">
+            <div class="bg-glow glow-1"></div>
+            <div class="bg-glow glow-2"></div>
+            <div class="bg-glow glow-3"></div>
+        </div>
+
+        <!-- 金色粒子背景 -->
+        <div class="particles"></div>
+
+        <div class="container">
+            <!-- 标题区域 -->
+            <div class="partners-title-container" data-aos="fade-up">
+                <div class="gold-accent-left"></div>
+                <div class="gold-accent-right"></div>
+                <h2 class="partners-title">合作伙伴</h2>
+                <div class="title-line"></div>
+                <p class="partners-subtitle">共创行业未来，引领厨电革新</p>
+            </div>
+
+            <!-- 合作伙伴类别选择器 -->
+            <div class="partners-categories" data-aos="fade-up">
+                <div class="categories-nav">
+                    <button class="category-btn active" data-category="all">全部</button>
+                    <button class="category-btn" data-category="channel">渠道合作</button>
+                    <button class="category-btn" data-category="tech">技术合作</button>
+                    <button class="category-btn" data-category="supplier">供应链伙伴</button>
+                </div>
+            </div>
+
+            <!-- 全新设计的合作伙伴网格 -->
+            <div class="partners-showcase">
+                <div class="partners-grid">
+                    <!-- 渠道合作伙伴 -->
+                    <div class="partner-item" data-category="channel">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner1.png.placeholder" alt="泛亚建材标准协会" title="泛亚建材标准协会">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">泛亚建材标准协会</h3>
+                                <p class="partner-description">共同推动建材行业标准化和绿色发展，提升行业整体水平和国际竞争力。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2012</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item" data-category="channel">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner3.png.placeholder" alt="优家云品" title="优家云品">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">优家云品</h3>
+                                <p class="partner-description">战略电商合作伙伴，携手打造数字化营销生态，提供优质线上购物体验。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2015</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item" data-category="channel">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner5.png.placeholder" alt="创艺家居广场" title="创艺家居广场">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">创艺家居广场</h3>
+                                <p class="partner-description">全国连锁家居零售合作伙伴，打造高端厨电体验展示中心和一站式服务。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2014</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 技术合作伙伴 -->
+                    <div class="partner-item" data-category="tech">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner2.png.placeholder" alt="华夏智能家电研究所" title="华夏智能家电研究所">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">华夏智能家电研究所</h3>
+                                <p class="partner-description">深度合作研发智能厨房电器核心技术，共同制定行业标准，引领技术创新。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2014</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item" data-category="tech">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner6.png.placeholder" alt="德工精密科技" title="德工精密科技">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">德工精密科技</h3>
+                                <p class="partner-description">技术创新战略合作伙伴，共同研发新一代智能厨电核心部件和解决方案。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2018</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item" data-category="tech">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner10.png.placeholder" alt="灵犀互联技术" title="灵犀互联技术">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">灵犀互联技术</h3>
+                                <p class="partner-description">IoT技术合作伙伴，联合研发高性能厨电智能控制系统和物联网平台。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2020</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 供应链伙伴 -->
+                    <div class="partner-item" data-category="supplier">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner8.png.placeholder" alt="蓝海供应链联盟" title="蓝海供应链联盟">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">蓝海供应链联盟</h3>
+                                <p class="partner-description">行业战略合作伙伴，在供应链、技术研发和市场拓展方面开展全面合作。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2015</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item" data-category="supplier">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner12.png.placeholder" alt="绿源清洁能源" title="绿源清洁能源">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">绿源清洁能源</h3>
+                                <p class="partner-description">清洁能源战略合作伙伴，开发新一代高效节能燃气灶具和热水器技术。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2016</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partner-item" data-category="supplier">
+                        <div class="partner-card">
+                            <div class="partner-logo">
+                                <img src="assets/images/home page/partners/partner14.png.placeholder" alt="晨辉智慧照明" title="晨辉智慧照明">
+                            </div>
+                            <div class="partner-info">
+                                <h3 class="partner-name">晨辉智慧照明</h3>
+                                <p class="partner-description">智能厨房照明解决方案合作伙伴，共同开发集成式厨房照明与电器控制系统。</p>
+                                <div class="partner-since">
+                                    <span class="since-label">合作始于: </span>
+                                    <span class="since-year">2018</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 合作伙伴统计 -->
+            <div class="partners-statistics" id="partners-stats">
+                <!-- 使用伪元素实现背景光晕效果，不再需要额外的DOM元素 -->
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">
+                            <span class="partners-count" data-count="9">0</span><span>+</span>
+                        </div>
+                        <div class="stat-label">战略合作伙伴</div>
+                    </div>
+                </div>
+                <div class="stat-separator"></div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">
+                            <span class="partners-count" data-count="3">0</span><span>+</span>
+                        </div>
+                        <div class="stat-label">合作领域</div>
+                    </div>
+                </div>
+                <div class="stat-separator"></div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">
+                            <span class="partners-count" data-count="8">0</span><span>+</span>
+                        </div>
+                        <div class="stat-label">平均合作年限</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成为合作伙伴 CTA -->
+            <div class="become-partner-cta" id="partner-cta" style="opacity: 0; transform: translateY(20px);">
+                <div class="cta-content">
+                    <h3 class="cta-title">加入容电合作伙伴计划</h3>
+                    <p class="cta-text">与行业领导者共创未来，获取更多商业机会和技术支持，共同打造厨电行业新标准</p>
+                </div>
+                <a class="btn btn-primary partner-btn" href="pages/contact.html">
+                    <span>成为合作伙伴</span>
+                    <i class="arrow-icon">→</i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚将由Main File.js动态加载 -->
+
+    <!-- 脚本引用 -->
+    <!-- 外部库 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- 组件脚本（按照页面顺序排列） -->
+    <script src="assets/js/home page/hero-slider.js"></script>
+    <script src="assets/js/home page/core-products.js"></script>
+    <script src="assets/js/home page/kitchen-solutions.js"></script>
+    <script src="assets/js/home page/tech-highlights.js"></script>
+    <script src="assets/js/home page/company-strength.js"></script>
+    <script src="assets/js/home page/testimonials.js"></script>
+    <script src="assets/js/home page/partners.js"></script>
+    <script src="assets/js/home page/news.js"></script>
+    <!-- 全局脚本最后加载，确保最高优先级 -->
+    <script src="assets/js/Main File.js"></script>
+    <!-- API工具和订阅功能 -->
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/subscription.js"></script>
+    
+    <!-- 卡片按钮导航设置 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待所有卡片加载完成
+            setTimeout(function() {
+                // 确保全局方法存在
+                if (window.updateCardButtonHref) {
+                    // 等待厨房解决方案区块加载完成
+                    const setupCardButtons = function() {
+                        // 获取所有卡片按钮
+                        const cardButtons = document.querySelectorAll('#solutionScenesContainer .card-button');
+                        if (cardButtons.length === 0) {
+                            // 如果按钮还没加载，继续等待
+                            setTimeout(setupCardButtons, 200);
+                            return;
+                        }
+                        
+                        console.log(`找到 ${cardButtons.length} 个卡片按钮，正在设置导航...`);
+                        
+                        // 设置每个按钮的导航目的地
+                        // 您可以根据需要修改这些目的地
+                        cardButtons.forEach((button, index) => {
+                            const card = button.closest('.scene-card');
+                            const cardTitle = card ? card.querySelector('h3')?.textContent : '';
+                            
+                            // 根据卡片标题或索引设置不同的导航目的地
+                            let destination = 'pages/products.html';
+                            
+                            if (cardTitle) {
+                                if (cardTitle.includes('一站式厨房解决方案')) {
+                                    destination = 'pages/products.html#integrated-kitchen';
+                                } else if (cardTitle.includes('智能互联生态系统')) {
+                                    destination = 'pages/products.html#smart-kitchen';
+                                } else if (cardTitle.includes('个性化定制服务')) {
+                                    destination = 'pages/contact.html#custom-design';
+                                } else if (cardTitle.includes('集成烹饪中心')) {
+                                    destination = 'pages/products.html#cooking-center';
+                                } else if (cardTitle.includes('蒸烤一体')) {
+                                    destination = 'pages/products.html#steam-oven';
+                                } else if (cardTitle.includes('智能烹饪助手')) {
+                                    destination = 'pages/products.html#smart-cooking';
+                                } else if (cardTitle.includes('洗消一体化')) {
+                                    destination = 'pages/products.html#dishwasher-sterilizer';
+                                } else if (cardTitle.includes('全屋净饮水')) {
+                                    destination = 'pages/products.html#water-purifier';
+                                } else if (cardTitle.includes('水槽式洗碗机')) {
+                                    destination = 'pages/products.html#sink-dishwasher';
+                                } else if (cardTitle.includes('精准温控保鲜')) {
+                                    destination = 'pages/products.html#multi-zone-fridge';
+                                } else if (cardTitle.includes('嵌入式')) {
+                                    destination = 'pages/products.html#built-in-fridge';
+                                } else if (cardTitle.includes('专业储酒')) {
+                                    destination = 'pages/products.html#wine-cooler';
+                                }
+                            }
+                            
+                            // 更新按钮导航链接
+                            window.updateCardButtonHref(button, destination);
+                            
+                            // 添加点击事件跟踪（可选）
+                            button.addEventListener('click', function() {
+                                console.log(`卡片按钮 "${cardTitle}" 被点击，导航到: ${destination}`);
+                            });
+                        });
+                        
+                        console.log('卡片按钮导航设置完成！');
+                    };
+                    
+                    // 开始设置
+                    setupCardButtons();
+                } else {
+                    console.error('卡片按钮更新函数未找到，请确保kitchen-solutions.js已正确加载');
+                }
+            }, 500); // 给予页面足够的加载时间
+        });
+    </script>
+</body>
+</html> 

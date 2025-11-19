@@ -1,0 +1,905 @@
+/**
+ * 关于容电 - 技术实力区块样式
+ * 
+ * 描述：定义技术实力区块的样式
+ * 用途：为技术实力区块提供专有样式
+ * 
+ * 包含内容：
+ * - 区块标题样式
+ * - 研发能力介绍样式
+ * - 技术优势样式
+ * - 技术专利样式
+ * - 响应式调整
+ * 
+ * 创建日期：2025-07-12
+ * 最后修改：2025-07-14
+ */
+
+/* 技术实力区块容器 */
+.tech-strength-section {
+    padding: 80px 0;
+    background-color: var(--neutral-gray-background);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 标题样式 - 全新设计 */
+#tech-strength .section-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--brand-primary-blue);
+    position: relative;
+    margin-bottom: 60px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    background: linear-gradient(to right, var(--brand-primary-blue), #4a8eda);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+/* 标题装饰元素 */
+#tech-strength .section-title::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -15px;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 5px;
+    background: var(--brand-gold-primary);
+    border-radius: 3px;
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#tech-strength .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(255, 215, 0, 0) 0%,
+        var(--brand-gold-primary) 50%,
+        rgba(255, 215, 0, 0) 100%
+    );
+    display: block;
+}
+
+/* 标题悬停效果 */
+#tech-strength .section-title:hover::before {
+    width: 80px;
+}
+
+/* 标题容器 */
+#tech-strength .title-container {
+    text-align: center;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+/* 标题背景装饰 */
+#tech-strength .title-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    font-weight: 900;
+    opacity: 0.03;
+    color: var(--brand-primary-blue);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    pointer-events: none;
+    width: 100%;
+}
+
+/* 标题副标题 */
+#tech-strength .section-subtitle {
+    font-size: 18px;
+    color: var(--brand-gray-text);
+    max-width: 700px;
+    margin: 30px auto 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* 标题图标 */
+#tech-strength .title-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--brand-primary-blue), #4a8eda);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 20px rgba(26, 75, 140, 0.3);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#tech-strength .title-icon i {
+    font-size: 28px;
+    color: white;
+}
+
+#tech-strength .title-container:hover .title-icon {
+    transform: rotateY(180deg);
+}
+
+/* 标题动画效果 */
+@keyframes title-glow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(26, 75, 140, 0.1);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(26, 75, 140, 0.3);
+    }
+}
+
+#tech-strength .section-title {
+    animation: title-glow 3s infinite alternate ease-in-out;
+}
+
+/* 装饰元素 */
+.tech-strength-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--brand-gold-soft) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0.7;
+    z-index: 1;
+}
+
+/* 区块内容容器 */
+.tech-strength-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* 区块标题 */
+.tech-strength-title {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.tech-strength-title h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--brand-primary-blue);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.tech-strength-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--brand-gold-primary);
+}
+
+.tech-strength-title p {
+    font-size: 18px;
+    color: var(--brand-gray-text);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 研发能力介绍 - 全新设计 */
+.rd-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(245,247,250,1) 100%);
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.08),
+        0 0 0 1px rgba(0,0,0,0.02);
+}
+
+/* 装饰背景元素 */
+.rd-intro::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(26,75,140,0.05) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    animation: pulse-gentle 8s infinite alternate ease-in-out;
+}
+
+.rd-intro::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    animation: pulse-gentle 8s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes pulse-gentle {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+/* 研发介绍文本区域 */
+.rd-intro-text {
+    padding: 50px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 研发标题 */
+.rd-intro-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--brand-primary-blue);
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 0;
+    display: inline-block;
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 标题装饰线 */
+.rd-intro-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    height: 4px;
+    width: 60px;
+    background: linear-gradient(90deg, var(--brand-gold-primary), var(--brand-gold-secondary));
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rd-intro:hover .rd-intro-title::before {
+    width: 100px;
+}
+
+.rd-intro:hover .rd-intro-title {
+    transform: translateY(-5px);
+}
+
+/* 研发描述文本 */
+.rd-intro-description {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--brand-gray-text);
+}
+
+.rd-intro-description p {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 28px;
+    transition: transform 0.4s ease;
+}
+
+.rd-intro-description p:hover {
+    transform: translateX(5px);
+    color: var(--brand-primary-blue);
+}
+
+/* 段落前的图标 */
+.rd-intro-description p::before {
+    content: '\F26A'; /* Bootstrap Icons - check circle fill */
+    font-family: "bootstrap-icons";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--brand-gold-primary);
+    font-size: 18px;
+}
+
+/* 高亮关键词 */
+.rd-intro-description strong {
+    color: var(--brand-primary-blue);
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.rd-intro-description strong::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 215, 0, 0.3);
+    z-index: -1;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.rd-intro-description strong:hover::after {
+    transform: translateY(-3px);
+}
+
+/* 数据指标 */
+.rd-intro-metrics {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.rd-intro-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rd-intro-metric-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--brand-primary-blue);
+    line-height: 1;
+    background: linear-gradient(135deg, var(--brand-primary-blue), #4a8eda);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rd-intro-metric-label {
+    font-size: 14px;
+    color: var(--brand-gray-text);
+    margin-top: 5px;
+}
+
+/* 研发图片区域 */
+.rd-intro-image {
+    position: relative;
+    min-width: auto;
+    height: 100%;
+    border-radius: 0 16px 16px 0;
+    overflow: hidden;
+    box-shadow: none;
+    transform: translateZ(0);
+}
+
+.rd-intro-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(26, 75, 140, 0.7) 0%, 
+        rgba(26, 75, 140, 0.4) 100%);
+    z-index: 1;
+    opacity: 0.7;
+    transition: opacity 0.5s ease;
+}
+
+.rd-intro-image:hover::before {
+    opacity: 0.5;
+}
+
+.rd-intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.rd-intro-image:hover img {
+    transform: scale(1.08);
+}
+
+/* 图片上的装饰元素 */
+.rd-intro-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.15)' stroke-width='2' d='M0,0 L100,100 M20,0 L100,80 M40,0 L100,60 M60,0 L100,40 M80,0 L100,20 M0,20 L80,100 M0,40 L60,100 M0,60 L40,100 M0,80 L20,100'/%3E%3C/svg%3E");
+    background-size: cover;
+    z-index: 2;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* 图片内的浮动标签 */
+.rd-intro-badge {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--brand-primary-blue);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rd-intro-image:hover .rd-intro-badge {
+    transform: translateY(-5px);
+}
+
+/* 技术优势容器 */
+.tech-advantages {
+    margin-top: 60px;
+}
+
+.tech-advantages-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--brand-primary-blue);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* 技术优势卡片容器 */
+.advantage-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* 技术优势卡片 */
+.advantage-card {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.advantage-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 技术优势背景装饰 */
+.advantage-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--brand-blue-soft);
+    border-radius: 0 0 0 100%;
+    opacity: 0.2;
+    transition: all var(--transition-fast);
+}
+
+.advantage-card:hover::before {
+    width: 150px;
+    height: 150px;
+}
+
+/* 技术优势图标 */
+.advantage-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--brand-gold-soft);
+    color: var(--brand-gold-primary);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.advantage-icon i {
+    font-size: 32px;
+}
+
+.advantage-card:hover .advantage-icon {
+    background: var(--brand-gold-primary);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* 技术优势标题 */
+.advantage-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--brand-primary-blue);
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* 技术优势描述 */
+.advantage-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--brand-gray-text);
+    position: relative;
+    z-index: 2;
+}
+
+/* 技术专利容器 */
+.tech-patents {
+    margin-top: 60px;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--brand-primary-blue) 0%, var(--brand-blue-darker) 100%);
+    border-radius: var(--border-radius-lg);
+    color: var(--brand-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 技术专利装饰 */
+.tech-patents::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../../../assets/images/About Rongdian/tech-strength/patent-pattern.png') repeat;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+/* 技术专利内容 */
+.patents-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+
+/* 技术专利数据 */
+.patents-data {
+    flex: 1;
+    min-width: 300px;
+}
+
+.patents-number {
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, var(--brand-white), var(--brand-gold-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.patents-number span {
+    font-size: 36px;
+    margin-left: 5px;
+}
+
+.patents-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.patents-description {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* 技术专利类别 */
+.patents-categories {
+    flex: 1;
+    min-width: 300px;
+}
+
+.patents-categories-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.category-item:last-child {
+    margin-bottom: 0;
+}
+
+.category-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.category-icon i {
+    font-size: 20px;
+}
+
+.category-text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .tech-strength-title h2 {
+        font-size: 32px;
+    }
+    
+    .advantage-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .rd-intro {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .rd-intro-image {
+        height: 400px;
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .rd-intro-text {
+        padding: 40px;
+    }
+    
+    .rd-intro-title {
+        font-size: 28px;
+    }
+    
+    .rd-intro-metrics {
+        flex-wrap: wrap;
+    }
+    
+    .tech-patents {
+        padding: 30px;
+    }
+    
+    .patents-number {
+        font-size: 60px;
+    }
+    
+    .patents-title {
+        font-size: 20px;
+    }
+
+    #tech-strength .section-title {
+        font-size: 36px;
+    }
+    
+    #tech-strength .title-bg {
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tech-strength-section {
+        padding: 60px 0;
+    }
+    
+    .tech-strength-title h2 {
+        font-size: 28px;
+    }
+    
+    .rd-intro {
+        margin-bottom: 60px;
+    }
+    
+    .rd-intro-text {
+        padding: 30px;
+    }
+    
+    .rd-intro-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .rd-intro-description p {
+        margin-bottom: 15px;
+    }
+    
+    .rd-intro-image {
+        height: 300px;
+    }
+    
+    .rd-intro-badge {
+        top: 20px;
+        right: 20px;
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .advantage-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .patents-number {
+        font-size: 50px;
+    }
+    
+    .patents-title {
+        font-size: 20px;
+    }
+
+    #tech-strength .section-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    
+    #tech-strength .title-bg {
+        font-size: 60px;
+    }
+    
+    #tech-strength .title-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    #tech-strength .title-icon i {
+        font-size: 24px;
+    }
+    
+    #tech-strength .section-subtitle {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .tech-strength-section {
+        padding: 40px 0;
+    }
+    
+    .tech-strength-title h2 {
+        font-size: 24px;
+    }
+    
+    .rd-intro {
+        border-radius: 12px;
+        margin-bottom: 50px;
+    }
+    
+    .rd-intro-text {
+        padding: 25px;
+    }
+    
+    .rd-intro-title {
+        font-size: 22px;
+    }
+    
+    .rd-intro-description {
+        font-size: 15px;
+    }
+    
+    .rd-intro-description p {
+        padding-left: 24px;
+    }
+    
+    .rd-intro-description p::before {
+        font-size: 16px;
+    }
+    
+    .rd-intro-image {
+        height: 250px;
+    }
+    
+    .rd-intro-metrics {
+        gap: 15px;
+    }
+    
+    .rd-intro-metric-value {
+        font-size: 28px;
+    }
+    
+    .rd-intro-metric-label {
+        font-size: 12px;
+    }
+    
+    .rd-intro-badge {
+        top: 20px;
+        right: 20px;
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    
+    .tech-advantages-title {
+        font-size: 20px;
+    }
+    
+    .advantage-card {
+        padding: 20px;
+    }
+    
+    .tech-patents {
+        padding: 20px;
+    }
+    
+    .patents-number {
+        font-size: 40px;
+    }
+    
+    .patents-title {
+        font-size: 18px;
+    }
+
+    #tech-strength .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    #tech-strength .title-bg {
+        font-size: 48px;
+    }
+    
+    #tech-strength .title-icon {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 15px;
+    }
+    
+    #tech-strength .title-icon i {
+        font-size: 20px;
+    }
+    
+    #tech-strength .section-subtitle {
+        font-size: 14px;
+    }
+} 

@@ -1,0 +1,259 @@
+/**
+ * 关于容电 - 年度营收增长趋势卡片增强样式
+ * 
+ * 描述：为年度营收增长趋势卡片提供全新的现代化设计
+ * 用途：展示公司年度营收增长趋势，采用动态可视化效果
+ * 
+ * 创建日期：2025-07-25
+ */
+
+/* 营收增长卡片容器 */
+.revenue-growth-card {
+    background: linear-gradient(145deg, #0a4c95 0%, #074e9c 100%);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(7, 78, 156, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.revenue-growth-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(7, 78, 156, 0.35), 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 装饰性背景元素 */
+.revenue-growth-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.revenue-growth-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, rgba(255, 193, 7, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* 卡片标题区域 */
+.revenue-growth-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.revenue-growth-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.revenue-growth-title i {
+    margin-right: 10px;
+    color: #ffc107;
+    font-size: 22px;
+}
+
+/* 图例样式已移除 */
+
+/* 图表容器 */
+.revenue-chart-container {
+    position: relative;
+    z-index: 2;
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding-bottom: 30px;
+}
+
+/* 图表柱状条 */
+.revenue-bar {
+    position: relative;
+    width: 40px;
+    border-radius: 10px 10px 0 0;
+    background: rgba(255, 255, 255, 0.1);
+    transition: height 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+}
+
+.revenue-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to bottom, #ffc107 0%, rgba(255, 193, 7, 0.7) 100%);
+    border-radius: 10px 10px 0 0;
+    transition: height 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+}
+
+.revenue-bar.animated::before {
+    height: 100%;
+}
+
+/* 柱状图数值标签 */
+.revenue-bar-value {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffc107;
+    font-weight: 700;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s ease 1s;
+}
+
+.revenue-bar.animated .revenue-bar-value {
+    opacity: 1;
+}
+
+/* 柱状图年份标签 */
+.revenue-bar-label {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* 趋势线 */
+.revenue-trend-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.revenue-trend-path {
+    stroke: #ffc107;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 2s ease-in-out;
+}
+
+.revenue-trend-path.animated {
+    stroke-dashoffset: 0;
+}
+
+/* 趋势点 */
+.revenue-trend-dot {
+    fill: #ffc107;
+    stroke: #ffffff;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.revenue-trend-dot.animated {
+    opacity: 1;
+}
+
+/* 总体增长指标 */
+.revenue-growth-indicator {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffc107;
+    z-index: 4;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.revenue-growth-indicator i {
+    margin-right: 5px;
+    font-size: 16px;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .revenue-chart-container {
+        height: 200px;
+    }
+    
+    .revenue-bar {
+        width: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .revenue-chart-container {
+        height: 180px;
+    }
+    
+    .revenue-bar {
+        width: 30px;
+    }
+    
+    .revenue-bar-value {
+        font-size: 16px;
+    }
+    
+    .revenue-bar-label {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .revenue-growth-card {
+        padding: 20px;
+    }
+    
+    .revenue-chart-container {
+        height: 150px;
+    }
+    
+    .revenue-bar {
+        width: 25px;
+    }
+    
+    .revenue-growth-title {
+        font-size: 16px;
+    }
+    
+    .revenue-growth-indicator {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+} 

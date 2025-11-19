@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品中心 - 容电科技</title>
+    <meta name="description" content="容电科技产品中心，提供高端智能厨电产品，包括抽油烟机、燃气灶、热水器等系列产品">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="../assets/css/Main File.css" as="style">
+    <link rel="preload" href="../assets/css/product center/product-main.css" as="style">
+    <link rel="preload" href="../assets/images/Main File/容电log.png" as="image">
+    
+    <!-- 关键CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 页面特定的CSS -->
+    <link rel="stylesheet" href="../assets/css/product center/product-main.css">
+    
+    <!-- 全局样式最后加载，确保最高优先级 -->
+    <link rel="stylesheet" href="../assets/css/Main File.css">
+    
+    <!-- API相关样式 -->
+    <link rel="stylesheet" href="../assets/css/api.css">
+    
+    <!-- 页面加载指示器样式 -->
+    <style>
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #074E9C; /* 使用与导航栏相同的蓝色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+            opacity: 0.9; /* 降低不透明度，减轻闪烁感 */
+        }
+        #page-loader.fade-out {
+            opacity: 0;
+        }
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader-text {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 延迟加载图片的占位符样式 */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+        .image-placeholder {
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+        .image-placeholder::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            to { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面加载指示器 -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">正在加载...</div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <header id="header" class="fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <!-- 公司logo -->
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/images/Main File/容电log.png" alt="容电Logo" class="logo">
+                </a>
+                
+                <!-- 移动端汉堡菜单按钮 -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- 导航菜单 -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto main-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="products.html">产品中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">关于容电</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">联系我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link external-link" href="https://mall.jd.com/" target="_blank">京东商城 <i class="bi bi-box-arrow-up-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 页面标题区域 -->
+        <section class="page-title">
+            <div class="container">
+                <h1>产品中心</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../index.html">首页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">产品中心</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- 产品分类区域 -->
+        <section class="product-categories">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>产品分类</h2>
+                    <div class="title-separator"><span></span></div>
+                    <p class="section-description">
+                        容电科技提供全系列高端智能厨电产品，满足不同烹饪场景需求
+                    </p>
+                </div>
+                
+                <div class="categories-container">
+                    <!-- 抽油烟机分类 -->
+                    <div class="category-card" data-aos="fade-up">
+                        <div class="category-image">
+                            <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="云魔方系列抽油烟机" class="img-fluid">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title">抽油烟机系列</h3>
+                            <p class="category-description">采用高效静音技术，智能感应控制，去除油烟更彻底</p>
+                            <div class="category-features">
+                                <div class="feature-tag">智能感应</div>
+                                <div class="feature-tag">静音除烟</div>
+                                <div class="feature-tag">高效油烟分离</div>
+                            </div>
+                            <a href="#" class="btn-view-more">查看更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- 燃气灶分类 -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="category-image">
+                            <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="星火Pro系列燃气灶" class="img-fluid">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title">燃气灶系列</h3>
+                            <p class="category-description">精准火力控制，高热效率，多重安全保护，烹饪更高效</p>
+                            <div class="category-features">
+                                <div class="feature-tag">精准控火</div>
+                                <div class="feature-tag">高热效率</div>
+                                <div class="feature-tag">多重安全</div>
+                            </div>
+                            <a href="#" class="btn-view-more">查看更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- 热水器分类 -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="category-image">
+                            <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="恒温星系列热水器" class="img-fluid">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title">热水器系列</h3>
+                            <p class="category-description">恒温舒适，节能环保，智能控温，洗浴体验更舒适</p>
+                            <div class="category-features">
+                                <div class="feature-tag">恒温控制</div>
+                                <div class="feature-tag">节能环保</div>
+                                <div class="feature-tag">智能调温</div>
+                            </div>
+                            <a href="#" class="btn-view-more">查看更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- 其他产品分类 -->
+                    <div class="category-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="category-image">
+                            <img src="../assets/images/home page/kitchen-solutions/智能互联生态系统.png" alt="其他智能厨电产品" class="img-fluid">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title">智能厨电系列</h3>
+                            <p class="category-description">集成智能互联，一体化控制，打造智慧厨房新体验</p>
+                            <div class="category-features">
+                                <div class="feature-tag">互联互通</div>
+                                <div class="feature-tag">AI助手</div>
+                                <div class="feature-tag">智慧厨房</div>
+                            </div>
+                            <a href="#" class="btn-view-more">查看更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 产品筛选查询入口 -->
+        <section class="product-filter-section" data-aos="fade-up">
+            <div class="container">
+                <div class="filter-intro-wrapper">
+                    <div class="filter-intro-content">
+                        <h2 class="filter-title">找到适合您的产品</h2>
+                        <p class="filter-description">
+                            通过我们的产品筛选工具，按照您的需求和喜好精准查找理想厨电产品
+                        </p>
+                        <div class="filter-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="bi bi-funnel"></i></div>
+                                <div class="benefit-text">多维度筛选</div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="bi bi-sliders"></i></div>
+                                <div class="benefit-text">参数对比</div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon"><i class="bi bi-star"></i></div>
+                                <div class="benefit-text">用户评价</div>
+                            </div>
+                        </div>
+                        <a href="./product-catalog.html" class="btn btn-primary btn-lg rounded-pill">进入产品筛选 <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                    <div class="filter-intro-image">
+                        <img src="../assets/images/home page/kitchen-solutions/一站式厨房解决方案.png" alt="产品筛选" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门产品推荐 -->
+        <section class="popular-products">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>热门产品</h2>
+                    <div class="title-separator"><span></span></div>
+                    <p class="section-description">
+                        我们精选最受欢迎的产品，引领厨房智能生活新潮流
+                    </p>
+                </div>
+                
+                <div class="products-slider">
+                    <!-- 产品1 -->
+                    <div class="product-card" data-aos="fade-up">
+                        <div class="product-badge">畅销</div>
+                        <div class="product-image">
+                            <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="云魔方智能抽油烟机" class="img-fluid">
+                            <div class="product-overlay">
+                                <div class="product-actions">
+                                    <a href="product-detail.html" class="action-btn"><i class="bi bi-eye"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-heart"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-share"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">抽油烟机</div>
+                            <h3 class="product-title">云魔方智能抽油烟机 X5</h3>
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="rating-count">(128)</span>
+                            </div>
+                            <div class="product-features">
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>自动感应控制</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>高效静音电机</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>智能APP控制</span>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">¥3,999</span>
+                                <span class="original-price">¥4,699</span>
+                            </div>
+                            <a href="product-detail.html" class="btn-view-detail">查看详情</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品2 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="product-badge new-product">新品</div>
+                        <div class="product-image">
+                            <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="星火Pro燃气灶" class="img-fluid">
+                            <div class="product-overlay">
+                                <div class="product-actions">
+                                    <a href="product-detail.html" class="action-btn"><i class="bi bi-eye"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-heart"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-share"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">燃气灶</div>
+                            <h3 class="product-title">星火Pro 燃气灶 G9</h3>
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="rating-count">(85)</span>
+                            </div>
+                            <div class="product-features">
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>200档火力控制</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>熄火自动保护</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>热效率高达75%</span>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">¥2,599</span>
+                                <span class="original-price">¥2,999</span>
+                            </div>
+                            <a href="product-detail.html" class="btn-view-detail">查看详情</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品3 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-badge premium-product">高端</div>
+                        <div class="product-image">
+                            <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="恒温星热水器" class="img-fluid">
+                            <div class="product-overlay">
+                                <div class="product-actions">
+                                    <a href="product-detail.html" class="action-btn"><i class="bi bi-eye"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-heart"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-share"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">热水器</div>
+                            <h3 class="product-title">恒温星 燃气热水器 H7</h3>
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <span class="rating-count">(156)</span>
+                            </div>
+                            <div class="product-features">
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>0.1℃恒温控制</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>多重安全保护</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>水气双调节技术</span>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">¥3,299</span>
+                                <span class="original-price">¥3,899</span>
+                            </div>
+                            <a href="product-detail.html" class="btn-view-detail">查看详情</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品4 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="product-badge">套装</div>
+                        <div class="product-image">
+                            <img src="../assets/images/home page/kitchen-solutions/智能互联生态系统.png" alt="智慧厨房套装" class="img-fluid">
+                            <div class="product-overlay">
+                                <div class="product-actions">
+                                    <a href="product-detail.html" class="action-btn"><i class="bi bi-eye"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-heart"></i></a>
+                                    <a href="#" class="action-btn"><i class="bi bi-share"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">套装</div>
+                            <h3 class="product-title">智慧厨房 智能互联套装</h3>
+                            <div class="product-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="rating-count">(98)</span>
+                            </div>
+                            <div class="product-features">
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>云端互联控制</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>一键烹饪模式</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>智能语音助手</span>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">¥8,999</span>
+                                <span class="original-price">¥10,599</span>
+                            </div>
+                            <a href="product-detail.html" class="btn-view-detail">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="view-all-container">
+                    <div class="view-all-card">
+                        <div class="view-all-content">
+                            <h3 class="view-all-title">探索更多产品</h3>
+                            <p class="view-all-text">我们还有更多高品质厨电产品等待您的发现</p>
+                            <div class="view-all-buttons">
+                                <a href="product-catalog.html" class="btn-view-catalog">
+                                    <span>浏览产品目录</span>
+                                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                                </a>
+                                <a href="product-catalog.html" class="btn-view-filter">
+                                    <span>筛选查找</span>
+                                    <i class="bi bi-funnel-fill"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="view-all-decoration">
+                            <div class="decoration-circle circle-1"></div>
+                            <div class="decoration-circle circle-2"></div>
+                            <div class="decoration-line line-1"></div>
+                            <div class="decoration-line line-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 产品优势与服务承诺 -->
+        <section class="product-advantages" data-aos="fade-up">
+            <!-- 添加波浪装饰到顶部并反转 -->
+            <div class="wave-decoration wave-top"></div>
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>我们的优势</h2>
+                    <div class="title-separator"><span></span></div>
+                    <p class="section-description">
+                        为什么选择容电智能厨电产品
+                    </p>
+                </div>
+                
+                <div class="advantages-container">
+                    <!-- 优势1 -->
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <h3 class="advantage-title">品质保证</h3>
+                        <p class="advantage-description">采用高品质材料，精工制造，通过严格质检，确保产品品质卓越</p>
+                    </div>
+                    
+                    <!-- 优势2 -->
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="bi bi-lightning"></i>
+                        </div>
+                        <h3 class="advantage-title">技术创新</h3>
+                        <p class="advantage-description">持续技术创新，拥有300多项专利，为用户提供更智能便捷的产品体验</p>
+                    </div>
+                    
+                    <!-- 优势3 -->
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h3 class="advantage-title">安全可靠</h3>
+                        <p class="advantage-description">多重安全保护设计，通过国内外多项安全认证，使用更加安心放心</p>
+                    </div>
+                    
+                    <!-- 优势4 -->
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h3 class="advantage-title">优质服务</h3>
+                        <p class="advantage-description">专业售后服务团队，7×24小时服务热线，解决您的任何问题</p>
+                    </div>
+                </div>
+                
+                <div class="service-promise">
+                    <div class="promise-header">
+                        <h3>服务承诺</h3>
+                        <p>我们为您提供全方位的服务保障</p>
+                    </div>
+                    
+                    <div class="promise-items">
+                        <div class="promise-item">
+                            <div class="promise-icon"><i class="bi bi-truck"></i></div>
+                            <div class="promise-text">全国送货上门</div>
+                        </div>
+                        <div class="promise-item">
+                            <div class="promise-icon"><i class="bi bi-tools"></i></div>
+                            <div class="promise-text">免费安装调试</div>
+                        </div>
+                        <div class="promise-item">
+                            <div class="promise-icon"><i class="bi bi-arrow-repeat"></i></div>
+                            <div class="promise-text">30天无理由退换</div>
+                        </div>
+                        <div class="promise-item">
+                            <div class="promise-icon"><i class="bi bi-calendar-check"></i></div>
+                            <div class="promise-text">整机3年质保</div>
+                        </div>
+                        <div class="promise-item">
+                            <div class="promise-icon"><i class="bi bi-wrench"></i></div>
+                            <div class="promise-text">终身维修服务</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 添加波浪装饰到底部 -->
+            <div class="wave-decoration"></div>
+        </section>
+    </main>
+
+    <!-- 页脚将由Main File.js动态加载 -->
+
+    <!-- 核心JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    
+    <!-- 页面加载脚本 -->
+    <script>
+        // 在DOM加载完成后就开始淡出加载指示器，不必等待所有资源加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageLoader = document.getElementById('page-loader');
+            // 稍微延时以确保DOM已经渲染
+            setTimeout(() => {
+                pageLoader.classList.add('fade-out');
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 500); // 增加过渡时间，使淡出更平滑
+            }, 100);
+        });
+        
+        // 页面完全加载后初始化图片懒加载
+        window.addEventListener('load', function() {
+            // 初始化图片懒加载
+            initLazyImages();
+        });
+        
+        // 初始化图片懒加载
+        function initLazyImages() {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // 降级处理：立即显示所有图片
+                lazyImages.forEach(img => {
+                    img.classList.add('loaded');
+                });
+            }
+        }
+    </script>
+    
+    <!-- 页面特定脚本 -->
+    <script src="../assets/js/product center/product-main.js"></script>
+    
+    <!-- 延迟加载AOS动画库 -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    <script>
+        // 在页面完全加载后初始化AOS
+        window.addEventListener('load', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    disable: 'mobile'
+                });
+            }
+        });
+    </script>
+    
+    <!-- 全局脚本最后加载，确保最高优先级 -->
+    <script src="../assets/js/Main File.js"></script>
+    <!-- API工具和订阅功能 -->
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/subscription.js"></script>
+</body>
+</html>

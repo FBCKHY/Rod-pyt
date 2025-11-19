@@ -1,0 +1,1468 @@
+/**
+ * 厨房解决方案区块样式 - kitchen-solutions.css
+ * 
+ * 描述：定义网站厨房解决方案区块的样式
+ * 用途：设置厨房解决方案的展示效果和交互
+ * 
+ * 包含内容：
+ * - 区块基础布局
+ * - 场景分类导航
+ * - 解决方案卡片样式
+ * - 咨询定制方案按钮样式
+ * 
+ * 创建日期：2025-07-10
+ */
+
+/* 厨房解决方案区块基础样式 */
+.kitchen-solutions-section {
+    position: relative;
+    padding: 85px 0 var(--section-spacing); /* 减少顶部内边距 */
+    background-color: var(--brand-primary-blue); /* 从var(--brand-blue-darker)改为更浅的var(--brand-primary-blue) */
+    overflow: hidden;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+    border-top: none; /* 移除原来的白色边框 */
+    margin-top: 0; /* 移除顶部间距 */
+    background-image: 
+        /* 细密低调的点阵纹理 */
+        radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 1px, transparent 1px),
+        /* 极细斜向暗纹 */
+        repeating-linear-gradient(45deg, 
+            rgba(255, 215, 0, 0.03) 0px,
+            rgba(255, 215, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        repeating-linear-gradient(-45deg, 
+            rgba(255, 215, 0, 0.03) 0px,
+            rgba(255, 215, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        /* 柔和顶部光晕 */
+        radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        /* 柔和底部光晕 */
+        radial-gradient(circle at 50% 100%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+    background-size: 
+        10px 10px, /* 点阵纹理 */
+        20px 20px, /* 斜向暗纹45度 */
+        20px 20px, /* 斜向暗纹-45度 */
+        100% 50%, /* 顶部光晕 */
+        100% 50%; /* 底部光晕 */
+    background-position: 
+        center center, /* 点阵纹理 */
+        center center, /* 斜向暗纹45度 */
+        center center, /* 斜向暗纹-45度 */
+        center top, /* 顶部光晕 */
+        center bottom; /* 底部光晕 */
+    background-repeat: 
+        repeat, /* 点阵纹理 */
+        repeat, /* 斜向暗纹45度 */
+        repeat, /* 斜向暗纹-45度 */
+        no-repeat, /* 顶部光晕 */
+        no-repeat; /* 底部光晕 */
+}
+
+/* 顶部金色装饰 - 已移除以消除间隔
+.kitchen-solutions-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, 
+        transparent 0%,
+        var(--gold-medium) 20%,
+        var(--gold-fluorescent) 50%,
+        var(--gold-medium) 80%,
+        transparent 100%
+    );
+    box-shadow: 
+        0 0 8px 1px var(--gold-shadow),
+        0 0 12px 2px rgba(255, 215, 0, 0.3);
+    z-index: 2;
+} */
+
+/* 底部金色装饰 - 优雅的分隔线 */
+.kitchen-solutions-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, 
+        transparent 0%,
+        var(--gold-medium) 20%,
+        var(--gold-fluorescent) 50%,
+        var(--gold-medium) 80%,
+        transparent 100%
+    );
+    box-shadow: 
+        0 0 8px 1px var(--gold-shadow),
+        0 0 12px 2px rgba(255, 215, 0, 0.3);
+    z-index: 2;
+}
+
+/* 添加左右装饰点 */
+/* 顶部装饰点 - 已移除以消除间隔
+.kitchen-solutions-section .decoration-dot-left,
+.kitchen-solutions-section .decoration-dot-right {
+    position: absolute;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background-color: var(--gold-medium);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.5);
+    z-index: 3;
+} */
+
+/* 底部装饰元素 - 中央点缀 */
+.kitchen-solutions-section .bottom-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--brand-primary-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--gold-medium), 0 0 15px 5px rgba(255, 215, 0, 0.5);
+    z-index: 3;
+    background-image: radial-gradient(
+        circle at center,
+        var(--gold-fluorescent) 0%,
+        var(--gold-medium) 70%
+    );
+}
+
+/* 底部左右装饰点 */
+.kitchen-solutions-section .bottom-dot-left,
+.kitchen-solutions-section .bottom-dot-right {
+    position: absolute;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    background-color: var(--gold-medium);
+    border-radius: 50%;
+    transform: translateY(50%);
+    box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.5);
+    z-index: 3;
+}
+
+.kitchen-solutions-section .decoration-dot-left {
+    left: calc(50% - 150px);
+}
+
+.kitchen-solutions-section .decoration-dot-right {
+    right: calc(50% - 150px);
+}
+
+.kitchen-solutions-section .bottom-dot-left {
+    left: calc(50% - 150px);
+}
+
+.kitchen-solutions-section .bottom-dot-right {
+    right: calc(50% - 150px);
+}
+
+/* 隐藏旧的装饰点 */
+.gold-linear-decoration, .gold-dot, 
+.decoration-dot-left, .decoration-dot-right {
+    display: none;
+}
+
+/* 标题区域样式 */
+.solution-title-area {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.main-solution-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--brand-white);
+    margin-bottom: 30px;
+    text-shadow: var(--text-shadow-dark);
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--brand-white);
+    opacity: 0.9;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+/* 分类导航样式 */
+.scene-categories {
+    margin: 30px auto;
+    max-width: 900px;
+    position: relative;
+}
+
+.scene-categories::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(to right, 
+        transparent 0%,
+        rgba(255, 215, 0, 0.1) 20%,
+        rgba(255, 215, 0, 0.3) 50%,
+        rgba(255, 215, 0, 0.1) 80%,
+        transparent 100%
+    );
+}
+
+.scene-categories ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    position: relative;
+}
+
+.category-item a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--brand-white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: var(--border-radius-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-item a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 215, 0, 0.05);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+}
+
+.category-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--brand-gold-primary);
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 添加导航项点击波纹效果 */
+.category-item a .ripple {
+    position: absolute;
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-effect 0.8s ease-out;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes ripple-effect {
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+.category-item:hover a {
+    color: var(--brand-gold-primary);
+}
+
+.category-item:hover a::before {
+    transform: scaleX(1);
+}
+
+.category-item:hover a::after {
+    width: 70%;
+}
+
+.category-item.active a {
+    color: var(--brand-gold-primary);
+    font-weight: 600;
+}
+
+.category-item.active a::before {
+    transform: scaleX(1);
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+.category-item.active a::after {
+    width: 90%;
+    height: 3px;
+    box-shadow: 0 0 8px var(--glow-color-yellow);
+}
+
+/* 解决方案场景容器 */
+.solution-scenes-container {
+    position: relative;
+    margin: 40px auto 10px; /* 减少底部外边距 */
+    max-width: 1100px;
+    min-height: 650px; /* 设置最小高度，允许内容增长 */
+    overflow: visible; /* 修改为可见溢出，允许卡片超出容器 */
+    perspective: 1000px; /* 3D视角效果 */
+    padding: 40px 20px 10px; /* 减少底部内边距 */
+}
+
+/* 创建一个包装器，用于固定整个解决方案区块的高度 */
+.kitchen-solutions-wrapper {
+    position: relative;
+    min-height: 850px; /* 改为最小高度，允许内容增长 */
+    overflow: visible; /* 确保可见溢出，按钮始终可见 */
+    padding-bottom: 40px; /* 减少底部内边距 */
+}
+
+/* 解决方案场景垂直容器 */
+.solution-scenes-vertical {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* 减少卡片间距 */
+    opacity: 0;
+    transform-style: preserve-3d;
+    transform: translateY(40px) rotateX(10deg);
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    visibility: hidden; /* 隐藏不活动的容器 */
+    will-change: transform, opacity; /* 性能优化 */
+    filter: blur(5px); /* 初始模糊效果 */
+    padding: 10px 0 0; /* 减少上内边距，移除下内边距 */
+}
+
+.solution-scenes-vertical.active {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+    position: relative;
+    visibility: visible; /* 显示活动的容器 */
+    filter: blur(0); /* 清晰显示 */
+}
+
+/* 为每个卡片添加交错动画 */
+.solution-scenes-vertical .solution-scene-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+                transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transition-delay: calc(var(--item-index, 0) * 0.1s);
+}
+
+.solution-scenes-vertical.active .solution-scene-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 场景卡片样式 */
+.solution-scene-item {
+    position: relative;
+    transform: translateZ(0);
+    perspective: 1200px; /* 增加透视距离，提供更好的3D效果 */
+    z-index: 1;
+    transition: z-index 0.01s linear 0.3s;
+    padding: 30px 15px; /* 增加内边距，为卡片提供更多移动空间 */
+    margin: -15px; /* 使用负边距抵消内边距对布局的影响 */
+}
+
+.solution-scene-item:hover {
+    z-index: 10;
+    transition-delay: 0s;
+}
+
+.scene-card {
+    position: relative;
+    height: 100%;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center center;
+    will-change: transform, box-shadow;
+    transform-style: preserve-3d; /* 保持3D变换 */
+}
+
+.scene-card:hover {
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4), 
+        0 0 30px rgba(255, 215, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 215, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* 卡片悬浮状态 - 使用CSS变量实现可配置的悬浮效果 */
+.scene-card {
+    --hover-translate-y: -20px; /* 增加垂直方向的悬浮高度 */
+    --hover-rotate: 0deg;
+    --hover-scale: 1.05;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); /* 优化过渡效果 */
+}
+
+.scene-card:hover {
+    transform: translateY(var(--hover-translate-y)) rotate(var(--hover-rotate)) scale(var(--hover-scale));
+}
+
+/* 创建交错悬浮效果 */
+.solution-scene-item:nth-child(3n+1) .scene-card {
+    --hover-rotate: -1deg;
+    --hover-translate-y: -18px; /* 增加垂直方向的悬浮高度 */
+}
+
+.solution-scene-item:nth-child(3n+2) .scene-card {
+    --hover-rotate: 1deg;
+    --hover-translate-y: -22px; /* 增加垂直方向的悬浮高度 */
+}
+
+.solution-scene-item:nth-child(3n+3) .scene-card {
+    --hover-rotate: 0deg;
+    --hover-translate-y: -25px; /* 增加垂直方向的悬浮高度 */
+}
+
+.scene-visual {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.scene-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center center;
+}
+
+.scene-card:hover .scene-image {
+    transform: scale(1.1);
+    filter: brightness(1.15) contrast(1.05) saturate(1.1);
+}
+
+/* 图片悬浮时的叠加层效果 */
+.scene-visual::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 70%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.scene-card:hover .scene-visual::after {
+    opacity: 1;
+}
+
+/* 添加装饰元素 */
+.scene-card .card-decoration {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 215, 0, 0.15) 0%,
+        rgba(255, 215, 0, 0) 70%
+    );
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.scene-card:hover .card-decoration {
+    opacity: 0.8;
+    transform: scale(1);
+}
+
+/* 添加边框发光效果 */
+.scene-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.3) 0%,
+        rgba(255, 215, 0, 0.1) 50%,
+        rgba(255, 215, 0, 0.3) 100%
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 3;
+}
+
+.scene-card:hover::before {
+    opacity: 1;
+}
+
+.scene-content {
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 2;
+}
+
+.scene-card:hover .scene-content {
+    transform: translateY(-5px);
+}
+
+.scene-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brand-gold-primary);
+    margin-bottom: 10px;
+    text-shadow: var(--text-shadow-dark);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.scene-card:hover .scene-content h3 {
+    color: var(--gold-fluorescent);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.scene-content p {
+    font-size: 0.95rem;
+    color: var(--brand-white);
+    opacity: 0.9;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.scene-card:hover .scene-content p {
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+/* 添加卡片悬停时的按钮效果 */
+.scene-card .card-button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    text-align: center;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 3;
+}
+
+.scene-card:hover .card-button {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.card-button span {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--brand-gold-primary);
+    color: var(--brand-blue-darker);
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.card-button span:hover {
+    background-color: var(--gold-fluorescent);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* CTA按钮区域 */
+.solution-cta {
+    text-align: center;
+    margin-top: -190px; /* 使用更大的负值将按钮向上移动，更靠近卡片 */
+    margin-bottom: 20px;
+}
+
+/* 按钮包装器，用于显示边框效果 */
+.solution-cta .btn-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+}
+
+/* 咨询定制方案按钮样式 */
+.custom-solution-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-fluorescent));
+    color: var(--brand-blue-darker);
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2),
+                0 0 15px rgba(255, 215, 0, 0.5); /* 添加金黄色泛光效果 */
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    z-index: 1;
+    margin-top: 10px; /* 减少顶部边距 */
+    letter-spacing: 0.5px;
+    border: 2px solid transparent;
+    will-change: transform, box-shadow;
+    /* 光晕位置变量 */
+    --x-pos: 50%;
+    --y-pos: 50%;
+    animation: golden-glow 2s infinite alternate; /* 添加呼吸泛光动画 */
+}
+
+/* 添加光晕边框 - 移到包装器上 */
+.solution-cta .btn-wrapper::before {
+    content: none; /* 移除伪元素，不显示黄色背景 */
+}
+
+.custom-solution-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.3));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: inherit;
+}
+
+.custom-solution-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at var(--x-pos) var(--y-pos), rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 1s ease-out, opacity 0.8s ease-out;
+    z-index: -1;
+}
+
+/* 添加光芒扫过效果 */
+.solution-cta .custom-solution-btn .shine-effect {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: shine 3s infinite;
+    z-index: 2;
+}
+
+/* 光芒扫过动画 */
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    20%, 100% {
+        left: 150%;
+    }
+}
+
+/* 边框脉冲动画 */
+@keyframes border-pulse {
+    from {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* 金黄色泛光呼吸动画 */
+@keyframes golden-glow {
+    from {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2),
+                    0 0 15px rgba(255, 215, 0, 0.5);
+    }
+    to {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2),
+                    0 0 25px rgba(255, 215, 0, 0.8),
+                    0 0 35px rgba(255, 215, 0, 0.4);
+    }
+}
+
+.custom-solution-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3),
+                0 0 30px rgba(255, 215, 0, 0.8); /* 悬停时增强泛光效果 */
+    border-color: var(--gold-dark);
+    color: var(--brand-blue-darker);
+    animation: none; /* 悬停时停止动画，保持最强泛光效果 */
+}
+
+.custom-solution-btn:hover::before {
+    opacity: 0.8;
+}
+
+.custom-solution-btn:hover::after {
+    opacity: 0.8;
+    transform: scale(1);
+    animation: rotateSolutionGlow 3s infinite linear;
+}
+
+.custom-solution-btn span {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+}
+
+.custom-solution-btn .icon {
+    margin-right: 10px;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.custom-solution-btn:hover .icon {
+    transform: scale(1.2);
+}
+
+@keyframes rotateSolutionGlow {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+/* 按钮波纹效果 */
+.solution-ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: solutionRipple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes solutionRipple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+#allKitchenSolutionsDataContainer {
+    display: none;
+}
+
+/* 添加切换方向的动画变体 */
+.solution-scenes-vertical.slide-left {
+    transform: translateX(50px) rotateY(-5deg);
+}
+
+.solution-scenes-vertical.slide-right {
+    transform: translateX(-50px) rotateY(5deg);
+}
+
+.solution-scenes-vertical.active.slide-left,
+.solution-scenes-vertical.active.slide-right {
+    transform: translateX(0) rotateY(0);
+}
+
+/* 现代化金色装饰 - 全新设计 */
+.modern-gold-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; /* 更薄的顶部边框 */
+    background: linear-gradient(to right, 
+        rgba(255, 215, 0, 0.1), 
+        rgba(255, 215, 0, 0.6) 20%, 
+        rgba(255, 215, 0, 0.8) 50%, 
+        rgba(255, 215, 0, 0.6) 80%, 
+        rgba(255, 215, 0, 0.1)
+    );
+    z-index: 5;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* 中央几何装饰元素 - 全新设计 */
+.geometric-decoration {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: 320px; /* 增加宽度 */
+    height: 70px; /* 增加高度 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: glow-pulse 5s infinite alternate;
+}
+
+@keyframes glow-pulse {
+    0% {
+        filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.2));
+    }
+    100% {
+        filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
+    }
+}
+
+/* 创建一个包含所有元素的容器 */
+.geo-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    transform-style: preserve-3d; /* 添加3D变换效果 */
+    animation: subtle-float 8s ease-in-out infinite alternate; /* 添加轻微的浮动效果 */
+}
+
+@keyframes subtle-float {
+    0% {
+        transform: translateY(0) rotateX(1deg);
+    }
+    100% {
+        transform: translateY(3px) rotateX(-1deg);
+    }
+}
+
+/* 新设计的中央圆形装饰 */
+.geo-circle {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: var(--brand-primary-blue);
+    border: 2px solid rgba(255, 215, 0, 1);
+    box-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.6),
+        inset 0 0 12px rgba(255, 215, 0, 0.4);
+    overflow: hidden;
+    /* 添加脉动阴影效果 */
+    animation: circle-shadow-pulse 4s infinite alternate;
+}
+
+@keyframes circle-shadow-pulse {
+    0% {
+        box-shadow: 
+            0 0 12px rgba(255, 215, 0, 0.5),
+            inset 0 0 8px rgba(255, 215, 0, 0.3);
+    }
+    100% {
+        box-shadow: 
+            0 0 20px rgba(255, 215, 0, 0.8),
+            inset 0 0 15px rgba(255, 215, 0, 0.6);
+    }
+}
+
+/* 添加脉冲中心点 */
+.geo-circle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: 
+        radial-gradient(
+            circle at center,
+            rgba(255, 215, 0, 0.8) 0%,
+            rgba(255, 215, 0, 0.4) 40%,
+            rgba(255, 215, 0, 0) 70%
+        );
+    animation: circle-glow 4s infinite alternate;
+    z-index: 1;
+}
+
+/* 添加动态旋转纹理 */
+.geo-circle::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image: 
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(255, 215, 0, 0.1) 0deg,
+            rgba(255, 215, 0, 0.3) 10deg,
+            rgba(255, 215, 0, 0.1) 20deg
+        );
+    animation: rotate-texture 12s linear infinite;
+    z-index: 0;
+}
+
+/* 添加闪光粒子效果 */
+.geo-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.geo-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: rgba(255, 215, 0, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: particle-float 3s ease-out infinite;
+    box-shadow: 0 0 4px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes particle-float {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: 
+            translate(
+                calc(-50% + var(--x-offset, 0) * 25px),
+                calc(-50% + var(--y-offset, 0) * 25px)
+            ) 
+            scale(0);
+        opacity: 0;
+    }
+}
+
+/* 新设计的外环 */
+.geo-ring {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    animation: ring-pulse 6s infinite alternate;
+}
+
+/* 第二个外环 */
+.geo-ring.outer {
+    width: 90px;
+    height: 90px;
+    border: 1px dashed rgba(255, 215, 0, 0.4);
+    opacity: 0.8;
+    animation: 
+        ring-pulse 7s infinite alternate,
+        rotate-ring 20s linear infinite;
+}
+
+@keyframes ring-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.9);
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    }
+}
+
+@keyframes rotate-ring {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* 新的横线设计 */
+.geo-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(
+        to var(--direction, right),
+        rgba(255, 215, 0, 0.1),
+        rgba(255, 215, 0, 0.7) 30%,
+        rgba(255, 215, 0, 0.9) 50%,
+        rgba(255, 215, 0, 0.7) 70%,
+        rgba(255, 215, 0, 0.1)
+    );
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+    animation: line-shine 4s infinite alternate;
+}
+
+@keyframes line-shine {
+    0% {
+        opacity: 0.7;
+        background-position: 0% 0%;
+    }
+    100% {
+        opacity: 1;
+        background-position: 100% 0%;
+    }
+}
+
+/* 左线条 */
+.geo-line.left {
+    right: 50%;
+    left: 0;
+    margin-right: 48px;
+    --direction: left;
+    width: calc(50% - 48px); /* 动态计算宽度 */
+    animation-delay: 0s;
+}
+
+/* 右线条 */
+.geo-line.right {
+    left: 50%;
+    right: 0;
+    margin-left: 48px;
+    --direction: right;
+    width: calc(50% - 48px); /* 动态计算宽度 */
+    animation-delay: 2s;
+}
+
+/* 线上装饰小点 */
+.geo-accent {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--brand-primary-blue);
+    border: 1px solid rgba(255, 215, 0, 0.8);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    animation: accent-glow 3s infinite alternate;
+}
+
+@keyframes accent-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+        opacity: 0.8;
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        opacity: 1;
+    }
+}
+
+.geo-accent.left {
+    left: calc(50% - 80px);
+    animation-delay: 0.5s;
+}
+
+.geo-accent.right {
+    left: calc(50% + 80px);
+    animation-delay: 1s;
+}
+
+/* 新的底部射线装饰 */
+.geo-rays {
+    position: absolute;
+    width: 200px;
+    height: 10px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.geo-ray {
+    position: absolute;
+    bottom: -5px;
+    width: 1px;
+    height: 15px;
+    background: linear-gradient(to top, rgba(255, 215, 0, 0), rgba(255, 215, 0, 0.7));
+    transform-origin: bottom center;
+    animation: ray-glow 4s infinite;
+}
+
+@keyframes ray-glow {
+    0%, 100% {
+        opacity: 0.3;
+        height: 10px;
+    }
+    50% {
+        opacity: 0.8;
+        height: 15px;
+    }
+}
+
+/* 生成多个射线 */
+.geo-ray:nth-child(1) {
+    transform: rotate(-60deg);
+    left: 20%;
+    animation-delay: 0.2s;
+}
+
+.geo-ray:nth-child(2) {
+    transform: rotate(-30deg);
+    left: 35%;
+    animation-delay: 0.5s;
+}
+
+.geo-ray:nth-child(3) {
+    transform: rotate(0deg);
+    left: 50%;
+    animation-delay: 0.8s;
+}
+
+.geo-ray:nth-child(4) {
+    transform: rotate(30deg);
+    left: 65%;
+    animation-delay: 1.1s;
+}
+
+.geo-ray:nth-child(5) {
+    transform: rotate(60deg);
+    left: 80%;
+    animation-delay: 1.4s;
+}
+
+@media (max-width: 992px) {
+    .solution-scenes-vertical {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .main-solution-title {
+        font-size: 2.4rem;
+    }
+    
+    /* 调整中等屏幕上的卡片悬浮空间 */
+    .solution-scene-item {
+        padding: 25px 10px;
+        margin: -10px;
+    }
+    
+    /* 减小中等屏幕上的卡片悬浮高度 */
+    .scene-card {
+        --hover-translate-y: -15px;
+    }
+    
+    /* 调整包装器和容器高度 */
+    .kitchen-solutions-wrapper {
+        min-height: 1000px;
+    }
+    
+    .solution-scenes-container {
+        min-height: 800px;
+    }
+    
+    /* 几何装饰响应式调整 */
+    .geometric-decoration {
+        width: 280px;
+        height: 65px;
+        top: -32px;
+    }
+    
+    .geo-circle {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .geo-ring {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .geo-ring.outer {
+        width: 85px;
+        height: 85px;
+    }
+    
+    .geo-line.left, .geo-line.right {
+        width: calc(50% - 45px);
+    }
+    
+    .geo-line.left {
+        margin-right: 45px;
+    }
+    
+    .geo-line.right {
+        margin-left: 45px;
+    }
+    
+    .geo-accent.left {
+        left: calc(50% - 70px);
+    }
+    
+    .geo-accent.right {
+        left: calc(50% + 70px);
+    }
+}
+
+@media (max-width: 768px) {
+    .scene-categories ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .category-item a {
+        width: 200px;
+        text-align: center;
+    }
+    
+    .solution-scenes-vertical {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-solution-title {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* 调整小屏幕上的卡片悬浮空间 */
+    .solution-scene-item {
+        padding: 20px 10px;
+        margin: -10px;
+    }
+    
+    /* 减小小屏幕上的卡片悬浮高度 */
+    .scene-card {
+        --hover-translate-y: -12px;
+    }
+    
+    /* 减小小屏幕上的倾斜效果 */
+    .solution-scene-item:nth-child(3n+1) .scene-card,
+    .solution-scene-item:nth-child(3n+2) .scene-card,
+    .solution-scene-item:nth-child(3n+3) .scene-card {
+        --hover-translate-y: -12px;
+    }
+    
+    /* 调整包装器和容器高度 */
+    .kitchen-solutions-wrapper {
+        min-height: 1500px;
+    }
+    
+    .solution-scenes-container {
+        min-height: 1300px;
+    }
+    
+    /* 几何装饰响应式调整 */
+    .geometric-decoration {
+        width: 240px;
+        height: 60px;
+        top: -30px;
+    }
+    
+    .geo-circle {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .geo-ring {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .geo-ring.outer {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .geo-line.left, .geo-line.right {
+        width: calc(50% - 38px);
+    }
+    
+    .geo-line.left {
+        margin-right: 38px;
+    }
+    
+    .geo-line.right {
+        margin-left: 38px;
+    }
+    
+    .geo-accent {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .geo-accent.left {
+        left: calc(50% - 60px);
+    }
+    
+    .geo-accent.right {
+        left: calc(50% + 60px);
+    }
+    
+    .geo-rays {
+        width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-solution-title {
+        font-size: 1.8rem;
+    }
+    
+    .scene-visual {
+        height: 180px;
+    }
+    
+    .scene-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .scene-content p {
+        font-size: 0.9rem;
+    }
+    
+    /* 调整超小屏幕上的包装器和容器高度 */
+    .kitchen-solutions-wrapper {
+        min-height: 1600px;
+    }
+    
+    .solution-scenes-container {
+        min-height: 1400px;
+    }
+    
+    /* 几何装饰响应式调整 */
+    .geometric-decoration {
+        width: 200px;
+        height: 50px;
+        top: -25px;
+    }
+    
+    .geo-circle {
+        width: 32px;
+        height: 32px;
+        border-width: 1px;
+    }
+    
+    .geo-ring {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .geo-ring.outer {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .geo-line {
+        height: 1px;
+    }
+    
+    .geo-line.left, .geo-line.right {
+        width: calc(50% - 30px);
+    }
+    
+    .geo-line.left {
+        margin-right: 30px;
+    }
+    
+    .geo-line.right {
+        margin-left: 30px;
+    }
+    
+    .geo-accent {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .geo-accent.left {
+        left: calc(50% - 45px);
+    }
+    
+    .geo-accent.right {
+        left: calc(50% + 45px);
+    }
+    
+    .geo-rays {
+        width: 140px;
+        height: 8px;
+    }
+    
+    .geo-ray {
+        height: 10px;
+    }
+} 

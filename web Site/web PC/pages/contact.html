@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 容电科技 | 高端厨电领导品牌</title>
+    <meta name="description" content="容电科技联系方式，为您提供专业的售前咨询、售后服务和技术支持。">
+    
+    <!-- 引入字体图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- 引入动画库 -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- 引入Bootstrap框架 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- 引入地图API CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <!-- 引入页面特定的CSS -->
+    <link rel="stylesheet" href="../assets/css/Contact us/contact.css">
+    <link rel="stylesheet" href="../assets/css/Contact us/support-section.css">
+    <link rel="stylesheet" href="../assets/css/Contact us/map.css">
+    <link rel="stylesheet" href="../assets/css/Contact us/form.css">
+    
+    <!-- 全局样式最后加载，确保最高优先级 -->
+    <link rel="stylesheet" href="../assets/css/Main File.css">
+    
+    <!-- 页面加载指示器样式 -->
+    <style>
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #074E9C; /* 使用与导航栏相同的蓝色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+            opacity: 0.9; /* 降低不透明度，减轻闪烁感 */
+        }
+        #page-loader.fade-out {
+            opacity: 0;
+        }
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader-text {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面加载指示器 -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">正在加载...</div>
+        </div>
+    </div>
+    
+    <!-- 初始化页面加载指示器 -->
+    <script>
+        // 在DOM加载完成后就开始淡出加载指示器，不必等待所有资源加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageLoader = document.getElementById('page-loader');
+            // 稍微延时以确保DOM已经渲染
+            setTimeout(() => {
+                pageLoader.classList.add('fade-out');
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 500); // 增加过渡时间，使淡出更平滑
+            }, 100);
+        });
+    </script>
+    <!-- 导航栏 -->
+    <header id="header" class="fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <!-- 公司logo -->
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/images/Main File/容电log.png" alt="容电Logo" class="logo">
+                </a>
+                
+                <!-- 移动端汉堡菜单按钮 -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- 导航菜单 -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto main-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.html">产品中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">关于容电</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="contact.html">联系我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link external-link" href="https://mall.jd.com/" target="_blank">京东商城 <i class="bi bi-box-arrow-up-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- 联系我们页面标题 -->
+    <section class="contact-hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="contact-hero-title" data-aos="fade-up">联系我们</h1>
+                    <p class="contact-hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+                        无论您有任何问题，我们都将为您提供专业的服务和支持
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系信息卡片 -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="contact-card-title">公司总部</h3>
+                        <p class="contact-card-text">中国上海市浦东新区张江高科技园区博云路2号</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3 class="contact-card-title">联系电话</h3>
+                        <p class="contact-card-text">全国服务热线: 400-800-8888</p>
+                        <p class="contact-card-text">商务合作: 021-6789-5678</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="contact-card-title">电子邮箱</h3>
+                        <p class="contact-card-text">客户服务: service@rongdian.com</p>
+                        <p class="contact-card-text">商务合作: business@rongdian.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 地图位置 -->
+    <section class="map-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading text-center mb-5" data-aos="fade-up">
+                        <h2 class="section-title">我们的位置</h2>
+                        <p class="section-subtitle">容电科技在全国多个城市设有分支机构，为您提供便捷的服务</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" data-aos="fade-up">
+                    <div id="contact-map" class="contact-map">
+                        <!-- 地图将通过JavaScript加载 -->
+                        <div class="map-placeholder">
+                            <img src="../assets/images/Contact us/map/office-map.jpg" alt="容电科技办公位置地图">
+                            <div class="map-overlay">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <p>正在加载地图...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 随时为您提供支持 (蓝色背景) -->
+    <section class="support-section">
+        <!-- 背景装饰 -->
+        <div class="support-bg-pattern"></div>
+        
+        <div class="container">
+            <div class="support-heading" data-aos="fade-up">
+                <h2 class="support-title">随时为您提供支持</h2>
+                <p class="support-subtitle">
+                    我们拥有专业的技术团队和客服人员，随时解答您的问题，提供全方位支持服务
+                </p>
+            </div>
+            
+            <div class="support-cards">
+                <!-- 在线咨询 -->
+                <div class="support-card" data-aos="fade-up">
+                    <div class="support-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="support-card-title">在线咨询</h3>
+                    <p class="support-card-text">
+                        我们的客服团队提供在线实时咨询服务，随时解答您的疑问，平均响应时间不超过3分钟。
+                    </p>
+                    <a href="#" class="support-btn" data-support-type="chat">立即咨询</a>
+                </div>
+                
+                <!-- 电话回拨 -->
+                <div class="support-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="support-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="support-card-title">电话回拨</h3>
+                    <p class="support-card-text">
+                        不想等待？留下您的电话，我们的专业客服将在15分钟内回电，为您提供一对一服务。
+                    </p>
+                    <a href="#" class="support-btn" data-support-type="call">请求回电</a>
+                </div>
+                
+                <!-- 技术支持 -->
+                <div class="support-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="support-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="support-card-title">技术支持</h3>
+                    <p class="support-card-text">
+                        遇到产品使用问题？我们的技术专家团队将为您提供专业的技术支持和解决方案。
+                    </p>
+                    <a href="#" class="support-btn" data-support-type="email">联系技术支持</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系表单 - 全新设计 -->
+    <section class="contact-form-section">
+        <!-- 装饰元素 -->
+        <div class="form-decoration form-decoration-circle1"></div>
+        <div class="form-decoration form-decoration-circle2"></div>
+        <div class="form-decoration form-decoration-dots"></div>
+        
+        <div class="container">
+            <div class="form-container">
+                <!-- 表单标题 -->
+                <div class="form-header">
+                    <h2 class="form-title">发送信息给我们</h2>
+                    <p class="form-subtitle">无论您是有产品咨询、服务需求还是合作意向，请填写下方表单，我们将尽快回复您</p>
+                </div>
+                
+                <!-- 表单内容 -->
+                <div class="form-body">
+                    <!-- 左侧信息区 -->
+                    <div class="form-info">
+                        <div class="form-info-pattern"></div>
+                        
+                        <!-- 图片 -->
+                        <div class="form-image">
+                            <img src="../assets/images/Contact us/office/客服中心.jpg" alt="容电客服中心">
+                        </div>
+                        
+                        <!-- 简介文字 -->
+                        <p class="form-description">
+                            容电科技致力于为用户提供优质的服务体验。我们的专业团队将为您提供高效、专业的解决方案，
+                            确保每一位客户都能获得满意的答复。
+                        </p>
+                        
+                        <!-- 联系方式 -->
+                        <h3 class="form-info-title"><i class="fas fa-info-circle"></i> 联系方式</h3>
+                        <ul class="contact-info-list">
+                            <li class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <div class="contact-info-title">公司地址</div>
+                                    <div class="contact-info-text">中国上海市浦东新区张江高科技园区博云路2号</div>
+                                </div>
+                            </li>
+                            <li class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <div class="contact-info-title">联系电话</div>
+                                    <div class="contact-info-text">全国服务热线: 400-800-8888</div>
+                                </div>
+                            </li>
+                            <li class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <div class="contact-info-title">电子邮箱</div>
+                                    <div class="contact-info-text">客户服务: service@rongdian.com</div>
+                                </div>
+                            </li>
+                            <li class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <div class="contact-info-title">服务时间</div>
+                                    <div class="contact-info-text">周一至周五: 9:00 - 18:00</div>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <!-- 社交媒体链接 -->
+                        <div class="social-links">
+                            <a href="#" class="social-link" title="微信" aria-label="微信">
+                                <i class="fab fa-weixin"></i>
+                            </a>
+                            <a href="#" class="social-link" title="微博" aria-label="微博">
+                                <i class="fab fa-weibo"></i>
+                            </a>
+                            <a href="#" class="social-link" title="抖音" aria-label="抖音">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="#" class="social-link" title="领英" aria-label="领英">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧表单区 -->
+                    <div class="form-fields">
+                        <h3 class="form-fields-title"><i class="fas fa-paper-plane"></i> 填写您的信息</h3>
+                        
+                        <!-- 表单信息提示 - 默认隐藏 -->
+                        <div id="formMessage" class="form-message">
+                            <div class="form-message-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="form-message-content">
+                                <div class="form-message-title">信息已发送</div>
+                                <div class="form-message-text">感谢您的留言，我们将在24小时内回复您。</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 表单 -->
+                        <form id="contactForm" class="contact-form">
+                            <!-- 表单加载状态 - 默认隐藏 -->
+                            <div class="form-loading" id="formLoading">
+                                <div class="spinner-container">
+                                    <div class="spinner-border"></div>
+                                    <div class="spinner-text">提交中...</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 姓名和电话 -->
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder=" " required>
+                                        <label for="name" class="form-label">您的姓名*</label>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-floating">
+                                        <select class="form-control" id="userSource" name="userSource" required>
+                                            <option value="" selected disabled>请选择您的来源</option>
+                                            <option value="个人咨询">个人咨询</option>
+                                            <option value="企业客户">企业客户</option>
+                                            <option value="潜在合作伙伴">潜在合作伙伴</option>
+                                            <option value="平台">平台</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                        <label for="userSource" class="form-label">您的来源*</label>
+                                    </div>
+                                    <!-- 自定义来源输入框（默认隐藏） -->
+                                    <div class="form-floating custom-source-input" id="customSourceContainer" style="display: none; margin-top: 10px;">
+                                        <input type="text" class="form-control" id="customSource" name="customSource" placeholder=" ">
+                                        <label for="customSource" class="form-label">请输入具体来源*</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 联系方式 -->
+                            <div class="form-group">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder=" " required>
+                                    <label for="email" class="form-label">联系方式*（邮箱/微信号/手机号）</label>
+                                </div>
+                            </div>
+                            
+                            <!-- 咨询主题 -->
+                            <div class="form-group">
+                                <label for="subject" class="form-label">咨询主题*</label>
+                                <select class="form-control" id="subject" name="subject" required>
+                                    <option value="" selected disabled>请选择咨询主题</option>
+                                    <option value="产品咨询">产品咨询</option>
+                                    <option value="我要订货">我要订货</option>
+                                    <option value="售后服务">售后服务</option>
+                                    <option value="商务合作">商务合作</option>
+                                    <option value="媒体咨询">媒体咨询</option>
+                                    <option value="投诉建议">投诉建议</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </div>
+                            
+                            <!-- 留言内容 -->
+                            <div class="form-group">
+                                <label for="message" class="form-label">留言内容*</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="请详细描述您的问题或需求..." required></textarea>
+                            </div>
+                            
+                            <!-- 同意条款 -->
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="privacy" name="privacy" required>
+                                <label class="form-check-label" for="privacy">
+                                    我已阅读并同意<a href="#">隐私政策</a>和<a href="#">服务条款</a>
+                                </label>
+                            </div>
+                            
+                            <!-- 提交按钮 -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn-submit">
+                                    <i class="fas fa-paper-plane"></i> 提交留言
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚将由Main File.js动态加载 -->
+    
+    <!-- 引入JS库 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+    <!-- 引入页面特定JS -->
+    <script src="../assets/js/Contact us/support-section.js"></script>
+    <script src="../assets/js/Contact us/map.js"></script>
+    <script src="../assets/js/Contact us/form.js"></script>
+    
+    <!-- 全局脚本最后加载，确保最高优先级 -->
+    <script src="../assets/js/Main File.js"></script>
+</body>
+</html> 

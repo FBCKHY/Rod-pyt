@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品目录 - 容电科技</title>
+    <meta name="description" content="容电科技产品目录，提供高端智能厨电产品筛选功能，包括抽油烟机、燃气灶、热水器等系列产品">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="../assets/css/Main File.css" as="style">
+    <link rel="preload" href="../assets/css/product center/product-catalog.css" as="style">
+    <link rel="preload" href="../assets/images/Main File/容电log.png" as="image">
+    
+    <!-- 关键CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 页面特定的CSS -->
+    <link rel="stylesheet" href="../assets/css/product center/product-catalog.css">
+    
+    <!-- 全局样式最后加载，确保最高优先级 -->
+    <link rel="stylesheet" href="../assets/css/Main File.css">
+    
+    <!-- 页面加载指示器样式 -->
+    <style>
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #074E9C; /* 使用与导航栏相同的蓝色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+            opacity: 0.9; /* 降低不透明度，减轻闪烁感 */
+        }
+        #page-loader.fade-out {
+            opacity: 0;
+        }
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader-text {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面加载指示器 -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">正在加载...</div>
+        </div>
+    </div>
+
+    <!-- 初始化页面加载指示器 -->
+    <script>
+        // 在DOM加载完成后就开始淡出加载指示器，不必等待所有资源加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageLoader = document.getElementById('page-loader');
+            // 稍微延时以确保DOM已经渲染
+            setTimeout(() => {
+                pageLoader.classList.add('fade-out');
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 500); // 增加过渡时间，使淡出更平滑
+            }, 100);
+        });
+    </script>
+
+    <!-- 导航栏 -->
+    <header id="header" class="fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <!-- 公司logo -->
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/images/Main File/容电log.png" alt="容电Logo" class="logo">
+                </a>
+                
+                <!-- 移动端汉堡菜单按钮 -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- 导航菜单 -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto main-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="products.html">产品中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">关于容电</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">联系我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link external-link" href="https://mall.jd.com/" target="_blank">京东商城 <i class="bi bi-box-arrow-up-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <div class="catalog-container">
+            <!-- 顶部横幅 -->
+            <div class="catalog-banner">
+                <div class="banner-icons">
+                    <div class="banner-icon">
+                        <i class="fas fa-fan"></i>
+                    </div>
+                    <div class="banner-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="banner-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="banner-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                </div>
+                <div class="banner-content">
+                    <h1 class="banner-title">产品中心</h1>
+                    <p class="banner-subtitle">探索容电高品质家电产品系列，为您的家居带来智能便捷的生活体验</p>
+                    <div class="banner-search">
+                        <input type="text" class="search-input" placeholder="搜索产品名称、型号或关键词...">
+                        <button class="search-button"><i class="fas fa-search"></i><span>搜索</span></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 面包屑导航 -->
+            <div class="breadcrumb-container">
+                <div class="breadcrumb">
+                    <a class="breadcrumb-item" href="../index.html">首页</a>
+                    <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                    <a class="breadcrumb-item" href="products.html">产品中心</a>
+                    <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+                    <span class="breadcrumb-item active">全部产品目录</span>
+                </div>
+            </div>
+            
+            <!-- 主体内容区 -->
+            <div class="catalog-main">
+                <!-- 左侧筛选面板 -->
+                <div class="filter-panel">
+                    <div class="filter-panel-header">
+                        <h2>筛选条件</h2>
+                        <button class="filter-clear-all">清除全部</button>
+                    </div>
+                    
+                    <!-- 产品类型筛选 -->
+                    <div class="filter-section active">
+                        <div class="filter-section-header">
+                            <h3>产品分类</h3>
+                            <button class="filter-toggle"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="filter-section-body">
+                            <div class="filter-category-list">
+                                <div class="filter-category">
+                                    <div class="category-header">
+                                        <input type="checkbox" id="cat-kitchen" data-category="kitchen">
+                                        <label for="cat-kitchen">厨房电器</label>
+                                        <span class="category-count">7</span>
+                                    </div>
+                                    <div class="category-children">
+                                        <div class="filter-subcategory">
+                                            <input type="checkbox" id="subcat-range-hood" data-subcategory="range-hood">
+                                            <label for="subcat-range-hood">吸油烟机</label>
+                                            <span class="subcategory-count">3</span>
+                                        </div>
+                                        <div class="filter-subcategory">
+                                            <input type="checkbox" id="subcat-gas-stove" data-subcategory="gas-stove">
+                                            <label for="subcat-gas-stove">燃气灶具</label>
+                                            <span class="subcategory-count">2</span>
+                                        </div>
+                                        <div class="filter-subcategory">
+                                            <input type="checkbox" id="subcat-integrated-stove" data-subcategory="integrated-stove">
+                                            <label for="subcat-integrated-stove">集成灶</label>
+                                            <span class="subcategory-count">1</span>
+                                        </div>
+                                        <div class="filter-subcategory">
+                                            <input type="checkbox" id="subcat-sterilizer" data-subcategory="sterilizer">
+                                            <label for="subcat-sterilizer">消毒柜</label>
+                                            <span class="subcategory-count">1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-category">
+                                    <div class="category-header">
+                                        <input type="checkbox" id="cat-bathroom" data-category="bathroom">
+                                        <label for="cat-bathroom">卫浴电器与洁具</label>
+                                        <span class="category-count">2</span>
+                                    </div>
+                                    <div class="category-children">
+                                        <div class="filter-subcategory">
+                                            <input type="checkbox" id="subcat-water-heater" data-subcategory="water-heater">
+                                            <label for="subcat-water-heater">热水器</label>
+                                            <span class="subcategory-count">2</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-category">
+                                    <div class="category-header">
+                                        <input type="checkbox" id="cat-hvac" data-category="hvac">
+                                        <label for="cat-hvac">暖通空调</label>
+                                        <span class="category-count">0</span>
+                                    </div>
+                                </div>
+                                <div class="filter-category">
+                                    <div class="category-header">
+                                        <input type="checkbox" id="cat-smart-home" data-category="smart-home">
+                                        <label for="cat-smart-home">智能家居</label>
+                                        <span class="category-count">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 价格筛选 -->
+                    <div class="filter-section active">
+                        <div class="filter-section-header">
+                            <h3>价格范围</h3>
+                            <button class="filter-toggle"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="filter-section-body">
+                            <div class="price-range-slider">
+                                <div class="price-inputs">
+                                    <div class="price-field">
+                                        <span class="currency">¥</span>
+                                        <input id="min-price" type="number" placeholder="最低价">
+                                    </div>
+                                    <span class="price-separator">-</span>
+                                    <div class="price-field">
+                                        <span class="currency">¥</span>
+                                        <input id="max-price" type="number" placeholder="最高价">
+                                    </div>
+                                </div>
+                                <div class="price-slider">
+                                    <div class="slider-track"></div>
+                                    <div class="slider-range" style="left: 0%; width: 100%;"></div>
+                                    <div class="slider-thumb thumb-min" style="left: 0%;"></div>
+                                    <div class="slider-thumb thumb-max" style="left: 100%;"></div>
+                                </div>
+                                <div class="price-presets">
+                                    <button class="price-preset" data-min="0" data-max="1000">1000元以下</button>
+                                    <button class="price-preset" data-min="1000" data-max="3000">1000-3000元</button>
+                                    <button class="price-preset" data-min="3000" data-max="5000">3000-5000元</button>
+                                    <button class="price-preset" data-min="5000" data-max="">5000元以上</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品特性筛选 -->
+                    <div class="filter-section active">
+                        <div class="filter-section-header">
+                            <h3>产品特性</h3>
+                            <button class="filter-toggle"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="filter-section-body">
+                            <div class="filter-features">
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-智能控制" data-feature="智能控制">
+                                    <label for="feature-智能控制">智能控制</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-大吸力" data-feature="大吸力">
+                                    <label for="feature-大吸力">大吸力</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-易清洁" data-feature="易清洁">
+                                    <label for="feature-易清洁">易清洁</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-触控操作" data-feature="触控操作">
+                                    <label for="feature-触控操作">触控操作</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-低噪设计" data-feature="低噪设计">
+                                    <label for="feature-低噪设计">低噪设计</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-自动清洗提醒" data-feature="自动清洗提醒">
+                                    <label for="feature-自动清洗提醒">自动清洗提醒</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-变频电机" data-feature="变频电机">
+                                    <label for="feature-变频电机">变频电机</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-侧吸设计" data-feature="侧吸设计">
+                                    <label for="feature-侧吸设计">侧吸设计</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-黑晶面板" data-feature="黑晶面板">
+                                    <label for="feature-黑晶面板">黑晶面板</label>
+                                </div>
+                                <div class="feature-item">
+                                    <input type="checkbox" id="feature-高效风道" data-feature="高效风道">
+                                    <label for="feature-高效风道">高效风道</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 服务保障筛选 -->
+                    <div class="filter-section active">
+                        <div class="filter-section-header">
+                            <h3>服务保障</h3>
+                            <button class="filter-toggle"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="filter-section-body">
+                            <div class="filter-services">
+                                <div class="service-item">
+                                    <input type="checkbox" id="service-free-shipping" data-service="free-shipping">
+                                    <label for="service-free-shipping"><i class="fas fa-truck"></i>免费配送</label>
+                                </div>
+                                <div class="service-item">
+                                    <input type="checkbox" id="service-installation" data-service="installation">
+                                    <label for="service-installation"><i class="fas fa-tools"></i>免费安装</label>
+                                </div>
+                                <div class="service-item">
+                                    <input type="checkbox" id="service-warranty" data-service="warranty">
+                                    <label for="service-warranty"><i class="fas fa-shield-alt"></i>全国联保</label>
+                                </div>
+                                <div class="service-item">
+                                    <input type="checkbox" id="service-return" data-service="return">
+                                    <label for="service-return"><i class="fas fa-undo"></i>7天无理由退换</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧产品展示区 -->
+                <div class="products-area">
+                    <!-- 筛选和排序工具栏 -->
+                    <div class="products-toolbar">
+                        <div class="products-controls">
+                            <div class="sort-controls">
+                                <span class="sort-label">排序方式:</span>
+                                <div class="sort-options">
+                                    <button class="sort-option active" data-sort="default">综合</button>
+                                    <button class="sort-option" data-sort="sales">销量</button>
+                                    <button class="sort-option" data-sort="price">价格</button>
+                                    <button class="sort-option" data-sort="newest">最新</button>
+                                </div>
+                            </div>
+                            <div class="view-controls">
+                                <button class="view-option active" data-view="grid"><i class="fas fa-th-large"></i></button>
+                                <button class="view-option" data-view="list"><i class="fas fa-list"></i></button>
+                            </div>
+                        </div>
+                        <div class="active-filters" id="active-filters">
+                            <!-- 动态生成的活跃筛选标签 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 产品网格 -->
+                    <div class="products-grid grid-view" id="products-grid" style="display: grid;">
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 0;">
+                            <div class="product-card" data-id="rd-h88">
+                                <div class="product-tag">热销</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-H88 恒温燃气热水器" loading="eager">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-H88 恒温燃气热水器</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-fire"></i><span>恒温技术</span></li>
+                                        <li><i class="fas fa-shield-alt"></i><span>多重安全保护</span></li>
+                                        <li><i class="fas fa-tachometer-alt"></i><span>强劲水压</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">3999</span>
+                                            <span class="product-sales">已售 3150</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 1;">
+                            <div class="product-card" data-id="rd-b86">
+                                <div class="product-tag">热销</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-B86 嵌入式双灶燃气灶" loading="eager">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-B86 嵌入式双灶燃气灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-fire"></i><span>高热效率</span></li>
+                                        <li><i class="fas fa-shield-alt"></i><span>熄火保护</span></li>
+                                        <li><i class="fas fa-tachometer-alt"></i><span>精准控温</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">2699</span>
+                                            <span class="product-sales">已售 2310</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品3：侧吸式抽油烟机 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 2;">
+                            <div class="product-card" data-id="rd-j66">
+                                <div class="product-tag">新品</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J66 侧吸式抽油烟机" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-J66 侧吸式抽油烟机</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-wind"></i><span>侧吸设计</span></li>
+                                        <li><i class="fas fa-volume-mute"></i><span>低噪运行</span></li>
+                                        <li><i class="fas fa-tachometer-alt"></i><span>大吸力</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">3599</span>
+                                            <span class="product-sales">已售 1820</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品4：智能集成灶 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 3;">
+                            <div class="product-card" data-id="rd-c98">
+                                <div class="product-tag premium">高端</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-C98 智能集成灶" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-C98 智能集成灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-microchip"></i><span>智能控制</span></li>
+                                        <li><i class="fas fa-fire-alt"></i><span>多功能烹饪</span></li>
+                                        <li><i class="fas fa-fan"></i><span>强力排烟</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">7999</span>
+                                            <span class="product-sales">已售 865</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品5：壁挂式燃气热水器 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 4;">
+                            <div class="product-card" data-id="rd-h76">
+                                <div class="product-tag">热销</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-H76 壁挂式燃气热水器" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-H76 壁挂式燃气热水器</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-thermometer-half"></i><span>智能恒温</span></li>
+                                        <li><i class="fas fa-bolt"></i><span>快速加热</span></li>
+                                        <li><i class="fas fa-water"></i><span>水气双调</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">2899</span>
+                                            <span class="product-sales">已售 2450</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品6：触控欧式抽油烟机 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 5;">
+                            <div class="product-card" data-id="rd-j58">
+                                <div class="product-tag">经典</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J58 触控欧式抽油烟机" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-J58 触控欧式抽油烟机</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-hand-pointer"></i><span>触控操作</span></li>
+                                        <li><i class="fas fa-palette"></i><span>欧式设计</span></li>
+                                        <li><i class="fas fa-wind"></i><span>高效排烟</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">3299</span>
+                                            <span class="product-sales">已售 1950</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品7：嵌入式单灶燃气灶 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 6;">
+                            <div class="product-card" data-id="rd-b52">
+                                <div class="product-tag">实惠</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-B52 嵌入式单灶燃气灶" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-B52 嵌入式单灶燃气灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-fire"></i><span>高热效率</span></li>
+                                        <li><i class="fas fa-shield-alt"></i><span>安全防护</span></li>
+                                        <li><i class="fas fa-compress-arrows-alt"></i><span>紧凑设计</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">1299</span>
+                                            <span class="product-sales">已售 3680</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品8：智能变频抽油烟机 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 7;">
+                            <div class="product-card" data-id="rd-j108">
+                                <div class="product-tag premium">高端</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J108 智能变频抽油烟机" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-J108 智能变频抽油烟机</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-microchip"></i><span>智能变频</span></li>
+                                        <li><i class="fas fa-wind"></i><span>超强吸力</span></li>
+                                        <li><i class="fas fa-wifi"></i><span>WiFi连接</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">4299</span>
+                                            <span class="product-sales">已售 1280</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品9：双模式消毒柜 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 8;">
+                            <div class="product-card" data-id="rd-d45">
+                                <div class="product-tag">新品</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-D45 双模式消毒柜" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-D45 双模式消毒柜</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-sun"></i><span>紫外线消毒</span></li>
+                                        <li><i class="fas fa-temperature-high"></i><span>高温灭菌</span></li>
+                                        <li><i class="fas fa-clock"></i><span>智能定时</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">2199</span>
+                                            <span class="product-sales">已售 950</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品10：智能电热水器 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 9;">
+                            <div class="product-card" data-id="rd-h92">
+                                <div class="product-tag">节能</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-H92 智能电热水器" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-H92 智能电热水器</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-bolt"></i><span>速热技术</span></li>
+                                        <li><i class="fas fa-leaf"></i><span>节能省电</span></li>
+                                        <li><i class="fas fa-mobile-alt"></i><span>APP控制</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">3499</span>
+                                            <span class="product-sales">已售 1120</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品11：黑晶面板燃气灶 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 10;">
+                            <div class="product-card" data-id="rd-b78">
+                                <div class="product-tag">精品</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-B78 黑晶面板燃气灶" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-B78 黑晶面板燃气灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-gem"></i><span>黑晶面板</span></li>
+                                        <li><i class="fas fa-fire"></i><span>旋火技术</span></li>
+                                        <li><i class="fas fa-broom"></i><span>易清洁</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">2199</span>
+                                            <span class="product-sales">已售 1860</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品12：超薄抽油烟机 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 11;">
+                            <div class="product-card" data-id="rd-j42">
+                                <div class="product-tag">轻薄</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J42 超薄抽油烟机" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-J42 超薄抽油烟机</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-compress"></i><span>超薄设计</span></li>
+                                        <li><i class="fas fa-wind"></i><span>高效排烟</span></li>
+                                        <li><i class="fas fa-volume-down"></i><span>静音运行</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">2799</span>
+                                            <span class="product-sales">已售 1540</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品13：智能燃气热水器 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 12;">
+                            <div class="product-card" data-id="rd-h65">
+                                <div class="product-tag">智能</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-H65 智能燃气热水器" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-H65 智能燃气热水器</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-wifi"></i><span>WiFi控制</span></li>
+                                        <li><i class="fas fa-thermometer-full"></i><span>精准恒温</span></li>
+                                        <li><i class="fas fa-shield-alt"></i><span>多重安全保护</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">3299</span>
+                                            <span class="product-sales">已售 1250</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品14：高端集成灶 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 13;">
+                            <div class="product-card" data-id="rd-c120">
+                                <div class="product-tag premium">豪华</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-C120 高端集成灶" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-C120 高端集成灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-star"></i><span>顶级配置</span></li>
+                                        <li><i class="fas fa-fire-alt"></i><span>大火力</span></li>
+                                        <li><i class="fas fa-fan"></i><span>超强排烟</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">9999</span>
+                                            <span class="product-sales">已售 580</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品15：小型燃气灶 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 14;">
+                            <div class="product-card" data-id="rd-b35">
+                                <div class="product-tag">紧凑</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-B35 小型燃气灶" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-B35 小型燃气灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-compress-arrows-alt"></i><span>紧凑设计</span></li>
+                                        <li><i class="fas fa-fire"></i><span>高效燃烧</span></li>
+                                        <li><i class="fas fa-home"></i><span>适合小厨房</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">899</span>
+                                            <span class="product-sales">已售 2750</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品16：大吸力抽油烟机 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 15;">
+                            <div class="product-card" data-id="rd-j95">
+                                <div class="product-tag">强力</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J95 大吸力抽油烟机" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-J95 大吸力抽油烟机</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-wind"></i><span>超大吸力</span></li>
+                                        <li><i class="fas fa-expand"></i><span>宽幅设计</span></li>
+                                        <li><i class="fas fa-filter"></i><span>高效油烟分离</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">3799</span>
+                                            <span class="product-sales">已售 1420</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品17：节能燃气热水器 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 16;">
+                            <div class="product-card" data-id="rd-h55">
+                                <div class="product-tag">节能</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-H55 节能燃气热水器" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-H55 节能燃气热水器</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-leaf"></i><span>节能环保</span></li>
+                                        <li><i class="fas fa-tint"></i><span>水气双调</span></li>
+                                        <li><i class="fas fa-thermometer-half"></i><span>恒温舒适</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">2499</span>
+                                            <span class="product-sales">已售 1850</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品18：大容量消毒柜 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 17;">
+                            <div class="product-card" data-id="rd-d68">
+                                <div class="product-tag">大容量</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-D68 大容量消毒柜" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-D68 大容量消毒柜</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-expand-arrows-alt"></i><span>大容量</span></li>
+                                        <li><i class="fas fa-sun"></i><span>多重消毒</span></li>
+                                        <li><i class="fas fa-layer-group"></i><span>多层设计</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">2899</span>
+                                            <span class="product-sales">已售 920</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品19：智能触控燃气灶 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 18;">
+                            <div class="product-card" data-id="rd-b92">
+                                <div class="product-tag">智能</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-B92 智能触控燃气灶" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-B92 智能触控燃气灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-hand-pointer"></i><span>触控操作</span></li>
+                                        <li><i class="fas fa-fire"></i><span>精准火力</span></li>
+                                        <li><i class="fas fa-shield-alt"></i><span>安全保护</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">3199</span>
+                                            <span class="product-sales">已售 1280</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品20：壁挂式电热水器 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 19;">
+                            <div class="product-card" data-id="rd-h48">
+                                <div class="product-tag">实惠</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-H48 壁挂式电热水器" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-H48 壁挂式电热水器</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-bolt"></i><span>快速加热</span></li>
+                                        <li><i class="fas fa-tint-slash"></i><span>防干烧保护</span></li>
+                                        <li><i class="fas fa-thermometer-half"></i><span>温度可调</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">1799</span>
+                                            <span class="product-sales">已售 2180</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品21：豪华嵌入式燃气灶 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 20;">
+                            <div class="product-card" data-id="rd-b105">
+                                <div class="product-tag premium">高端</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-B105 豪华嵌入式燃气灶" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-B105 豪华嵌入式燃气灶</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-gem"></i><span>高端材质</span></li>
+                                        <li><i class="fas fa-fire-alt"></i><span>大火力</span></li>
+                                        <li><i class="fas fa-magic"></i><span>豪华外观</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">4599</span>
+                                            <span class="product-sales">已售 780</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 产品22：家用小型消毒柜 -->
+                        <a href="./product-detail.html" class="product-card-link" style="--card-index: 21;">
+                            <div class="product-card" data-id="rd-d32">
+                                <div class="product-tag">实惠</div>
+                                <div class="product-image">
+                                    <img src="../assets/images/product center/water-heater/恒温星 热水器.png" alt="RD-D32 家用小型消毒柜" loading="lazy">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">RD-D32 家用小型消毒柜</h3>
+                                    <ul class="product-features">
+                                        <li><i class="fas fa-compress"></i><span>紧凑设计</span></li>
+                                        <li><i class="fas fa-sun"></i><span>紫外线消毒</span></li>
+                                        <li><i class="fas fa-plug"></i><span>低功耗</span></li>
+                                    </ul>
+                                    <div class="product-details-footer">
+                                        <div class="product-price-container">
+                                            <span class="product-price">1299</span>
+                                            <span class="product-sales">已售 1680</span>
+                                        </div>
+                                        <button class="btn-details">查看详情</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- 更多产品卡片将通过JavaScript动态生成 -->
+                    </div>
+                    
+                    <!-- 无结果提示 -->
+                    <div class="no-results" style="display: none;">
+                        <div class="no-results-icon"><i class="fas fa-search"></i></div>
+                        <h3>未找到匹配的产品</h3>
+                        <p>尝试调整您的筛选条件或重置所有筛选器。</p>
+                        <button id="show-all-products" class="btn-show-all">显示全部产品</button>
+                    </div>
+                    
+                    <!-- 分页控件 -->
+                    <div class="pagination">
+                        <button class="page-prev disabled" disabled><i class="fas fa-chevron-left"></i><span>上一页</span></button>
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                        </div>
+                        <button class="page-next"><span>下一页</span><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 推荐产品区域 -->
+            <div class="recommended-products">
+                <div class="container">
+                    <div class="recommended-title-area">
+                        <h2>您可能还喜欢</h2>
+                        <p>根据您的浏览历史为您精选推荐</p>
+                        <span class="gold-divider"></span>
+                        <span class="gold-accent-dot"></span>
+                        <span class="gold-accent-dot"></span>
+                        <span class="gold-accent-dot"></span>
+                    </div>
+                    <div class="recommended-grid">
+                        <div class="recommended-card card-enter card-visible" style="--card-index: 0;">
+                            <div class="recommendation-badge">热门推荐</div>
+                            <div class="recommended-image">
+                                <a href="./product-detail.html">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J108 智能变频抽油烟机" onerror="this.onerror=null;this.src='../assets/images/product center/range-hood/云魔方 抽油烟机.png';">
+                                </a>
+                            </div>
+                            <div class="recommended-info">
+                                <h3 class="recommended-title">
+                                    <a href="./product-detail.html">RD-J108 智能变频抽油烟机</a>
+                                </h3>
+                                <div class="recommended-price">
+                                    <span class="price-value">¥4299</span>
+                                </div>
+                                <a class="recommended-btn" href="./product-detail.html">查看详情</a>
+                            </div>
+                        </div>
+                        
+                        <div class="recommended-card card-enter card-visible" style="--card-index: 1;">
+                            <div class="recommended-image">
+                                <a href="./product-detail.html">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J66 侧吸式抽油烟机" onerror="this.onerror=null;this.src='../assets/images/product center/range-hood/云魔方 抽油烟机.png';">
+                                </a>
+                            </div>
+                            <div class="recommended-info">
+                                <h3 class="recommended-title">
+                                    <a href="./product-detail.html">RD-J66 侧吸式抽油烟机</a>
+                                </h3>
+                                <div class="recommended-price">
+                                    <span class="price-value">¥3599</span>
+                                </div>
+                                <a class="recommended-btn" href="./product-detail.html">查看详情</a>
+                            </div>
+                        </div>
+                        
+                        <div class="recommended-card card-enter card-visible" style="--card-index: 2;">
+                            <div class="recommended-image">
+                                <a href="./product-detail.html">
+                                    <img src="../assets/images/product center/range-hood/云魔方 抽油烟机.png" alt="RD-J58 触控欧式抽油烟机" onerror="this.onerror=null;this.src='../assets/images/product center/range-hood/云魔方 抽油烟机.png';">
+                                </a>
+                            </div>
+                            <div class="recommended-info">
+                                <h3 class="recommended-title">
+                                    <a href="./product-detail.html">RD-J58 触控欧式抽油烟机</a>
+                                </h3>
+                                <div class="recommended-price">
+                                    <span class="price-value">¥3299</span>
+                                </div>
+                                <a class="recommended-btn" href="./product-detail.html">查看详情</a>
+                            </div>
+                        </div>
+                        
+                        <div class="recommended-card card-enter card-visible" style="--card-index: 3;">
+                            <div class="recommended-image">
+                                <a href="./product-detail.html">
+                                    <img src="../assets/images/product center/gas-stove/星火Pro 燃气灶.png" alt="RD-B86 嵌入式双灶燃气灶" onerror="this.onerror=null;this.src='../assets/images/product center/gas-stove/星火Pro 燃气灶.png';">
+                                </a>
+                            </div>
+                            <div class="recommended-info">
+                                <h3 class="recommended-title">
+                                    <a href="./product-detail.html">RD-B86 嵌入式双灶燃气灶</a>
+                                </h3>
+                                <div class="recommended-price">
+                                    <span class="price-value">¥2699</span>
+                                </div>
+                                <a class="recommended-btn" href="./product-detail.html">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="particles-container">
+                    <span class="particle blue-particle"></span>
+                    <span class="particle blue-particle"></span>
+                    <span class="particle gold-particle"></span>
+                    <span class="particle blue-particle"></span>
+                    <span class="particle blue-particle"></span>
+                    <span class="particle gold-particle"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚将由Main File.js动态加载 -->
+
+    <!-- JavaScript 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    
+    <!-- 页面特定的JavaScript -->
+    <script src="../assets/js/product center/product-catalog.js"></script>
+    
+    <!-- 延迟加载AOS动画库 -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    <script>
+        // 在页面完全加载后初始化AOS
+        window.addEventListener('load', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    disable: 'mobile'
+                });
+            }
+        });
+    </script>
+    
+    <!-- 全局脚本最后加载，确保最高优先级 -->
+    <script src="../assets/js/Main File.js"></script>
+</body>
+</html>

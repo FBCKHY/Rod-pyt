@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+    <html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>（产品型号） - 产品详情 - 容电科技</title>
+    <meta name="description" content="（产品型号） 产品详情，容电科技高端厨电产品，提供高效、安全、智能的使用体验">
+
+    <!-- 第三方CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+    <!-- 统一全局样式 -->
+    <link rel="stylesheet" href="/assets/css/Main File.css">
+    
+    <!-- 本页样式 -->
+    <link rel="stylesheet" href="./样式逻辑/新版产品详情.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header id="header" class="fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="../../web Site/web PC/index.html">
+                    <img src="../../web Site/web PC/assets/images/Main File/容电log.png" alt="容电Logo" class="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto main-nav">
+                        <li class="nav-item"><a class="nav-link" href="../../web Site/web PC/index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="../../web Site/web PC/pages/products.html">产品中心</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../web Site/web PC/pages/about.html">关于容电</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../web Site/web PC/pages/contact.html">联系我们</a></li>
+                        <li class="nav-item"><a class="nav-link external-link" href="https://mall.jd.com/" target="_blank">京东商城 <i class="bi bi-box-arrow-up-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 渐变背景区域 -->
+    <div class="page-background">
+        <div class="gradient-overlay"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+
+    <!-- 产品导航栏 -->
+    <section class="product-navigation-bar" data-aos="fade-down">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-left">
+                    <div class="product-category-badge">
+                        <i class="bi bi-fire"></i>
+                        <span>燃气灶系列</span>
+                    </div>
+                    <nav class="breadcrumb-nav">
+                        <a href="../../web Site/web PC/index.html"><i class="bi bi-house"></i> 首页</a>
+                        <i class="bi bi-chevron-right"></i>
+                        <a href="../../web Site/web PC/pages/products.html">产品中心</a>
+                        <i class="bi bi-chevron-right"></i>
+                        <a href="../../web Site/web PC/pages/product-catalog.html">燃气灶系列</a>
+                        <i class="bi bi-chevron-right"></i>
+                        <span class="current">星火Pro 燃气灶</span>
+                    </nav>
+                </div>
+                <div class="nav-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="搜索产品...">
+                        <button><i class="bi bi-search"></i></button>
+                    </div>
+                    <div class="nav-actions">
+                        <button class="nav-btn" onclick="history.back()" title="返回">
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
+                        <button class="nav-btn" title="分享">
+                            <i class="bi bi-share"></i>
+                        </button>
+                        <button class="nav-btn" title="收藏">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                        <button class="nav-btn" title="对比">
+                            <i class="bi bi-arrow-left-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要产品展示区 -->
+    <section class="product-hero-section">
+        <div class="container">
+            <div class="product-hero-grid">
+                <!-- 产品画廊 -->
+                <div class="product-gallery-wrapper" data-aos="fade-right">
+                    <div class="gallery-container">
+                        <!-- 产品标签 -->
+                        <div class="product-badges">
+                            <span class="badge badge-premium">
+                                <i class="fas fa-crown"></i>
+                                高端系列
+                            </span>
+                            <span class="badge badge-hot">
+                                <i class="fas fa-fire"></i>
+                                热销爆款
+                            </span>
+                            <span class="badge badge-new">
+                                <i class="fas fa-star"></i>
+                                新品上市
+                            </span>
+                        </div>
+
+                        <!-- 主图展示 -->
+                        <div class="main-gallery">
+                            <div class="main-image-container">
+                                <img id="mainProductImage" src="./图片/主图/星火Pro 燃气灶.png" alt="星火Pro 燃气灶">
+                                <div class="image-magnifier">
+                                    <i class="bi bi-zoom-in"></i>
+                                    <span>点击放大</span>
+                                </div>
+                                <!-- 产品特性标记点 -->
+                                <div class="feature-hotspots">
+                                    <div class="hotspot" style="top: 25%; left: 30%;" data-feature="智能控制">
+                                        <div class="hotspot-pulse"></div>
+                                        <div class="hotspot-tooltip">
+                                            <h4>智能控制面板</h4>
+                                            <p>触控式操作，精准火力调节</p>
+                                        </div>
+                                    </div>
+                                    <div class="hotspot" style="top: 60%; left: 70%;" data-feature="安全防护">
+                                        <div class="hotspot-pulse"></div>
+                                        <div class="hotspot-tooltip">
+                                            <h4>多重安全防护</h4>
+                                            <p>熄火保护，童锁设计，安全可靠</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 缩略图 -->
+                        <div class="thumbnail-gallery">
+                            <div class="thumbnail-item active" data-image="./图片/主图/星火Pro 燃气灶.png">
+                                <img src="./图片/主图/星火Pro 燃气灶.png" alt="主视图">
+                            </div>
+                            <div class="thumbnail-item" data-image="./图片/SKU/云魔方 抽油烟机.png">
+                                <img src="./图片/SKU/云魔方 抽油烟机.png" alt="侧视图">
+                            </div>
+                            <div class="thumbnail-item" data-image="./图片/备用/恒温星 热水器.png">
+                                <img src="./图片/备用/恒温星 热水器.png" alt="细节图">
+                            </div>
+                            <div class="thumbnail-item" data-image="./图片/主图/星火Pro 燃气灶.png">
+                                <img src="./图片/主图/星火Pro 燃气灶.png" alt="安装视图">
+                            </div>
+                            <div class="thumbnail-item" data-image="./图片/SKU/云魔方 抽油烟机.png">
+                                <img src="./图片/SKU/云魔方 抽油烟机.png" alt="功能展示">
+                            </div>
+                        </div>
+
+                        <!-- 360度展示按钮 -->
+                        <div class="gallery-actions">
+                            <button class="gallery-btn">
+                                <i class="bi bi-arrow-clockwise"></i>
+                                360°全景
+                            </button>
+                            <button class="gallery-btn">
+                                <i class="bi bi-play-circle"></i>
+                                视频介绍
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 产品信息卡片 -->
+                <div class="product-info-wrapper" data-aos="fade-left">
+                    <div class="product-info-card">
+                        <!-- 产品头部信息 -->
+                        <div class="product-header">
+                            <div class="product-title-section">
+                                <h1 class="product-title">星火Pro 智能燃气灶</h1>
+                                <p class="product-subtitle">高效节能 · 智能控温 · 安全可靠</p>
+                            </div>
+                            <div class="product-rating-section">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star-half-alt filled"></i>
+                                    <span class="rating-score">4.8</span>
+                                </div>
+                                <div class="rating-info">
+                                    <span class="review-count">2,847条评价</span>
+                                    <span class="recommend-rate">98%好评率</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 价格区域 -->
+                        <div class="price-section">
+                            <div class="price-header">
+                                <h3>限时特惠价</h3>
+                                <div class="countdown-timer">
+                                    <i class="far fa-clock"></i>
+                                    <span id="countdown">23:59:45</span>
+                                    <small>后结束</small>
+                                </div>
+                            </div>
+                            <div class="price-display">
+                                <div class="current-price">
+                                    <span class="currency">¥</span>
+                                    <span class="amount">2,499</span>
+                                    <span class="decimal">.00</span>
+                                </div>
+                                <div class="price-compare">
+                                    <span class="original-price">原价 ¥2,999</span>
+                                    <span class="save-amount">省¥500</span>
+                                </div>
+                            </div>
+                            <div class="price-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>支持分期：¥208/月 × 12期</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-gift"></i>
+                                    <span>新用户专享：满2000减200优惠券</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- 库存与物流 -->
+                        <div class="stock-shipping-section">
+                            <div class="stock-info">
+                                <div class="stock-status available">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>现货充足</span>
+                                </div>
+                                <div class="stock-count">库存 168 件</div>
+                            </div>
+                            <div class="shipping-info">
+                                <div class="shipping-item">
+                                    <i class="fas fa-truck"></i>
+                                    <span>24小时内发货</span>
+                                </div>
+                                <div class="shipping-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>全国联保 3年</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 购买按钮区域 -->
+                        <div class="purchase-section">
+                            <div class="product-quick-info">
+                                <label>产品信息</label>
+                                <div class="info-display">
+                                    <span class="info-item model-info">
+                                        <i class="fas fa-tag"></i>
+                                        RD-XH-PRO-2024
+                                    </span>
+                                    <span class="info-divider">|</span>
+                                    <span class="info-item energy-info">
+                                        <i class="fas fa-leaf"></i>
+                                        一级能效
+                                    </span>
+                                    <span class="info-divider">|</span>
+                                    <span class="info-item cert-info">
+                                        <i class="fas fa-certificate"></i>
+                                        3C认证
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn-consult">
+                                    <i class="bi bi-headset"></i>
+                                    <span>立即咨询</span>
+                                </button>
+                                <div class="btn-buy-now-dropdown">
+                                    <button class="btn-buy-now" id="buyNowMainButton">
+                                        <i class="bi bi-lightning-fill"></i>
+                                        <span>立即下单</span>
+                                        <i class="bi bi-chevron-down dropdown-icon"></i>
+                                    </button>
+                                    <div class="buy-dropdown-menu" id="buyDropdownMenu">
+                                        <a href="https://mall.jd.com/" target="_blank" class="dropdown-option jd-option">
+                                            <div class="option-icon">
+                                                <i class="bi bi-shop"></i>
+                                            </div>
+                                            <div class="option-content">
+                                                <div class="option-title">跳转京东商店</div>
+                                                <div class="option-desc">前往京东官方旗舰店购买</div>
+                                            </div>
+                                            <div class="option-arrow">
+                                                <i class="bi bi-arrow-right"></i>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-option contact-option" id="contactOrderOption">
+                                            <div class="option-icon">
+                                                <i class="bi bi-telephone"></i>
+                                            </div>
+                                            <div class="option-content">
+                                                <div class="option-title">联系下单</div>
+                                                <div class="option-desc">专人服务，定制化购买</div>
+                                            </div>
+                                            <div class="option-arrow">
+                                                <i class="bi bi-arrow-right"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <button class="btn-add-cart">
+                                    <i class="bi bi-gear"></i>
+                                    <span>配置菜单</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 服务保障 -->
+                        <div class="guarantee-section">
+                            <h4>服务保障</h4>
+                            <div class="guarantee-grid">
+                                <div class="guarantee-item">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>正品保证</span>
+                                </div>
+                                <div class="guarantee-item">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                    <span>7天退换</span>
+                                </div>
+                                <div class="guarantee-item">
+                                    <i class="bi bi-truck"></i>
+                                    <span>包邮到家</span>
+                                </div>
+                                <div class="guarantee-item">
+                                    <i class="bi bi-tools"></i>
+                                    <span>免费安装</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品详细信息选项卡 -->
+    <section class="product-details-tabs">
+        <div class="container">
+            <div class="tabs-container" style="overflow: visible;">
+                <!-- 全新选项卡导航 -->
+                <div class="tabs-navigation-new">
+                    <!-- 动态背景滑块 -->
+                    <div class="nav-slider" data-active-index="0"></div>
+                    
+                    <!-- 背景装饰效果 -->
+                    <div class="nav-background-effects">
+                        <div class="nav-wave-1"></div>
+                        <div class="nav-wave-2"></div>
+                        <div class="nav-shimmer"></div>
+                    </div>
+                    
+                    <!-- 选项卡按钮 -->
+                    <div class="nav-buttons-container">
+                        <button class="nav-tab-btn active" data-tab="features" data-index="0">
+                            <div class="btn-content">
+                                <div class="btn-icon">
+                                    <i class="fas fa-star"></i>
+                                    <div class="icon-glow"></div>
+                                </div>
+                                <span class="btn-text">产品特点</span>
+                                <div class="btn-ripple"></div>
+                            </div>
+                            <div class="btn-progress-bar"></div>
+                        </button>
+                        
+                        <button class="nav-tab-btn" data-tab="description" data-index="1">
+                            <div class="btn-content">
+                                <div class="btn-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                    <div class="icon-glow"></div>
+                                </div>
+                                <span class="btn-text">产品描述</span>
+                                <div class="btn-ripple"></div>
+                            </div>
+                            <div class="btn-progress-bar"></div>
+                        </button>
+                        
+                        <button class="nav-tab-btn" data-tab="specs" data-index="2">
+                            <div class="btn-content">
+                                <div class="btn-icon">
+                                    <i class="fas fa-cogs"></i>
+                                    <div class="icon-glow"></div>
+                                </div>
+                                <span class="btn-text">规格参数</span>
+                                <div class="btn-ripple"></div>
+                            </div>
+                            <div class="btn-progress-bar"></div>
+                        </button>
+                        
+                        <button class="nav-tab-btn" data-tab="qa" data-index="3">
+                            <div class="btn-content">
+                                <div class="btn-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                    <div class="icon-glow"></div>
+                                </div>
+                                <span class="btn-text">问题解答</span>
+                                <div class="btn-ripple"></div>
+                            </div>
+                            <div class="btn-progress-bar"></div>
+                        </button>
+                    </div>
+                    
+                    <!-- 底部装饰线条 -->
+                    <div class="nav-bottom-decorations">
+                        <div class="nav-accent-line"></div>
+                        <div class="nav-particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 选项卡内容 -->
+                <div class="tab-content-container">
+                    <!-- 产品特点内容 -->
+                    <div class="tab-content active" id="features-content">
+                        <div class="product-features">
+                            <div class="features-bg-decoration features-bg-circle features-bg-circle-1"></div>
+                            <div class="features-bg-decoration features-bg-circle features-bg-circle-2"></div>
+                            <div class="features-bg-wave"></div>
+                            <h3>星火Pro 燃气灶 - 产品特点</h3>
+                            
+                            <div class="features-intro">
+                                <div class="intro-content">
+                                    <h4 class="intro-title">行业领先 · 卓越品质</h4>
+                                    <p>星火Pro燃气灶融合尖端科技与匠心工艺，以突破性的蓝焰技术和智能温控系统，实现热效率提升30%，为现代家庭带来高效、安全、节能的烹饪体验。六大核心特点全方位提升您的厨房品质，让烹饪成为一种享受。</p>
+                                    <div class="intro-highlights">
+                                        <div class="highlight-item"><i class="fas fa-fire-alt"></i><span>热效率提升30%</span></div>
+                                        <div class="highlight-item"><i class="fas fa-shield-alt"></i><span>多重安全保护</span></div>
+                                        <div class="highlight-item"><i class="fas fa-leaf"></i><span>环保节能设计</span></div>
+                            </div>
+                                </div>
+                                <div class="intro-badges">
+                                    <div class="badge-energy">
+                                        <div class="badge-header">能效等级</div>
+                                        <div class="badge-rating">
+                                            <div class="rating-scale">
+                                                <span class="scale-item">D</span>
+                                                <span class="scale-item">C</span>
+                                                <span class="scale-item">B</span>
+                                                <span class="scale-item active">A</span>
+                                                <span class="scale-item active plus">A+</span>
+                                            </div>
+                                        </div>
+                                        <div class="badge-footer">国家认证</div>
+                                    </div>
+                                    <div class="badge-tech">
+                                        <div class="tech-icon"><i class="fas fa-award"></i></div>
+                                        <div class="tech-text">
+                                            <div class="tech-title">行业领先</div>
+                                            <div class="tech-desc">蓝焰专利技术</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="features-tabs">
+                                <div class="features-tab active" data-target="all">全部特点</div>
+                                <div class="features-tab" data-target="performance">性能</div>
+                                <div class="features-tab" data-target="safety">安全</div>
+                                <div class="features-tab" data-target="design">设计</div>
+                            </div>
+                            
+                            <div class="features-grid">
+                                <div class="feature-card" data-category="performance" style="--index: 0;">
+                                    <div class="feature-icon"><i class="fas fa-fire"></i></div>
+                                    <div class="feature-content">
+                                        <h4>蓝焰技术</h4>
+                                        <p>专利蓝焰燃烧技术，热效率提升30%，火力更强劲，烹饪更高效。优化的燃气与空气混合比例，实现更充分燃烧，减少有害气体排放，更加环保健康。</p>
+                                        <div class="feature-tag">专利技术</div>
+                                    </div>
+                                </div>
+                                <div class="feature-card" data-category="performance" style="--index: 1;">
+                                    <div class="feature-icon"><i class="fas fa-thermometer-half"></i></div>
+                                    <div class="feature-content">
+                                        <h4>智能温控</h4>
+                                        <p>精准控制火力大小，从1档到12档无级调节，满足各种烹饪需求。智能传感器实时监测温度变化，自动调整火力，确保烹饪温度稳定，食材受热均匀。</p>
+                                        <div class="feature-tag">智能科技</div>
+                                    </div>
+                                    </div>
+                                <div class="feature-card" data-category="safety" style="--index: 2;">
+                                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                                    <div class="feature-content">
+                                        <h4>防爆钢化玻璃</h4>
+                                        <p>采用5mm厚度高强度钢化玻璃面板，耐高温、抗冲击，安全可靠。特殊工艺处理，防刮擦、防腐蚀，经久耐用，使用寿命更长。</p>
+                                        <div class="feature-tag">安全防护</div>
+                                </div>
+                                    </div>
+                                <div class="feature-card" data-category="design" style="--index: 3;">
+                                    <div class="feature-icon"><i class="fas fa-broom"></i></div>
+                                    <div class="feature-content">
+                                        <h4>易清洁设计</h4>
+                                        <p>一体成型设计，无缝隙结构，不积油污。表面采用纳米疏油涂层，油污不易附着，轻轻一擦即可清洁如新，让厨房始终保持整洁。</p>
+                                        <div class="feature-tag">便捷生活</div>
+                                    </div>
+                                    </div>
+                                <div class="feature-card" data-category="safety" style="--index: 4;">
+                                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                                    <div class="feature-content">
+                                        <h4>脉冲电子点火</h4>
+                                        <p>采用高能脉冲电子点火系统，点火成功率高达99.9%。轻轻旋转旋钮即可点火，无需手动点火，更加安全便捷。</p>
+                                        <div class="feature-tag">便捷操作</div>
+                                </div>
+                                    </div>
+                                <div class="feature-card" data-category="design" style="--index: 5;">
+                                    <div class="feature-icon"><i class="fas fa-hand-sparkles"></i></div>
+                                    <div class="feature-content">
+                                        <h4>人性化操作</h4>
+                                        <p>人体工程学设计的控制旋钮，手感舒适，操作精准。大角度旋转设计，火力调节更加直观，让烹饪过程得心应手。</p>
+                                        <div class="feature-tag">精准控制</div>
+                                    </div>
+                                    </div>
+                                <div class="feature-card" data-category="safety" style="--index: 6;">
+                                    <div class="feature-icon"><i class="fas fa-stopwatch"></i></div>
+                                    <div class="feature-content">
+                                        <h4>定时烹饪</h4>
+                                        <p>内置智能定时系统，可设置精确烹饪时间，到点自动熄火，避免过度烹饪和食材浪费。同时有效防止忘记关火导致的安全隐患，让烹饪更加智能化。</p>
+                                        <div class="feature-tag">智能控制</div>
+                                </div>
+                                </div>
+                                <div class="feature-card" data-category="performance" style="--index: 7;">
+                                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                                    <div class="feature-content">
+                                        <h4>智能互联</h4>
+                                        <p>支持与智能家居系统连接，可通过手机APP远程监控燃气灶状态，随时掌握使用情况。智能语音助手兼容，支持语音控制，解放双手，提升烹饪体验。</p>
+                                        <div class="feature-tag">智慧厨房</div>
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="features-comparison animated"><h4 class="comparison-title">性能指标对比</h4><div class="comparison-chart"><div class="chart-item"><div class="chart-label">热效率</div><div class="chart-bars"><div class="bar-container"><div class="bar-label">普通燃气灶</div><div class="bar-wrapper"><div class="bar animate" style="--width: 50%;">50%</div></div></div><div class="bar-container"><div class="bar-label">星火Pro</div><div class="bar-wrapper"><div class="bar highlight animate" style="--width: 65%;">65%</div></div></div></div></div><div class="chart-item"><div class="chart-label">点火成功率</div><div class="chart-bars"><div class="bar-container"><div class="bar-label">普通燃气灶</div><div class="bar-wrapper"><div class="bar animate" style="--width: 85%;">85%</div></div></div><div class="bar-container"><div class="bar-label">星火Pro</div><div class="bar-wrapper"><div class="bar highlight animate" style="--width: 99.9%;">99.9%</div></div></div></div></div><div class="chart-item"><div class="chart-label">火力调节</div><div class="chart-bars"><div class="bar-container"><div class="bar-label">普通燃气灶</div><div class="bar-wrapper"><div class="bar no-width">5档</div></div></div><div class="bar-container"><div class="bar-label">星火Pro</div><div class="bar-wrapper"><div class="bar highlight no-width">12档</div></div></div></div></div></div></div><div class="features-awards animated"><div class="stars-bg"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><div class="awards-header"><div class="awards-icon"><i class="fas fa-award"></i></div><h4>产品荣誉与认证</h4></div><div class="awards-grid"><div class="award-item"><div class="award-icon"><i class="fas fa-trophy"></i></div><div class="award-content"><div class="award-title">2023年度中国厨电行业创新产品奖</div><div class="award-desc">由中国家用电器协会颁发，表彰在技术创新方面的突出贡献，特别肯定了蓝焰技术在提升热效率方面的革新。</div></div></div><div class="award-item"><div class="award-icon"><i class="fas fa-leaf"></i></div><div class="award-content"><div class="award-title">国家节能环保认证产品</div><div class="award-desc">通过国家严格测试，符合最新节能环保标准，获得官方节能等级A+认证，为绿色低碳生活贡献力量。</div></div></div><div class="award-item"><div class="award-icon"><i class="fas fa-star"></i></div><div class="award-content"><div class="award-title">消费者满意度五星级产品</div><div class="award-desc">根据用户评价和市场调研，在产品质量、性能表现和售后服务等方面获得消费者高度认可，满意度达95%以上。</div></div></div><div class="award-item"><div class="award-icon"><i class="fas fa-shield-alt"></i></div><div class="award-content"><div class="award-title">国际质量管理体系ISO9001认证</div><div class="award-desc">通过国际标准化组织严格审核，产品设计、生产、检测全流程符合国际质量管理标准，品质值得信赖。</div></div></div></div></div><div class="features-summary animated"><div class="summary-header"><div class="summary-icon"><i class="fas fa-crown"></i></div><h3 class="summary-title">星火Pro 厨房新标杆</h3><div class="summary-subtitle">高效 · 安全 · 智能 · 便捷</div></div><div class="summary-content"><div class="summary-main-text"><p>星火Pro燃气灶集<span class="summary-highlight">高效</span>、<span class="summary-highlight">安全</span>、<span class="summary-highlight">智能</span>、<span class="summary-highlight">便捷</span>于一体，是现代厨房的理想选择。</p><p>无论您是烹饪爱好者还是追求高品质生活的家庭，星火Pro都能满足您的需求，为您带来愉悦的烹饪体验。</p></div><div class="summary-features"><div class="summary-feature"><div class="feature-number">65%</div><div class="feature-label">热效率提升</div></div><div class="summary-feature"><div class="feature-number">99.9%</div><div class="feature-label">点火成功率</div></div><div class="summary-feature"><div class="feature-number">12档</div><div class="feature-label">精准火力调节</div></div><div class="summary-feature"><div class="feature-number">A+</div><div class="feature-label">节能等级认证</div></div></div></div><div class="summary-footer"><div class="summary-quote">"让每一次烹饪都成为艺术创作"</div><div class="summary-brand">— 容电科技 星火Pro系列</div></div></div></div></div>
+                        
+                        <!-- 产品描述内容 -->
+                        <div class="tab-content" id="description-content">
+                            <div class="product-description-modern">
+                                <!-- 背景装饰 -->
+                                <div class="description-bg-effects">
+                                    <div class="desc-bg-circle-1"></div>
+                                    <div class="desc-bg-circle-2"></div>
+                                    <div class="desc-bg-waves"></div>
+                                </div>
+
+                                <!-- 头部展示区 -->
+                                <div class="description-hero">
+                                    <div class="hero-content">
+                                        <div class="hero-badge">
+                                            <i class="fas fa-fire"></i>
+                                            <span>星火Pro系列</span>
+                                        </div>
+                                        <h1 class="hero-title">重新定义厨房烹饪体验</h1>
+                                        <p class="hero-subtitle">从蓝焰技术到智能互联，每一个细节都体现着容电科技对卓越品质的追求</p>
+                                        <div class="hero-stats">
+                                            <div class="stat-item">
+                                                <div class="stat-number">65%</div>
+                                                <div class="stat-label">热效率提升</div>
+                                            </div>
+                                            <div class="stat-item">
+                                                <div class="stat-number">30+</div>
+                                                <div class="stat-label">专利技术</div>
+                                            </div>
+                                            <div class="stat-item">
+                                                <div class="stat-number">99.9%</div>
+                                                <div class="stat-label">点火成功率</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hero-visual">
+                                        <div class="visual-frame">
+                                            <div class="frame-content">
+                                                <i class="fas fa-trophy"></i>
+                                                <span>行业领先技术</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 核心特色展示 -->
+                                <div class="description-features">
+                                    <div class="features-header">
+                                        <h2>四大核心优势</h2>
+                                        <p>匠心工艺与前沿科技的完美融合</p>
+                                    </div>
+                                    <div class="features-showcase">
+                                        <div class="showcase-item">
+                                            <div class="showcase-icon">
+                                                <i class="fas fa-atom"></i>
+                                            </div>
+                                            <div class="showcase-content">
+                                                <h3>蓝焰专利技术</h3>
+                                                <p>独创蓝焰燃烧技术，优化燃气与空气混合比例，实现更充分燃烧，热效率较传统燃气灶提升30%，同时减少有害气体排放。</p>
+                                                <div class="showcase-highlight">
+                                                    <span class="highlight-badge">专利技术</span>
+                                                    <span class="highlight-text">热效率 ≥65%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="showcase-item">
+                                            <div class="showcase-icon">
+                                                <i class="fas fa-microchip"></i>
+                                            </div>
+                                            <div class="showcase-content">
+                                                <h3>智能温控系统</h3>
+                                                <p>内置高精度传感器，实时监测温度变化，智能调节火力大小。12档无级调节，满足不同烹饪需求，让每一道菜都达到完美状态。</p>
+                                                <div class="showcase-highlight">
+                                                    <span class="highlight-badge">智能科技</span>
+                                                    <span class="highlight-text">12档调节</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="showcase-item">
+                                            <div class="showcase-icon">
+                                                <i class="fas fa-shield-check"></i>
+                                            </div>
+                                            <div class="showcase-content">
+                                                <h3>多重安全防护</h3>
+                                                <p>配备熄火保护、定时关火、童锁功能、过热保护等多重安全措施。5mm防爆钢化玻璃面板，经过严格安全测试，守护您的厨房安全。</p>
+                                                <div class="showcase-highlight">
+                                                    <span class="highlight-badge">安全认证</span>
+                                                    <span class="highlight-text">5重保护</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="showcase-item">
+                                            <div class="showcase-icon">
+                                                <i class="fas fa-wifi"></i>
+                                            </div>
+                                            <div class="showcase-content">
+                                                <h3>智能互联体验</h3>
+                                                <p>支持容电智家APP远程控制，实现定时开关、火力调节、使用统计等功能。兼容主流智能音箱，语音控制让烹饪更便捷。</p>
+                                                <div class="showcase-highlight">
+                                                    <span class="highlight-badge">智慧厨房</span>
+                                                    <span class="highlight-text">APP控制</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 设计理念展示 -->
+                                <div class="description-philosophy">
+                                    <div class="philosophy-content">
+                                        <div class="philosophy-text">
+                                            <h2>设计哲学</h2>
+                                            <h3>"简约而不简单"</h3>
+                                            <p>星火Pro燃气灶的每一条线条都经过精心雕琢，采用极简主义设计语言，将复杂的技术隐藏在优雅的外观之下。黑色钢化玻璃面板与精密金属旋钮的搭配，既体现了现代科技的冷峻，又不失家居的温暖。</p>
+                                            <div class="philosophy-points">
+                                                <div class="point-item">
+                                                    <i class="fas fa-eye"></i>
+                                                    <span>视觉美学</span>
+                                                </div>
+                                                <div class="point-item">
+                                                    <i class="fas fa-hand-paper"></i>
+                                                    <span>人机工程</span>
+                                                </div>
+                                                <div class="point-item">
+                                                    <i class="fas fa-leaf"></i>
+                                                    <span>环保理念</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="philosophy-visual">
+                                            <div class="visual-elements">
+                                                <div class="element-circle">
+                                                    <div class="circle-content">
+                                                        <i class="fas fa-palette"></i>
+                                                        <span>美学设计</span>
+                                                    </div>
+                                                </div>
+                                                <div class="element-hexagon">
+                                                    <div class="hexagon-content">
+                                                        <i class="fas fa-cogs"></i>
+                                                        <span>精密工艺</span>
+                                                    </div>
+                                                </div>
+                                                <div class="element-triangle">
+                                                    <div class="triangle-content">
+                                                        <i class="fas fa-rocket"></i>
+                                                        <span>创新科技</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 技术创新展示 -->
+                                <div class="description-innovation">
+                                    <div class="innovation-header">
+                                        <h2>技术创新突破</h2>
+                                        <p>每一项技术都是对传统的颠覆</p>
+                                    </div>
+                                    <div class="innovation-timeline">
+                                        <div class="timeline-item">
+                                            <div class="timeline-marker">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <div class="timeline-badge">2021</div>
+                                                <h4>蓝焰技术诞生</h4>
+                                                <p>经过3年研发，突破传统燃烧技术瓶颈，实现燃气利用率的重大提升。</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-marker">
+                                                <i class="fas fa-microchip"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <div class="timeline-badge">2022</div>
+                                                <h4>智能温控问世</h4>
+                                                <p>集成高精度传感器和智能算法，实现毫秒级温度响应和精准控制。</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-marker">
+                                                <i class="fas fa-wifi"></i>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <div class="timeline-badge">2023</div>
+                                                <h4>智能互联升级</h4>
+                                                <p>全面兼容智能家居生态，支持语音控制和远程监控，开启智慧厨房新时代。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 质量保证 -->
+                                <div class="description-quality">
+                                    <div class="quality-content">
+                                        <h2>品质承诺</h2>
+                                        <p>每一台星火Pro都经过严格的质量检测，确保交付到您手中的是完美产品</p>
+                                        <div class="quality-grid">
+                                            <div class="quality-item">
+                                                <div class="quality-icon">
+                                                    <i class="fas fa-certificate"></i>
+                                                </div>
+                                                <h4>权威认证</h4>
+                                                <p>通过国家3C认证、能效认证、ISO9001质量管理体系认证</p>
+                                            </div>
+                                            <div class="quality-item">
+                                                <div class="quality-icon">
+                                                    <i class="fas fa-tools"></i>
+                                                </div>
+                                                <h4>精工制造</h4>
+                                                <p>采用德国进口精密设备，确保每个零件都达到最高品质标准</p>
+                                            </div>
+                                            <div class="quality-item">
+                                                <div class="quality-icon">
+                                                    <i class="fas fa-shipping-fast"></i>
+                                                </div>
+                                                <h4>贴心服务</h4>
+                                                <p>全国联保3年，专业安装团队，7×24小时客服支持</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 规格参数内容 -->
+                        <div class="tab-content" id="specs-content">
+                            <div class="product-specifications">
+                                <div class="specs-header">
+                                    <h3>产品规格参数</h3>
+                                    <p>详细的技术规格和参数信息</p>
+                    </div>
+
+                                <div class="specs-table-container">
+                                    <table class="specs-table">
+                                        <tbody>
+                                            <tr>
+                                                <th colspan="2" class="specs-category">基本信息</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">产品名称</td>
+                                                <td class="specs-value">星火Pro 燃气灶</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">型号</td>
+                                                <td class="specs-value">RD-GS-XH2023</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">产品类型</td>
+                                                <td class="specs-value">嵌入式双眼燃气灶</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">适用气源</td>
+                                                <td class="specs-value">天然气/液化气（需指定）</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th colspan="2" class="specs-category">尺寸重量</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">产品尺寸</td>
+                                                <td class="specs-value">730×430×150mm（长×宽×高）</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">开孔尺寸</td>
+                                                <td class="specs-value">680×380mm（长×宽）</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">产品净重</td>
+                                                <td class="specs-value">12.5kg</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th colspan="2" class="specs-category">性能参数</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">额定热负荷</td>
+                                                <td class="specs-value">左灶：4.2kW / 右灶：3.5kW</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">热效率</td>
+                                                <td class="specs-value">≥65%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">点火方式</td>
+                                                <td class="specs-value">电子脉冲点火</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">火力调节</td>
+                                                <td class="specs-value">10档火力精准调节</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th colspan="2" class="specs-category">材质工艺</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">面板材质</td>
+                                                <td class="specs-value">5mm防爆钢化玻璃</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">燃烧器材质</td>
+                                                <td class="specs-value">全铜合金</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">支架材质</td>
+                                                <td class="specs-value">优质铸铁，耐高温处理</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th colspan="2" class="specs-category">安全功能</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">熄火保护</td>
+                                                <td class="specs-value">支持</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">定时关火</td>
+                                                <td class="specs-value">支持，最长120分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">童锁功能</td>
+                                                <td class="specs-value">支持</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">过热保护</td>
+                                                <td class="specs-value">支持</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th colspan="2" class="specs-category">智能功能</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">APP控制</td>
+                                                <td class="specs-value">支持（容电智家APP）</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">语音控制</td>
+                                                <td class="specs-value">支持（兼容主流智能音箱）</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">定时功能</td>
+                                                <td class="specs-value">支持</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th colspan="2" class="specs-category">其他信息</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">包装清单</td>
+                                                <td class="specs-value">燃气灶×1、说明书×1、保修卡×1、安装配件×1套</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">质保期</td>
+                                                <td class="specs-value">3年</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="specs-name">生产标准</td>
+                                                <td class="specs-value">GB16410-2020</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                        
+                                                    <!-- 问题解答内容 -->
+                            <div class="tab-content" id="qa-content">
+                                <!-- 背景装饰 -->
+                                <div class="qa-bg-effects">
+                                    <div class="qa-bg-circle-1"></div>
+                                    <div class="qa-bg-circle-2"></div>
+                                    <div class="qa-bg-pattern"></div>
+                                                </div>
+
+                                <!-- 头部展示区 -->
+                                <div class="qa-hero">
+                                    <div class="qa-hero-content">
+                                        <div class="qa-hero-badge">
+                                            <i class="fas fa-comments"></i>
+                                            <span>专业问答</span>
+                                            </div>
+                                        <h1 class="qa-hero-title">常见问题解答</h1>
+                                        <p class="qa-hero-subtitle">专业团队为您解答，让使用更安心</p>
+                                        <div class="qa-hero-stats">
+                                            <div class="qa-stat-item">
+                                                <div class="stat-number">98%</div>
+                                                <div class="stat-label">解答满意度</div>
+                                            </div>
+                                            <div class="qa-stat-item">
+                                                <div class="stat-number">45+</div>
+                                                <div class="stat-label">常见问题</div>
+                                        </div>
+                                            <div class="qa-stat-item">
+                                                <div class="stat-number">24h</div>
+                                                <div class="stat-label">响应时间</div>
+                                    </div>
+                                                    </div>
+                                                </div>
+                                    <div class="qa-hero-visual">
+                                        <div class="qa-visual-frame">
+                                            <i class="fas fa-question-circle"></i>
+                                            <i class="fas fa-lightbulb"></i>
+                                            <i class="fas fa-check-circle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                <!-- 快速分类导航 -->
+                                <div class="qa-categories">
+                                    <div class="categories-header">
+                                        <h2>问题分类</h2>
+                                        <p>选择您需要了解的问题类型</p>
+                                                    </div>
+                                    <div class="categories-grid">
+                                        <div class="category-card active" data-category="all">
+                                            <div class="category-icon">
+                                                <i class="fas fa-th-large"></i>
+                                                </div>
+                                            <h3>全部问题</h3>
+                                            <p>浏览所有问题解答</p>
+                                            <div class="category-count">45</div>
+                                                    </div>
+                                        <div class="category-card" data-category="installation">
+                                            <div class="category-icon">
+                                                <i class="fas fa-tools"></i>
+                                                </div>
+                                            <h3>安装使用</h3>
+                                            <p>安装方法与使用技巧</p>
+                                            <div class="category-count">16</div>
+                                                    </div>
+                                        <div class="category-card" data-category="specs">
+                                            <div class="category-icon">
+                                                <i class="fas fa-cog"></i>
+                                                </div>
+                                            <h3>产品参数</h3>
+                                            <p>规格参数与性能详情</p>
+                                            <div class="category-count">12</div>
+                                                    </div>
+                                        <div class="category-card" data-category="maintenance">
+                                            <div class="category-icon">
+                                                <i class="fas fa-wrench"></i>
+                                                </div>
+                                            <h3>维护保养</h3>
+                                            <p>保养方法与维护指南</p>
+                                            <div class="category-count">10</div>
+                                            </div>
+                                        <div class="category-card" data-category="troubleshoot">
+                                            <div class="category-icon">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                            <h3>故障排除</h3>
+                                            <p>常见故障解决方案</p>
+                                            <div class="category-count">7</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                <!-- 搜索和筛选 -->
+                                <div class="qa-search-section">
+                                    <div class="search-container">
+                                        <div class="search-box">
+                                            <i class="fas fa-search"></i>
+                                            <input type="text" placeholder="搜索您的问题..." class="search-input">
+                                            <button class="search-btn">搜索</button>
+                                            </div>
+                                        <div class="search-suggestions">
+                                            <span class="suggestion-label">热门搜索：</span>
+                                            <div class="suggestion-tags">
+                                                <span class="suggestion-tag">安装方法</span>
+                                                <span class="suggestion-tag">火力调节</span>
+                                                <span class="suggestion-tag">安全使用</span>
+                                                <span class="suggestion-tag">维护保养</span>
+                                        </div>
+                                        </div>
+                                            </div>
+                                        </div>
+                                        
+                                <!-- 问答列表 -->
+                                <div class="qa-questions-section">
+                                    <div class="questions-header">
+                                        <h2>问题解答</h2>
+                                        <div class="questions-sort">
+                                            <select class="sort-select">
+                                                <option value="popular">最受欢迎</option>
+                                                <option value="recent">最新发布</option>
+                                                <option value="helpful">最有用</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                
+                                    <div class="questions-list">
+                                        <!-- 问答卡片 1 -->
+                                        <div class="qa-card" data-category="installation">
+                                            <div class="qa-card-header">
+                                                    <div class="question-meta">
+                                                    <span class="question-category installation">安装使用</span>
+                                                    <span class="question-popularity">热门</span>
+                                                </div>
+                                                <div class="question-toggle">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                            <div class="qa-card-question">
+                                                <h3>这款燃气灶的安装需要专业师傅吗？我可以自己安装吗？</h3>
+                                                <div class="question-stats">
+                                                    <span class="views"><i class="fas fa-eye"></i> 126次浏览</span>
+                                                    <span class="helpful"><i class="fas fa-thumbs-up"></i> 24个赞</span>
+                                                    <span class="date">2023-10-15</span>
+                                        </div>
+                                            </div>
+                                            <div class="qa-card-answer">
+                                                <div class="answer-author">
+                                                    <div class="author-avatar">
+                                                    <i class="fas fa-user-tie"></i>
+                                                </div>
+                                                    <div class="author-info">
+                                                        <div class="author-name">官方技术专员</div>
+                                                        <div class="author-badge">认证专家</div>
+                                                    </div>
+                                            </div>
+                                            <div class="answer-content">
+                                                    <p>为了确保您的安全和产品质量，我们<strong>强烈建议</strong>选择专业师傅进行安装：</p>
+                                                    <div class="answer-highlights">
+                                                        <div class="highlight-item">
+                                                            <i class="fas fa-shield-alt"></i>
+                                                            <div>
+                                                                <h4>安全保障</h4>
+                                                                <p>燃气连接需要专业技术，避免泄漏风险</p>
+                                            </div>
+                                            </div>
+                                                        <div class="highlight-item">
+                                                            <i class="fas fa-award"></i>
+                                                            <div>
+                                                                <h4>质量保证</h4>
+                                                                <p>专业安装确保产品正常使用寿命</p>
+                                        </div>
+                                    </div>
+                                                        <div class="highlight-item">
+                                                            <i class="fas fa-gift"></i>
+                                                            <div>
+                                                                <h4>免费服务</h4>
+                                                                <p>我们提供免费上门安装服务</p>
+                                                </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="answer-note">
+                                                        <i class="fas fa-info-circle"></i>
+                                                        如果您有安装经验，可参考说明书，但仍建议专业师傅最终检查确认。
+                                                    </div>
+                                                </div>
+                                                <div class="answer-actions">
+                                                    <button class="action-btn helpful"><i class="fas fa-thumbs-up"></i> 有用 (24)</button>
+                                                    <button class="action-btn share"><i class="fas fa-share"></i> 分享</button>
+                                                    <button class="action-btn follow"><i class="fas fa-bookmark"></i> 收藏</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 问答卡片 2 -->
+                                        <div class="qa-card" data-category="specs">
+                                            <div class="qa-card-header">
+                                                <div class="question-meta">
+                                                    <span class="question-category specs">产品参数</span>
+                                                    <span class="question-popularity">推荐</span>
+                                                </div>
+                                                <div class="question-toggle">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                            <div class="qa-card-question">
+                                                <h3>燃气灶的火力到底有多大？适合炒菜吗？</h3>
+                                                <div class="question-stats">
+                                                    <span class="views"><i class="fas fa-eye"></i> 89次浏览</span>
+                                                    <span class="helpful"><i class="fas fa-thumbs-up"></i> 18个赞</span>
+                                                    <span class="date">2023-10-14</span>
+                                        </div>
+                                                </div>
+                                            <div class="qa-card-answer">
+                                                <div class="answer-author">
+                                                    <div class="author-avatar">
+                                                        <i class="fas fa-user-cog"></i>
+                                                    </div>
+                                                    <div class="author-info">
+                                                        <div class="author-name">产品工程师</div>
+                                                        <div class="author-badge">技术专家</div>
+                                                    </div>
+                                            </div>
+                                            <div class="answer-content">
+                                                    <p>星火Pro系列燃气灶采用<strong>大火力设计</strong>，完全满足中式烹饪需求：</p>
+                                                    <div class="specs-grid">
+                                                        <div class="spec-item">
+                                                            <div class="spec-icon">🔥</div>
+                                                            <div class="spec-info">
+                                                                <h4>主火眼</h4>
+                                                                <p>4.2kW 超大火力</p>
+                                                                <span>适合爆炒</span>
+                                            </div>
+                                            </div>
+                                                        <div class="spec-item">
+                                                            <div class="spec-icon">🍲</div>
+                                                            <div class="spec-info">
+                                                                <h4>副火眼</h4>
+                                                                <p>3.8kW 中火力</p>
+                                                                <span>适合煲汤炖菜</span>
+                                        </div>
+                                    </div>
+                                                        <div class="spec-item">
+                                                            <div class="spec-icon">🌡️</div>
+                                                            <div class="spec-info">
+                                                                <h4>火焰温度</h4>
+                                                                <p>可达1800°C</p>
+                                                                <span>热效率63%</span>
+                                                </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="answer-highlight-box">
+                                                        <i class="fas fa-star"></i>
+                                                        相比普通燃气灶火力提升30%，炒菜时火力充足，锅气十足！
+                                                    </div>
+                                                </div>
+                                                <div class="answer-actions">
+                                                    <button class="action-btn helpful"><i class="fas fa-thumbs-up"></i> 有用 (18)</button>
+                                                    <button class="action-btn share"><i class="fas fa-share"></i> 分享</button>
+                                                    <button class="action-btn follow"><i class="fas fa-bookmark"></i> 收藏</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 问答卡片 3 -->
+                                        <div class="qa-card" data-category="maintenance">
+                                            <div class="qa-card-header">
+                                                <div class="question-meta">
+                                                    <span class="question-category maintenance">维护保养</span>
+                                                </div>
+                                                <div class="question-toggle">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </div>
+                                            </div>
+                                            <div class="qa-card-question">
+                                                <h3>日常使用中需要注意哪些保养事项？</h3>
+                                                <div class="question-stats">
+                                                    <span class="views"><i class="fas fa-eye"></i> 67次浏览</span>
+                                                    <span class="helpful"><i class="fas fa-thumbs-up"></i> 15个赞</span>
+                                                    <span class="date">2023-10-13</span>
+                                        </div>
+                                                </div>
+                                            <div class="qa-card-answer">
+                                                <div class="answer-author">
+                                                    <div class="author-avatar">
+                                                        <i class="fas fa-user-shield"></i>
+                                                    </div>
+                                                    <div class="author-info">
+                                                        <div class="author-name">售后专员</div>
+                                                        <div class="author-badge">服务专家</div>
+                                                    </div>
+                                            </div>
+                                            <div class="answer-content">
+                                                    <p>正确的日常保养可以<strong>延长产品使用寿命</strong>，确保安全和最佳性能：</p>
+                                                    <div class="maintenance-checklist">
+                                                        <div class="checklist-item">
+                                                            <div class="check-icon">
+                                                                <i class="fas fa-check"></i>
+                                            </div>
+                                                            <div class="check-content">
+                                                                <h4>清洁面板</h4>
+                                                                <p>每次使用后用湿布擦拭，避免油渍积累</p>
+                                                                <span class="frequency">使用后清洁</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="checklist-item">
+                                                            <div class="check-icon">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
+                                                            <div class="check-content">
+                                                                <h4>燃烧器清洁</h4>
+                                                                <p>定期清理燃烧器孔，保持出气顺畅</p>
+                                                                <span class="frequency">每周清洁</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="checklist-item">
+                                                            <div class="check-icon">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
+                                                            <div class="check-content">
+                                                                <h4>检查连接</h4>
+                                                                <p>每半年检查燃气连接是否松动</p>
+                                                                <span class="frequency">半年检查</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="answer-actions">
+                                                    <button class="action-btn helpful"><i class="fas fa-thumbs-up"></i> 有用 (15)</button>
+                                                    <button class="action-btn share"><i class="fas fa-share"></i> 分享</button>
+                                                    <button class="action-btn follow"><i class="fas fa-bookmark"></i> 收藏</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                            </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- 全新设计的产品定制菜单模态框 -->
+    <div class="config-modal" id="configModal">
+        <div class="modal-backdrop"></div>
+        <div class="config-container">
+            <!-- 模态框头部 -->
+            <div class="config-header">
+                <div class="header-left">
+                    <div class="config-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <div class="logo-content">
+                            <h2 class="config-title">智能定制</h2>
+                            <p class="config-subtitle">星火Pro 燃气灶个性化配置</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="progress-indicator">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="configProgress"></div>
+                        </div>
+                        <span class="progress-text">第 <span id="currentStepNum">1</span> 步 / 3</span>
+                    </div>
+                    <button class="close-btn" id="closeConfigModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 步骤导航栏 -->
+            <div class="step-navigation">
+                <div class="nav-track">
+                    <div class="nav-progress" id="navProgress"></div>
+                </div>
+                <div class="step-nav-item active" data-step="1">
+                    <div class="step-circle">
+                        <span class="step-num">1</span>
+                        <i class="fas fa-check step-check"></i>
+                    </div>
+                    <div class="step-info">
+                        <h4>选择规格</h4>
+                        <p>气源类型和功率</p>
+                    </div>
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <div class="step-circle">
+                        <span class="step-num">2</span>
+                        <i class="fas fa-check step-check"></i>
+                    </div>
+                    <div class="step-info">
+                        <h4>外观设计</h4>
+                        <p>颜色和材质</p>
+                    </div>
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <div class="step-circle">
+                        <span class="step-num">3</span>
+                        <i class="fas fa-check step-check"></i>
+                    </div>
+                    <div class="step-info">
+                        <h4>服务方案</h4>
+                        <p>安装和质保</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主要内容区域 -->
+            <div class="config-content">
+                <!-- 配置选项面板 -->
+                <div class="config-panel">
+                    <!-- 步骤1：基础配置 -->
+                    <div class="config-step active" data-step="1">
+                        <div class="step-header">
+                            <div class="step-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="step-title-group">
+                                <h3>选择气源类型</h3>
+                                <p>根据您家庭的实际情况选择适合的气源类型</p>
+                            </div>
+                        </div>
+                        <div class="options-grid">
+                            <label class="option-card selected" data-config="gasType" data-value="natural" data-price="0">
+                                <input type="radio" name="gasType" value="natural" checked>
+                                <div class="card-visual">
+                                    <div class="card-icon">
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                    <div class="selection-indicator">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h4>天然气</h4>
+                                    <p class="card-desc">城市管道天然气供应</p>
+                                    <div class="card-features">
+                                        <span class="feature-tag">
+                                            <i class="fas fa-leaf"></i>
+                                            环保清洁
+                                        </span>
+                                        <span class="feature-tag">
+                                            <i class="fas fa-sync-alt"></i>
+                                            稳定供应
+                                        </span>
+                                    </div>
+                                    <div class="card-price">
+                                        <span class="price-label">标准配置</span>
+                                        <span class="price-value">¥0</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="option-card" data-config="gasType" data-value="lpg" data-price="0">
+                                <input type="radio" name="gasType" value="lpg">
+                                <div class="card-visual">
+                                    <div class="card-icon">
+                                        <i class="fas fa-gas-pump"></i>
+                                    </div>
+                                    <div class="selection-indicator">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h4>液化气</h4>
+                                    <p class="card-desc">液化石油气钢瓶供应</p>
+                                    <div class="card-features">
+                                        <span class="feature-tag">
+                                            <i class="fas fa-bolt"></i>
+                                            灵活便携
+                                        </span>
+                                        <span class="feature-tag">
+                                            <i class="fas fa-globe"></i>
+                                            适用性广
+                                        </span>
+                                    </div>
+                                    <div class="card-price">
+                                        <span class="price-label">标准配置</span>
+                                        <span class="price-value">¥0</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="step-additional-info">
+                            <div class="info-card">
+                                <div class="info-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h5>选择建议</h5>
+                                    <p>如果您居住在已接通天然气的城市住宅区，推荐选择天然气；如果是农村或未接通天然气的地区，建议选择液化气。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 步骤2：外观定制 -->
+                    <div class="config-step" data-step="2">
+                        <div class="step-header">
+                            <div class="step-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="step-title-group">
+                                <h3>选择面板颜色</h3>
+                                <p>选择与您厨房装修风格相配的面板颜色</p>
+                            </div>
+                        </div>
+                        <div class="color-selection-area">
+                            <div class="color-preview-section">
+                                <div class="preview-container">
+                                    <div class="preview-image-container">
+                                        <img src="./图片/主图/星火Pro 燃气灶.png" alt="产品预览" class="preview-image" id="colorPreviewImage">
+                                        <div class="preview-overlay" id="colorOverlay"></div>
+                                    </div>
+                                    <div class="preview-label">实时预览</div>
+                                </div>
+                            </div>
+                            <div class="color-options-section">
+                                <div class="color-options-grid">
+                                    <label class="color-option selected" data-config="panelColor" data-value="black" data-price="0">
+                                        <input type="radio" name="panelColor" value="black" checked>
+                                        <div class="color-card">
+                                            <div class="color-sample">
+                                                <div class="color-circle" style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);"></div>
+                                                <div class="color-selection-ring"></div>
+                                            </div>
+                                            <div class="color-details">
+                                                <h4>雅致黑</h4>
+                                                <p>经典黑色钢化玻璃</p>
+                                                <div class="color-tags">
+                                                    <span>耐脏</span>
+                                                    <span>经典</span>
+                                                </div>
+                                                <div class="color-price">标配</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="color-option" data-config="panelColor" data-value="white" data-price="150">
+                                        <input type="radio" name="panelColor" value="white">
+                                        <div class="color-card">
+                                            <div class="color-sample">
+                                                <div class="color-circle" style="background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);"></div>
+                                                <div class="color-selection-ring"></div>
+                                            </div>
+                                            <div class="color-details">
+                                                <h4>珍珠白</h4>
+                                                <p>优雅白色钢化玻璃</p>
+                                                <div class="color-tags">
+                                                    <span>时尚</span>
+                                                    <span>简约</span>
+                                                </div>
+                                                <div class="color-price">+¥150</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="color-option" data-config="panelColor" data-value="gray" data-price="100">
+                                        <input type="radio" name="panelColor" value="gray">
+                                        <div class="color-card">
+                                            <div class="color-sample">
+                                                <div class="color-circle" style="background: linear-gradient(135deg, #718096 0%, #4a5568 100%);"></div>
+                                                <div class="color-selection-ring"></div>
+                                            </div>
+                                            <div class="color-details">
+                                                <h4>银灰色</h4>
+                                                <p>时尚银灰钢化玻璃</p>
+                                                <div class="color-tags">
+                                                    <span>科技</span>
+                                                    <span>质感</span>
+                                                </div>
+                                                <div class="color-price">+¥100</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="color-option" data-config="panelColor" data-value="gold" data-price="300">
+                                        <input type="radio" name="panelColor" value="gold">
+                                        <div class="color-card">
+                                            <div class="color-sample">
+                                                <div class="color-circle" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);"></div>
+                                                <div class="color-selection-ring"></div>
+                                            </div>
+                                            <div class="color-details">
+                                                <h4>香槟金</h4>
+                                                <p>奢华金色钢化玻璃</p>
+                                                <div class="color-tags">
+                                                    <span>奢华</span>
+                                                    <span>高端</span>
+                                                </div>
+                                                <div class="color-price">+¥300</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 步骤3：服务方案 -->
+                    <div class="config-step" data-step="3">
+                        <div class="step-header">
+                            <div class="step-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="step-title-group">
+                                <h3>选择服务方案</h3>
+                                <p>为您提供专业的安装服务和质保保障</p>
+                            </div>
+                        </div>
+                        <div class="services-container">
+                            <!-- 安装服务 -->
+                            <div class="service-category">
+                                <h4 class="category-title">
+                                    <i class="fas fa-tools"></i>
+                                    安装服务
+                                </h4>
+                                <div class="service-options">
+                                    <label class="service-card selected" data-config="installation" data-value="basic" data-price="0">
+                                        <input type="radio" name="installation" value="basic" checked>
+                                        <div class="service-content">
+                                            <div class="service-top-section">
+                                                <div class="service-icon-area">
+                                                    <div class="service-icon">
+                                                        <i class="fas fa-wrench"></i>
+                                                    </div>
+                                                    <div class="service-badge">推荐</div>
+                                                </div>
+                                                <div class="service-text-area">
+                                                    <div class="service-header">
+                                                        <h5>基础安装服务</h5>
+                                                        <div class="service-price">免费</div>
+                                                    </div>
+                                                    <p class="service-desc">标准上门安装，包含基础调试和使用指导</p>
+                                                </div>
+                                            </div>
+                                            <div class="service-features-section">
+                                                <ul class="service-features">
+                                                    <li><i class="fas fa-check"></i> 专业师傅上门安装</li>
+                                                    <li><i class="fas fa-check"></i> 基础功能调试</li>
+                                                    <li><i class="fas fa-check"></i> 使用方法指导</li>
+                                                    <li><i class="fas fa-check"></i> 安全检测验收</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="service-card" data-config="installation" data-value="premium" data-price="200">
+                                        <input type="radio" name="installation" value="premium">
+                                        <div class="service-content">
+                                            <div class="service-top-section">
+                                                <div class="service-icon-area">
+                                                    <div class="service-icon premium">
+                                                        <i class="fas fa-crown"></i>
+                                                    </div>
+                                                    <div class="service-badge premium">高级</div>
+                                                </div>
+                                                <div class="service-text-area">
+                                                    <div class="service-header">
+                                                        <h5>高级安装服务</h5>
+                                                        <div class="service-price">+¥200</div>
+                                                    </div>
+                                                    <p class="service-desc">全方位安装服务，包含管道优化和深度清洁</p>
+                                                </div>
+                                            </div>
+                                            <div class="service-features-section">
+                                                <ul class="service-features">
+                                                    <li><i class="fas fa-check"></i> 高级工程师安装</li>
+                                                    <li><i class="fas fa-check"></i> 管道系统优化</li>
+                                                    <li><i class="fas fa-check"></i> 厨房深度清洁</li>
+                                                    <li><i class="fas fa-check"></i> 30天回访服务</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 质保服务 -->
+                            <div class="service-category">
+                                <h4 class="category-title">
+                                    <i class="fas fa-shield-alt"></i>
+                                    质保服务
+                                </h4>
+                                <div class="service-options">
+                                    <label class="service-card selected" data-config="warranty" data-value="standard" data-price="0">
+                                        <input type="radio" name="warranty" value="standard" checked>
+                                        <div class="service-content">
+                                            <div class="service-top-section">
+                                                <div class="service-icon-area">
+                                                    <div class="service-icon">
+                                                        <i class="fas fa-shield-check"></i>
+                                                    </div>
+                                                    <div class="service-badge">标准</div>
+                                                </div>
+                                                <div class="service-text-area">
+                                                    <div class="service-header">
+                                                        <h5>标准质保</h5>
+                                                        <div class="service-price">标配</div>
+                                                    </div>
+                                                    <p class="service-desc">3年全国联保，享受厂家质保服务</p>
+                                                </div>
+                                            </div>
+                                            <div class="service-features-section">
+                                                <ul class="service-features">
+                                                    <li><i class="fas fa-check"></i> 3年免费维修</li>
+                                                    <li><i class="fas fa-check"></i> 全国联保网点</li>
+                                                    <li><i class="fas fa-check"></i> 原厂配件保障</li>
+                                                    <li><i class="fas fa-check"></i> 24小时服务热线</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="service-card" data-config="warranty" data-value="extended" data-price="300">
+                                        <input type="radio" name="warranty" value="extended">
+                                        <div class="service-content">
+                                            <div class="service-top-section">
+                                                <div class="service-icon-area">
+                                                    <div class="service-icon premium">
+                                                        <i class="fas fa-award"></i>
+                                                    </div>
+                                                    <div class="service-badge premium">延保</div>
+                                                </div>
+                                                <div class="service-text-area">
+                                                    <div class="service-header">
+                                                        <h5>延长质保</h5>
+                                                        <div class="service-price">+¥300</div>
+                                                    </div>
+                                                    <p class="service-desc">5年延长质保，专属VIP服务通道</p>
+                                                </div>
+                                            </div>
+                                            <div class="service-features-section">
+                                                <ul class="service-features">
+                                                    <li><i class="fas fa-check"></i> 5年延长质保</li>
+                                                    <li><i class="fas fa-check"></i> VIP专属客服</li>
+                                                    <li><i class="fas fa-check"></i> 优先上门服务</li>
+                                                    <li><i class="fas fa-check"></i> 专属技术顾问</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 配置总结面板 -->
+                <div class="summary-panel">
+                    <!-- 产品预览卡片 -->
+                    <div class="product-summary-card">
+                        <div class="summary-header">
+                            <div class="product-image">
+                                <img src="./图片/主图/星火Pro 燃气灶.png" alt="星火Pro">
+                                <div class="custom-badge">
+                                    <i class="fas fa-magic"></i>
+                                    定制版
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h3>星火Pro 智能燃气灶</h3>
+                                <p class="model-code">型号：RD-XH-PRO-2024</p>
+                                <div class="rating-display">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-text">4.8分</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 配置项总结 -->
+                        <div class="config-summary">
+                            <h4 class="summary-title">
+                                <i class="fas fa-list-check"></i>
+                                配置总结
+                            </h4>
+                            <div class="config-items">
+                                <div class="config-item" data-type="gasType">
+                                    <div class="item-icon">
+                                        <i class="fas fa-fire"></i>
+                                    </div>
+                                    <div class="item-content">
+                                        <span class="item-label">气源类型</span>
+                                        <span class="item-value">天然气</span>
+                                    </div>
+                                    <div class="item-price">¥0</div>
+                                </div>
+                                <div class="config-item" data-type="panelColor">
+                                    <div class="item-icon">
+                                        <div class="color-indicator" style="background: #2d3748;"></div>
+                                    </div>
+                                    <div class="item-content">
+                                        <span class="item-label">面板颜色</span>
+                                        <span class="item-value">雅致黑</span>
+                                    </div>
+                                    <div class="item-price">¥0</div>
+                                </div>
+                                <div class="config-item" data-type="installation">
+                                    <div class="item-icon">
+                                        <i class="fas fa-tools"></i>
+                                    </div>
+                                    <div class="item-content">
+                                        <span class="item-label">安装服务</span>
+                                        <span class="item-value">基础安装</span>
+                                    </div>
+                                    <div class="item-price">免费</div>
+                                </div>
+                                <div class="config-item" data-type="warranty">
+                                    <div class="item-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div class="item-content">
+                                        <span class="item-label">质保服务</span>
+                                        <span class="item-value">标准质保</span>
+                                    </div>
+                                    <div class="item-price">¥0</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 价格计算区域 -->
+                        <div class="price-summary">
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span class="price-label">基础价格</span>
+                                    <span class="price-value">¥2,499</span>
+                                </div>
+                                <div class="price-row">
+                                    <span class="price-label">配置升级</span>
+                                    <span class="price-value" id="upgradePrice">¥0</span>
+                                </div>
+                                <div class="price-divider"></div>
+                                <div class="price-row subtotal">
+                                    <span class="price-label">小计</span>
+                                    <span class="price-value" id="subtotalPrice">¥2,499</span>
+                                </div>
+                                <div class="price-row discount">
+                                    <span class="price-label">
+                                        <i class="fas fa-gift"></i>
+                                        限时优惠
+                                    </span>
+                                    <span class="price-value discount-amount">-¥500</span>
+                                </div>
+                                <div class="price-divider"></div>
+                                <div class="price-row final">
+                                    <span class="price-label">最终价格</span>
+                                    <span class="price-value final-price" id="finalConfigPrice">¥1,999</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 优惠提示 -->
+                            <div class="discount-notice">
+                                <div class="notice-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="notice-content">
+                                    <p><strong>限时特惠</strong></p>
+                                    <p>现在下单立享¥500优惠！</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部操作栏 -->
+            <div class="config-footer">
+                <div class="footer-left">
+                    <button class="nav-button prev-button" id="prevStep" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        <span>上一步</span>
+                    </button>
+                </div>
+                <div class="footer-center">
+                    <div class="step-indicators">
+                        <div class="indicator active" data-step="1"></div>
+                        <div class="indicator" data-step="2"></div>
+                        <div class="indicator" data-step="3"></div>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <button class="nav-button next-button primary" id="nextStep">
+                        <span>下一步</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="action-button complete-button" id="completeConfig" style="display: none;">
+                        <i class="fas fa-check"></i>
+                        <span>完成配置</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 完成配置后的操作按钮 -->
+            <div class="final-actions" id="finalActions" style="display: none;">
+                <div class="actions-container">
+                    <button class="action-btn primary-action" id="addToCart">
+                        <i class="fas fa-cart-plus"></i>
+                        <span>加入购物车</span>
+                    </button>
+                    <button class="action-btn accent-action" id="buyNow">
+                        <i class="fas fa-bolt"></i>
+                        <span>立即购买</span>
+                    </button>
+                    <button class="action-btn secondary-action" id="resetConfig">
+                        <i class="fas fa-redo"></i>
+                        <span>重新配置</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 咨询表单模态框 -->
+    <div class="consultation-modal" id="consultationModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>产品咨询</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="consultation-form" id="consultationForm">
+                    <div class="form-group">
+                        <label for="consultProduct">咨询产品</label>
+                        <input type="text" id="consultProduct" name="product" value="星火Pro 智能燃气灶" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="consultName">姓名 *</label>
+                            <input type="text" id="consultName" name="name" required placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="consultSource">您的来源</label>
+                            <select id="consultSource" name="source">
+                                <option value="" selected disabled>请选择您的来源</option>
+                                <option value="个人咨询">个人咨询</option>
+                                <option value="企业客户">企业客户</option>
+                                <option value="潜在合作伙伴">潜在合作伙伴</option>
+                                <option value="平台">平台</option>
+                                <option value="其他">其他</option>
+                            </select>
+                            <!-- 自定义来源输入框（默认隐藏） -->
+                            <div class="custom-source-input" id="customSourceContainer" style="display: none; margin-top: 10px;">
+                                <input type="text" class="form-control" id="customSource" name="customSource" placeholder="请输入具体来源">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="consultContact">联系方式 *</label>
+                            <input type="text" id="consultContact" name="contact" required placeholder="请输入手机号/邮箱/微信号">
+                            <small class="form-text text-muted">支持手机号、邮箱地址或微信号</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="consultCompany">公司名称</label>
+                            <input type="text" id="consultCompany" name="company" placeholder="请输入您的公司名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultType">咨询类型</label>
+                        <select id="consultType" name="type">
+                            <option value="产品参数">产品参数咨询</option>
+                            <option value="价格报价">价格报价</option>
+                            <option value="技术支持">技术支持</option>
+                            <option value="售后服务">售后服务</option>
+                            <option value="批量采购">批量采购</option>
+                            <option value="其他">其他咨询</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultMessage">详细需求 *</label>
+                        <textarea id="consultMessage" name="message" required placeholder="请详细描述您的需求或问题..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="cancelConsult">取消</button>
+                        <button type="submit" class="btn-submit">
+                            <i class="bi bi-send"></i>
+                            <span>发送咨询</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自定义Toast弹窗 -->
+    <div class="toast-container" id="toastContainer">
+        <div class="custom-toast" id="customToast">
+            <div class="toast-icon">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <div class="toast-content">
+                <div class="toast-title">操作成功</div>
+                <div class="toast-message">配置已应用到产品！</div>
+            </div>
+            <div class="toast-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 配置菜单模态框内容保持不变 -->
+    </div>
+
+    <!-- 联系下单模态框 -->
+    <div class="contact-order-modal" id="contactOrderModal">
+        <div class="modal-backdrop"></div>
+        <div class="contact-order-container">
+            <!-- 模态框头部 -->
+            <div class="contact-order-header">
+                <div class="header-left">
+                    <div class="modal-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="logo-content">
+                            <h2 class="modal-title">联系下单</h2>
+                            <p class="modal-subtitle">专人服务，定制化购买</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="close-btn" id="closeContactOrderModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="contact-order-content">
+                <!-- 左侧：产品配置信息 -->
+                <div class="order-config-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-cog"></i> 您的配置</h3>
+                    </div>
+                    <div class="config-summary-card">
+                        <!-- 产品基本信息 -->
+                        <div class="product-info-row">
+                            <div class="product-image">
+                                <img src="./图片/主图/星火Pro 燃气灶.png" alt="星火Pro 燃气灶">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">星火Pro 智能燃气灶</h4>
+                                <p class="product-model">型号：RD-GS-XH2023</p>
+                                <div class="product-price">
+                                    <span class="current-price">¥<span id="orderTotalPrice">2,499</span></span>
+                                    <span class="original-price">¥2,999</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 配置详情 -->
+                        <div class="config-details">
+                            <div class="config-row">
+                                <span class="config-label">气源类型：</span>
+                                <span class="config-value" id="orderGasType">天然气</span>
+                            </div>
+                            <div class="config-row">
+                                <span class="config-label">面板颜色：</span>
+                                <span class="config-value" id="orderPanelColor">雅致黑</span>
+                                <div class="color-indicator" id="orderColorIndicator"></div>
+                            </div>
+                            <div class="config-row">
+                                <span class="config-label">安装服务：</span>
+                                <span class="config-value" id="orderInstallation">基础安装（免费）</span>
+                            </div>
+                            <div class="config-row">
+                                <span class="config-label">质保服务：</span>
+                                <span class="config-value" id="orderWarranty">标准质保（3年）</span>
+                            </div>
+                        </div>
+
+                        <!-- 数量选择 -->
+                        <div class="quantity-section">
+                            <label class="quantity-label">购买数量：</label>
+                            <div class="quantity-controls">
+                                <button type="button" class="quantity-btn decrease" id="orderQuantityDecrease">-</button>
+                                <input type="number" class="quantity-input" id="orderQuantity" value="1" min="1" max="99">
+                                <button type="button" class="quantity-btn increase" id="orderQuantityIncrease">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：联系信息表单 -->
+                <div class="contact-form-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-user"></i> 联系信息</h3>
+                    </div>
+                    <form class="contact-order-form" id="contactOrderForm">
+                        <div class="form-group">
+                            <label for="orderCustomerName">姓名 <span class="required">*</span></label>
+                            <input type="text" id="orderCustomerName" name="customerName" required 
+                                   placeholder="请输入您的姓名">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orderContact">联系方式 <span class="required">*</span></label>
+                            <input type="text" id="orderContact" name="contact" required 
+                                   placeholder="手机号/微信号/邮箱">
+                            <small class="form-hint">支持手机号、微信号或邮箱地址</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orderCompany">公司名称</label>
+                            <input type="text" id="orderCompany" name="company" 
+                                   placeholder="请输入公司名称（选填）">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orderAddress">收货地址</label>
+                            <textarea id="orderAddress" name="address" rows="3" 
+                                      placeholder="请输入详细的收货地址（选填）"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orderPreferredTime">期望联系时间</label>
+                            <select id="orderPreferredTime" name="preferredTime">
+                                <option value="">不限时间</option>
+                                <option value="morning">上午 9:00-12:00</option>
+                                <option value="afternoon">下午 13:00-18:00</option>
+                                <option value="evening">晚上 19:00-21:00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orderRequirements">特殊需求</label>
+                            <textarea id="orderRequirements" name="requirements" rows="4" 
+                                      placeholder="请描述您的特殊需求或问题（选填）"></textarea>
+                        </div>
+
+                        <!-- 提交按钮 -->
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel" id="cancelContactOrder">取消</button>
+                            <button type="submit" class="btn-submit-order">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>提交订单</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="/assets/js/Main File.js"></script>
+    <script src="./样式逻辑/新版产品详情.js"></script>
+    <script>
+      // 确保在全局脚本完成激活计算后再强制设置，避免"闪一下就消失"
+      (function() {
+        function applyNavAndBreadcrumb() {
+          try {
+            // 强制高亮"产品中心"
+            var navLinks = document.querySelectorAll('.main-nav .nav-link');
+            navLinks.forEach(function(link) {
+              if (link.textContent && link.textContent.trim().indexOf('产品中心') !== -1) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+              }
+            });
+            // 删除任何已存在的 current-file 标记
+            var breadcrumb = document.querySelector('.breadcrumb-nav');
+            if (breadcrumb) {
+              var existed = breadcrumb.querySelector('.current-file');
+              if (existed && existed.parentNode) {
+                existed.parentNode.removeChild(existed);
+              }
+            }
+          } catch (e) {}
+        }
+        // DOMContentLoaded 之后执行，确保覆盖全局 setActiveNav()
+        document.addEventListener('DOMContentLoaded', function(){
+          requestAnimationFrame(function(){ setTimeout(applyNavAndBreadcrumb, 0); });
+        });
+        // 从缓存返回时也执行
+        window.addEventListener('pageshow', function(){
+          requestAnimationFrame(function(){ setTimeout(applyNavAndBreadcrumb, 0); });
+        });
+      })();
+    </script>
+</body>
+</html> </html> 

@@ -1,0 +1,58 @@
+# 依赖
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# 环境变量
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 日志
+logs/
+*.log
+
+# 数据库
+*.sqlite
+*.db
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 构建输出
+dist/
+build/
+.cache/
+
+# 上传文件
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+
+# PostgreSQL数据
+query
+
+# 批处理临时文件
+*.bat.bak
+
+# 测试文件
+backend/test-db-connection.js
+backend/find-password.js
+backend/reset-password.bat
+backend/restart-pg-admin.bat
+backend/restart-postgres.bat
+backend/final-restart.bat
+backend/setup-postgres.sql

@@ -1,0 +1,456 @@
+/**
+ * 公司实力区块样式 - company-strength.css
+ * 
+ * 描述：定义网站公司实力区块的样式
+ * 用途：展示公司核心竞争力、规模、技术实力和市场地位
+ * 
+ * 包含内容：
+ * - 区块基础布局
+ * - 数据统计卡片样式
+ * - 实力展示样式
+ * - 动画效果
+ * 
+ * 创建日期：2025-07-11
+ * 最后修改：2025-07-11
+ */
+
+/* 公司实力区块基础样式 */
+.company-strength-section {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+    overflow: hidden;
+}
+
+/* 标题样式 */
+.strength-title-container {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.strength-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 标题装饰 */
+.strength-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #043166, #074E9C, #043166);
+    border-radius: 2px;
+}
+
+.strength-subtitle {
+    font-size: 18px;
+    color: #666;
+    max-width: 800px;
+    margin: 20px auto 0;
+}
+
+/* 数据统计卡片容器 */
+.strength-stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* 数据统计卡片 */
+.strength-stat-card {
+    flex: 1;
+    min-width: 220px;
+    max-width: 280px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.strength-stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 统计图标 */
+.stat-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #074E9C;
+    display: inline-block;
+    position: relative;
+}
+
+/* 图标背景光晕 */
+.stat-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, rgba(7, 78, 156, 0.1) 0%, rgba(7, 78, 156, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* 统计数字 */
+.stat-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: #043166;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.stat-unit {
+    font-size: 18px;
+    font-weight: 500;
+    color: #074E9C;
+    vertical-align: baseline;
+}
+
+/* 统计标题 */
+.stat-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 统计描述 */
+.stat-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 装饰元素 */
+.strength-decoration {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.decoration-circle-1 {
+    top: 10%;
+    left: 5%;
+    width: 200px;
+    height: 200px;
+    border: 2px dashed rgba(7, 78, 156, 0.2);
+    border-radius: 50%;
+    animation: rotate-slow 60s linear infinite;
+}
+
+.decoration-circle-2 {
+    bottom: 15%;
+    right: 8%;
+    width: 150px;
+    height: 150px;
+    border: 2px dashed rgba(7, 78, 156, 0.2);
+    border-radius: 50%;
+    animation: rotate-slow 45s linear infinite reverse;
+}
+
+.decoration-dot-pattern {
+    top: 20%;
+    right: 10%;
+    width: 180px;
+    height: 180px;
+    background-image: radial-gradient(rgba(7, 78, 156, 0.2) 1px, transparent 1px);
+    background-size: 10px 10px;
+}
+
+.decoration-line-pattern {
+    bottom: 10%;
+    left: 8%;
+    width: 150px;
+    height: 150px;
+    background-image: linear-gradient(45deg, rgba(7, 78, 156, 0.1) 25%, transparent 25%, transparent 50%, rgba(7, 78, 156, 0.1) 50%, rgba(7, 78, 156, 0.1) 75%, transparent 75%, transparent);
+    background-size: 10px 10px;
+}
+
+/* 实力展示容器 */
+.strength-showcase-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* 实力展示卡片 */
+.strength-showcase-card {
+    flex: 1;
+    min-width: 280px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.strength-showcase-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 展示卡片图片 */
+.showcase-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.strength-showcase-card:hover .showcase-image {
+    transform: scale(1.05);
+}
+
+/* 展示卡片内容 */
+.showcase-content {
+    padding: 25px;
+}
+
+.showcase-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.showcase-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 70%;
+    width: 4px;
+    background: linear-gradient(to bottom, #043166, #074E9C);
+    border-radius: 2px;
+}
+
+.showcase-description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 实力亮点列表 */
+.strength-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.strength-highlight-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #444;
+}
+
+.highlight-icon {
+    color: #074E9C;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+/* 了解更多按钮 */
+.showcase-link {
+    display: inline-flex;
+    align-items: center;
+    color: #074E9C;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.showcase-link:hover {
+    color: #043166;
+}
+
+.showcase-link .arrow-icon {
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+.showcase-link:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* 实力背景图形 */
+.strength-bg-shape {
+    position: absolute;
+    z-index: 0;
+    opacity: 0.03;
+}
+
+.strength-bg-shape-1 {
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background-color: #074E9C;
+    border-radius: 50%;
+}
+
+.strength-bg-shape-2 {
+    bottom: -150px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    background-color: #074E9C;
+    border-radius: 50%;
+}
+
+/* 动画效果 */
+@keyframes rotate-slow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 数字增长动画 */
+@keyframes count-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-count-up {
+    animation: count-up 1s ease forwards;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .strength-stats-container {
+        gap: 20px;
+    }
+    
+    .strength-stat-card {
+        min-width: 200px;
+    }
+    
+    .stat-number {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .company-strength-section {
+        padding: 70px 0;
+    }
+    
+    .strength-title {
+        font-size: 36px;
+    }
+    
+    .strength-stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .strength-stat-card {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .strength-showcase-card {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .company-strength-section {
+        padding: 50px 0;
+    }
+    
+    .strength-title {
+        font-size: 30px;
+    }
+    
+    .strength-subtitle {
+        font-size: 16px;
+    }
+} 
+
+/* 修改后的实力展示卡片样式（无图片版本） */
+.strength-showcase-card {
+    padding-top: 30px;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border-left: 4px solid #074E9C;
+}
+
+.strength-showcase-card .showcase-content {
+    padding: 0 30px 30px 30px;
+}
+
+.strength-showcase-card .showcase-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #043166;
+    padding-left: 0;
+}
+
+.strength-showcase-card .showcase-title::before {
+    display: none;
+}
+
+.strength-showcase-card .showcase-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #043166, #074E9C);
+    border-radius: 2px;
+}
+
+.strength-showcase-card .showcase-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.strength-showcase-card .strength-highlights {
+    margin-bottom: 25px;
+}
+
+@media (max-width: 768px) {
+    .strength-showcase-card {
+        padding-top: 20px;
+    }
+    
+    .strength-showcase-card .showcase-content {
+        padding: 0 20px 20px 20px;
+    }
+} 

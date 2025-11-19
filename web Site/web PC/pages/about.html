@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于容电 - 容电科技</title>
+    <meta name="description" content="了解容电科技的公司介绍、发展历程、企业文化、技术实力和最新动态">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="../assets/css/Main File.css" as="style">
+    <link rel="preload" href="../assets/css/About Rongdian/company-intro.css" as="style">
+    <link rel="preload" href="../assets/images/Main File/容电log.png" as="image">
+    
+    <!-- 关键CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 页面特定的CSS -->
+    <link rel="stylesheet" href="../assets/css/About Rongdian/company-intro.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/company-overview-redesign.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/company-history-merged.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/company-culture.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/tech-strength.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/news.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/company-data-merged.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/industry-comparison-redesign.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/satisfaction-meter-merged.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/market-distribution-enhanced.css">
+    <link rel="stylesheet" href="../assets/css/About Rongdian/revenue-growth-enhanced.css">
+    
+    <!-- 全局样式最后加载，确保最高优先级 -->
+    <link rel="stylesheet" href="../assets/css/Main File.css">
+    
+    <!-- 页面加载指示器样式 -->
+    <style>
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #074E9C; /* 使用与导航栏相同的蓝色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+            opacity: 0.9; /* 降低不透明度，减轻闪烁感 */
+        }
+        #page-loader.fade-out {
+            opacity: 0;
+        }
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader-text {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 延迟加载图片的占位符样式 */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+        }
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+        .image-placeholder {
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+        .image-placeholder::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            to { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面加载指示器 -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">正在加载...</div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <header id="header" class="fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <!-- 公司logo -->
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../assets/images/Main File/容电log.png" alt="容电Logo" class="logo">
+                </a>
+                
+                <!-- 移动端汉堡菜单按钮 -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- 导航菜单 -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto main-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.html">产品中心</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="about.html">关于容电</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">联系我们</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link external-link" href="https://mall.jd.com/" target="_blank">京东商城 <i class="bi bi-box-arrow-up-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 页面标题区域 -->
+        <section class="page-title">
+            <div class="container">
+                <h1>关于容电</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../index.html">首页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">关于容电</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- 页内导航菜单已移除 -->
+
+        <!-- 导航标签已移除 -->
+
+        <!-- 内容区域 -->
+        <div class="content-sections">
+            <!-- 公司介绍区域 -->
+            <section class="content-section" id="company-intro">
+                <!-- 公司概览 - 重新设计 -->
+                <div class="company-overview-redesigned" data-aos="fade-up" style="background: linear-gradient(135deg, #1a5cb8 0%, #0e3b76 60%, #0d2b50 100%) !important;">
+                        <!-- 标题区域 -->
+                        <div class="overview-header">
+                            <h2 class="overview-title">智慧厨电 · 创新引领者</h2>
+                            <div class="title-separator"><span></span></div>
+                            <p class="overview-description">
+                                15年专注高端智能厨电研发制造，为全球家庭带来健康烹饪新体验
+                            </p>
+                                </div>
+                        
+                        <!-- 内容区域 -->
+                        <div class="overview-content-wrapper">
+                            <!-- 左侧图片 -->
+                            <div class="overview-image-wrapper">
+                                <div class="overview-image-main">
+                                    <img src="../assets/images/About Rongdian/company-intro/company-headquarters.jpg" alt="容电科技总部大楼" class="img-fluid">
+                            </div>
+                                <div class="overview-image-badge">
+                                    <span class="badge-year">15</span>
+                                    <span class="badge-text">年行业经验</span>
+                                    </div>
+                                </div>
+                            
+                            <!-- 右侧内容 -->
+                            <div class="overview-text-wrapper">
+                                <div class="overview-text-content">
+                                    <h3 class="overview-subtitle-text">中国领先的智能厨电制造商</h3>
+                                    <p class="overview-paragraph">
+                                        自<strong>2008年</strong>成立以来，容电科技始终秉承"<span class="text-highlight">创新科技，匠心品质</span>"的理念，致力于为全球消费者提供安全、高效、智能的厨房解决方案。公司总部位于深圳，拥有5大现代化生产基地和3个研发中心，产品远销全球<strong>50多个</strong>国家和地区，年销售额超过<strong>20亿</strong>元人民币。
+                                    </p>
+                                    
+                                    <div class="overview-features">
+                                        <div class="feature-item">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-award-fill"></i>
+                            </div>
+                                            <div class="feature-text">
+                                                <h4>行业领先</h4>
+                                                <p>连续五年被评为"中国厨电行业创新领军企业"</p>
+                        </div>
+                    </div>
+
+                                        <div class="feature-item">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-shield-check"></i>
+                                            </div>
+                                            <div class="feature-text">
+                                                <h4>技术实力</h4>
+                                                <p>拥有300多项专利技术，自主研发AI智能控制系统</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="feature-item">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-globe2"></i>
+                                            </div>
+                                            <div class="feature-text">
+                                                <h4>全球布局</h4>
+                                                <p>产品远销全球50多个国家和地区，国际市场份额稳步增长</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="overview-cta">
+                                        <a href="../pages/products.html" class="btn btn-primary btn-lg rounded-pill">探索我们的产品</a>
+                                        <a href="../pages/contact.html" class="btn btn-outline-primary btn-lg rounded-pill">联系我们</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 品牌优势 -->
+                        <div class="brand-advantages">
+                            <div class="row g-4">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="advantage-box">
+                                        <div class="advantage-icon">
+                                            <i class="bi bi-gear-wide-connected"></i>
+                                        </div>
+                                        <h4>智能科技</h4>
+                                        <p>AI智能控制系统，打造智慧厨房体验</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="advantage-box">
+                                        <div class="advantage-icon">
+                                            <i class="bi bi-flower1"></i>
+                                        </div>
+                                        <h4>环保健康</h4>
+                                        <p>绿色制造工艺，守护家人健康生活</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="advantage-box">
+                                        <div class="advantage-icon">
+                                            <i class="bi bi-tools"></i>
+                                        </div>
+                                        <h4>匠心品质</h4>
+                                        <p>精工细作，品质如一，经久耐用</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="advantage-box">
+                                        <div class="advantage-icon">
+                                            <i class="bi bi-headset"></i>
+                                        </div>
+                                        <h4>贴心服务</h4>
+                                        <p>全生命周期服务体系，7×24小时响应</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="container">
+                    <!-- 公司规模 - 重新设计 -->
+                    <div class="company-scale-redesigned" data-aos="fade-up" data-aos-delay="100">
+                        <!-- 标题区域 -->
+                        <div class="scale-header text-center mb-5">
+                            <h2 class="scale-title">全球化布局 · 领先行业规模</h2>
+                            <div class="title-separator"><span></span></div>
+                            <p class="scale-description">
+                                容电科技凭借雄厚的技术实力和全球化布局，成为厨电行业的领军企业
+                            </p>
+                        </div>
+                        
+                        <!-- 全球分布图 - 全新设计 -->
+                        <div class="global-presence-redesigned">
+                            <div class="gp-background">
+                                <div class="gp-bg-dots"></div>
+                                <div class="gp-bg-circle"></div>
+                                <div class="gp-bg-line"></div>
+                            </div>
+                            
+                            <div class="row align-items-center">
+                                <div class="col-lg-4">
+                                    <div class="gp-content">
+                                        <h3 class="gp-title">
+                                            <span class="gp-title-icon"><i class="bi bi-globe2"></i></span>
+                                            全球业务布局
+                                        </h3>
+                                        <p class="gp-description">
+                                            容电科技业务遍布全球50多个国家和地区，在亚洲、欧洲、北美等地设有分支机构和销售网络，为全球客户提供优质的产品和服务。
+                                        </p>
+                                        
+                                        <!-- 全球数据统计卡片 -->
+                                        <div class="gp-stats">
+                                            <div class="gp-stat-card">
+                                                <div class="stat-card-inner">
+                                                    <div class="stat-icon">
+                                                        <i class="bi bi-building-gear"></i>
+                                                    </div>
+                                                    <div class="stat-number">3</div>
+                                                    <div class="stat-label">研发中心</div>
+                                                    <div class="stat-locations">深圳 · 上海 · 德国</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="gp-stat-card">
+                                                <div class="stat-card-inner">
+                                                    <div class="stat-icon">
+                                                        <i class="bi bi-buildings"></i>
+                                                    </div>
+                                                    <div class="stat-number">5</div>
+                                                    <div class="stat-label">生产基地</div>
+                                                    <div class="stat-locations">华南 · 华东 · 华北</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="gp-stat-card">
+                                                <div class="stat-card-inner">
+                                                    <div class="stat-icon">
+                                                        <i class="bi bi-bank"></i>
+                                                    </div>
+                                                    <div class="stat-number">12</div>
+                                                    <div class="stat-label">海外分公司</div>
+                                                    <div class="stat-locations">欧洲 · 北美 · 亚太</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="gp-stat-card">
+                                                <div class="stat-card-inner">
+                                                    <div class="stat-icon">
+                                                        <i class="bi bi-shop"></i>
+                                                    </div>
+                                                    <div class="stat-number">2000<span class="plus">+</span></div>
+                                                    <div class="stat-label">销售网点</div>
+                                                    <div class="stat-locations">覆盖全球50+国家和地区</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-8">
+                                    <div class="gp-map-container">
+                                        <div class="gp-map-wrapper">
+                                            <img src="../assets/images/About Rongdian/company-intro/global-map.png" alt="容电科技全球业务分布" class="gp-map-image">
+                                            
+                                            <!-- 亚洲标记 -->
+                                            <div class="gp-marker marker-asia">
+                                                <div class="marker-pulse"></div>
+                                                <div class="marker-dot"></div>
+                                                <div class="marker-label">亚洲总部</div>
+                                                <div class="marker-info">
+                                                    <span class="info-city">深圳</span>
+                                                    <span class="info-type">总部基地</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- 欧洲标记 -->
+                                            <div class="gp-marker marker-europe">
+                                                <div class="marker-pulse"></div>
+                                                <div class="marker-dot"></div>
+                                                <div class="marker-label">欧洲中心</div>
+                                                <div class="marker-info">
+                                                    <span class="info-city">德国</span>
+                                                    <span class="info-type">研发中心</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- 北美标记 -->
+                                            <div class="gp-marker marker-america">
+                                                <div class="marker-pulse"></div>
+                                                <div class="marker-dot"></div>
+                                                <div class="marker-label">北美中心</div>
+                                                <div class="marker-info">
+                                                    <span class="info-city">洛杉矶</span>
+                                                    <span class="info-type">销售中心</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- 销售数据标签 -->
+                                            <div class="gp-data-tag asia-data">
+                                                <div class="tag-value">45%</div>
+                                                <div class="tag-label">亚太市场</div>
+                                            </div>
+                                            
+                                            <div class="gp-data-tag europe-data">
+                                                <div class="tag-value">35%</div>
+                                                <div class="tag-label">欧美市场</div>
+                                            </div>
+                                            
+                                            <div class="gp-data-tag other-data">
+                                                <div class="tag-value">20%</div>
+                                                <div class="tag-label">其他地区</div>
+                                            </div>
+                                            
+                                            <!-- 全球覆盖统计 -->
+                                            <div class="gp-coverage">
+                                                <div class="coverage-icon">
+                                                    <i class="bi bi-flag-fill"></i>
+                                                </div>
+                                                <div class="coverage-data">
+                                                    <div class="coverage-value">50+</div>
+                                                    <div class="coverage-label">国家和地区</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 数据展示区域 -->
+                        <div class="scale-metrics-wrapper">
+                            <div class="scale-metrics-bg"></div>
+                            <div class="scale-metrics-container">
+                                <div class="row">
+                            <div class="col-lg-3 col-md-6">
+                                        <div class="metric-card">
+                                            <div class="metric-icon">
+                                                <i class="bi bi-people-fill"></i>
+                                </div>
+                                            <div class="metric-number">
+                                                <span class="counter" data-count="2500">0</span>
+                                                <span class="metric-plus">+</span>
+                            </div>
+                                            <h3 class="metric-title">专业员工</h3>
+                                            <p class="metric-desc">遍布全球的研发与生产团队</p>
+                                            <div class="metric-progress">
+                                                <div class="progress-bar" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                                    </div>
+                                    
+                            <div class="col-lg-3 col-md-6">
+                                        <div class="metric-card">
+                                            <div class="metric-icon">
+                                                <i class="bi bi-building-fill"></i>
+                                </div>
+                                            <div class="metric-number">
+                                                <span class="counter" data-count="5">0</span>
+                                                <span class="metric-unit">个</span>
+                            </div>
+                                            <h3 class="metric-title">生产基地</h3>
+                                            <p class="metric-desc">现代化智能制造工厂</p>
+                                            <div class="metric-progress">
+                                                <div class="progress-bar" style="width: 65%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                            <div class="col-lg-3 col-md-6">
+                                        <div class="metric-card">
+                                            <div class="metric-icon">
+                                                <i class="bi bi-globe2"></i>
+                                </div>
+                                            <div class="metric-number">
+                                                <span class="counter" data-count="50">0</span>
+                                                <span class="metric-plus">+</span>
+                            </div>
+                                            <h3 class="metric-title">销售国家</h3>
+                                            <p class="metric-desc">全球化市场布局</p>
+                                            <div class="metric-progress">
+                                                <div class="progress-bar" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                        <div class="metric-card">
+                                            <div class="metric-icon">
+                                                <i class="bi bi-award-fill"></i>
+                                </div>
+                                            <div class="metric-number">
+                                                <span class="counter" data-count="300">0</span>
+                                                <span class="metric-plus">+</span>
+                            </div>
+                                            <h3 class="metric-title">专利技术</h3>
+                                            <p class="metric-desc">持续创新的技术实力</p>
+                                            <div class="metric-progress">
+                                                <div class="progress-bar" style="width: 90%;"></div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- 公司数据 - 重新设计 -->
+                    <div class="company-data-redesigned width-extended" data-aos="fade-up" data-aos-delay="300">
+                        <!-- 标题区域 -->
+                        <div class="data-header">
+                            <h2 class="data-title">稳健增长 · 持续创新</h2>
+                            <div class="title-separator"><span></span></div>
+                            <p class="data-description">
+                                容电科技凭借卓越的产品质量和创新能力，实现业务持续稳健增长
+                            </p>
+                    </div>
+
+                        <!-- 数据卡片区域 -->
+                        <div class="data-cards-container container">
+                            <div class="data-card-wrapper">
+                                <!-- 数据卡片1：年营收增长 -->
+                                <div class="data-card-redesigned">
+                                    <!-- 卡片背景 -->
+                                    <div class="data-card-bg">
+                                        <img src="../assets/images/About Rongdian/company-data/chart-bg.png" alt="" aria-hidden="true">
+                                    </div>
+                                    
+                                    <!-- 卡片内容 -->
+                                    <div class="data-card-content">
+                                        <div class="data-card-badge">年度表现</div>
+                                        <div class="data-icon">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <div class="data-value" data-target="25">25<span class="percent-sign">%</span></div>
+                                        <h3 class="data-label">年营收增长</h3>
+                                        <p class="data-description-text">过去五年平均年增长率，远高于行业平均水平</p>
+                                        <div class="data-trend">
+                                            <div class="trend-line">
+                                                <span class="trend-dot"></span>
+                                                <span class="trend-dot"></span>
+                                                <span class="trend-dot"></span>
+                                                <span class="trend-dot"></span>
+                                                <span class="trend-dot"></span>
+                                            </div>
+                                            <div class="trend-arrow">
+                                                <i class="bi bi-arrow-up-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 数据卡片2：销售网络 -->
+                                <div class="data-card-redesigned">
+                                    <!-- 卡片背景 -->
+                                    <div class="data-card-bg">
+                                        <img src="../assets/images/About Rongdian/company-data/chart-bg.png" alt="" aria-hidden="true">
+                                    </div>
+                                    
+                                    <!-- 卡片内容 -->
+                                    <div class="data-card-content">
+                                        <div class="data-card-badge">销售渠道</div>
+                                        <div class="data-icon">
+                                            <i class="bi bi-shop"></i>
+                                        </div>
+                                        <div class="data-value" data-target="2000">2000<span class="plus-sign">+</span></div>
+                                        <h3 class="data-label">销售网络</h3>
+                                        <p class="data-description-text">覆盖全国的线下专卖店和销售点，提供便捷服务</p>
+                                        <div class="data-mini-map">
+                                            <div class="map-dot map-dot-1"></div>
+                                            <div class="map-dot map-dot-2"></div>
+                                            <div class="map-dot map-dot-3"></div>
+                                            <div class="map-dot map-dot-4"></div>
+                                            <div class="map-dot map-dot-5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 数据卡片3：客户满意度 -->
+                                <div class="data-card-redesigned">
+                                    <!-- 卡片背景 -->
+                                    <div class="data-card-bg">
+                                        <img src="../assets/images/About Rongdian/company-data/chart-bg.png" alt="" aria-hidden="true">
+                                    </div>
+                                    
+                                    <!-- 卡片内容 -->
+                                    <div class="data-card-content">
+                                        <div class="data-card-badge">用户体验</div>
+                                        <div class="data-icon">
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <div class="data-value" data-target="98">98<span class="percent-sign">%</span></div>
+                                        <h3 class="data-label">客户满意度</h3>
+                                        <p class="data-description-text">产品使用满意度评分，体现卓越的用户体验</p>
+                                        <div class="data-rating">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 数据卡片4：研发投入 -->
+                                <div class="data-card-redesigned">
+                                    <!-- 卡片背景 -->
+                                    <div class="data-card-bg">
+                                        <img src="../assets/images/About Rongdian/company-data/chart-bg.png" alt="" aria-hidden="true">
+                                    </div>
+                                    
+                                    <!-- 卡片内容 -->
+                                    <div class="data-card-content">
+                                        <div class="data-card-badge">创新投入</div>
+                                        <div class="data-icon">
+                                            <i class="bi bi-lightbulb"></i>
+                                        </div>
+                                        <div class="data-value" data-target="8">8<span class="percent-sign">%</span></div>
+                                        <h3 class="data-label">研发投入</h3>
+                                        <p class="data-description-text">销售额的8%用于技术研发，保持行业领先地位</p>
+                                        <div class="data-innovation">
+                                            <div class="innovation-bar">
+                                                <div class="innovation-progress"></div>
+                                            </div>
+                                            <div class="innovation-text">
+                                                <span>行业平均: 4%</span>
+                                                <span>容电科技: 8%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 图表区域 -->
+                        <div class="data-charts-container container">
+                            <div class="charts-row">
+                                <!-- 营收增长图表 - 增强版 -->
+                                <div class="chart-column">
+                                    <div class="revenue-growth-card">
+                                        <div class="revenue-growth-indicator">
+                                            <i class="bi bi-graph-up-arrow"></i>稳步增长
+                                        </div>
+                                        <div class="revenue-growth-header">
+                                            <h3 class="revenue-growth-title">
+                                                <i class="bi bi-bar-chart-line-fill"></i>
+                                                年度营收增长趋势
+                                            </h3>
+                                            <!-- 移除了revenue-growth-legend元素 -->
+                                        </div>
+                                        <div class="revenue-chart-container">
+                                            <div class="revenue-bar" data-height="40%">
+                                                <span class="revenue-bar-value">18%</span>
+                                                <span class="revenue-bar-label">2019</span>
+                                            </div>
+                                            <div class="revenue-bar" data-height="55%">
+                                                <span class="revenue-bar-value">22%</span>
+                                                <span class="revenue-bar-label">2020</span>
+                                            </div>
+                                            <div class="revenue-bar" data-height="70%">
+                                                <span class="revenue-bar-value">25%</span>
+                                                <span class="revenue-bar-label">2021</span>
+                                            </div>
+                                            <div class="revenue-bar" data-height="80%">
+                                                <span class="revenue-bar-value">28%</span>
+                                                <span class="revenue-bar-label">2022</span>
+                                            </div>
+                                            <div class="revenue-bar" data-height="90%">
+                                                <span class="revenue-bar-value">32%</span>
+                                                <span class="revenue-bar-label">2023</span>
+                                            </div>
+                                            <!-- 趋势线将通过JS动态添加 -->
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 市场分布图表 - 增强版 -->
+                                <div class="chart-column">
+                                    <div class="market-distribution-card">
+                                        <div class="market-distribution-header">
+                                            <h3 class="market-distribution-title">市场分布情况</h3>
+                                            <div class="market-legend">
+                                                <div class="market-legend-item">
+                                                    <span class="market-legend-color" style="background-color: var(--brand-primary-blue);"></span>
+                                                    <span>国内市场</span>
+                                                </div>
+                                                <div class="market-legend-item">
+                                                    <span class="market-legend-color" style="background-color: var(--brand-gold-primary);"></span>
+                                                    <span>海外市场</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="world-map-container">
+                                            <!-- 世界地图将通过JS动态添加 -->
+                                        </div>
+                                        
+                                        <div class="market-data-container">
+                                            <div class="market-data-item domestic">
+                                                <div class="market-data-value" data-value="65">65<span class="market-data-percent">%</span></div>
+                                                <div class="market-data-label">国内市场</div>
+                                                <div class="market-data-description">主要分布在一二线城市</div>
+                                            </div>
+                                            
+                                            <div class="market-data-item overseas">
+                                                <div class="market-data-value" data-value="35">35<span class="market-data-percent">%</span></div>
+                                                <div class="market-data-label">海外市场</div>
+                                                <div class="market-data-description">欧美亚等主要地区</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="countries-regions">
+                                            <span class="countries-regions-value" data-value="50">50+</span>
+                                            <span class="countries-regions-label">国家和地区</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="charts-row">
+                                <!-- 客户满意度图表 - 增强版 -->
+                                <div class="chart-column">
+                                    <div class="satisfaction-card-enhanced">
+                                        <h3 class="card-title">客户满意度评分</h3>
+                                        <div class="satisfaction-circle-container">
+                                            <div class="satisfaction-circle-bg"></div>
+                                            <div class="satisfaction-circle-progress"></div>
+                                            <div class="satisfaction-circle-inner">
+                                                <div class="satisfaction-value-container">
+                                                    <span class="satisfaction-number-enhanced">92</span>
+                                                    <span class="satisfaction-percent-enhanced">%</span>
+                                                </div>
+                                                <div class="satisfaction-label-enhanced">客户满意度</div>
+                                                <div class="satisfaction-description-enhanced">基于10,000+用户调查</div>
+                                            </div>
+                                        </div>
+                                        <div class="satisfaction-rating-enhanced"></div>
+                                        <div class="satisfaction-rating-text">优秀</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 行业对比表格 -->
+                                <div class="chart-column">
+                                    <div class="chart-card">
+                                        <div class="chart-header">
+                                            <h3 class="chart-title">行业对比数据</h3>
+                                        </div>
+                                        <div class="comparison-table-container">
+                                            <table class="comparison-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>指标</th>
+                                                        <th>容电科技</th>
+                                                        <th>行业平均</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>营收增长</td>
+                                                        <td class="highlight up-trend">25%</td>
+                                                        <td>12%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>市场份额</td>
+                                                        <td class="highlight">18%</td>
+                                                        <td>5%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>研发投入</td>
+                                                        <td class="highlight up-trend">8%</td>
+                                                        <td>4%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>客户满意度</td>
+                                                        <td class="highlight up-trend">92%</td>
+                                                        <td>85%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 数据来源注释 -->
+                        <div class="container">
+                            <p class="data-footnote">数据来源：公司内部统计数据及第三方市场研究机构报告（2023年）</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 发展历程区域 - 垂直时间轴故事叙述风格 -->
+            <section id="company-history">
+                <div class="company-history-story">
+                    <div class="container">
+                        <!-- 标题区域 -->
+                        <div class="story-header text-center" id="story-header">
+                            <h2 class="story-title">发展历程</h2>
+                            <div class="story-subtitle">创新之旅 · 不断超越</div>
+                            <div class="story-separator"></div>
+                            <p class="story-description">
+                                自2008年成立以来，容电科技始终坚持技术创新与品质优先，从小型企业成长为行业领军者，
+                                见证了一段充满激情与挑战的发展历程。
+                            </p>
+                        </div>
+                        
+                        <!-- 历史概览数据 -->
+                        <div class="history-overview" id="history-overview">
+                            <div class="history-counter-large">
+                                <div class="counter-wrapper">
+                                    <div class="counter-number" data-count="15">15</div>
+                                    <div class="counter-label">年</div>
+                                </div>
+                                <div class="counter-text">创新发展历程</div>
+                            </div>
+                            
+                            <div class="history-stats-row">
+                                <div class="stat-item">
+                                    <div class="stat-icon"><i class="bi bi-globe2"></i></div>
+                                    <div class="stat-number" data-count="50">50+</div>
+                                    <div class="stat-label">销售国家</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon"><i class="bi bi-award"></i></div>
+                                    <div class="stat-number" data-count="120">120+</div>
+                                    <div class="stat-label">行业奖项</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon"><i class="bi bi-lightbulb"></i></div>
+                                    <div class="stat-number" data-count="300">300+</div>
+                                    <div class="stat-label">专利技术</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            // 创建Intersection Observer监听元素是否进入视口
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const storyHeader = document.getElementById('story-header');
+                                const historyOverview = document.getElementById('history-overview');
+                                
+                                const observer = new IntersectionObserver((entries) => {
+                                    entries.forEach(entry => {
+                                        if (entry.isIntersecting) {
+                                            entry.target.classList.add('show-animation');
+                                            observer.unobserve(entry.target);
+                                        }
+                                    });
+                                }, {
+                                    threshold: 0.2,
+                                    rootMargin: '-50px'
+                                });
+                                
+                                if (storyHeader) observer.observe(storyHeader);
+                                if (historyOverview) observer.observe(historyOverview);
+                            });
+                        </script>
+                        
+                        <!-- 垂直时间轴故事 -->
+                        <div class="timeline-container">
+                            <div class="timeline-story">
+                                <!-- 2008年里程碑 -->
+                                <div class="timeline-item" data-year="2008">
+                                    <div class="timeline-marker animated">
+                                        <div class="year-marker">2008</div>
+                                        <div class="marker-dot"></div>
+                                    </div>
+                                    <div class="timeline-content right">
+                                        <div class="timeline-connector"></div>
+                                        <div class="milestone-card">
+                                            <div class="milestone-header">
+                                                <h3 class="milestone-title">开创篇章：公司成立</h3>
+                                                <div class="milestone-icon">
+                                                    <i class="bi bi-building-fill"></i>
+                                    </div>
+                                    </div>
+                                            <div class="milestone-body">
+                                                <div class="milestone-image">
+                                                    <img src="../assets/images/About Rongdian/company-history/milestone-2008.jpg" alt="容电科技成立" class="img-fluid">
+                                                    <div class="image-overlay"></div>
+                                                    <div class="year-tag"><i class="bi bi-calendar-event me-2"></i>2008</div>
+                                    </div>
+                                                <!-- 2008年里程碑描述文本 -->
+                                                <p class="milestone-description">
+                                                    <span class="highlight-data">2008年</span>，容电科技在深圳成立，专注于<span class="highlight-text">高端厨房电器</span>的研发和生产，初期主要生产<span class="highlight-text">抽油烟机和燃气灶</span>。创始团队由<span class="highlight-data">5位</span>行业资深专家组成，凭借对市场的深刻洞察和<span class="highlight-text">技术创新</span>的不懈追求，公司迅速在厨电行业站稳脚跟，首年销售额达<span class="highlight-data">800万元</span>，奠定了未来发展的坚实基础。
+                                                </p>
+                                                <div class="milestone-achievements">
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-people-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">15人</div>
+                                                            <div class="achievement-text">组建专业研发团队，初步建立产品研发体系</div>
+                                    </div>
+                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-box-seam-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">2款</div>
+                                                            <div class="achievement-text">推出首款高端抽油烟机和燃气灶产品</div>
+                                </div>
+                            </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-shop"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">5个</div>
+                                                            <div class="achievement-text">建立初步的销售网络，进入华南市场</div>
+                        </div>
+                                        </div>
+                                        </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2010年里程碑 -->
+                                <div class="timeline-item" data-year="2010">
+                                    <div class="timeline-marker animated">
+                                        <div class="year-marker">2010</div>
+                                        <div class="marker-dot"></div>
+                                    </div>
+                                    <div class="timeline-content left">
+                                        <div class="timeline-connector"></div>
+                                        <div class="milestone-card">
+                                        <div class="milestone-header">
+                                            <h3 class="milestone-title">技术突破：首个研发中心成立</h3>
+                                                <div class="milestone-icon">
+                                                    <i class="bi bi-lightbulb-fill"></i>
+                                        </div>
+                                        </div>
+                                            <div class="milestone-body">
+                                                <div class="milestone-image">
+                                                    <img src="../assets/images/About Rongdian/company-history/milestone-2010.jpg" alt="首个研发中心成立" class="img-fluid">
+                                                    <div class="image-overlay"></div>
+                                                    <div class="year-tag"><i class="bi bi-calendar-event me-2"></i>2010</div>
+                                                </div>
+                                                <!-- 2010年里程碑描述文本 -->
+                                                <p class="milestone-description">
+                                                    <span class="highlight-data">2010年</span>，容电科技在深圳建立第一个<span class="highlight-text">研发中心</span>，投入<span class="highlight-data">2000万元</span>打造现代化实验室和测试设备。组建<span class="highlight-data">30人</span>专业研发团队，开始自主研发核心技术，申请首批<span class="highlight-data">10项</span>专利技术，获得<span class="highlight-text">国家高新技术企业认证</span>，为公司的技术创新和产品升级奠定了坚实的基础。
+                                                </p>
+                                                <div class="milestone-achievements">
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-building-gear"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">2000万</div>
+                                                            <div class="achievement-text">投入建设现代化研发中心</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-clipboard-check-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">10项</div>
+                                                            <div class="achievement-text">申请首批核心技术专利</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-award-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">国家级</div>
+                                                            <div class="achievement-text">获得国家高新技术企业认证</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2013年里程碑 -->
+                                <div class="timeline-item" data-year="2013">
+                                    <div class="timeline-marker animated">
+                                        <div class="year-marker">2013</div>
+                                        <div class="marker-dot"></div>
+                                    </div>
+                                    <div class="timeline-content right">
+                                        <div class="timeline-connector"></div>
+                                        <div class="milestone-card">
+                                        <div class="milestone-header">
+                                            <h3 class="milestone-title">多元发展：产品线扩展</h3>
+                                                <div class="milestone-icon">
+                                                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                                        </div>
+                                        </div>
+                                            <div class="milestone-body">
+                                                <div class="milestone-image">
+                                                    <img src="../assets/images/About Rongdian/company-history/milestone-2013.jpg" alt="产品线扩展" class="img-fluid">
+                                                    <div class="image-overlay"></div>
+                                                    <div class="year-tag"><i class="bi bi-calendar-event me-2"></i>2013</div>
+                                                </div>
+                                                <!-- 2013年里程碑描述文本 -->
+                                                <p class="milestone-description">
+                                                    <span class="highlight-data">2013年</span>，容电科技产品线实现全面扩展，从单一厨电产品到<span class="highlight-text">全系列厨房电器</span>，推出<span class="highlight-data">5大系列20多款</span>新产品。同年发布<span class="highlight-text">首款WiFi智能控制抽油烟机</span>，开启智能厨电新时代。销售网络扩展至全国<span class="highlight-data">50多个</span>主要城市，年销售额突破<span class="highlight-data">5亿元</span>，品牌影响力显著提升。
+                                                </p>
+                                                <div class="milestone-achievements">
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-collection-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">20+</div>
+                                                            <div class="achievement-text">推出5大系列多款新产品</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-wifi"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">首款</div>
+                                                            <div class="achievement-text">WiFi智能控制抽油烟机上市</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">50+</div>
+                                                            <div class="achievement-text">销售网络扩展至全国主要城市</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2016年里程碑 -->
+                                <div class="timeline-item" data-year="2016">
+                                    <div class="timeline-marker animated">
+                                        <div class="year-marker">2016</div>
+                                        <div class="marker-dot"></div>
+                                    </div>
+                                    <div class="timeline-content left">
+                                        <div class="timeline-connector"></div>
+                                        <div class="milestone-card">
+                                        <div class="milestone-header">
+                                            <h3 class="milestone-title">全球视野：国际化战略</h3>
+                                                <div class="milestone-icon">
+                                                    <i class="bi bi-globe-americas"></i>
+                                        </div>
+                                        </div>
+                                            <div class="milestone-body">
+                                                <div class="milestone-image">
+                                                    <img src="../assets/images/About Rongdian/company-history/milestone-2016.jpg" alt="国际化战略" class="img-fluid">
+                                                    <div class="image-overlay"></div>
+                                                    <div class="year-tag"><i class="bi bi-calendar-event me-2"></i>2016</div>
+                                                </div>
+                                                <!-- 2016年里程碑描述文本 -->
+                                                <p class="milestone-description">
+                                                    <span class="highlight-data">2016年</span>，容电科技启动<span class="highlight-text">国际化战略</span>，产品远销欧洲、东南亚等<span class="highlight-data">20多个</span>国家和地区，海外销售额占比达<span class="highlight-data">30%</span>。同年在<span class="highlight-text">德国慕尼黑</span>设立欧洲研发中心，引进国际顶尖设计和技术人才，获得<span class="highlight-data">8项</span>国际质量认证和设计奖项，品牌国际化进程全面加速。
+                                                </p>
+                                                <div class="milestone-achievements">
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-globe2"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">20+</div>
+                                                            <div class="achievement-text">产品出口至多个国家和地区</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-buildings-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">欧洲</div>
+                                                            <div class="achievement-text">在德国慕尼黑设立欧洲研发中心</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-trophy-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">8项</div>
+                                                            <div class="achievement-text">获得多项国际质量认证和设计奖项</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2020年里程碑 -->
+                                <div class="timeline-item" data-year="2020">
+                                    <div class="timeline-marker animated">
+                                        <div class="year-marker">2020</div>
+                                        <div class="marker-dot"></div>
+                                    </div>
+                                    <div class="timeline-content right">
+                                        <div class="timeline-connector"></div>
+                                        <div class="milestone-card">
+                                        <div class="milestone-header">
+                                            <h3 class="milestone-title">智能革新：智能厨房系统</h3>
+                                                <div class="milestone-icon">
+                                                    <i class="bi bi-cpu-fill"></i>
+                                        </div>
+                                        </div>
+                                            <div class="milestone-body">
+                                                <div class="milestone-image">
+                                                    <img src="../assets/images/About Rongdian/company-history/milestone-2020.jpg" alt="智能厨房系统" class="img-fluid">
+                                                    <div class="image-overlay"></div>
+                                                    <div class="year-tag"><i class="bi bi-calendar-event me-2"></i>2020</div>
+                                                </div>
+                                                <!-- 2020年里程碑描述文本 -->
+                                                <p class="milestone-description">
+                                                    <span class="highlight-data">2020年</span>，容电科技推出全套<span class="highlight-text">智能厨房系统解决方案</span>，整合<span class="highlight-text">AI技术、物联网和云计算</span>，实现厨房电器互联互通。发布<span class="highlight-text">"智厨云"平台</span>，支持<span class="highlight-data">200+</span>种烹饪场景。推出<span class="highlight-text">AI烹饪助手</span>，支持语音控制和智能菜谱推荐，荣获<span class="highlight-text">"中国厨电行业创新企业"</span>称号，引领智能厨房新时代。
+                                                </p>
+                                                <div class="milestone-achievements">
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-cloud-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">云平台</div>
+                                                            <div class="achievement-text">发布"智厨云"平台，实现多设备互联</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-robot"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">AI</div>
+                                                            <div class="achievement-text">推出AI烹饪助手，支持语音控制和智能菜谱</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-star-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">荣誉</div>
+                                                            <div class="achievement-text">荣获"中国厨电行业创新企业"称号</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2023年里程碑 -->
+                                <div class="timeline-item" data-year="2023">
+                                    <div class="timeline-marker animated">
+                                        <div class="year-marker">2023</div>
+                                        <div class="marker-dot"></div>
+                                    </div>
+                                    <div class="timeline-content left">
+                                        <div class="timeline-connector"></div>
+                                        <div class="milestone-card">
+                                        <div class="milestone-header">
+                                            <h3 class="milestone-title">可持续发展：绿色制造</h3>
+                                                <div class="milestone-icon">
+                                                    <i class="bi bi-tree-fill"></i>
+                                        </div>
+                                        </div>
+                                            <div class="milestone-body">
+                                                <div class="milestone-image">
+                                                    <img src="../assets/images/About Rongdian/company-history/milestone-2023.jpg" alt="绿色制造" class="img-fluid">
+                                                    <div class="image-overlay"></div>
+                                                    <div class="year-tag"><i class="bi bi-calendar-event me-2"></i>2023</div>
+                                                </div>
+                                                <!-- 2023年里程碑描述文本 -->
+                                                <p class="milestone-description">
+                                                    <span class="highlight-data">2023年</span>，容电科技建成全国<span class="highlight-data">首个</span>厨电行业<span class="highlight-text">绿色制造示范基地</span>，投资<span class="highlight-data">5亿元</span>打造行业标杆。推出<span class="highlight-text">零碳厨房</span>系列产品，节能效率提升<span class="highlight-data">30%</span>，获得<span class="highlight-text">国家绿色制造认证</span>。我们将可持续发展理念融入产品全生命周期，从原材料采购、生产制造到产品回收，全面实践<span class="highlight-text">绿色低碳循环发展</span>，引领厨电行业迈向更加环保的未来。
+                                                </p>
+                                                <div class="milestone-achievements">
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-building-fill-gear"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">5亿元</div>
+                                                            <div class="achievement-text">投资建设绿色制造示范基地</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">30%</div>
+                                                            <div class="achievement-text">推出"零碳厨房"系列产品，节能效率提升</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="achievement-item">
+                                                        <div class="achievement-icon"><i class="bi bi-award-fill"></i></div>
+                                                        <div class="achievement-content">
+                                                            <div class="achievement-data">国家级</div>
+                                                            <div class="achievement-text">获得绿色制造示范企业认证</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 移动设备上的时间线导航 -->
+                                <div class="timeline-mobile-nav d-md-none">
+                                    <div class="mobile-nav-title">快速跳转到年份</div>
+                                    <div class="mobile-nav-years">
+                                        <a href="#" class="mobile-year-link active" data-year="2008">2008</a>
+                                        <a href="#" class="mobile-year-link" data-year="2010">2010</a>
+                                        <a href="#" class="mobile-year-link" data-year="2013">2013</a>
+                                        <a href="#" class="mobile-year-link" data-year="2016">2016</a>
+                                        <a href="#" class="mobile-year-link" data-year="2020">2020</a>
+                                        <a href="#" class="mobile-year-link" data-year="2023">2023</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 未来展望 -->
+                        <div class="future-vision-container">
+                            <div class="future-vision-story">
+                                <div class="vision-content">
+                                    <div class="vision-header">
+                                        <h3 class="vision-title">展望未来</h3>
+                                        <div class="vision-separator"></div>
+                                    </div>
+                                    <p class="vision-description">
+                                    容电科技将持续深耕智能厨电领域，加大在绿色环保、智能互联、健康烹饪等方向的研发投入，
+                                    致力于为全球家庭打造更智能、更环保、更便捷的现代化厨房体验。
+                                </p>
+                                    <div class="vision-goals">
+                                        <div class="vision-goal">
+                                            <div class="vision-goal-content">
+                                        <div class="goal-icon"><i class="bi bi-stars"></i></div>
+                                        <div class="goal-text">成为全球智能厨电行业标准的制定者</div>
+                                                <div class="goal-data">10+ 国际标准</div>
+                                    </div>
+                                        </div>
+                                        <div class="vision-goal">
+                                            <div class="vision-goal-content">
+                                        <div class="goal-icon"><i class="bi bi-flower3"></i></div>
+                                        <div class="goal-text">引领厨电行业绿色低碳转型</div>
+                                                <div class="goal-data">碳排放降低 50%</div>
+                                    </div>
+                                        </div>
+                                        <div class="vision-goal">
+                                            <div class="vision-goal-content">
+                                        <div class="goal-icon"><i class="bi bi-globe-americas"></i></div>
+                                        <div class="goal-text">产品覆盖全球100个国家和地区</div>
+                                                <div class="goal-data">全球市场份额 15%</div>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 返回顶部按钮 -->
+                        <div class="back-to-top-container text-center">
+                            <button id="history-back-to-top" class="back-to-top-btn" aria-label="返回顶部">
+                                <i class="bi bi-arrow-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 新闻动态区域 -->
+            <section class="content-section" id="news">
+                <!-- 添加装饰元素 -->
+                <div class="tech-grid"></div>
+                <div class="data-flow"></div>
+                <div class="tech-circles"></div>
+                <div class="circuit-lines"></div>
+                
+                <div class="container">
+                    <div class="news-header">
+                        <h2 class="news-title">新闻动态</h2>
+                        <div class="title-separator"><span></span></div>
+                        <p class="news-description">
+                            了解容电科技的最新动态、产品信息和行业资讯
+                        </p>
+                    </div>
+                    
+                    <!-- 新闻动态内容 -->
+                    <div class="news-content">
+                        <!-- 特色新闻 -->
+                        <div class="featured-news" data-aos="fade-up">
+                            <div class="featured-news-image">
+                                <img src="../assets/images/About Rongdian/news/news-featured.jpg" alt="容电智能厨电新品发布会圆满成功" class="img-fluid">
+                                <div class="featured-news-overlay"></div>
+                            </div>
+                            <div class="featured-news-content">
+                                <div class="featured-news-tag">重要活动</div>
+                                <h3 class="featured-news-title">容电智能厨电新品发布会圆满成功</h3>
+                                <div class="featured-news-date">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>2025年6月28日</span>
+                                </div>
+                                <p class="featured-news-excerpt">
+                                    6月28日，容电科技在上海举办了主题为"智慧烹饪·健康生活"的新品发布会，正式推出全新一代智能厨房系统及系列高端厨电新品。本次发布会吸引了来自全国各地的经销商、媒体和行业专家共500余人参加，发布会现场反响热烈，多款新品订单火爆。
+                                </p>
+                                <a href="#" class="featured-news-cta">
+                                    <span>查看详情</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 新闻分类标签 -->
+                        <div class="news-categories" data-aos="fade-up">
+                            <div class="category-tag active" data-category="all">全部</div>
+                            <div class="category-tag" data-category="company">公司动态</div>
+                            <div class="category-tag" data-category="product">产品资讯</div>
+                            <div class="category-tag" data-category="industry">行业新闻</div>
+                            <div class="category-tag" data-category="media">媒体报道</div>
+                        </div>
+                        
+                        <!-- 新闻卡片 -->
+                        <div class="news-cards" data-aos="fade-up" data-aos-delay="100">
+                            <!-- 新闻1 -->
+                            <div class="news-card" data-category="company">
+                                <div class="news-card-image">
+                                    <img src="../assets/images/About Rongdian/news/news-1.jpg" alt="容电科技获评国家级绿色工厂" class="img-fluid">
+                                    <div class="news-card-overlay"></div>
+                                    <div class="news-card-date">
+                                        <span class="news-date-day">15</span>
+                                        <span class="news-date-month">6月</span>
+                                    </div>
+                                    <div class="news-card-tag">公司动态</div>
+                                </div>
+                                <div class="news-card-content">
+                                    <h3 class="news-card-title">容电科技获评国家级绿色工厂</h3>
+                                    <p class="news-card-excerpt">
+                                        近日，工信部公布2023年度绿色制造名单，容电科技凭借在节能减排、绿色制造方面的突出表现，成功入选国家级绿色工厂名单，成为厨电行业绿色发展的标杆企业。
+                                    </p>
+                                    <div class="news-card-footer">
+                                        <div class="news-card-author">
+                                            <img src="../assets/images/About Rongdian/team/李先生.png" alt="李先生" class="author-avatar">
+                                            <span class="author-name">李先生</span>
+                                        </div>
+                                        <a href="#" class="news-card-link">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 新闻2 -->
+                            <div class="news-card" data-category="product">
+                                <div class="news-card-image">
+                                    <img src="../assets/images/About Rongdian/news/news-2.jpg" alt="容电发布全新智能厨房系统" class="img-fluid">
+                                    <div class="news-card-overlay"></div>
+                                    <div class="news-card-date">
+                                        <span class="news-date-day">28</span>
+                                        <span class="news-date-month">5月</span>
+                                    </div>
+                                    <div class="news-card-tag">产品资讯</div>
+                                </div>
+                                <div class="news-card-content">
+                                    <h3 class="news-card-title">容电发布全新智能厨房系统</h3>
+                                    <p class="news-card-excerpt">
+                                        容电科技在上海举办新品发布会，正式推出全新一代智能厨房系统，该系统集成了AI烹饪助手、智能控制中心等多项创新功能，实现厨房设备的互联互通和智能化控制。
+                                    </p>
+                                    <div class="news-card-footer">
+                                        <div class="news-card-author">
+                                            <img src="../assets/images/About Rongdian/team/陈先生.png" alt="陈先生" class="author-avatar">
+                                            <span class="author-name">陈先生</span>
+                                        </div>
+                                        <a href="#" class="news-card-link">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 新闻3 -->
+                            <div class="news-card" data-category="industry">
+                                <div class="news-card-image">
+                                    <img src="../assets/images/About Rongdian/news/news-3.jpg" alt="厨电行业绿色发展论坛" class="img-fluid">
+                                    <div class="news-card-overlay"></div>
+                                    <div class="news-card-date">
+                                        <span class="news-date-day">10</span>
+                                        <span class="news-date-month">5月</span>
+                                    </div>
+                                    <div class="news-card-tag">行业新闻</div>
+                                </div>
+                                <div class="news-card-content">
+                                    <h3 class="news-card-title">容电参与厨电行业绿色发展论坛</h3>
+                                    <p class="news-card-excerpt">
+                                        在北京举办的2023厨电行业绿色发展论坛上，容电科技总经理受邀发表主题演讲，分享了公司在绿色制造方面的实践经验和创新成果，引发行业广泛关注。
+                                    </p>
+                                    <div class="news-card-footer">
+                                        <div class="news-card-author">
+                                            <img src="../assets/images/About Rongdian/team/李先生.png" alt="李先生" class="author-avatar">
+                                            <span class="author-name">李先生</span>
+                                        </div>
+                                        <a href="#" class="news-card-link">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 新闻4 - 媒体报道 -->
+                            <div class="news-card" data-category="media">
+                                <div class="news-card-image">
+                                    <img src="../assets/images/About Rongdian/news/news-featured.jpg" alt="《中国家电》专访容电科技" class="img-fluid">
+                                    <div class="news-card-overlay"></div>
+                                    <div class="news-card-date">
+                                        <span class="news-date-day">03</span>
+                                        <span class="news-date-month">4月</span>
+                                    </div>
+                                    <div class="news-card-tag">媒体报道</div>
+                                </div>
+                                <div class="news-card-content">
+                                    <h3 class="news-card-title">《中国家电》专访容电科技创始人</h3>
+                                    <p class="news-card-excerpt">
+                                        权威行业媒体《中国家电》杂志对容电科技创始人进行了专访，详细报道了容电科技的创新历程、技术实力和未来发展规划，展现了公司在智能厨电领域的领先地位。
+                                    </p>
+                                    <div class="news-card-footer">
+                                        <div class="news-card-author">
+                                            <img src="../assets/images/About Rongdian/team/陈先生.png" alt="陈先生" class="author-avatar">
+                                            <span class="author-name">陈先生</span>
+                                        </div>
+                                        <a href="#" class="news-card-link">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 新闻5 - 产品资讯 -->
+                            <div class="news-card" data-category="product">
+                                <div class="news-card-image">
+                                    <img src="../assets/images/About Rongdian/news/news-2.jpg" alt="容电推出新一代AI智能抽油烟机" class="img-fluid">
+                                    <div class="news-card-overlay"></div>
+                                    <div class="news-card-date">
+                                        <span class="news-date-day">22</span>
+                                        <span class="news-date-month">3月</span>
+                                    </div>
+                                    <div class="news-card-tag">产品资讯</div>
+                                </div>
+                                <div class="news-card-content">
+                                    <h3 class="news-card-title">容电推出新一代AI智能抽油烟机</h3>
+                                    <p class="news-card-excerpt">
+                                        容电科技推出新一代AI智能抽油烟机，采用自主研发的智能传感技术和深度学习算法，可根据烹饪场景自动调节吸力，实现高效节能，大幅提升用户体验。
+                                    </p>
+                                    <div class="news-card-footer">
+                                        <div class="news-card-author">
+                                            <img src="../assets/images/About Rongdian/team/李先生.png" alt="李先生" class="author-avatar">
+                                            <span class="author-name">李先生</span>
+                                        </div>
+                                        <a href="#" class="news-card-link">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 新闻6 - 公司动态 -->
+                            <div class="news-card" data-category="company">
+                                <div class="news-card-image">
+                                    <img src="../assets/images/About Rongdian/news/news-1.jpg" alt="容电科技公布2024年战略规划" class="img-fluid">
+                                    <div class="news-card-overlay"></div>
+                                    <div class="news-card-date">
+                                        <span class="news-date-day">18</span>
+                                        <span class="news-date-month">2月</span>
+                                    </div>
+                                    <div class="news-card-tag">公司动态</div>
+                                </div>
+                                <div class="news-card-content">
+                                    <h3 class="news-card-title">容电科技公布2024年战略规划</h3>
+                                    <p class="news-card-excerpt">
+                                        容电科技在年度战略会议上公布了2024年战略规划，将重点布局智能厨电、健康烹饪和绿色制造三大领域，并计划进一步拓展海外市场，提升全球品牌影响力。
+                                    </p>
+                                    <div class="news-card-footer">
+                                        <div class="news-card-author">
+                                            <img src="../assets/images/About Rongdian/team/陈先生.png" alt="陈先生" class="author-avatar">
+                                            <span class="author-name">陈先生</span>
+                                        </div>
+                                        <a href="#" class="news-card-link">阅读更多 <i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 查看更多按钮 -->
+                        <div class="view-more-container" data-aos="fade-up" data-aos-delay="200">
+                            <a href="../pages/news.html" class="view-more-btn">
+                                <span>查看更多新闻</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 企业文化区域 -->
+            <section class="content-section" id="company-culture">
+                <div class="container">
+                    <div class="company-culture-title">
+                        <h2>企业文化</h2>
+                        <p>创新科技，匠心品质，协作共赢，追求卓越</p>
+                    </div>
+                    <!-- 企业文化内容 -->
+                    <div class="culture-content">
+                        <!-- 企业文化卡片 -->
+                        <div class="culture-cards" data-aos="fade-up">
+                            <div class="culture-card">
+                                <div class="culture-icon">
+                                    <i class="bi bi-lightbulb"></i>
+                    </div>
+                                <h3 class="culture-card-title">创新精神</h3>
+                                <p class="culture-card-description">
+                                    我们鼓励创新思维，不断探索新技术、新材料和新工艺，推动行业发展，引领智能厨电潮流。
+                                </p>
+                            </div>
+                            
+                            <div class="culture-card">
+                                <div class="culture-icon">
+                                    <i class="bi bi-gem"></i>
+                                </div>
+                                <h3 class="culture-card-title">匠心品质</h3>
+                                <p class="culture-card-description">
+                                    我们秉承精益求精的工匠精神，注重产品细节，严格把控每一个生产环节，确保产品品质卓越。
+                                </p>
+                            </div>
+                            
+                            <div class="culture-card">
+                                <div class="culture-icon">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <h3 class="culture-card-title">协作共赢</h3>
+                                <p class="culture-card-description">
+                                    我们重视团队协作，尊重每位员工的创意和贡献，与合作伙伴共同成长，实现多方共赢。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- 核心价值观 -->
+                        <div class="core-values" data-aos="fade-up" data-aos-delay="100">
+                            <div class="core-values-content">
+                                <h3 class="core-values-title">核心价值观</h3>
+                                <div class="values-list">
+                                    <div class="value-item">
+                                        <div class="value-icon">
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <h4 class="value-name">卓越</h4>
+                                        <p class="value-description">追求卓越品质，超越客户期望</p>
+                                    </div>
+                                    
+                                    <div class="value-item">
+                                        <div class="value-icon">
+                                            <i class="bi bi-shield-check"></i>
+                                        </div>
+                                        <h4 class="value-name">诚信</h4>
+                                        <p class="value-description">诚实守信，言行一致</p>
+                                    </div>
+                                    
+                                    <div class="value-item">
+                                        <div class="value-icon">
+                                            <i class="bi bi-lightning"></i>
+                                        </div>
+                                        <h4 class="value-name">创新</h4>
+                                        <p class="value-description">勇于创新，引领行业发展</p>
+                                    </div>
+                                    
+                                    <div class="value-item">
+                                        <div class="value-icon">
+                                            <i class="bi bi-heart"></i>
+                                        </div>
+                                        <h4 class="value-name">责任</h4>
+                                        <p class="value-description">对社会、环境和用户负责</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 品牌理念 -->
+                        <div class="brand-philosophy" data-aos="fade-up" data-aos-delay="200">
+                            <h3 class="brand-philosophy-title">品牌理念</h3>
+                            <p class="brand-philosophy-text">
+                                "<strong>科技创造美好生活</strong>，容电致力于通过智能科技为每个家庭打造健康、便捷、环保的现代厨房体验。"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技术实力区域 -->
+            <section class="content-section" id="tech-strength">
+                <div class="container">
+                    <div class="title-container">
+                        <div class="title-bg">TECHNOLOGY</div>
+                        <div class="title-icon">
+                            <i class="bi bi-gear-wide-connected"></i>
+                        </div>
+                        <h2 class="section-title">技术实力</h2>
+                        <p class="section-subtitle">持续创新的核心科技，打造行业领先的智能厨电产品</p>
+                    </div>
+                    <!-- 技术实力内容 -->
+                    <div class="tech-content">
+                        <!-- 研发能力介绍 -->
+                        <div class="rd-intro" data-aos="fade-up">
+                            <div class="rd-intro-text">
+                                <h3 class="rd-intro-title">强大的研发实力</h3>
+                                <div class="rd-intro-description">
+                                    <p><strong>300+</strong>名专业工程师组成的研发团队，涵盖机械设计、电子控制、软件开发、工业设计等多个领域的专家。</p>
+                                    <p>在<strong>深圳</strong>、<strong>上海</strong>和<strong>德国</strong>设有三大研发中心，配备先进的实验室和测试设备，每年投入销售额的<strong>8%</strong>用于技术研发和创新。</p>
+                                    <p>建立了<strong>完善的研发管理体系</strong>，采用敏捷开发模式，确保产品开发高效、灵活，能够快速响应市场需求和技术变革。</p>
+                                </div>
+                                <div class="rd-intro-metrics">
+                                    <div class="rd-intro-metric">
+                                        <div class="rd-intro-metric-value">300+</div>
+                                        <div class="rd-intro-metric-label">研发人员</div>
+                                    </div>
+                                    <div class="rd-intro-metric">
+                                        <div class="rd-intro-metric-value">3</div>
+                                        <div class="rd-intro-metric-label">研发中心</div>
+                                    </div>
+                                    <div class="rd-intro-metric">
+                                        <div class="rd-intro-metric-value">8%</div>
+                                        <div class="rd-intro-metric-label">研发投入</div>
+                                    </div>
+                    </div>
+                </div>
+                            <div class="rd-intro-image">
+                                <img src="../assets/images/About Rongdian/tech-strength/research-center.jpg" alt="容电研发中心" class="img-fluid">
+                                <div class="rd-intro-badge">全球研发布局</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 技术优势 -->
+                        <div class="tech-advantages" data-aos="fade-up" data-aos-delay="100">
+                            <h3 class="tech-advantages-title">核心技术优势</h3>
+                            <div class="advantage-cards">
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">
+                                        <i class="bi bi-fan"></i>
+                    </div>
+                                    <h4 class="advantage-title">高效静音技术</h4>
+                                    <p class="advantage-description">
+                                        自主研发的涡轮增压系统和气流优化技术，实现高效排烟的同时保持低噪音运行，噪音降低40%，排烟效率提升35%。
+                                    </p>
+                                </div>
+                                
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">
+                                        <i class="bi bi-fire"></i>
+                                    </div>
+                                    <h4 class="advantage-title">精准燃烧控制</h4>
+                                    <p class="advantage-description">
+                                        创新的燃气精准控制系统，实现200档火力精准调节，热效率高达75%，比普通燃气灶节省燃气20%以上。
+                                    </p>
+                                </div>
+                                
+                                <div class="advantage-card">
+                                    <div class="advantage-icon">
+                                        <i class="bi bi-cpu"></i>
+                                    </div>
+                                    <h4 class="advantage-title">智能互联技术</h4>
+                                    <p class="advantage-description">
+                                        自主开发的厨电智能互联系统，支持多设备协同工作，通过AI算法优化用户体验，实现一键式智能烹饪。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 技术专利 -->
+                        <div class="tech-patents" data-aos="fade-up" data-aos-delay="200">
+                            <div class="patents-content">
+                                <div class="patents-data">
+                                    <div class="patents-number" data-count="300">300+</div>
+                                    <h3 class="patents-title">项技术专利</h3>
+                                    <p class="patents-description">
+                                        容电科技拥有300多项国内外专利，其中发明专利120项，实用新型专利150项，外观设计专利30项，多项专利获得国家专利金奖。
+                                    </p>
+                                </div>
+                                <div class="patents-categories">
+                                    <h4 class="patents-categories-title">专利技术领域</h4>
+                                    <ul class="category-list">
+                                        <li class="category-item">
+                                            <div class="category-icon">
+                                                <i class="bi bi-droplet"></i>
+                                            </div>
+                                            <div class="category-text">油烟分离与净化技术</div>
+                                        </li>
+                                        <li class="category-item">
+                                            <div class="category-icon">
+                                                <i class="bi bi-speedometer"></i>
+                                            </div>
+                                            <div class="category-text">高效能源利用技术</div>
+                                        </li>
+                                        <li class="category-item">
+                                            <div class="category-icon">
+                                                <i class="bi bi-shield"></i>
+                                            </div>
+                                            <div class="category-text">安全防护技术</div>
+                                        </li>
+                                        <li class="category-item">
+                                            <div class="category-icon">
+                                                <i class="bi bi-phone"></i>
+                                            </div>
+                                            <div class="category-text">智能控制与互联技术</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+        <!-- 页脚将由Main File.js动态加载 -->
+
+    <!-- 核心JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    
+    <!-- 页面加载脚本 -->
+    <script>
+        // 在DOM加载完成后就开始淡出加载指示器，不必等待所有资源加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageLoader = document.getElementById('page-loader');
+            // 稍微延时以确保DOM已经渲染
+            setTimeout(() => {
+                pageLoader.classList.add('fade-out');
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 500); // 增加过渡时间，使淡出更平滑
+            }, 100);
+        });
+        
+        // 页面完全加载后初始化图片懒加载
+        window.addEventListener('load', function() {
+            // 初始化图片懒加载
+            initLazyImages();
+        });
+        
+        // 初始化图片懒加载
+        function initLazyImages() {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('loaded');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // 降级处理：立即显示所有图片
+                lazyImages.forEach(img => {
+                    img.classList.add('loaded');
+                });
+            }
+        }
+        
+        // CSS已在head中直接加载，不需要动态加载
+        
+        // 页面加载时初始化滚动导航
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加滚动导航效果
+            window.addEventListener('scroll', highlightSectionOnScroll);
+            
+            // 添加平滑滚动效果
+            addSmoothScrolling();
+        });
+        
+        // 根据滚动位置更新URL
+        function highlightSectionOnScroll() {
+            const sections = document.querySelectorAll('.content-section');
+            const scrollPosition = window.scrollY + 200; // 添加偏移量以提前高亮
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // 更新URL哈希，但不触发滚动
+                    const newHash = '#' + section.id;
+                    if (window.location.hash !== newHash) {
+                        history.replaceState(null, null, newHash);
+                    }
+                }
+            });
+        }
+        
+        // 添加平滑滚动效果
+        function addSmoothScrolling() {
+            // 为页内链接添加平滑滚动效果
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return; // 忽略空链接
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // 平滑滚动到目标元素
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // 更新URL
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+        }
+    </script>
+    
+    <!-- 核心功能脚本 -->
+    <script src="../assets/js/About Rongdian/company-intro.js"></script>
+    <script src="../assets/js/About Rongdian/company-overview-redesign.js"></script>
+    <script src="../assets/js/About Rongdian/company-history-merged.js"></script>
+    <script src="../assets/js/About Rongdian/company-culture.js"></script>
+    <script src="../assets/js/About Rongdian/tech-strength.js"></script>
+    <script src="../assets/js/About Rongdian/news.js"></script>
+
+    <script src="../assets/js/About Rongdian/company-data.js"></script>
+    <script src="../assets/js/About Rongdian/company-data-animation.js"></script>
+    <script src="../assets/js/About Rongdian/industry-comparison-animation.js"></script>
+    <script src="../assets/js/About Rongdian/satisfaction-meter-merged.js"></script>
+    <script src="../assets/js/About Rongdian/market-distribution-enhanced.js"></script>
+    <script src="../assets/js/About Rongdian/revenue-growth-enhanced.js"></script>
+    
+    <!-- 延迟加载AOS动画库 -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    <script>
+        // 在页面完全加载后初始化AOS
+        window.addEventListener('load', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    disable: 'mobile'
+                });
+            }
+        });
+    </script>
+    
+    <!-- 全局脚本最后加载，确保最高优先级 -->
+    <script src="../assets/js/Main File.js"></script>
+    
+    <!-- AOS动画库 -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <!-- 页面特定的JS -->
+    <script src="../assets/js/About Rongdian/company-intro.js"></script>
+    <script src="../assets/js/About Rongdian/company-data-animation.js"></script>
+    <script src="../assets/js/About Rongdian/company-history-merged.js"></script>
+    <script src="../assets/js/About Rongdian/company-culture.js"></script>
+    <script src="../assets/js/About Rongdian/tech-strength.js"></script>
+    <script src="../assets/js/About Rongdian/industry-comparison-animation.js"></script>
+    <script src="../assets/js/About Rongdian/market-distribution-enhanced.js"></script>
+    <script src="../assets/js/About Rongdian/revenue-growth-enhanced.js"></script>
+    <script src="../assets/js/About Rongdian/satisfaction-meter-merged.js"></script>
+    <script src="../assets/js/About Rongdian/news.js"></script>
+    
+    <!-- 立即执行修复脚本 -->
+    <script>
+        // 立即修复全球业务布局卡片不显示的问题
+        document.addEventListener('DOMContentLoaded', function() {
+            // 延迟执行，确保页面完全加载
+            setTimeout(function() {
+                const presenceContent = document.querySelector('#company-intro .company-scale-redesigned .global-presence .presence-content');
+                const statItems = document.querySelectorAll('#company-intro .company-scale-redesigned .global-presence .stat-item');
+                
+                console.log('执行紧急修复...');
+                
+                if (presenceContent) {
+                    presenceContent.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
+                } else {
+                    console.error('未找到 presence-content 元素');
+                }
+                
+                if (statItems.length > 0) {
+                    console.log(`找到 ${statItems.length} 个卡片元素，正在修复...`);
+                    
+                    statItems.forEach(function(item) {
+                        item.style.cssText = 'display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative; z-index: 999;';
+                    });
+                } else {
+                    console.error('未找到 stat-item 元素');
+                }
+                
+                // 修复地图位置
+                const mapContainer = document.querySelector('#company-intro .company-scale-redesigned .global-presence .col-lg-7');
+                const presenceMap = document.querySelector('#company-intro .company-scale-redesigned .global-presence .presence-map');
+                
+                if (mapContainer && presenceMap) {
+                    console.log('修复地图位置...');
+                    
+                    // 确保地图容器正确显示
+                    mapContainer.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
+                    
+                    // 确保地图正确显示
+                    presenceMap.style.cssText = 'position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-top: 15px; display: block !important;';
+                    
+                    // 确保地图标记正确显示
+                    const mapMarkers = document.querySelectorAll('#company-intro .company-scale-redesigned .global-presence .map-marker');
+                    mapMarkers.forEach(function(marker) {
+                        marker.style.cssText = 'position: absolute; width: 20px; height: 20px; z-index: 10; display: block !important; visibility: visible !important; opacity: 1 !important;';
+                    });
+                } else {
+                    console.error('未找到地图容器或地图元素');
+                }
+            }, 500);
+        });
+        
+        // 确保即使在页面已加载的情况下也能执行
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            const presenceContent = document.querySelector('#company-intro .company-scale-redesigned .global-presence .presence-content');
+            const statItems = document.querySelectorAll('#company-intro .company-scale-redesigned .global-presence .stat-item');
+            const mapContainer = document.querySelector('#company-intro .company-scale-redesigned .global-presence .col-lg-7');
+            const presenceMap = document.querySelector('#company-intro .company-scale-redesigned .global-presence .presence-map');
+            
+            console.log('页面已加载，执行紧急修复...');
+            
+            if (presenceContent) {
+                presenceContent.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
+            }
+            
+            if (statItems.length > 0) {
+                statItems.forEach(function(item) {
+                    item.style.cssText = 'display: inline-block !important; visibility: visible !important; opacity: 1 !important; position: relative; z-index: 999;';
+                });
+            }
+            
+            if (mapContainer && presenceMap) {
+                mapContainer.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
+                presenceMap.style.cssText = 'position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-top: 15px; display: block !important;';
+                
+                const mapMarkers = document.querySelectorAll('#company-intro .company-scale-redesigned .global-presence .map-marker');
+                mapMarkers.forEach(function(marker) {
+                    marker.style.cssText = 'position: absolute; width: 20px; height: 20px; z-index: 10; display: block !important; visibility: visible !important; opacity: 1 !important;';
+                });
+            }
+        }
+    </script>
+    
+    <!-- AOS初始化 -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+        });
+    </script>
+</body>
+</html> 

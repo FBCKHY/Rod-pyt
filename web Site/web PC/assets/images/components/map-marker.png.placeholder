@@ -1,0 +1,12 @@
+# 地图标记图标占位符
+
+此文件是map-marker.png的占位符。
+请将真实的地图标记图标重命名为map-marker.png并替换此文件。
+
+建议图片规格：
+- 格式：PNG
+- 尺寸：32x32 或 64x64 像素
+- 内容：地图定位标记图标
+- 建议：支持透明背景
+
+<!-- placeholder for map-marker.png --> 

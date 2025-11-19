@@ -1,0 +1,940 @@
+/**
+ * 关于容电 - 公司数据区块合并样式
+ * 
+ * 描述：合并了company-data.css, company-data-enhance.css, company-data-extended.css, company-data-redesign.css
+ * 用途：为公司数据区块提供统一的样式
+ * 
+ * 创建日期：2025-07-16
+ * 最后修改：2025-07-26 - 合并多个CSS文件
+ */
+
+/* 公司数据区块容器样式 */
+.company-data-redesigned {
+    position: relative;
+    overflow: visible;
+    padding: 70px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    margin: 80px 0;
+}
+
+.company-data-redesigned::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/images/About Rongdian/company-intro/metrics-pattern.png');
+    background-size: cover;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+/* 宽度扩展样式 */
+.company-data-redesigned.width-extended {
+    width: calc(100% + 500px);
+    margin-left: -250px;
+    margin-right: -250px;
+    padding-left: 250px;
+    padding-right: 250px;
+    overflow: visible;
+}
+
+/* 标题区域 */
+.data-header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.data-subtitle {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--brand-gold-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.data-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #074e9c; /* 蓝色 */
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.title-separator {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.title-separator span {
+    width: 80px;
+    height: 3px;
+    background: #ffc107; /* 金黄色 */
+    position: relative;
+}
+
+.title-separator span::before,
+.title-separator span::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffc107; /* 金黄色 */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.title-separator span::before {
+    left: -5px;
+}
+
+.title-separator span::after {
+    right: -5px;
+}
+
+.data-description {
+    font-size: 18px;
+    color: var(--brand-gray-text);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 数据卡片区域 */
+.data-cards-container {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 80px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: none;
+}
+
+.data-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+/* 新版数据卡片样式 */
+.data-card-redesigned {
+    flex: 1;
+    min-width: 280px;
+    max-width: 320px;
+    background: linear-gradient(135deg, #1a5db4 0%, #073a79 100%);
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgba(7, 58, 121, 0.3), 0 10px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: 1;
+}
+
+/* 卡片悬停效果 */
+.data-card-redesigned:hover {
+    transform: translateY(-15px) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 0 30px 60px rgba(7, 58, 121, 0.4), 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* 卡片背景图案 */
+.data-card-redesigned::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 60%);
+    z-index: 1;
+    opacity: 0.8;
+    transition: opacity 0.5s ease;
+}
+
+.data-card-redesigned:hover::before {
+    opacity: 1;
+}
+
+.data-card-redesigned::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 70%);
+    z-index: 0;
+    transition: all 0.5s ease;
+}
+
+.data-card-redesigned:hover::after {
+    transform: scale(1.2);
+}
+
+.data-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.data-card-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+    transition: transform 8s ease-in-out, filter 4s ease-in-out;
+}
+
+.data-card-redesigned:hover .data-card-bg img {
+    transform: scale(1.1);
+    filter: blur(1px);
+}
+
+.data-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 数据图标样式 */
+.data-icon {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 35px;
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), inset 0 5px 10px rgba(255, 255, 255, 0.1);
+    animation: morphing 8s infinite ease-in-out;
+}
+
+@keyframes morphing {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+    50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+    75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+.data-card-redesigned:hover .data-icon {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3), inset 0 5px 15px rgba(255, 255, 255, 0.2);
+    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+}
+
+/* 多层旋转动画 */
+.data-icon::before {
+    content: '';
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    border-radius: inherit;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    animation: rotate-reverse 25s linear infinite;
+    opacity: 0.7;
+}
+
+.data-icon::after {
+    content: '';
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: inherit;
+    border: 2px dashed rgba(255, 215, 0, 0.6);
+    animation: rotate 35s linear infinite;
+    opacity: 0.7;
+}
+
+/* 图标内部装饰 */
+.data-icon i {
+    font-size: 48px;
+    color: #FFD700;
+    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.8), 0 0 5px rgba(255, 255, 255, 0.6);
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s ease;
+    animation: icon-pulse 2s infinite alternate ease-in-out;
+}
+
+.data-card-redesigned:hover .data-icon i {
+    transform: scale(1.2);
+    text-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 15px rgba(255, 255, 255, 0.8);
+    animation: none;
+    filter: brightness(1.3);
+}
+
+/* 数据值样式 */
+.data-value {
+    font-size: 62px;
+    font-weight: 800;
+    background: linear-gradient(to bottom, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+    line-height: 1;
+    text-shadow: 0 2px 15px rgba(255, 215, 0, 0.6), 0 0 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: -1px;
+}
+
+.data-card-redesigned:hover .data-value {
+    transform: scale(1.08) translateY(-5px);
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 0 0 15px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0;
+}
+
+/* 数据值计数动画 */
+.data-value.counting {
+    animation: value-pulse 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes value-pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 数据标签样式 */
+.data-label {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 15px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.data-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.8), rgba(255, 215, 0, 0.3));
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.data-card-redesigned:hover .data-label {
+    transform: translateY(-3px);
+    color: #ffffff;
+}
+
+.data-card-redesigned:hover .data-label::after {
+    width: 70px;
+    background: linear-gradient(to right, rgba(255, 215, 0, 0.5), rgba(255, 215, 0, 1), rgba(255, 215, 0, 0.5));
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* 描述文本样式 */
+.data-description-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    max-height: 4.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.data-card-redesigned:hover .data-description-text {
+    color: #ffffff;
+    transform: translateY(-3px);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* 图表区域 */
+.data-charts-container {
+    position: relative;
+    z-index: 2;
+    margin-top: 60px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: none;
+}
+
+.charts-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.chart-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* 图表卡片样式 */
+.chart-card {
+    background: linear-gradient(145deg, #0a4c95 0%, #074e9c 100%);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(7, 78, 156, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+}
+
+.chart-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(7, 78, 156, 0.35), 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 图表标题 */
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chart-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.chart-card:hover .chart-title {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.chart-legend {
+    display: flex;
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+/* 图表容器 */
+.chart-container {
+    position: relative;
+    height: 200px;
+    transition: all 0.5s ease;
+}
+
+.chart-card:hover .chart-container {
+    transform: scale(1.03);
+    transform-origin: center bottom;
+}
+
+/* 营收增长图表 */
+.revenue-chart {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.chart-bar {
+    width: 18%;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px 6px 0 0;
+    transition: height 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    height: 0;
+    overflow: hidden;
+}
+
+.chart-bar::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to top, #FFD700, rgba(255, 215, 0, 0.7));
+    border-radius: 6px 6px 0 0;
+    transition: height 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.chart-card.animate .chart-bar::before {
+    height: 100%;
+}
+
+.chart-bar-label {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.chart-bar-value {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFD700;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s ease 1s;
+}
+
+/* 市场分布图表 */
+.market-chart {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.donut-chart {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #FFD700 0% var(--domestic-percentage, 65%),
+        #0D6EFD var(--domestic-percentage, 65%) 100%
+    );
+    position: relative;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transform: rotate(-90deg);
+}
+
+.donut-chart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(
+        rgba(255, 215, 0, 0) 0% var(--domestic-percentage, 65%),
+        rgba(13, 110, 253, 0) var(--domestic-percentage, 65%) 100%
+    );
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.chart-card.animate .donut-chart::before {
+    opacity: 0.5;
+}
+
+.donut-hole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    width: 85px;
+    height: 85px;
+    background: linear-gradient(145deg, #0a4c95 0%, #074e9c 100%);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+.donut-total {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.donut-label {
+    font-size: 10px;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+/* 满意度图表 */
+.satisfaction-chart {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.satisfaction-meter {
+    width: 160px;
+    height: 90px;
+    background: transparent;
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.satisfaction-needle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(var(--satisfaction-degree, 0deg));
+    width: 4px;
+    height: 80px;
+    background: #FFD700;
+    transform-origin: bottom center;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 2;
+}
+
+.chart-card.animate .satisfaction-needle {
+    transform: translateX(-50%) rotate(var(--satisfaction-degree, 0deg));
+}
+
+.satisfaction-value {
+    font-size: 42px;
+    font-weight: 800;
+    color: #FFD700;
+    text-shadow: 0 2px 10px rgba(255, 215, 0, 0.6);
+    margin-top: 20px;
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease 0.5s;
+}
+
+.satisfaction-label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 10px;
+}
+
+/* 图标脉动动画定义 */
+@keyframes icon-pulse {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    100% {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+}
+
+/* 旋转动画 */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotate-reverse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+/* 脉动动画 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* 数据卡片徽章 */
+.data-card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.4) 100%);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFD700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    transition: all 0.4s ease;
+}
+
+.data-card-redesigned:hover .data-card-badge {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0.6) 100%);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 数据值特殊标记 */
+.percent-sign,
+.plus-sign {
+    font-size: 0.5em;
+    vertical-align: super;
+    margin-left: 2px;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+/* 趋势线 */
+.data-trend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    height: 30px;
+    width: 100%;
+    position: relative;
+}
+
+.trend-line {
+    height: 3px;
+    width: 80%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 215, 0, 0.6));
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trend-dot {
+    width: 7px;
+    height: 7px;
+    background: #FFD700;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.trend-dot:nth-child(1) { transform: translateY(5px); animation: trend-bounce 2s infinite ease-in-out; }
+.trend-dot:nth-child(2) { transform: translateY(0px); animation: trend-bounce 2s infinite ease-in-out 0.2s; }
+.trend-dot:nth-child(3) { transform: translateY(-3px); animation: trend-bounce 2s infinite ease-in-out 0.4s; }
+.trend-dot:nth-child(4) { transform: translateY(-7px); animation: trend-bounce 2s infinite ease-in-out 0.6s; }
+.trend-dot:nth-child(5) { transform: translateY(-12px); animation: trend-bounce 2s infinite ease-in-out 0.8s; }
+
+@keyframes trend-bounce {
+    0%, 100% { transform: translateY(var(--y-pos, 0)); }
+    50% { transform: translateY(calc(var(--y-pos, 0) - 3px)); }
+}
+
+.trend-arrow {
+    position: absolute;
+    right: -5px;
+    top: -10px;
+    color: #FFD700;
+    font-size: 24px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+    animation: arrow-pulse 2s infinite ease-in-out;
+}
+
+@keyframes arrow-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* 迷你地图 */
+.data-mini-map {
+    position: relative;
+    height: 30px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.map-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    animation: map-pulse 3s infinite ease-in-out;
+}
+
+.map-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    animation: map-ripple 3s infinite ease-out;
+}
+
+.map-dot-1 { top: 30%; left: 15%; animation-delay: 0s; }
+.map-dot-2 { top: 50%; left: 35%; animation-delay: 0.6s; }
+.map-dot-3 { top: 20%; left: 55%; animation-delay: 1.2s; }
+.map-dot-4 { top: 60%; left: 70%; animation-delay: 1.8s; }
+.map-dot-5 { top: 40%; left: 85%; animation-delay: 2.4s; }
+
+@keyframes map-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.7; }
+}
+
+@keyframes map-ripple {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* 客户评分 */
+.data-rating {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+    color: #FFD700;
+    font-size: 16px;
+}
+
+.data-rating i {
+    filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
+    transition: all 0.3s ease;
+}
+
+.data-card-redesigned:hover .data-rating i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+}
+
+.data-rating i:nth-child(1) { animation: star-twinkle 2s infinite ease-in-out; }
+.data-rating i:nth-child(2) { animation: star-twinkle 2s infinite ease-in-out 0.2s; }
+.data-rating i:nth-child(3) { animation: star-twinkle 2s infinite ease-in-out 0.4s; }
+.data-rating i:nth-child(4) { animation: star-twinkle 2s infinite ease-in-out 0.6s; }
+.data-rating i:nth-child(5) { animation: star-twinkle 2s infinite ease-in-out 0.8s; }
+
+@keyframes star-twinkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* 创新进度条 */
+.data-innovation {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.innovation-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.innovation-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    animation: progress-animate 2s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes progress-animate {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.innovation-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.innovation-text span:last-child {
+    color: #FFD700;
+    font-weight: 600;
+}
+
+/* 强制为第三个和第四个卡片应用相同的动画效果 */
+.data-card-wrapper .data-card-redesigned:nth-child(3) .data-icon i,
+.data-card-wrapper .data-card-redesigned:nth-child(4) .data-icon i {
+    animation: icon-pulse 2s infinite alternate ease-in-out !important;
+} 

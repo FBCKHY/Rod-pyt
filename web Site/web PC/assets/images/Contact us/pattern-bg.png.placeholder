@@ -1,0 +1,11 @@
+# 背景图案图片占位符
+
+此文件是pattern-bg.png的占位符。
+请将真实的背景图案图片重命名为pattern-bg.png并替换此文件。
+
+建议图片规格：
+- 格式：PNG
+- 尺寸：支持透明背景
+- 内容：装饰性背景图案
+
+<!-- placeholder for pattern-bg.png --> 

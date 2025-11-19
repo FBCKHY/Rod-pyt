@@ -1,0 +1,324 @@
+/**
+ * 技术亮点区块样式 - tech-highlights.css
+ * 
+ * 描述：定义网站技术亮点区块的样式
+ * 用途：展示产品的技术特色和创新点
+ * 
+ * 包含内容：
+ * - 区块基础布局
+ * - 技术特点卡片
+ * - 动画效果
+ * - 装饰元素
+ * 
+ * 创建日期：2025-07-10
+ */
+
+/* 技术亮点区块基础样式 */
+.tech-highlights-section {
+    position: relative;
+    padding: var(--section-spacing) 0;
+    background-color: var(--brand-primary-blue);
+    background-image: 
+        /* 细密低调的点阵纹理 */
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        /* 极细斜向暗纹 */
+        repeating-linear-gradient(45deg, 
+            rgba(255, 255, 255, 0.03) 0px,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        repeating-linear-gradient(-45deg, 
+            rgba(255, 255, 255, 0.03) 0px,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px,
+            transparent 10px
+        );
+    background-size: 
+        20px 20px, /* 点阵纹理 */
+        30px 30px, /* 斜向暗纹45度 */
+        30px 30px; /* 斜向暗纹-45度 */
+    background-position: 
+        center center, /* 点阵纹理 */
+        center center, /* 斜向暗纹45度 */
+        center center, /* 斜向暗纹-45度 */
+        center top, /* 顶部光晕 */
+        center bottom; /* 底部光晕 */
+    overflow: hidden;
+    color: var(--brand-white);
+}
+
+/* 顶部金色装饰 - 优雅的分隔线 */
+.tech-highlights-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, 
+        transparent 0%,
+        var(--gold-medium) 20%,
+        var(--gold-fluorescent) 50%,
+        var(--gold-medium) 80%,
+        transparent 100%
+    );
+    box-shadow: 
+        0 0 8px 1px var(--gold-shadow),
+        0 0 12px 2px rgba(255, 215, 0, 0.3);
+    z-index: 2;
+}
+
+/* 删除底部波浪形分隔装饰 */
+
+/* 删除底部渐变过渡效果 */
+
+/* 标题区域样式 */
+.tech-title-area {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.main-tech-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--brand-white);
+    margin-bottom: 20px;
+    text-shadow: var(--text-shadow-dark);
+    letter-spacing: 1px;
+}
+
+.tech-subtitle {
+    font-size: 1.2rem;
+    color: var(--brand-white);
+    opacity: 0.9;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+/* 技术亮点卡片容器 */
+.tech-highlights-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 技术亮点卡片样式 */
+.tech-highlight-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.tech-highlight-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* 技术亮点图标容器 */
+.tech-icon-container {
+    margin-right: 30px;
+    flex-shrink: 0;
+}
+
+.tech-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tech-highlight-card:hover .tech-icon-wrapper {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 技术亮点图标 */
+.tech-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--gold-light);
+    transition: all 0.3s ease;
+}
+
+.tech-highlight-card:hover .tech-icon {
+    transform: scale(1.1);
+    color: var(--gold-fluorescent);
+}
+
+/* 技术亮点内容容器 */
+.tech-content-wrapper {
+    flex: 1;
+}
+
+/* 技术亮点内容 */
+.tech-highlight-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--brand-white);
+}
+
+.tech-highlight-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 技术数据列表 */
+.tech-data-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tech-data-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tech-data-item::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: var(--gold-medium);
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 5px var(--gold-shadow);
+}
+
+/* 技术亮点卡片装饰元素 */
+.tech-highlight-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.tech-highlight-card:hover::after {
+    opacity: 1;
+}
+
+/* 了解更多按钮 */
+.tech-more-btn {
+    display: inline-flex;
+    align-items: center;
+    color: var(--gold-fluorescent);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+.tech-more-btn .arrow-icon {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.tech-more-btn:hover {
+    color: var(--gold-light);
+}
+
+.tech-more-btn:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* 响应式样式 */
+@media (max-width: 992px) {
+    .tech-highlight-card {
+        padding: 25px;
+    }
+    
+    .main-tech-title {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tech-highlights-container {
+        gap: 20px;
+    }
+    
+    .main-tech-title {
+        font-size: 2rem;
+    }
+    
+    .tech-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .tech-highlight-card {
+        padding: 20px;
+    }
+    
+    .tech-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-tech-title {
+        font-size: 1.8rem;
+    }
+    
+    .tech-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+    }
+    
+    .tech-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .tech-highlight-title {
+        font-size: 1.3rem;
+    }
+    
+    .tech-highlight-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tech-icon-wrapper {
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+} 

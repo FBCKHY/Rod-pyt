@@ -1,0 +1,359 @@
+/**
+ * 核心产品区块样式 - core-products.css
+ * 
+ * 描述：定义网站核心产品区块的样式
+ * 用途：设置燃气灶、抽油烟机、热水器三个核心产品的展示效果
+ * 
+ * 包含内容：
+ * - 区块基础布局
+ * - 产品卡片样式
+ * - 产品特点样式
+ * - 动画效果
+ * 
+ * 创建日期：2025-07-10
+ */
+
+/* 核心产品区块基础样式 */
+.core-products-section {
+    position: relative;
+    padding: var(--section-spacing) 0;
+    background-color: var(--brand-white);
+    overflow: hidden;
+}
+
+/* 添加容器动画效果 */
+.core-products-container {
+    position: relative;
+    z-index: 1;
+    /* 光晕效果变量 */
+    --glow-size: 15%;
+    --glow-opacity: 0.03;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+}
+
+.core-products-container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(212, 175, 55, var(--glow-opacity)) 0%,
+        rgba(212, 175, 55, 0) var(--glow-size)
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.core-products-container:hover::before {
+    opacity: 1;
+}
+
+/* 区块标题样式 */
+.core-products-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.core-products-title h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--brand-blue-darker);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.core-products-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold-dark), var(--gold-fluorescent));
+}
+
+.core-products-title p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 产品展示容器 */
+.products-showcase {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+/* 产品卡片样式 */
+.product-card {
+    position: relative;
+    width: 350px;
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    /* 恢复动画过渡效果 */
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    /* 恢复悬停时的位移和阴影变化 */
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 产品图片容器 */
+.product-image-container {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--brand-blue-darker) 0%, #0a2c4e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0;
+}
+
+/* 产品信息样式 */
+.product-info {
+    padding: 25px;
+    background-color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--brand-blue-darker);
+    margin-bottom: 10px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.product-name::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--brand-gold-primary);
+    transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card:hover .product-name::after {
+    width: 80px;
+}
+
+.product-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 产品特点列表 */
+.product-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+.feature-item {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* 产品按钮 */
+.product-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-fluorescent));
+    color: var(--brand-blue-darker);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
+    align-self: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.25);
+}
+
+/* 产品标签 */
+.product-tag {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background: var(--brand-gold-primary);
+    color: var(--brand-blue-darker);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .products-showcase {
+        gap: 20px;
+    }
+    
+    .product-card {
+        width: 320px;
+    }
+}
+
+@media (max-width: 992px) {
+    .products-showcase {
+        gap: 15px;
+    }
+    
+    .product-card {
+        width: 300px;
+    }
+    
+    .product-image-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-showcase {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .product-card {
+        width: 100%;
+        max-width: 450px;
+    }
+    
+    .core-products-title h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-card {
+        max-width: 100%;
+    }
+    
+    .core-products-title h2 {
+        font-size: 1.8rem;
+    }
+    
+    .product-image-container {
+        height: 220px;
+    }
+} 
+
+/* 核心产品区块 - 查看全部产品按钮 */
+.core-products-view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #0a2c4e, var(--brand-blue-darker));
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 8px 25px rgba(10, 44, 78, 0.2);
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+}
+
+.core-products-view-all::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-fluorescent));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.core-products-view-all:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(10, 44, 78, 0.25);
+    color: var(--brand-blue-darker);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.core-products-view-all:hover::before {
+    opacity: 1;
+}
+
+.core-products-view-all span {
+    position: relative;
+    z-index: 2;
+}
+
+.core-products-view-all .arrow-icon {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.core-products-view-all:hover .arrow-icon {
+    transform: translateX(5px);
+} 
