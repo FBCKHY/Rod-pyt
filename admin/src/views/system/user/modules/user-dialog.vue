@@ -114,9 +114,11 @@
   const fetchRoleList = async () => {
     try {
       roleLoading.value = true
-      const res = await RoleService.getRoleList({ page: 1, size: 100 })
+      const res: any = await RoleService.getRoleList({ page: 1, size: 100 })
+      console.log('角色列表API返回:', res)
       if (res.code === 200 && res.data) {
         roleList.value = res.data.list || []
+        console.log('角色列表数据:', roleList.value)
       }
     } catch (error) {
       console.error('获取角色列表失败:', error)
