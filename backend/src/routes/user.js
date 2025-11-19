@@ -75,57 +75,12 @@ router.get('/info', userController.getUserInfo);
  */
 router.get('/list', userController.getUserList);
 
-/**
- * @swagger
- * /api/user/{id}:
- *   put:
- *     summary: 更新用户信息
- *     tags: [User]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               nickname:
- *                 type: string
- *               email:
- *                 type: string
- *               avatar:
- *                 type: string
- *     responses:
- *       200:
- *         description: 更新成功
- */
+// 用户管理路由 (RESTful风格)
+router.post('/', userController.createUser);
+router.get('/:id', userController.getUserById);
 router.put('/:id', userController.updateUser);
-
-/**
- * @swagger
- * /api/user/{id}:
- *   delete:
- *     summary: 删除用户
- *     tags: [User]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: 删除成功
- */
 router.delete('/:id', userController.deleteUser);
+router.patch('/:id/status', userController.toggleUserStatus);
+router.post('/:id/reset-password', userController.resetPassword);
 
 module.exports = router;
