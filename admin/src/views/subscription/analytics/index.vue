@@ -140,7 +140,7 @@
     <div class="insights-panel">
       <div class="insights-header">
         <h3>
-          <el-icon><Lightbulb /></el-icon>
+          <el-icon><InfoFilled /></el-icon>
           数据洞察
         </h3>
       </div>
@@ -194,7 +194,7 @@ import { ref, reactive, computed, onMounted, nextTick, onBeforeUnmount } from 'v
 import { ElMessage } from 'element-plus'
 import {
   DataAnalysis, Refresh, TrendCharts, ArrowUp, User, PieChart, Calendar,
-  Lightbulb, Clock, Location, Message
+  InfoFilled, Clock, Location, Message
 } from '@element-plus/icons-vue'
 import { useSettingStore } from '@/store/modules/setting'
 import { SubscriptionService } from '@/api/subscriptionApi'

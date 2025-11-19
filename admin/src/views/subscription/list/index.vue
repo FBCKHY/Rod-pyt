@@ -457,12 +457,12 @@ const fetchData = async () => {
     }
 
     const res = await SubscriptionService.getSubscriptionList(params)
-    if (res && res.data) {
-      tableData.value = res.data.list || []
-      pagination.total = res.data.pagination?.total || 0
+    if (res) {
+      tableData.value = res.list || []
+      pagination.total = res.pagination?.total || 0
       // 初始化lastTotal，避免首次加载时误报新订阅
       if (lastTotal.value === 0) {
-        lastTotal.value = res.data.pagination?.total || 0
+        lastTotal.value = res.pagination?.total || 0
       }
     }
   } catch (error) {
@@ -476,8 +476,8 @@ const fetchData = async () => {
 const fetchStats = async () => {
   try {
     const res = await SubscriptionService.getSubscriptionStats()
-    if (res && res.data) {
-      Object.assign(stats, res.data)
+    if (res) {
+      Object.assign(stats, res)
     }
   } catch (error) {
     console.error('获取统计数据失败:', error)
@@ -715,8 +715,8 @@ const refreshDataSilently = async () => {
     }
 
     const res = await SubscriptionService.getSubscriptionList(params)
-    if (res && res.data) {
-      const newTotal = res.data.pagination?.total || 0
+    if (res) {
+      const newTotal = res.pagination?.total || 0
       
       // 检查是否有新订阅
       if (newTotal > lastTotal.value && lastTotal.value > 0) {
@@ -730,15 +730,15 @@ const refreshDataSilently = async () => {
         })
       }
       
-      tableData.value = res.data.list || []
+      tableData.value = res.list || []
       pagination.total = newTotal
       lastTotal.value = newTotal
     }
     
     // 同时刷新统计数据
     const statsRes = await SubscriptionService.getSubscriptionStats()
-    if (statsRes && statsRes.data) {
-      Object.assign(stats, statsRes.data)
+    if (statsRes) {
+      Object.assign(stats, statsRes)
     }
   } catch (error) {
     console.error('静默刷新失败:', error)
