@@ -252,6 +252,8 @@
     try {
       dialogVisible.value = false
       currentUserData.value = {}
+      // 刷新列表
+      refreshAll()
     } catch (error) {
       console.error('提交失败:', error)
     }
