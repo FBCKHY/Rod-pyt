@@ -121,6 +121,23 @@
         { type: 'selection' }, // 勾选列
         { type: 'index', width: 60, label: '序号' }, // 序号
         {
+          prop: 'avatar',
+          label: '头像',
+          width: 80,
+          formatter: (row) => {
+            const avatarUrl = row.avatar 
+              ? (row.avatar.startsWith('http') ? row.avatar : import.meta.env.VITE_API_BASE_URL + row.avatar)
+              : 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+            return h('img', {
+              src: avatarUrl,
+              style: 'width: 40px; height: 40px; border-radius: 50%; object-fit: cover;',
+              onerror: (e: any) => {
+                e.target.src = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+              }
+            })
+          }
+        },
+        {
           prop: 'username',
           label: '用户名',
           minWidth: 150
