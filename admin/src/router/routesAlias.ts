@@ -25,6 +25,7 @@ export enum RoutesAlias {
   Role = '/system/role', // 角色
   UserCenter = '/system/user-center', // 用户中心
   Menu = '/system/menu', // 菜单
+  OperationLog = '/system/operation-log', // 操作日志
 
   // 订阅管理
   SubscriptionList = '/subscription/list', // 订阅列表
