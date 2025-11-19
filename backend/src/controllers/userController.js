@@ -176,7 +176,7 @@ exports.getUserList = async (req, res) => {
  */
 exports.createUser = async (req, res) => {
   try {
-    const { username, password, nickname, email, mobile, department, roleIds } = req.body;
+    const { username, password, nickname, email, mobile, avatar, department, roleIds } = req.body;
 
     // 验证必填字段
     if (!username || !password) {
@@ -207,12 +207,14 @@ exports.createUser = async (req, res) => {
     }
 
     // 创建用户
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       username,
-      password,
-      nickname: nickname || username,
+      password: hashedPassword,
+      nickname,
       email,
       mobile,
+      avatar,
       department,
       status: 'active'
     });

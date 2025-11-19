@@ -160,6 +160,27 @@
     const row = props.userData
 
     if (isEdit) {
+      console.log('编辑用户数据:', row)
+      console.log('用户角色:', row.roles)
+      
+      // 处理角色ID - 支持多种数据格式
+      let roleIds: number[] = []
+      if (row.roles && Array.isArray(row.roles)) {
+        roleIds = row.roles.map((r: any) => {
+          // 如果roles是对象数组,取id字段
+          if (typeof r === 'object' && r.id) {
+            return r.id
+          }
+          // 如果roles是数字数组,直接使用
+          if (typeof r === 'number') {
+            return r
+          }
+          return 0
+        }).filter((id: number) => id > 0)
+      }
+      
+      console.log('解析后的角色IDs:', roleIds)
+      
       Object.assign(formData, {
         id: row.id || 0,
         username: row.username || '',
@@ -169,7 +190,7 @@
         mobile: row.mobile || '',
         department: row.department || '',
         avatar: row.avatar || '',
-        roleIds: row.roles ? row.roles.map((r: any) => r.id || 0).filter((id: number) => id > 0) : []
+        roleIds
       })
     } else {
       Object.assign(formData, {
