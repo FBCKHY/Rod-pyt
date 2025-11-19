@@ -10,6 +10,13 @@
         <p class="page-subtitle">管理和分析用户订阅数据</p>
       </div>
       <div class="header-right">
+        <el-switch
+          v-model="autoRefreshEnabled"
+          active-text="自动刷新"
+          inactive-text=""
+          @change="toggleAutoRefresh"
+          style="margin-right: 12px;"
+        />
         <el-button type="primary" :icon="Plus" size="large" @click="handleAdd">
           新增订阅
         </el-button>
@@ -357,8 +364,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ref, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ElMessage, ElMessageBox, ElNotification } from 'element-plus'
 import {
   Plus, Download, Refresh, User, CircleCheck, Calendar, DataAnalysis,
   TrendCharts, Search, Message, ChatDotRound, Phone, Grid, Delete,
@@ -373,6 +380,12 @@ const dialogVisible = ref(false)
 const dialogType = ref<'add' | 'edit'>('add')
 const submitting = ref(false)
 const formRef = ref()
+
+// 自动刷新相关
+const autoRefreshEnabled = ref(true)
+const autoRefreshInterval = ref(30) // 秒
+let autoRefreshTimer: number | null = null
+const lastTotal = ref(0)
 
 const tableData = ref<any[]>([])
 const selectedRows = ref<any[]>([])
@@ -649,10 +662,98 @@ const formatDate = (date: string) => {
   return new Date(date).toLocaleString('zh-CN')
 }
 
+// 自动刷新功能
+const startAutoRefresh = () => {
+  if (autoRefreshTimer) {
+    clearInterval(autoRefreshTimer)
+  }
+  
+  if (autoRefreshEnabled.value) {
+    autoRefreshTimer = window.setInterval(() => {
+      refreshDataSilently()
+    }, autoRefreshInterval.value * 1000)
+  }
+}
+
+const stopAutoRefresh = () => {
+  if (autoRefreshTimer) {
+    clearInterval(autoRefreshTimer)
+    autoRefreshTimer = null
+  }
+}
+
+const toggleAutoRefresh = (enabled: boolean) => {
+  if (enabled) {
+    startAutoRefresh()
+    ElMessage.success(`已开启自动刷新 (${autoRefreshInterval.value}秒)`)
+  } else {
+    stopAutoRefresh()
+    ElMessage.info('已关闭自动刷新')
+  }
+}
+
+// 静默刷新数据 (不显示loading)
+const refreshDataSilently = async () => {
+  try {
+    const params: any = {
+      page: pagination.page,
+      size: pagination.size,
+      ...filters
+    }
+
+    if (searchQuery.value) {
+      params.contact = searchQuery.value
+    }
+
+    if (dateRange.value) {
+      params.startDate = dateRange.value[0].toISOString()
+      params.endDate = dateRange.value[1].toISOString()
+    }
+
+    const res = await SubscriptionService.getSubscriptionList(params)
+    if (res && res.data) {
+      const newTotal = res.data.total || 0
+      
+      // 检查是否有新订阅
+      if (newTotal > lastTotal.value && lastTotal.value > 0) {
+        const newCount = newTotal - lastTotal.value
+        ElNotification({
+          title: '新订阅提醒',
+          message: `有 ${newCount} 条新订阅`,
+          type: 'success',
+          duration: 5000,
+          position: 'top-right'
+        })
+      }
+      
+      tableData.value = res.data.list || []
+      pagination.total = newTotal
+      lastTotal.value = newTotal
+    }
+    
+    // 同时刷新统计数据
+    const statsRes = await SubscriptionService.getSubscriptionStats()
+    if (statsRes && statsRes.data) {
+      Object.assign(stats, statsRes.data)
+    }
+  } catch (error) {
+    console.error('静默刷新失败:', error)
+  }
+}
+
 // 生命周期
 onMounted(() => {
   fetchData()
   fetchStats()
+  
+  // 启动自动刷新
+  if (autoRefreshEnabled.value) {
+    startAutoRefresh()
+  }
+})
+
+onBeforeUnmount(() => {
+  stopAutoRefresh()
 })
 </script>
 
