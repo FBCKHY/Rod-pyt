@@ -23,6 +23,7 @@ const userRoutes = require('./routes/user');
 const roleRoutes = require('./routes/roles');
 const permissionRoutes = require('./routes/permissions');
 const operationLogRoutes = require('./routes/operationLogs');
+const uploadRoutes = require('./routes/upload');
 
 const app = express();
 
@@ -162,6 +163,10 @@ app.use('/api/user', userRoutes);
 app.use('/api/roles', roleRoutes);
 app.use('/api/permissions', permissionRoutes);
 app.use('/api/operation-logs', operationLogRoutes);
+app.use('/api/upload', uploadRoutes);
+
+// 静态文件服务 - 提供上传的文件访问
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/products', productRoutes);
