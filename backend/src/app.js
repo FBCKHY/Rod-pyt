@@ -165,6 +165,9 @@ app.get('/health', (req, res) => {
   }));
 });
 
+// 处理所有OPTIONS请求
+app.options('*', cors());
+
 // API路由
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
