@@ -22,6 +22,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const roleRoutes = require('./routes/roles');
 const permissionRoutes = require('./routes/permissions');
+const operationLogRoutes = require('./routes/operationLogs');
 
 const app = express();
 
@@ -160,6 +161,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/roles', roleRoutes);
 app.use('/api/permissions', permissionRoutes);
+app.use('/api/operation-logs', operationLogRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/products', productRoutes);
