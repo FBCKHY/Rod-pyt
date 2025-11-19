@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
   import ArtButtonTable from '@/components/core/forms/art-button-table/index.vue'
-  import { ElMessageBox, ElMessage, ElTag } from 'element-plus'
+  import { ElMessageBox, ElMessage, ElTag, ElPopover } from 'element-plus'
   import { useTable } from '@/composables/useTable'
   import { UserService } from '@/api/usersApi'
   import UserSearch from './modules/user-search.vue'
@@ -160,11 +160,38 @@
         {
           prop: 'roles',
           label: '角色',
+          minWidth: 120,
           formatter: (row) => {
             if (!row.roles || row.roles.length === 0) return '-'
-            return h('div', {}, row.roles.map((role: any) => 
-              h(ElTag, { size: 'small', style: 'margin-right: 5px' }, () => role.name)
-            ))
+            
+            // 只显示第一个角色，如果有多个则显示 +N
+            const firstRole = row.roles[0]
+            const remainingCount = row.roles.length - 1
+            
+            if (row.roles.length === 1) {
+              return h(ElTag, { size: 'small', type: 'primary' }, () => firstRole.name)
+            }
+            
+            // 多个角色时，使用 Popover 显示完整列表
+            return h(
+              ElPopover,
+              {
+                placement: 'top',
+                width: 200,
+                trigger: 'hover'
+              },
+              {
+                reference: () => h('div', { style: 'display: flex; align-items: center; gap: 4px; cursor: pointer;' }, [
+                  h(ElTag, { size: 'small', type: 'primary' }, () => firstRole.name),
+                  h(ElTag, { size: 'small', type: 'info' }, () => `+${remainingCount}`)
+                ]),
+                default: () => h('div', { style: 'display: flex; flex-direction: column; gap: 6px;' }, 
+                  row.roles.map((role: any) => 
+                    h(ElTag, { size: 'small', type: 'primary', style: 'width: 100%;' }, () => role.name)
+                  )
+                )
+              }
+            )
           }
         },
         {
@@ -190,18 +217,18 @@
           width: 280,
           fixed: 'right', // 固定列
           formatter: (row) =>
-            h('div', { style: 'display: flex; gap: 4px; flex-wrap: wrap;' }, [
+            h('div', { style: 'display: flex; gap: 4px; flex-wrap: wrap; align-items: center;' }, [
               h(ArtButtonTable, {
                 type: 'edit',
                 onClick: () => showDialog('edit', row)
               }),
               h(ArtButtonTable, {
-                type: 'view',
+                type: row.status === 'active' ? 'disable' : 'enable',
                 text: row.status === 'active' ? '禁用' : '启用',
                 onClick: () => toggleStatus(row)
               }),
               h(ArtButtonTable, {
-                type: 'view',
+                type: 'reset',
                 text: '重置密码',
                 onClick: () => resetPassword(row)
               }),

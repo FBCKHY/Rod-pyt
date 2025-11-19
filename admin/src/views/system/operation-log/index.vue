@@ -134,7 +134,7 @@
 
 <script setup lang="ts">
   import { ElMessage } from 'element-plus'
-  import { http } from '@/utils/http'
+  import request from '@/utils/http'
 
   defineOptions({ name: 'OperationLog' })
 
@@ -177,10 +177,10 @@
         params.endDate = dateRange.value[1].toISOString()
       }
 
-      const res: any = await http.get('/api/operation-logs', { params })
-      if (res && res.list) {
-        logList.value = res.list || []
-        pagination.total = res.total || 0
+      const res: any = await request.get({ url: '/operation-logs', params })
+      if (res && res.data) {
+        logList.value = res.data.list || []
+        pagination.total = res.data.total || 0
       }
     } catch (error) {
       console.error('获取日志列表失败:', error)

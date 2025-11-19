@@ -23,7 +23,7 @@ exports.getOperationLogs = async (req, res) => {
     } = req.query;
 
     const offset = (parseInt(page) - 1) * parseInt(size);
-    const limit = parseInt(size);
+    const limit = Math.min(parseInt(size), 100); // 限制最大100条，提升性能
 
     // 构建查询条件
     const where = {};
