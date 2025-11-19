@@ -269,8 +269,10 @@
   // 头像上传成功
   const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
     console.log('上传响应:', response)
-    if (response.code === 200) {
-      formData.avatar = response.data.url
+    console.log('响应数据:', response.data)
+    if (response.code === 200 && response.data) {
+      formData.avatar = response.data.url || response.data.path || response.data
+      console.log('设置头像URL:', formData.avatar)
       ElMessage.success('头像上传成功')
     } else {
       ElMessage.error(response.msg || '上传失败')
