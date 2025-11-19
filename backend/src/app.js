@@ -89,17 +89,14 @@ app.use(helmet({
     }
   }
 }));
+// CORS配置 - 允许所有来源(开发环境)
 app.use(cors({
-  origin: process.env.CORS_ORIGIN?.split(',') || [
-    'http://localhost:3006', 
-    'http://localhost:8080',
-    'http://127.0.0.1:60436',
-    /^http:\/\/127\.0\.0\.1:\d+$/,
-    /^http:\/\/localhost:\d+$/
-  ],
+  origin: true, // 允许所有来源
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 600 // 预检请求缓存10分钟
 }));
 
 // 限流中间件
