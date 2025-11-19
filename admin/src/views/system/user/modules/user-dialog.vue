@@ -325,10 +325,15 @@
         roleIds: formData.roleIds
       }
 
+      console.log('提交参数:', params)
+      console.log('对话框类型:', dialogType.value)
+      console.log('用户ID:', formData.id)
+
       if (dialogType.value === 'add') {
         await UserService.createUser(params)
         ElMessage.success('添加成功')
       } else {
+        console.log('调用updateUser, ID:', formData.id, '参数:', params)
         await UserService.updateUser(formData.id, params)
         ElMessage.success('更新成功')
       }
@@ -337,7 +342,8 @@
       emit('submit')
     } catch (error: any) {
       console.error('提交失败:', error)
-      ElMessage.error(error.msg || '操作失败')
+      console.error('错误详情:', error.response?.data)
+      ElMessage.error(error.msg || error.message || '操作失败')
     }
   }
 </script>
