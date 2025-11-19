@@ -40,12 +40,11 @@
 
   // 搜索处理
   const handleSearch = () => {
-    console.log('搜索参数:', searchFormState.value)
     emit('search', searchFormState.value)
   }
 
   const handleFormChange = (params: SearchChangeParams): void => {
-    console.log('表单项变更:', params)
+    // 表单项变更处理
   }
 
   // --- 表单配置项 ---
