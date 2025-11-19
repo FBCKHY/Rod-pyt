@@ -6,6 +6,21 @@
     align-center
   >
     <ElForm ref="formRef" :model="formData" :rules="rules" label-width="80px">
+      <ElFormItem label="头像" prop="avatar">
+        <ElUpload
+          class="avatar-uploader"
+          :action="uploadUrl"
+          :headers="uploadHeaders"
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload"
+          accept="image/*"
+        >
+          <img v-if="formData.avatar" :src="getAvatarUrl(formData.avatar)" class="avatar" />
+          <ElIcon v-else class="avatar-uploader-icon"><Plus /></ElIcon>
+        </ElUpload>
+        <div class="avatar-tip">支持jpg/png/gif格式,大小不超过5MB</div>
+      </ElFormItem>
       <ElFormItem label="用户名" prop="username">
         <ElInput v-model="formData.username" :disabled="dialogType === 'edit'" placeholder="请输入用户名" />
       </ElFormItem>
@@ -47,8 +62,11 @@
 <script setup lang="ts">
   import type { FormInstance, FormRules } from 'element-plus'
   import { ElMessage } from 'element-plus'
+  import { Plus } from '@element-plus/icons-vue'
+  import type { UploadProps } from 'element-plus'
   import { UserService } from '@/api/usersApi'
   import { RoleService } from '@/api/rolesApi'
+  import { useUserStore } from '@/store/modules/user'
 
   interface Props {
     visible: boolean
@@ -88,7 +106,17 @@
     email: '',
     mobile: '',
     department: '',
+    avatar: '',
     roleIds: [] as number[]
+  })
+
+  // 上传配置
+  const uploadUrl = ref(import.meta.env.VITE_API_BASE_URL + '/api/upload/avatar')
+  const uploadHeaders = computed(() => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+    return {
+      Authorization: token || ''
+    }
   })
 
   // 表单验证规则
@@ -140,6 +168,7 @@
         email: row.email || '',
         mobile: row.mobile || '',
         department: row.department || '',
+        avatar: row.avatar || '',
         roleIds: row.roles ? row.roles.map((r: any) => r.id || 0).filter((id: number) => id > 0) : []
       })
     } else {
@@ -151,6 +180,7 @@
         email: '',
         mobile: '',
         department: '',
+        avatar: '',
         roleIds: []
       })
     }
@@ -171,6 +201,39 @@
     { immediate: true }
   )
 
+  // 头像上传成功
+  const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
+    if (response.code === 200) {
+      formData.avatar = response.data.url
+      ElMessage.success('头像上传成功')
+    } else {
+      ElMessage.error(response.msg || '上传失败')
+    }
+  }
+
+  // 上传前验证
+  const beforeAvatarUpload: UploadProps['beforeUpload'] = (file) => {
+    const isImage = file.type.startsWith('image/')
+    const isLt5M = file.size / 1024 / 1024 < 5
+
+    if (!isImage) {
+      ElMessage.error('只能上传图片文件!')
+      return false
+    }
+    if (!isLt5M) {
+      ElMessage.error('图片大小不能超过 5MB!')
+      return false
+    }
+    return true
+  }
+
+  // 获取头像URL
+  const getAvatarUrl = (avatar: string) => {
+    if (!avatar) return ''
+    if (avatar.startsWith('http')) return avatar
+    return import.meta.env.VITE_API_BASE_URL + avatar
+  }
+
   // 提交表单
   const handleSubmit = async () => {
     if (!formRef.value) return
@@ -186,6 +249,7 @@
         email: formData.email,
         mobile: formData.mobile,
         department: formData.department,
+        avatar: formData.avatar,
         roleIds: formData.roleIds
       }
 
@@ -205,3 +269,40 @@
     }
   }
 </script>
+
+<style scoped>
+.avatar-uploader {
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--el-transition-duration-fast);
+}
+
+.avatar-uploader:hover {
+  border-color: var(--el-color-primary);
+}
+
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  line-height: 120px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  display: block;
+  object-fit: cover;
+}
+
+.avatar-tip {
+  font-size: 12px;
+  color: var(--el-text-color-secondary);
+  margin-top: 8px;
+}
+</style>
