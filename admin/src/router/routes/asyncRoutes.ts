@@ -143,7 +143,7 @@ export const asyncRoutes: AppRouteRecord[] = [
       {
         path: 'analytics',
         name: 'SubscriptionAnalytics',
-        component: () => import('@/views/subscription/analytics/index.vue'),
+        component: RoutesAlias.SubscriptionAnalytics,
         meta: {
           title: 'menus.subscription.analytics',
           icon: '&#xe643;',
@@ -159,7 +159,7 @@ export const asyncRoutes: AppRouteRecord[] = [
       {
         path: 'export',
         name: 'SubscriptionExport',
-        component: () => import('@/views/subscription/export/index.vue'),
+        component: RoutesAlias.SubscriptionExport,
         meta: {
           title: 'menus.subscription.export',
           icon: '&#xe644;',
@@ -174,7 +174,7 @@ export const asyncRoutes: AppRouteRecord[] = [
       {
         path: 'settings',
         name: 'SubscriptionSettings',
-        component: () => import('@/views/subscription/settings/index.vue'),
+        component: RoutesAlias.SubscriptionSettings,
         meta: {
           title: 'menus.subscription.settings',
           icon: '&#xe645;',

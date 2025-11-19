@@ -29,6 +29,9 @@ export enum RoutesAlias {
 
   // 订阅管理
   SubscriptionList = '/subscription/list', // 订阅列表
+  SubscriptionAnalytics = '/subscription/analytics', // 数据分析
+  SubscriptionExport = '/subscription/export', // 数据导出
+  SubscriptionSettings = '/subscription/settings', // 订阅设置
   SubscriptionCreate = '/subscription/create', // 创建订阅
   SubscriptionEdit = '/subscription/edit', // 编辑订阅
 
