@@ -168,18 +168,42 @@
       let roleIds: number[] = []
       if (row.roles && Array.isArray(row.roles) && row.roles.length > 0) {
         console.log('第一个角色:', row.roles[0])
+        console.log('第一个角色的所有属性:', Object.keys(row.roles[0]))
+        console.log('第一个角色JSON:', JSON.stringify(row.roles[0]))
         roleIds = row.roles.map((r: any) => {
           console.log('处理角色:', r, typeof r)
+          console.log('角色属性:', Object.keys(r))
           // 如果roles是对象数组,尝试多个字段
           if (typeof r === 'object' && r !== null) {
             // 尝试 id 字段
-            if (r.id) return Number(r.id)
+            if (r.id) {
+              console.log('找到id:', r.id)
+              return Number(r.id)
+            }
             // 尝试 role_id 字段
-            if (r.role_id) return Number(r.role_id)
-            // 尝试 code 转换为 id (如果有roleList的话)
-            if (r.code && roleList.value.length > 0) {
-              const found = roleList.value.find((role: any) => role.role_code === r.code)
-              if (found) return Number(found.id)
+            if (r.role_id) {
+              console.log('找到role_id:', r.role_id)
+              return Number(r.role_id)
+            }
+            // 尝试 code 字段
+            if (r.code) {
+              console.log('找到code:', r.code, '角色列表长度:', roleList.value.length)
+              if (roleList.value.length > 0) {
+                const found = roleList.value.find((role: any) => role.role_code === r.code)
+                if (found) {
+                  console.log('通过code找到角色:', found)
+                  return Number(found.id)
+                }
+              }
+            }
+            // 尝试 name 字段匹配
+            if (r.name && roleList.value.length > 0) {
+              console.log('尝试通过name匹配:', r.name)
+              const found = roleList.value.find((role: any) => role.role_name === r.name)
+              if (found) {
+                console.log('通过name找到角色:', found)
+                return Number(found.id)
+              }
             }
           }
           // 如果roles是数字数组,直接使用

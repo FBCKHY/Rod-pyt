@@ -90,8 +90,16 @@ app.use(helmet({
   }
 }));
 app.use(cors({
-  origin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3006', 'http://localhost:8080'],
-  credentials: true
+  origin: process.env.CORS_ORIGIN?.split(',') || [
+    'http://localhost:3006', 
+    'http://localhost:8080',
+    'http://127.0.0.1:60436',
+    /^http:\/\/127\.0\.0\.1:\d+$/,
+    /^http:\/\/localhost:\d+$/
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // 限流中间件
