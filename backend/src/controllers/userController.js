@@ -297,6 +297,8 @@ exports.updateUser = async (req, res) => {
     const { id } = req.params;
     const { nickname, email, mobile, avatar, department, roleIds } = req.body;
 
+    logger.info('更新用户请求', { id, body: req.body });
+
     const user = await User.findByPk(id);
     if (!user) {
       return res.status(404).json({
@@ -331,9 +333,14 @@ exports.updateUser = async (req, res) => {
     });
 
     // 更新角色
-    if (roleIds && roleIds.length > 0) {
+    if (roleIds && Array.isArray(roleIds) && roleIds.length > 0) {
+      logger.info('更新角色', { roleIds });
       const roles = await Role.findAll({ where: { id: roleIds } });
+      logger.info('找到的角色', { roles: roles.map(r => r.id) });
       await user.setRoles(roles);
+    } else if (roleIds && Array.isArray(roleIds) && roleIds.length === 0) {
+      // 如果roleIds是空数组,清空角色
+      await user.setRoles([]);
     }
 
     logger.info('更新用户成功', { userId: id });
@@ -344,9 +351,10 @@ exports.updateUser = async (req, res) => {
     });
   } catch (error) {
     logger.error('更新用户失败', error);
+    logger.error('错误详情', { message: error.message, stack: error.stack });
     res.status(500).json({
       code: 500,
-      msg: '更新用户失败'
+      msg: '更新用户失败: ' + error.message
     });
   }
 };

@@ -111,7 +111,7 @@
   })
 
   // 上传配置
-  const uploadUrl = ref(import.meta.env.VITE_API_BASE_URL + '/api/upload/avatar')
+  const uploadUrl = ref((import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000') + '/api/upload/avatar')
   const uploadHeaders = computed(() => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token')
     return {
@@ -162,18 +162,33 @@
     if (isEdit) {
       console.log('编辑用户数据:', row)
       console.log('用户角色:', row.roles)
+      console.log('角色类型:', typeof row.roles, Array.isArray(row.roles))
       
       // 处理角色ID - 支持多种数据格式
       let roleIds: number[] = []
-      if (row.roles && Array.isArray(row.roles)) {
+      if (row.roles && Array.isArray(row.roles) && row.roles.length > 0) {
+        console.log('第一个角色:', row.roles[0])
         roleIds = row.roles.map((r: any) => {
-          // 如果roles是对象数组,取id字段
-          if (typeof r === 'object' && r.id) {
-            return r.id
+          console.log('处理角色:', r, typeof r)
+          // 如果roles是对象数组,尝试多个字段
+          if (typeof r === 'object' && r !== null) {
+            // 尝试 id 字段
+            if (r.id) return Number(r.id)
+            // 尝试 role_id 字段
+            if (r.role_id) return Number(r.role_id)
+            // 尝试 code 转换为 id (如果有roleList的话)
+            if (r.code && roleList.value.length > 0) {
+              const found = roleList.value.find((role: any) => role.role_code === r.code)
+              if (found) return Number(found.id)
+            }
           }
           // 如果roles是数字数组,直接使用
           if (typeof r === 'number') {
             return r
+          }
+          // 如果是字符串数字
+          if (typeof r === 'string' && !isNaN(Number(r))) {
+            return Number(r)
           }
           return 0
         }).filter((id: number) => id > 0)
