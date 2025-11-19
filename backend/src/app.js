@@ -18,6 +18,8 @@ const adminRoutes = require('./routes/admin');
 const productRoutes = require('./routes/products');
 const productCategoryRoutes = require('./routes/productCategories');
 const productTagRoutes = require('./routes/productTags');
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -151,23 +153,9 @@ app.get('/health', (req, res) => {
   }));
 });
 
-// 用户信息接口
-app.get('/api/user/info', (req, res) => {
-  // 开发环境返回默认用户信息
-  const userInfo = {
-    id: 1,
-    username: 'admin@example.com',
-    nickname: '管理员',
-    avatar: '/src/assets/img/avatar/avatar.webp',
-    role: 'admin',
-    permissions: ['subscription:read', 'subscription:write', 'subscription:delete'],
-    lastLoginTime: new Date().toISOString()
-  };
-  
-  res.json(formatResponse(200, '获取用户信息成功', userInfo));
-});
-
 // API路由
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/products', productRoutes);
