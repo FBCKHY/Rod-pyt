@@ -116,8 +116,9 @@
       roleLoading.value = true
       const res: any = await RoleService.getRoleList({ page: 1, size: 100 })
       console.log('角色列表API返回:', res)
-      if (res.code === 200 && res.data) {
-        roleList.value = res.data.list || []
+      // 响应拦截器已经将data提取出来了,所以res就是data部分
+      if (res && res.list) {
+        roleList.value = res.list || []
         console.log('角色列表数据:', roleList.value)
       }
     } catch (error) {

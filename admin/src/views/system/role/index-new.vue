@@ -189,14 +189,15 @@
   const fetchRoleList = async () => {
     try {
       loading.value = true
-      const res = await RoleService.getRoleList({
+      const res: any = await RoleService.getRoleList({
         page: pagination.page,
         size: pagination.size,
         keyword: searchForm.keyword
       })
-      if (res.code === 200 && res.data) {
-        roleList.value = res.data.list || []
-        pagination.total = res.data.total || 0
+      // 响应拦截器已经将data提取出来了
+      if (res && res.list) {
+        roleList.value = res.list || []
+        pagination.total = res.total || 0
       }
     } catch (error) {
       console.error('获取角色列表失败:', error)
@@ -310,10 +311,11 @@
   const fetchPermissionTree = async () => {
     try {
       permissionLoading.value = true
-      const res = await PermissionService.getPermissionTree()
-      if (res.code === 200 && res.data) {
+      const res: any = await PermissionService.getPermissionTree()
+      // 响应拦截器已经将data提取出来了
+      if (res && Array.isArray(res)) {
         // 转换为树形结构
-        permissionTree.value = res.data.map((group: any) => ({
+        permissionTree.value = res.map((group: any) => ({
           id: `group_${group.resource}`,
           label: group.label,
           children: group.children.map((perm: any) => ({
