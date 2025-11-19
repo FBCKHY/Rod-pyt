@@ -12,10 +12,12 @@ const logger = require('../utils/logger');
  */
 exports.login = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    // 兼容 username 和 userName 两种格式
+    const { username, userName, password } = req.body;
+    const user = username || userName;
 
     // 验证必填字段
-    if (!username || !password) {
+    if (!user || !password) {
       return res.status(400).json({
         code: 400,
         msg: '用户名和密码不能为空'
@@ -27,7 +29,7 @@ exports.login = async (req, res) => {
     const adminUsername = 'admin';
     const adminPassword = 'admin123';
 
-    if (username !== adminUsername || password !== adminPassword) {
+    if (user !== adminUsername || password !== adminPassword) {
       return res.status(401).json({
         code: 401,
         msg: '用户名或密码错误'
@@ -47,13 +49,14 @@ exports.login = async (req, res) => {
       }
     );
 
-    logger.info('用户登录成功', { username });
+    logger.info('用户登录成功', { username: user });
 
     res.json({
       code: 200,
       msg: '登录成功',
       data: {
         token,
+        refreshToken: token, // 暂时使用相同的token
         user: {
           id: 1,
           username: adminUsername,

@@ -7,7 +7,10 @@ const auth = (req, res, next) => {
     const token = req.header('Authorization')?.replace('Bearer ', '');
     
     if (!token) {
-      return res.status(401).json(formatResponse(401, '访问令牌缺失'));
+      return res.json({
+        code: 401,
+        msg: '访问令牌缺失'
+      });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -15,29 +18,42 @@ const auth = (req, res, next) => {
     next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
-      return res.status(401).json(formatResponse(401, '访问令牌已过期'));
+      return res.json({
+        code: 401,
+        msg: '访问令牌已过期'
+      });
     }
     if (error.name === 'JsonWebTokenError') {
-      return res.status(401).json(formatResponse(401, '无效的访问令牌'));
+      return res.json({
+        code: 401,
+        msg: '无效的访问令牌'
+      });
     }
     
-    return res.status(401).json(formatResponse(401, '身份验证失败'));
+    return res.json({
+      code: 401,
+      msg: '身份验证失败'
+    });
   }
 };
 
 // 开发环境跳过认证的中间件
 const authOptional = (req, res, next) => {
-  if (process.env.NODE_ENV === 'development') {
-    // 开发环境直接通过，设置默认用户信息
+  // 检查是否有token
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  
+  if (process.env.NODE_ENV === 'development' && !token) {
+    // 开发环境且没有token时，使用默认用户信息
     req.user = {
       id: 1,
+      username: 'admin',
       email: 'admin@example.com',
       role: 'admin'
     };
     return next();
   }
   
-  // 生产环境使用正常认证
+  // 有token时使用正常认证
   return auth(req, res, next);
 };
 
