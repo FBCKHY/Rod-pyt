@@ -336,9 +336,14 @@
   // 全部展开/收起
   const toggleExpandAll = () => {
     isExpandAll.value = !isExpandAll.value
-    permissionTree.value.forEach((node: any) => {
-      treeRef.value?.store.nodesMap[node.id].expanded = isExpandAll.value
-    })
+    if (treeRef.value?.store?.nodesMap) {
+      permissionTree.value.forEach((node: any) => {
+        const treeNode = treeRef.value?.store.nodesMap[node.id]
+        if (treeNode) {
+          treeNode.expanded = isExpandAll.value
+        }
+      })
+    }
   }
 
   // 全部选择/取消
