@@ -130,19 +130,58 @@ export const asyncRoutes: AppRouteRecord[] = [
         component: RoutesAlias.SubscriptionList,
         meta: {
           title: 'menus.subscription.list',
+          icon: '&#xe642;',
           keepAlive: true,
           authList: [
             {
-              title: '新增',
-              authMark: 'add'
-            },
+              title: '查看订阅列表',
+              authMark: 'subscription:read'
+            }
+          ]
+        }
+      },
+      {
+        path: 'analytics',
+        name: 'SubscriptionAnalytics',
+        component: () => import('@/views/subscription/analytics/index.vue'),
+        meta: {
+          title: 'menus.subscription.analytics',
+          icon: '&#xe643;',
+          keepAlive: true,
+          authList: [
             {
-              title: '编辑',
-              authMark: 'edit'
-            },
+              title: '查看数据分析',
+              authMark: 'subscription:analytics'
+            }
+          ]
+        }
+      },
+      {
+        path: 'export',
+        name: 'SubscriptionExport',
+        component: () => import('@/views/subscription/export/index.vue'),
+        meta: {
+          title: 'menus.subscription.export',
+          icon: '&#xe644;',
+          authList: [
             {
-              title: '删除',
-              authMark: 'delete'
+              title: '数据导出',
+              authMark: 'subscription:export'
+            }
+          ]
+        }
+      },
+      {
+        path: 'settings',
+        name: 'SubscriptionSettings',
+        component: () => import('@/views/subscription/settings/index.vue'),
+        meta: {
+          title: 'menus.subscription.settings',
+          icon: '&#xe645;',
+          authList: [
+            {
+              title: '订阅设置',
+              authMark: 'subscription:settings'
             }
           ]
         }

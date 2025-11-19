@@ -1,5 +1,5 @@
 <template>
-  <div class="subscription-page-redesign">
+  <div class="subscription-page-redesign" :class="{ 'dark-mode': isDarkMode }">
     <!-- 页面头部 -->
     <div class="page-header">
       <div class="header-left">
@@ -365,6 +365,7 @@ import {
   DocumentCopy, Clock, Edit, Notification
 } from '@element-plus/icons-vue'
 import { SubscriptionService } from '@/api/subscriptionApi'
+import { useSettingStore } from '@/store/modules/setting'
 
 // 响应式数据
 const loading = ref(false)
@@ -414,6 +415,8 @@ const formRules = {
 }
 
 // 计算属性
+const settingStore = useSettingStore()
+const isDarkMode = computed(() => settingStore.isDark)
 const dialogTitle = computed(() => dialogType.value === 'add' ? '新增订阅' : '编辑订阅')
 const conversionRate = computed(() => {
   const total = stats.total || 0
@@ -656,8 +659,9 @@ onMounted(() => {
 <style scoped lang="scss">
 .subscription-page-redesign {
   padding: 24px;
-  background: #f5f7fa;
+  background: var(--el-bg-color-page);
   min-height: 100vh;
+  transition: all 0.3s ease;
 
   // 页面头部
   .page-header {
@@ -703,7 +707,7 @@ onMounted(() => {
     margin-bottom: 24px;
 
     .stat-card {
-      background: #fff;
+      background: var(--el-bg-color);
       border-radius: 12px;
       padding: 24px;
       display: flex;
@@ -921,6 +925,76 @@ onMounted(() => {
   // 表单样式
   .modern-form {
     padding: 20px 0;
+  }
+
+  // 深色模式适配
+  &.dark-mode {
+    background: var(--el-bg-color-page);
+
+    .page-header {
+      .page-title {
+        color: var(--el-text-color-primary);
+      }
+      .page-subtitle {
+        color: var(--el-text-color-regular);
+      }
+    }
+
+    .stat-card {
+      background: var(--el-bg-color);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+      
+      &:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .stat-content {
+        .stat-value {
+          color: var(--el-text-color-primary);
+        }
+        .stat-label {
+          color: var(--el-text-color-regular);
+        }
+      }
+    }
+
+    .filter-section {
+      background: var(--el-bg-color);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .table-section {
+      background: var(--el-bg-color);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+
+      .table-title {
+        color: var(--el-text-color-primary);
+      }
+
+      .modern-table {
+        .contact-cell {
+          .contact-type-badge {
+            background: var(--el-fill-color-light);
+          }
+          .contact-info {
+            .contact-value {
+              color: var(--el-text-color-primary);
+            }
+            .contact-meta {
+              color: var(--el-text-color-regular);
+            }
+          }
+        }
+
+        .time-cell {
+          color: var(--el-text-color-regular);
+        }
+
+        .ip-address {
+          color: var(--el-text-color-regular);
+        }
+      }
+    }
   }
 }
 </style>

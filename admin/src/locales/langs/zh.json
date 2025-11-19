@@ -260,13 +260,9 @@
     "subscription": {
       "title": "订阅管理",
       "list": "订阅列表",
-      "create": "创建订阅",
-      "edit": "编辑订阅"
-    },
-    "product": {
-      "title": "产品管理",
-      "list": "产品列表",
-      "order": "产品订单"
+      "analytics": "数据分析",
+      "export": "数据导出",
+      "settings": "订阅设置"
     }
   },
   "table": {
