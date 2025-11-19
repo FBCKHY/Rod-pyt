@@ -41,6 +41,7 @@ exports.getRoleList = async (req, res) => {
         attributes: ['id', 'permission_code', 'permission_name'],
         through: { attributes: [] }
       }],
+      distinct: true, // 使用distinct避免关联查询时count重复计数
       offset,
       limit,
       order: [['created_at', 'DESC']]
