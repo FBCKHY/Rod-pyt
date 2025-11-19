@@ -459,10 +459,10 @@ const fetchData = async () => {
     const res = await SubscriptionService.getSubscriptionList(params)
     if (res && res.data) {
       tableData.value = res.data.list || []
-      pagination.total = res.data.total || 0
+      pagination.total = res.data.pagination?.total || 0
       // 初始化lastTotal，避免首次加载时误报新订阅
       if (lastTotal.value === 0) {
-        lastTotal.value = res.data.total || 0
+        lastTotal.value = res.data.pagination?.total || 0
       }
     }
   } catch (error) {
@@ -716,7 +716,7 @@ const refreshDataSilently = async () => {
 
     const res = await SubscriptionService.getSubscriptionList(params)
     if (res && res.data) {
-      const newTotal = res.data.total || 0
+      const newTotal = res.data.pagination?.total || 0
       
       // 检查是否有新订阅
       if (newTotal > lastTotal.value && lastTotal.value > 0) {
