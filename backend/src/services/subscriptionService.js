@@ -64,7 +64,7 @@ class SubscriptionService {
         'id', 'contactType', 'contactValue', 'source', 'status',
         'subscribedAt', 'ipAddress', 'userAgent', 'createdAt', 'updatedAt',
         'fullName', 'subject', 'message', 'userSource', 'company',
-        'preferredTime', 'address', 'requirements'
+        'preferredTime', 'address', 'requirements', 'note'
       ]
     });
 
@@ -96,6 +96,33 @@ class SubscriptionService {
     }
 
     return await Subscription.findByPk(id);
+  }
+
+  /**
+   * 更新订阅信息（完整更新）
+   */
+  async updateSubscription(id, data) {
+    const subscription = await Subscription.findByPk(id);
+    
+    if (!subscription) {
+      return null;
+    }
+
+    // 允许更新的字段
+    const allowedFields = [
+      'status', 'note', 'fullName', 'company', 'subject', 
+      'message', 'userSource', 'preferredTime', 'address', 'requirements'
+    ];
+
+    const updateData = {};
+    allowedFields.forEach(field => {
+      if (data[field] !== undefined) {
+        updateData[field] = data[field];
+      }
+    });
+
+    await subscription.update(updateData);
+    return subscription;
   }
 
   /**

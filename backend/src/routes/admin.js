@@ -154,6 +154,47 @@ router.patch('/subscriptions/:id',
 /**
  * @swagger
  * /api/admin/subscriptions/{id}:
+ *   put:
+ *     summary: 更新订阅信息
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               status:
+ *                 type: string
+ *               note:
+ *                 type: string
+ *               fullName:
+ *                 type: string
+ *               company:
+ *                 type: string
+ *               subject:
+ *                 type: string
+ *               message:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 更新成功
+ *       404:
+ *         description: 订阅记录不存在
+ */
+router.put('/subscriptions/:id', adminController.updateSubscription);
+
+/**
+ * @swagger
+ * /api/admin/subscriptions/{id}:
  *   delete:
  *     summary: 删除订阅
  *     tags: [Admin]

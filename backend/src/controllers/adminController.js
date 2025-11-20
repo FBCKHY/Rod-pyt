@@ -93,6 +93,35 @@ class AdminController {
   }
 
   /**
+   * 更新订阅信息（完整更新）
+   */
+  async updateSubscription(req, res) {
+    try {
+      const { id } = req.params;
+      const updateData = req.body;
+
+      const subscription = await subscriptionService.updateSubscription(
+        parseInt(id),
+        updateData
+      );
+
+      if (!subscription) {
+        return res.status(404).json(formatResponse(404, '订阅记录不存在'));
+      }
+
+      logger.info('订阅信息更新成功', { 
+        subscriptionId: id,
+        updatedFields: Object.keys(updateData)
+      });
+
+      res.json(formatResponse(200, '更新成功', subscription));
+    } catch (error) {
+      logger.error('更新订阅信息失败', error);
+      res.status(500).json(formatResponse(500, '服务器内部错误'));
+    }
+  }
+
+  /**
    * 删除订阅
    */
   async deleteSubscription(req, res) {

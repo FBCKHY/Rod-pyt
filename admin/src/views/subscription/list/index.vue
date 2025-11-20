@@ -1,5 +1,5 @@
 <template>
-  <div class="subscription-page">
+  <div class="subscription-enhanced-page" :class="{ 'dark-theme': isDarkTheme }">
     <!-- 页面头部 - 简洁设计 -->
     <div class="page-header">
       <div class="header-content">
@@ -127,7 +127,7 @@
         <el-table-column type="selection" width="45" />
         
         <!-- 基本信息列 -->
-        <el-table-column label="订阅信息" width="280">
+        <el-table-column label="订阅信息" min-width="300">
           <template #default="{ row }">
             <div class="subscriber-info">
               <div class="main-info">
@@ -140,6 +140,10 @@
                 <span v-if="row.fullName" class="info-item">
                   <el-icon><User /></el-icon>
                   {{ row.fullName }}
+                </span>
+                <span v-if="row.userSource" class="info-item">
+                  <el-icon><Location /></el-icon>
+                  {{ row.userSource }}
                 </span>
                 <span v-if="row.company" class="info-item">
                   <el-icon><OfficeBuilding /></el-icon>
@@ -155,7 +159,7 @@
         </el-table-column>
 
         <!-- 咨询内容列 -->
-        <el-table-column label="咨询内容" width="300">
+        <el-table-column label="咨询内容" min-width="250">
           <template #default="{ row }">
             <div class="content-cell">
               <div v-if="row.subject" class="subject-line">
@@ -172,13 +176,12 @@
           </template>
         </el-table-column>
 
-        <!-- 备注列 -->
-        <el-table-column label="备注" width="200">
+        <!-- 来源列 -->
+        <el-table-column label="来源" width="120" align="center">
           <template #default="{ row }">
-            <div class="note-cell">
-              <span v-if="row.note" class="note-text">{{ truncateText(row.note, 50) }}</span>
-              <span v-else class="no-note">-</span>
-            </div>
+            <el-tag :type="getSourceTag(row.source)">
+              {{ getSourceLabel(row.source) }}
+            </el-tag>
           </template>
         </el-table-column>
 
@@ -215,7 +218,7 @@
         </el-table-column>
 
         <!-- 操作列 -->
-        <el-table-column label="操作" width="150" fixed="right">
+        <el-table-column label="操作" width="240" fixed="right">
           <template #default="{ row }">
             <div class="action-btns">
               <el-button
@@ -283,42 +286,63 @@
                 {{ getContactTypeLabel(currentDetail.contactType) }}
               </el-tag>
             </div>
-            <div v-if="currentDetail.fullName" class="info-item">
+            <div class="info-item">
               <label>姓名:</label>
-              <span>{{ currentDetail.fullName }}</span>
+              <el-input 
+                v-model="currentDetail.fullName" 
+                placeholder="请输入姓名"
+                clearable
+              />
             </div>
-            <div v-if="currentDetail.company" class="info-item">
+            <div class="info-item">
               <label>公司:</label>
-              <span>{{ currentDetail.company }}</span>
+              <el-input 
+                v-model="currentDetail.company" 
+                placeholder="请输入公司名称"
+                clearable
+              />
             </div>
-            <div v-if="currentDetail.userSource" class="info-item">
+            <div class="info-item">
               <label>用户来源:</label>
-              <span>{{ currentDetail.userSource }}</span>
+              <el-input 
+                v-model="currentDetail.userSource" 
+                placeholder="请输入用户来源"
+                clearable
+              />
             </div>
             <div class="info-item">
               <label>订阅时间:</label>
               <span>{{ formatDateTime(currentDetail.subscribedAt) }}</span>
             </div>
-            <div v-if="currentDetail.ipAddress" class="info-item">
+            <div class="info-item">
               <label>IP地址:</label>
-              <span>{{ currentDetail.ipAddress }}</span>
+              <span>{{ currentDetail.ipAddress || '-' }}</span>
             </div>
           </div>
         </div>
 
         <!-- 咨询内容 -->
-        <div v-if="currentDetail.subject || currentDetail.message" class="detail-section">
+        <div class="detail-section">
           <h3 class="section-title">
             <el-icon><ChatLineSquare /></el-icon>
             咨询内容
           </h3>
-          <div v-if="currentDetail.subject" class="content-block">
+          <div class="content-block">
             <label>咨询主题:</label>
-            <el-tag>{{ currentDetail.subject }}</el-tag>
+            <el-input
+              v-model="currentDetail.subject"
+              placeholder="请输入咨询主题"
+              clearable
+            />
           </div>
-          <div v-if="currentDetail.message" class="content-block">
+          <div class="content-block">
             <label>留言内容:</label>
-            <div class="message-content">{{ currentDetail.message }}</div>
+            <el-input
+              v-model="currentDetail.message"
+              type="textarea"
+              :rows="4"
+              placeholder="请输入留言内容"
+            />
           </div>
         </div>
 
@@ -568,17 +592,12 @@ const saveDetail = async () => {
   if (!currentDetail.value) return
   
   try {
-    const updateData = {
-      note: currentDetail.value.note,
-      status: currentDetail.value.status
-    }
-    await updateSubscription(currentDetail.value.id, updateData)
+    await updateSubscription(currentDetail.value.id, currentDetail.value)
     ElMessage.success('保存成功')
     detailDialogVisible.value = false
     fetchData()
-  } catch (error: any) {
-    console.error('保存失败:', error)
-    ElMessage.error('保存失败: ' + (error.message || '未知错误'))
+  } catch (error) {
+    ElMessage.error('保存失败')
   }
 }
 
@@ -673,5 +692,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import './styles.scss';
+@import './enhanced-styles.scss';
 </style>

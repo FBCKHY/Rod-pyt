@@ -393,8 +393,18 @@
                                         </select>
                                         <label for="userSource" class="form-label">您的来源*</label>
                                     </div>
+                                    <!-- 企业客户 - 公司名称输入框（默认隐藏） -->
+                                    <div class="form-floating" id="companyContainer" data-dynamic="true" style="display: none !important; margin-top: 10px;">
+                                        <input type="text" class="form-control" id="company" name="company" placeholder=" ">
+                                        <label for="company" class="form-label">公司名称</label>
+                                    </div>
+                                    <!-- 平台 - 平台名称输入框（默认隐藏） -->
+                                    <div class="form-floating" id="platformContainer" data-dynamic="true" style="display: none !important; margin-top: 10px;">
+                                        <input type="text" class="form-control" id="platform" name="platform" placeholder=" ">
+                                        <label for="platform" class="form-label">平台名称</label>
+                                    </div>
                                     <!-- 自定义来源输入框（默认隐藏） -->
-                                    <div class="form-floating custom-source-input" id="customSourceContainer" style="display: none; margin-top: 10px;">
+                                    <div class="form-floating custom-source-input" id="customSourceContainer" data-dynamic="true" style="display: none !important; margin-top: 10px;">
                                         <input type="text" class="form-control" id="customSource" name="customSource" placeholder=" ">
                                         <label for="customSource" class="form-label">请输入具体来源*</label>
                                     </div>

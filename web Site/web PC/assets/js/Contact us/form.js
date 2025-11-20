@@ -66,10 +66,19 @@ function handleFormSubmit(event) {
     const formData = new FormData(form);
     const formValues = Object.fromEntries(formData);
     
-    // 处理用户来源"其他"选项的自定义输入
+    // 处理用户来源的额外信息
     if (formValues.userSource === '其他' && formValues.customSource) {
+        // 其他：使用自定义输入的内容
         formValues.userSource = formValues.customSource;
-        delete formValues.customSource; // 删除临时字段
+        delete formValues.customSource;
+    } else if (formValues.userSource === '平台' && formValues.platform) {
+        // 平台：将平台名称合并到userSource
+        formValues.userSource = `平台 - ${formValues.platform}`;
+        delete formValues.platform;
+    } else {
+        // 清理未使用的字段
+        delete formValues.customSource;
+        delete formValues.platform;
     }
     
     // 显示加载状态
@@ -360,6 +369,12 @@ function setupFloatingLabels() {
     const floatingInputs = document.querySelectorAll('.form-floating input, .form-floating textarea, .form-floating select');
     
     floatingInputs.forEach(input => {
+        // 跳过动态输入框容器中的元素
+        const container = input.closest('.form-floating');
+        if (container && container.hasAttribute('data-dynamic')) {
+            return; // 跳过动态元素
+        }
+        
         // 检查初始状态
         checkFloatingLabelState(input);
         
@@ -714,6 +729,10 @@ function initCustomSourceInput() {
     const userSourceSelect = document.getElementById('userSource');
     const customSourceContainer = document.getElementById('customSourceContainer');
     const customSourceInput = document.getElementById('customSource');
+    const companyContainer = document.getElementById('companyContainer');
+    const companyInput = document.getElementById('company');
+    const platformContainer = document.getElementById('platformContainer');
+    const platformInput = document.getElementById('platform');
     
     if (!userSourceSelect || !customSourceContainer || !customSourceInput) {
         console.warn('⚠️ 用户来源相关元素未找到');
@@ -722,35 +741,87 @@ function initCustomSourceInput() {
     
     // 监听下拉菜单变化
     userSourceSelect.addEventListener('change', function() {
-        if (this.value === '其他') {
-            // 显示自定义输入框
-            customSourceContainer.style.display = 'block';
-            customSourceInput.required = true;
-            
-            // 添加动画效果
-            setTimeout(() => {
-                customSourceContainer.style.opacity = '1';
-                customSourceContainer.style.transform = 'translateY(0)';
-            }, 10);
-        } else {
-            // 隐藏自定义输入框
-            customSourceContainer.style.opacity = '0';
-            customSourceContainer.style.transform = 'translateY(-10px)';
-            customSourceInput.required = false;
-            customSourceInput.value = '';
-            
-            setTimeout(() => {
-                customSourceContainer.style.display = 'none';
-                // 清除验证状态
-                clearInputError(customSourceInput);
-            }, 300);
+        // 隐藏所有动态输入框
+        hideAllDynamicInputs();
+        
+        // 根据选择显示对应的输入框
+        if (this.value === '企业客户') {
+            // 显示公司名称输入框
+            showDynamicInput(companyContainer, companyInput, false);
+        } else if (this.value === '平台') {
+            // 显示平台名称输入框
+            showDynamicInput(platformContainer, platformInput, false);
+        } else if (this.value === '其他') {
+            // 显示自定义来源输入框（必填）
+            showDynamicInput(customSourceContainer, customSourceInput, true);
         }
     });
     
-    // 设置初始样式
-    customSourceContainer.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    customSourceContainer.style.opacity = '0';
-    customSourceContainer.style.transform = 'translateY(-10px)';
+    // 隐藏所有动态输入框的函数
+    function hideAllDynamicInputs() {
+        // 隐藏自定义来源
+        if (customSourceContainer) {
+            hideDynamicInput(customSourceContainer, customSourceInput);
+        }
+        // 隐藏公司名称
+        if (companyContainer) {
+            hideDynamicInput(companyContainer, companyInput);
+        }
+        // 隐藏平台名称
+        if (platformContainer) {
+            hideDynamicInput(platformContainer, platformInput);
+        }
+    }
+    
+    // 显示动态输入框
+    function showDynamicInput(container, input, isRequired) {
+        if (!container || !input) return;
+        
+        console.log('👁️ 显示输入框:', container.id);
+        console.trace('调用栈:');
+        
+        // 使用 setProperty 强制设置 display
+        container.style.setProperty('display', 'block', 'important');
+        input.required = isRequired;
+        
+        // 使用 requestAnimationFrame 确保在下一帧执行动画
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                container.style.setProperty('opacity', '1', 'important');
+                container.style.setProperty('transform', 'translateY(0)', 'important');
+                console.log('✨ 动画完成:', container.id, 'display:', container.style.display);
+            });
+        });
+    }
+    
+    // 隐藏动态输入框
+    function hideDynamicInput(container, input) {
+        if (!container || !input) return;
+        
+        console.log('🙈 隐藏输入框:', container.id);
+        
+        // 立即隐藏，不等待动画
+        container.style.setProperty('display', 'none', 'important');
+        container.style.setProperty('opacity', '0', 'important');
+        container.style.setProperty('transform', 'translateY(-10px)', 'important');
+        input.required = false;
+        input.value = '';
+        
+        // 清除验证状态
+        clearInputError(input);
+    }
+    
+    // 设置所有动态容器的初始样式
+    [customSourceContainer, companyContainer, platformContainer].forEach(container => {
+        if (container) {
+            container.style.display = 'none'; // 确保初始隐藏
+            container.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(-10px)';
+        }
+    });
+    
+    console.log('✅ 动态输入框初始化完成');
     
     // 为自定义输入框添加浮动标签效果
     customSourceInput.addEventListener('focus', function() {

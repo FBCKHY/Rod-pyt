@@ -90,6 +90,11 @@ const Subscription = sequelize.define('Subscription', {
     type: DataTypes.STRING(200),
     allowNull: true,
     comment: '公司名称'
+  },
+  note: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+    comment: '备注信息'
   }
 }, {
   tableName: 'subscriptions',
