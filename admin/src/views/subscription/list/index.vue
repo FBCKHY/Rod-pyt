@@ -1,5 +1,5 @@
 <template>
-  <div class="subscription-enhanced-page">
+  <div class="subscription-enhanced-page" :class="{ 'dark-theme': isDarkTheme }">
     <!-- 页面头部 - 简洁设计 -->
     <div class="page-header">
       <div class="header-content">
@@ -10,6 +10,13 @@
         <p class="page-desc">管理用户订阅信息、查看详细数据和处理客户咨询</p>
       </div>
       <div class="header-actions">
+        <el-switch
+          v-model="isDarkTheme"
+          :active-icon="Moon"
+          :inactive-icon="Sunny"
+          inline-prompt
+          style="margin-right: 12px;"
+        />
         <el-button type="primary" :icon="Plus" @click="handleAdd">
           添加订阅
         </el-button>
@@ -368,7 +375,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   Bell, Plus, Download, Refresh, Search, User, CircleCheck, Phone, Calendar,
   Clock, View, DocumentCopy, Delete, EditPen, ChatLineSquare, Setting,
-  ArrowDown, OfficeBuilding
+  ArrowDown, OfficeBuilding, Moon, Sunny
 } from '@element-plus/icons-vue'
 import { 
   getSubscriptions, 
@@ -387,6 +394,7 @@ const tableData = ref([])
 const selectedRows = ref([])
 const detailDialogVisible = ref(false)
 const currentDetail = ref(null)
+const isDarkTheme = ref(false)
 
 // 统计数据
 const stats = ref({
@@ -418,13 +426,24 @@ const fetchData = async () => {
     }
     
     const response = await getSubscriptions(params)
-    tableData.value = response.data.list
-    pagination.value.total = response.data.pagination.total
+    console.log('📊 API响应:', response)
     
-    // 更新统计
-    updateStats(response.data)
+    // 检查响应数据结构
+    if (response && response.data) {
+      tableData.value = response.data.list || []
+      pagination.value.total = response.data.pagination?.total || 0
+      
+      // 更新统计
+      updateStats(response.data)
+    } else {
+      console.warn('⚠️ 响应数据格式不正确:', response)
+      tableData.value = []
+      ElMessage.warning('暂无数据')
+    }
   } catch (error) {
-    ElMessage.error('获取数据失败')
+    console.error('❌ 获取数据失败:', error)
+    ElMessage.error('获取数据失败: ' + (error.message || '未知错误'))
+    tableData.value = []
   } finally {
     loading.value = false
   }

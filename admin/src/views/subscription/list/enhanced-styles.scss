@@ -3,6 +3,7 @@
   padding: 20px;
   background: #f5f7fa;
   min-height: 100vh;
+  transition: all 0.3s ease;
 
   .page-header {
     background: white;
@@ -281,6 +282,135 @@
       .status-control {
         display: flex;
         gap: 12px;
+      }
+    }
+  }
+}
+
+// 暗黑主题
+.subscription-enhanced-page.dark-theme {
+  background: #1a1a1a;
+
+  .page-header {
+    background: #2d2d2d;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    .page-title {
+      color: #ffffff;
+    }
+
+    .page-desc {
+      color: #b3b3b3;
+    }
+  }
+
+  .stats-cards {
+    .stat-card {
+      background: #2d2d2d;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .stat-icon {
+        &.blue {
+          background: rgba(64, 158, 255, 0.2);
+        }
+
+        &.green {
+          background: rgba(103, 194, 58, 0.2);
+        }
+
+        &.orange {
+          background: rgba(230, 162, 60, 0.2);
+        }
+
+        &.purple {
+          background: rgba(156, 39, 176, 0.2);
+        }
+      }
+
+      .stat-info {
+        .stat-number {
+          color: #ffffff;
+        }
+
+        .stat-label {
+          color: #b3b3b3;
+        }
+      }
+    }
+  }
+
+  .filter-bar {
+    background: #2d2d2d;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .table-container {
+    background: #2d2d2d;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    .enhanced-table {
+      .subscriber-info {
+        .main-info {
+          .contact-value {
+            color: #ffffff;
+          }
+        }
+
+        .sub-info {
+          color: #b3b3b3;
+        }
+      }
+
+      .content-cell {
+        .message-preview {
+          color: #d9d9d9;
+        }
+
+        .note-section {
+          background: #1a1a1a;
+          color: #b3b3b3;
+        }
+      }
+    }
+  }
+}
+
+// 暗黑主题详情对话框
+.dark-theme {
+  .detail-dialog {
+    .detail-content {
+      .detail-section {
+        .section-title {
+          color: #ffffff;
+          border-bottom-color: #404040;
+        }
+
+        .info-grid {
+          .info-item {
+            label {
+              color: #d9d9d9;
+            }
+
+            span {
+              color: #ffffff;
+            }
+          }
+        }
+
+        .content-block {
+          label {
+            color: #d9d9d9;
+          }
+
+          .message-content {
+            background: #1a1a1a;
+            color: #ffffff;
+          }
+        }
       }
     }
   }
