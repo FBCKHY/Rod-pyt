@@ -274,11 +274,15 @@ function initGlobalEventListeners() {
         const subscribeForm = e.target.closest('.subscribe-form');
         if (subscribeForm) {
             e.preventDefault();
+            console.log('📝 订阅表单提交事件触发');
+            
             const contactInput = subscribeForm.querySelector('.subscribe-input');
             const contactValue = contactInput.value.trim();
+            console.log('📧 输入的联系方式:', contactValue);
 
             if (isValidContact(contactValue)) {
                 const contactType = getContactType(contactValue);
+                console.log('✅ 联系方式验证通过，类型:', contactType);
                 
                 // 仅跳转到联系页面并携带参数，不直接调用后端
                 showSubscribeMessage('正在跳转到联系页面...', 'success', subscribeForm);
@@ -289,18 +293,24 @@ function initGlobalEventListeners() {
                     sessionStorage.setItem('subscribe_from', 'subscribe');
                     sessionStorage.setItem('subscribe_contact', contactValue);
                     sessionStorage.setItem('subscribe_type', contactType);
-                } catch (e) {}
+                    console.log('💾 已保存到 sessionStorage');
+                } catch (e) {
+                    console.error('❌ sessionStorage 保存失败:', e);
+                }
                 
                 setTimeout(() => {
                     const encodedContact = encodeURIComponent(contactValue);
                     const encodedType = encodeURIComponent(contactType);
                     
-                    // 获取当前页面路径，决定跳转路径（使用无后缀路径，避免301丢失查询参数）
-                    const currentPath = window.location.pathname;
-                    const contactPagePath = currentPath.includes('/pages/') ? 'contact' : 'pages/contact';
+                    // 使用绝对路径跳转到联系页面
+                    const baseUrl = window.location.origin;
+                    const contactPageUrl = `${baseUrl}/pages/contact.html?from=subscribe&contact=${encodedContact}&type=${encodedType}`;
+                    
+                    console.log('🔗 准备跳转到:', contactPageUrl);
+                    console.log('🌐 当前页面:', window.location.href);
                     
                     // 跳转到联系页面并传递参数
-                    window.location.href = `${contactPagePath}?from=subscribe&contact=${encodedContact}&type=${encodedType}`;
+                    window.location.href = contactPageUrl;
                 }, 600);
             } else {
                 showSubscribeMessage('请输入有效的邮箱、微信号或手机号', 'error', subscribeForm);
