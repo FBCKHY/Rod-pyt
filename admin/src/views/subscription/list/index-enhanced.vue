@@ -621,5 +621,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import './enhanced-styles.scss';
+// 样式将在下一个文件中添加
 </style>
