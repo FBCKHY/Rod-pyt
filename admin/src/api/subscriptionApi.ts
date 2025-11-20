@@ -129,4 +129,26 @@ export class SubscriptionService {
       params: { contactType, contactValue }
     })
   }
-} 
+
+  /**
+   * 更新订阅信息
+   */
+  static updateSubscription(id: number, data: any) {
+    return request.request({
+      url: `/admin/subscriptions/${id}`,
+      method: 'PUT',
+      params: data
+    })
+  }
+}
+
+// 导出函数式API以兼容现有代码
+export const getSubscriptions = SubscriptionService.getSubscriptionList
+export const updateSubscription = SubscriptionService.updateSubscription
+export const deleteSubscription = SubscriptionService.deleteSubscription
+export const createSubscription = SubscriptionService.createSubscription
+export const exportSubscriptions = SubscriptionService.exportSubscriptions
+export const toggleSubscriptionStatus = SubscriptionService.toggleSubscriptionStatus
+export const batchDeleteSubscriptions = SubscriptionService.batchDeleteSubscriptions
+export const getSubscriptionStats = SubscriptionService.getSubscriptionStats
+export const checkContactExists = SubscriptionService.checkContactExists
