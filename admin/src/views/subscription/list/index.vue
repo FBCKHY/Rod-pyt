@@ -444,13 +444,24 @@ const fetchData = async () => {
     const response = await getSubscriptions(params)
     console.log('📊 API响应:', response)
     
-    // 检查响应数据结构
+    // 检查响应数据结构 - 兼容两种格式
+    let data = null
     if (response && response.data) {
-      tableData.value = response.data.list || []
-      pagination.value.total = response.data.pagination?.total || 0
+      // 格式1: {data: {list: [], pagination: {}}}
+      data = response.data
+    } else if (response && response.list) {
+      // 格式2: {list: [], pagination: {}}
+      data = response
+    }
+    
+    if (data && data.list) {
+      tableData.value = data.list || []
+      pagination.value.total = data.pagination?.total || 0
+      
+      console.log('✅ 数据加载成功:', tableData.value.length, '条记录')
       
       // 更新统计
-      updateStats(response.data)
+      updateStats(data)
     } else {
       console.warn('⚠️ 响应数据格式不正确:', response)
       tableData.value = []
