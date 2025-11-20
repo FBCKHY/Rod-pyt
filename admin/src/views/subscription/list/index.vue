@@ -370,7 +370,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   Bell, Plus, Download, Refresh, Search, User, CircleCheck, Phone, Calendar,
@@ -383,6 +383,11 @@ import {
   deleteSubscription,
   exportSubscriptions 
 } from '@/api/subscriptionApi'
+import { useSettingStore } from '@/store/modules/setting'
+import { SystemThemeEnum } from '@/enums/appEnum'
+
+// 获取全局设置store
+const settingStore = useSettingStore()
 
 // 响应式数据
 const loading = ref(false)
@@ -394,7 +399,18 @@ const tableData = ref([])
 const selectedRows = ref([])
 const detailDialogVisible = ref(false)
 const currentDetail = ref(null)
-const isDarkTheme = ref(false)
+const isDarkTheme = ref(settingStore.isDark)
+
+// 监听主题变化
+watch(() => settingStore.isDark, (newVal) => {
+  isDarkTheme.value = newVal
+})
+
+// 监听组件内主题切换
+watch(isDarkTheme, (newVal) => {
+  const theme = newVal ? SystemThemeEnum.DARK : SystemThemeEnum.LIGHT
+  settingStore.setGlopTheme(theme, theme)
+})
 
 // 统计数据
 const stats = ref({
