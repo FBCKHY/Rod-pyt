@@ -520,7 +520,7 @@ function showFormMessage(type, title, message) {
     }
     
     // 显示消息
-    formMessage.classList.add('form-message-show');
+    formMessage.classList.add('show');
     
     // 成功消息自动隐藏
     if (type === 'success') {
@@ -537,7 +537,7 @@ function hideFormMessage() {
     const formMessage = document.getElementById('formMessage');
     if (!formMessage) return;
     
-    formMessage.classList.remove('form-message-show');
+    formMessage.classList.remove('show');
 }
 
 /**
@@ -567,9 +567,11 @@ function showFormLoading(show) {
     if (!formLoading) return;
     
     if (show) {
-        formLoading.classList.add('show');
+        formLoading.classList.add('active');
+        formLoading.style.display = 'flex';
     } else {
-        formLoading.classList.remove('show');
+        formLoading.classList.remove('active');
+        formLoading.style.display = 'none';
     }
 }
 
