@@ -1,5 +1,5 @@
 <template>
-  <div class="subscription-enhanced-page" :class="{ 'dark-theme': isDarkTheme }">
+  <div class="subscription-page">
     <!-- 页面头部 - 简洁设计 -->
     <div class="page-header">
       <div class="header-content">
@@ -127,7 +127,7 @@
         <el-table-column type="selection" width="45" />
         
         <!-- 基本信息列 -->
-        <el-table-column label="订阅信息" min-width="300">
+        <el-table-column label="订阅信息" width="280">
           <template #default="{ row }">
             <div class="subscriber-info">
               <div class="main-info">
@@ -155,7 +155,7 @@
         </el-table-column>
 
         <!-- 咨询内容列 -->
-        <el-table-column label="咨询内容" min-width="250">
+        <el-table-column label="咨询内容" width="300">
           <template #default="{ row }">
             <div class="content-cell">
               <div v-if="row.subject" class="subject-line">
@@ -172,12 +172,13 @@
           </template>
         </el-table-column>
 
-        <!-- 来源列 -->
-        <el-table-column label="来源" width="120" align="center">
+        <!-- 备注列 -->
+        <el-table-column label="备注" width="200">
           <template #default="{ row }">
-            <el-tag :type="getSourceTag(row.source)">
-              {{ getSourceLabel(row.source) }}
-            </el-tag>
+            <div class="note-cell">
+              <span v-if="row.note" class="note-text">{{ truncateText(row.note, 50) }}</span>
+              <span v-else class="no-note">-</span>
+            </div>
           </template>
         </el-table-column>
 
@@ -567,12 +568,17 @@ const saveDetail = async () => {
   if (!currentDetail.value) return
   
   try {
-    await updateSubscription(currentDetail.value.id, currentDetail.value)
+    const updateData = {
+      note: currentDetail.value.note,
+      status: currentDetail.value.status
+    }
+    await updateSubscription(currentDetail.value.id, updateData)
     ElMessage.success('保存成功')
     detailDialogVisible.value = false
     fetchData()
-  } catch (error) {
-    ElMessage.error('保存失败')
+  } catch (error: any) {
+    console.error('保存失败:', error)
+    ElMessage.error('保存失败: ' + (error.message || '未知错误'))
   }
 }
 
@@ -667,5 +673,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import './enhanced-styles.scss';
+@import './styles.scss';
 </style>
