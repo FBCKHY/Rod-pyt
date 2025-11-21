@@ -45,14 +45,14 @@
           </div>
         </div>
 
-        <div class="export-card" @click="quickExport('recent')">
+        <div class="export-card" @click="quickExport('pending')">
           <div class="card-icon warning">
             <el-icon><Calendar /></el-icon>
           </div>
           <div class="card-content">
-            <h4>近期新增</h4>
-            <p>最近30天新增用户</p>
-            <div class="card-stats">{{ stats.recent }} 条记录</div>
+            <h4>待处理用户</h4>
+            <p>仅导出待处理状态用户</p>
+            <div class="card-stats">{{ stats.pending }} 条记录</div>
           </div>
         </div>
 
@@ -303,7 +303,7 @@ const exportFormRef = ref()
 const stats = reactive({
   total: 0,
   active: 0,
-  recent: 0,
+  pending: 0,
   email: 0
 })
 
@@ -316,7 +316,7 @@ const fetchStats = async () => {
     if (data) {
       stats.total = data.total || 0
       stats.active = data.subscribed || 0
-      stats.recent = data.thisMonthNew || 0
+      stats.pending = data.pending || 0
       stats.email = data.byContactType?.email || 0
     }
   } catch (error) {
@@ -398,11 +398,9 @@ const quickExport = async (type: string) => {
         // 仅导出已订阅用户
         params.status = 'subscribed'
         break
-      case 'recent':
-        // 最近30天新增
-        const thirtyDaysAgo = new Date()
-        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
-        params.startDate = thirtyDaysAgo.toISOString()
+      case 'pending':
+        // 导出待处理用户
+        params.status = 'pending'
         break
       case 'email':
         // 仅导出邮箱用户
@@ -548,7 +546,7 @@ const getQuickExportName = (type: string) => {
   const names: Record<string, string> = {
     all: '全部订阅用户导出',
     active: '活跃用户导出',
-    recent: '近期新增用户导出',
+    pending: '待处理用户导出',
     email: '邮箱用户导出'
   }
   return names[type] || '快速导出'
@@ -558,7 +556,7 @@ const getQuickExportDesc = (type: string) => {
   const descs: Record<string, string> = {
     all: '导出所有订阅用户数据',
     active: '仅导出已订阅用户',
-    recent: '最近30天新增用户',
+    pending: '仅导出待处理状态用户',
     email: '仅导出邮箱订阅用户'
   }
   return descs[type] || '快速导出任务'
@@ -568,7 +566,7 @@ const getQuickExportCount = (type: string) => {
   const counts: Record<string, number> = {
     all: stats.total,
     active: stats.active,
-    recent: stats.recent,
+    pending: stats.pending,
     email: stats.email
   }
   return counts[type] || 0
@@ -578,18 +576,17 @@ const getTypeTag = (type: string) => {
   const tags: Record<string, string> = {
     all: 'primary',
     active: 'success',
-    recent: 'warning',
-    email: 'info',
-    custom: ''
+    pending: 'warning',
+    email: 'info'
   }
-  return tags[type] || ''
+  return tags[type] || 'default'
 }
 
 const getTypeName = (type: string) => {
   const names: Record<string, string> = {
     all: '全部数据',
     active: '活跃用户',
-    recent: '近期新增',
+    pending: '待处理',
     email: '邮箱用户',
     custom: '自定义'
   }
