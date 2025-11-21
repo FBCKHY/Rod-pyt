@@ -298,12 +298,12 @@ class AdminController {
       result.list.forEach(item => {
         worksheet.addRow({
           id: item.id,
-          contactType: this.getContactTypeText(item.contact_type),
-          contactValue: item.contact_value,
+          contactType: this.getContactTypeText(item.contactType),
+          contactValue: item.contactValue,
           source: this.getSourceText(item.source),
           status: item.status === 'subscribed' ? '已订阅' : '已取消',
-          ipAddress: item.ip_address || '-',
-          subscribedAt: new Date(item.subscribed_at).toLocaleString('zh-CN')
+          ipAddress: item.ipAddress || '-',
+          subscribedAt: new Date(item.subscribedAt).toLocaleString('zh-CN')
         });
       });
 
