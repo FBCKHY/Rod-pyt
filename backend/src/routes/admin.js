@@ -311,6 +311,6 @@ router.get('/subscriptions/check', adminController.checkExists);
  *               type: string
  *               format: binary
  */
-router.get('/subscriptions/export', adminController.exportSubscriptions);
+router.get('/subscriptions/export', (req, res) => adminController.exportSubscriptions(req, res));
 
 module.exports = router;
