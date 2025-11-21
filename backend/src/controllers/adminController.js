@@ -280,7 +280,8 @@ class AdminController {
         { header: '姓名', key: 'fullName', width: 15 },
         { header: '联系方式类型', key: 'contactType', width: 15 },
         { header: '邮箱/微信/电话', key: 'contactValue', width: 30 },
-        { header: '用户来源/公司', key: 'sourceOrCompany', width: 30 },
+        { header: '公司/平台/其他', key: 'sourceType', width: 15 },
+        { header: '公司/平台名称', key: 'sourceOrCompanyName', width: 30 },
         { header: '状态', key: 'status', width: 12 },
         { header: '咨询主题', key: 'subject', width: 25 },
         { header: '留言内容', key: 'message', width: 50 },
@@ -299,14 +300,22 @@ class AdminController {
 
       // 添加数据
       result.list.forEach(item => {
-        // 智能判断显示用户来源还是公司
-        let sourceOrCompany = '-'
+        // 判断用户来源类型和名称
+        let sourceType = '-'
+        let sourceOrCompanyName = '-'
+        
         if (item.company) {
-          // 如果有公司名称，显示：公司 - XX公司
-          sourceOrCompany = `公司 - ${item.company}`
+          // 公司客户
+          sourceType = '公司'
+          sourceOrCompanyName = item.company
         } else if (item.userSource) {
-          // 如果有用户来源，显示：平台 - XX平台
-          sourceOrCompany = `平台 - ${item.userSource}`
+          // 平台用户
+          sourceType = '平台'
+          sourceOrCompanyName = item.userSource
+        } else {
+          // 其他
+          sourceType = '其他'
+          sourceOrCompanyName = '-'
         }
         
         worksheet.addRow({
@@ -314,7 +323,8 @@ class AdminController {
           fullName: item.fullName || '-',
           contactType: this.getContactTypeText(item.contactType),
           contactValue: item.contactValue,
-          sourceOrCompany: sourceOrCompany,
+          sourceType: sourceType,
+          sourceOrCompanyName: sourceOrCompanyName,
           status: item.status === 'subscribed' ? '已订阅' : '已取消',
           subject: item.subject || '-',
           message: item.message || '-',
