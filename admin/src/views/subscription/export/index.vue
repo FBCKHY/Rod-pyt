@@ -301,11 +301,28 @@ const exportFormRef = ref()
 
 // 统计数据
 const stats = reactive({
-  total: 1234,
-  active: 1050,
-  recent: 156,
-  email: 680
+  total: 0,
+  active: 0,
+  recent: 0,
+  email: 0
 })
+
+// 获取统计数据
+const fetchStats = async () => {
+  try {
+    const res: any = await SubscriptionService.getSubscriptionStats()
+    // 适配不同的响应格式
+    const data = res.data || res
+    if (data) {
+      stats.total = data.total || 0
+      stats.active = data.subscribed || 0
+      stats.recent = data.thisMonthNew || 0
+      stats.email = data.byContactType?.email || 0
+    }
+  } catch (error) {
+    console.error('获取统计数据失败:', error)
+  }
+}
 
 // 分页
 const pagination = reactive({
@@ -625,6 +642,8 @@ const getTimeAgo = (date: Date) => {
 // 生命周期
 onMounted(() => {
   pagination.total = exportHistory.value.length
+  // 获取统计数据
+  fetchStats()
 })
 </script>
 
