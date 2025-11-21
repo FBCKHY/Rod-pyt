@@ -16,6 +16,8 @@ class StatsService {
       total,
       subscribed,
       unsubscribed,
+      pending,
+      contacted,
       todayNew,
       thisWeekNew,
       thisMonthNew
@@ -23,6 +25,8 @@ class StatsService {
       this.getTotalCount(),
       this.getCountByStatus('subscribed'),
       this.getCountByStatus('unsubscribed'),
+      this.getCountByStatus('pending'),
+      this.getCountByStatus('contacted'),
       this.getCountByDateRange(today, new Date(today.getTime() + 24 * 60 * 60 * 1000)),
       this.getCountByDateRange(thisWeekStart, now),
       this.getCountByDateRange(thisMonthStart, now)
@@ -41,6 +45,8 @@ class StatsService {
       total,
       subscribed,
       unsubscribed,
+      pending,
+      contacted,
       todayNew,
       thisWeekNew,
       thisMonthNew,

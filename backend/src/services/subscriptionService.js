@@ -33,20 +33,71 @@ class SubscriptionService {
       source,
       contact,
       startDate,
-      endDate
+      endDate,
+      userSource,
+      subject
     } = params;
 
     const where = {};
 
-    // 条件筛选
-    if (status) where.status = status;
-    if (contactType) where.contactType = contactType;
-    if (source) where.source = source;
+    // 条件筛选 - 支持多选(逗号分隔或数组)
+    if (status) {
+      const statusArray = typeof status === 'string' ? status.split(',') : status;
+      where.status = statusArray.length > 1 ? { [Op.in]: statusArray } : statusArray[0];
+    }
+    
+    if (contactType) {
+      const contactTypeArray = typeof contactType === 'string' ? contactType.split(',') : contactType;
+      where.contactType = contactTypeArray.length > 1 ? { [Op.in]: contactTypeArray } : contactTypeArray[0];
+    }
+    
+    if (source) {
+      const sourceArray = typeof source === 'string' ? source.split(',') : source;
+      where.source = sourceArray.length > 1 ? { [Op.in]: sourceArray } : sourceArray[0];
+    }
+    
+    if (userSource) {
+      const userSourceArray = typeof userSource === 'string' ? userSource.split(',') : userSource;
+      if (userSourceArray.length > 1) {
+        // 多选: 使用OR条件进行模糊匹配
+        where[Op.or] = userSourceArray.map(val => ({
+          userSource: { [Op.like]: `%${val}%` }
+        }));
+      } else {
+        // 单选: 直接模糊匹配
+        where.userSource = { [Op.like]: `%${userSourceArray[0]}%` };
+      }
+    }
+    
+    if (subject) {
+      const subjectArray = typeof subject === 'string' ? subject.split(',') : subject;
+      if (subjectArray.length > 1) {
+        // 多选: 使用OR条件进行模糊匹配
+        const subjectConditions = subjectArray.map(val => ({
+          subject: { [Op.like]: `%${val}%` }
+        }));
+        // 如果已经有Op.or,合并条件
+        if (where[Op.or]) {
+          where[Op.and] = [
+            { [Op.or]: where[Op.or] },
+            { [Op.or]: subjectConditions }
+          ];
+          delete where[Op.or];
+        } else {
+          where[Op.or] = subjectConditions;
+        }
+      } else {
+        // 单选: 直接模糊匹配
+        where.subject = { [Op.like]: `%${subjectArray[0]}%` };
+      }
+    }
+    
     if (contact) {
       where.contactValue = {
         [Op.like]: `%${contact}%`
       };
     }
+    
     if (startDate || endDate) {
       where.createdAt = {};
       if (startDate) where.createdAt[Op.gte] = new Date(startDate);
@@ -55,7 +106,16 @@ class SubscriptionService {
 
     const offset = (page - 1) * size;
 
-    const { count, rows } = await Subscription.findAndCountAll({
+    console.log('🔍 Sequelize WHERE条件:', JSON.stringify(where, null, 2));
+
+    // 先单独查询count以避免问题
+    const count = await Subscription.count({ where });
+    console.log('='.repeat(50));
+    console.log('📊 新版本 COUNT查询结果:', count);
+    console.log('='.repeat(50));
+
+    // 再查询实际数据
+    const rows = await Subscription.findAll({
       where,
       limit: size,
       offset,
@@ -67,6 +127,9 @@ class SubscriptionService {
         'preferredTime', 'address', 'requirements', 'note'
       ]
     });
+
+    console.log('📊 查询结果: count =', count, ', rows.length =', rows.length);
+    console.log('📊 返回的记录 IDs:', rows.map(r => r.id));
 
     return {
       list: rows,

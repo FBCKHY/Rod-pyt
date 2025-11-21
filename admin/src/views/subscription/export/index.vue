@@ -56,14 +56,14 @@
           </div>
         </div>
 
-        <div class="export-card" @click="quickExport('email')">
+        <div class="export-card" @click="showTypeExportDialog">
           <div class="card-icon info">
-            <el-icon><Message /></el-icon>
+            <el-icon><Filter /></el-icon>
           </div>
           <div class="card-content">
-            <h4>邮箱用户</h4>
-            <p>仅导出邮箱订阅用户</p>
-            <div class="card-stats">{{ stats.email }} 条记录</div>
+            <h4>按类型导出</h4>
+            <p>多选筛选条件导出</p>
+            <div class="card-stats">点击选择类型</div>
           </div>
         </div>
       </div>
@@ -280,15 +280,113 @@
         </el-button>
       </template>
     </el-dialog>
+
+    <!-- 按类型导出对话框 -->
+    <el-dialog
+      v-model="typeExportDialogVisible"
+      title="按类型导出"
+      width="600px"
+      :close-on-click-modal="false"
+    >
+      <div class="type-export-content">
+        <el-alert
+          title="提示"
+          type="info"
+          description="可以多选不同的筛选条件，系统将导出满足所有条件的数据"
+          :closable="false"
+          style="margin-bottom: 20px;"
+        />
+
+        <!-- 用户来源 -->
+        <div class="filter-section">
+          <h4 class="filter-title">
+            <el-icon><User /></el-icon>
+            用户来源
+          </h4>
+          <el-checkbox-group v-model="typeExportForm.userSources">
+            <el-checkbox value="潜在合作伙伴">潜在合作伙伴</el-checkbox>
+            <el-checkbox value="企业客户">企业客户</el-checkbox>
+            <el-checkbox value="个人咨询">个人咨询</el-checkbox>
+            <el-checkbox value="平台">平台</el-checkbox>
+            <el-checkbox value="其他">其他</el-checkbox>
+          </el-checkbox-group>
+        </div>
+
+        <!-- 咨询主题 -->
+        <div class="filter-section">
+          <h4 class="filter-title">
+            <el-icon><ChatDotRound /></el-icon>
+            咨询主题
+          </h4>
+          <el-checkbox-group v-model="typeExportForm.subjects">
+            <el-checkbox value="售后服务">售后服务</el-checkbox>
+            <el-checkbox value="我要订货">我要订货</el-checkbox>
+            <el-checkbox value="产品咨询">产品咨询</el-checkbox>
+            <el-checkbox value="商务合作">商务合作</el-checkbox>
+            <el-checkbox value="媒体咨询">媒体咨询</el-checkbox>
+            <el-checkbox value="投诉建议">投诉建议</el-checkbox>
+            <el-checkbox value="其他">其他</el-checkbox>
+          </el-checkbox-group>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="filter-section">
+          <h4 class="filter-title">
+            <el-icon><Message /></el-icon>
+            联系方式
+          </h4>
+          <el-checkbox-group v-model="typeExportForm.contactTypes">
+            <el-checkbox value="email">邮箱</el-checkbox>
+            <el-checkbox value="phone">电话</el-checkbox>
+            <el-checkbox value="wechat">微信</el-checkbox>
+          </el-checkbox-group>
+        </div>
+
+        <!-- 订阅状态 -->
+        <div class="filter-section">
+          <h4 class="filter-title">
+            <el-icon><CircleCheck /></el-icon>
+            订阅状态
+          </h4>
+          <el-checkbox-group v-model="typeExportForm.statuses">
+            <el-checkbox value="subscribed">已订阅</el-checkbox>
+            <el-checkbox value="pending">待处理</el-checkbox>
+            <el-checkbox value="contacted">已联系</el-checkbox>
+            <el-checkbox value="unsubscribed">已取消</el-checkbox>
+          </el-checkbox-group>
+        </div>
+
+        <!-- 选中条件数量提示 -->
+        <div class="selected-summary">
+          <el-tag type="info" size="large">
+            已选择 {{ totalSelectedFilters }} 个筛选条件
+          </el-tag>
+        </div>
+      </div>
+
+      <template #footer>
+        <el-button @click="resetTypeExportForm">重置</el-button>
+        <el-button @click="typeExportDialogVisible = false">取消</el-button>
+        <el-button 
+          type="primary" 
+          @click="submitTypeExport" 
+          :loading="exporting"
+          :disabled="totalSelectedFilters === 0"
+        >
+          开始导出
+        </el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted, onActivated, onBeforeUnmount } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   Download, Plus, Lightning, Document, CircleCheck, Calendar, Message,
-  Clock, Refresh, Delete, View
+  Clock, Refresh, Delete, View, Filter, User, OfficeBuilding, Platform,
+  More, Service, ShoppingCart, Goods, Briefcase, ChatDotRound, Warning, Phone
 } from '@element-plus/icons-vue'
 import { useSettingStore } from '@/store/modules/setting'
 import { SubscriptionService } from '@/api/subscriptionApi'
@@ -297,7 +395,24 @@ import { SubscriptionService } from '@/api/subscriptionApi'
 const loading = ref(false)
 const exporting = ref(false)
 const exportDialogVisible = ref(false)
+const typeExportDialogVisible = ref(false)
 const exportFormRef = ref()
+
+// 类型导出表单
+const typeExportForm = reactive({
+  userSources: [] as string[],
+  subjects: [] as string[],
+  contactTypes: [] as string[],
+  statuses: [] as string[]
+})
+
+// 计算选中的筛选条件数量
+const totalSelectedFilters = computed(() => {
+  return typeExportForm.userSources.length + 
+         typeExportForm.subjects.length + 
+         typeExportForm.contactTypes.length + 
+         typeExportForm.statuses.length
+})
 
 // 统计数据
 const stats = reactive({
@@ -331,39 +446,33 @@ const pagination = reactive({
   total: 0
 })
 
-// 导出历史
-const exportHistory = ref([
-  {
-    id: 1,
-    name: '全部订阅用户导出',
-    description: '导出所有订阅用户数据',
-    type: 'all',
-    recordCount: 1234,
-    fileSize: 245760,
-    status: 'completed',
-    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000)
-  },
-  {
-    id: 2,
-    name: '活跃用户导出',
-    description: '仅导出已订阅用户',
-    type: 'active',
-    recordCount: 1050,
-    fileSize: 210240,
-    status: 'completed',
-    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000)
-  },
-  {
-    id: 3,
-    name: '邮箱用户导出',
-    description: '仅导出邮箱订阅用户',
-    type: 'email',
-    recordCount: 680,
-    fileSize: 0,
-    status: 'processing',
-    createdAt: new Date(Date.now() - 10 * 60 * 1000)
+// 导出历史 - 使用localStorage存储
+const exportHistory = ref([])
+
+// 从 localStorage 加载导出历史
+const loadExportHistory = () => {
+  try {
+    const saved = localStorage.getItem('export_history')
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      exportHistory.value = parsed.map(item => ({
+        ...item,
+        createdAt: new Date(item.createdAt)
+      }))
+    }
+  } catch (error) {
+    console.error('加载导出历史失败:', error)
   }
-])
+}
+
+// 保存导出历史到 localStorage
+const saveExportHistory = () => {
+  try {
+    localStorage.setItem('export_history', JSON.stringify(exportHistory.value))
+  } catch (error) {
+    console.error('保存导出历史失败:', error)
+  }
+}
 
 // 导出表单
 const exportForm = reactive({
@@ -425,6 +534,150 @@ const quickExport = async (type: string) => {
       createdAt: new Date()
     }
     exportHistory.value.unshift(newTask)
+    saveExportHistory()
+    
+  } catch (error) {
+    console.error('导出失败:', error)
+    ElMessage.error('导出失败，请稍后重试')
+  } finally {
+    exporting.value = false
+  }
+}
+
+// 显示类型导出对话框
+const showTypeExportDialog = () => {
+  typeExportDialogVisible.value = true
+}
+
+// 重置类型导出表单
+const resetTypeExportForm = () => {
+  typeExportForm.userSources = []
+  typeExportForm.subjects = []
+  typeExportForm.contactTypes = []
+  typeExportForm.statuses = []
+}
+
+// 提交类型导出
+const submitTypeExport = async () => {
+  try {
+    if (totalSelectedFilters.value === 0) {
+      ElMessage.warning('请至少选择一个筛选条件')
+      return
+    }
+    
+    exporting.value = true
+    
+    // 构建查询参数
+    const queryParams: any = {
+      page: 1,
+      size: 1  // 只需要知道数量,不需要实际数据
+    }
+    
+    // 如果选了用户来源
+    if (typeExportForm.userSources.length > 0) {
+      queryParams.userSource = typeExportForm.userSources.join(',')
+    }
+    
+    // 如果选了咨询主题
+    if (typeExportForm.subjects.length > 0) {
+      queryParams.subject = typeExportForm.subjects.join(',')
+    }
+    
+    // 如果选了联系方式
+    if (typeExportForm.contactTypes.length > 0) {
+      queryParams.contactType = typeExportForm.contactTypes.join(',')
+    }
+    
+    // 如果选了状态
+    if (typeExportForm.statuses.length > 0) {
+      queryParams.status = typeExportForm.statuses.join(',')
+    }
+    
+    // 先查询数据量
+    console.log('🔍 查询参数:', JSON.stringify(queryParams, null, 2))
+    const result: any = await SubscriptionService.getSubscriptionList(queryParams)
+    console.log('📊 查询结果:', JSON.stringify(result, null, 2))
+    const total = result.pagination?.total || 0
+    console.log('📊 找到数据条数:', total)
+    
+    if (total === 0) {
+      console.log('❌ 没有找到数据,检查数据库中的实际值')
+      console.log('选择的userSource:', typeExportForm.userSources)
+    }
+    
+    if (total === 0) {
+      ElMessage.warning('没有符合筛选条件的数据,无法导出')
+      exporting.value = false
+      return
+    }
+    
+    // 确认导出
+    await ElMessageBox.confirm(
+      `找到 ${total} 条符合条件的数据,确定要导出吗?`,
+      '确认导出',
+      {
+        type: 'info',
+        confirmButtonText: '确定导出',
+        cancelButtonText: '取消'
+      }
+    )
+    
+    // 构建导出参数
+    const exportParams: any = {}
+    
+    if (typeExportForm.userSources.length > 0) {
+      exportParams.userSource = typeExportForm.userSources.join(',')
+    }
+    
+    if (typeExportForm.subjects.length > 0) {
+      exportParams.subject = typeExportForm.subjects.join(',')
+    }
+    
+    if (typeExportForm.contactTypes.length > 0) {
+      exportParams.contactType = typeExportForm.contactTypes.join(',')
+    }
+    
+    if (typeExportForm.statuses.length > 0) {
+      exportParams.status = typeExportForm.statuses.join(',')
+    }
+    
+    // 调用导出API
+    await SubscriptionService.exportSubscriptions(exportParams)
+    
+    ElMessage.success(`成功导出 ${total} 条数据!文件已开始下载`)
+    
+    // 构建描述文本
+    const descriptions = []
+    if (typeExportForm.userSources.length > 0) {
+      descriptions.push(`用户来源: ${typeExportForm.userSources.join(', ')}`)
+    }
+    if (typeExportForm.subjects.length > 0) {
+      descriptions.push(`咨询主题: ${typeExportForm.subjects.join(', ')}`)
+    }
+    if (typeExportForm.contactTypes.length > 0) {
+      descriptions.push(`联系方式: ${typeExportForm.contactTypes.join(', ')}`)
+    }
+    if (typeExportForm.statuses.length > 0) {
+      descriptions.push(`状态: ${typeExportForm.statuses.join(', ')}`)
+    }
+    
+    // 添加到导出历史
+    const newTask = {
+      id: Date.now(),
+      name: `多条件筛选导出`,
+      description: descriptions.join(' | '),
+      type: 'custom',
+      recordCount: total,
+      fileSize: Math.round(total * 200),  // 估算文件大小
+      status: 'completed',
+      createdAt: new Date()
+    }
+    exportHistory.value.unshift(newTask)
+    saveExportHistory()
+    
+    // 关闭对话框并重置表单
+    typeExportDialogVisible.value = false
+    resetTypeExportForm()
     
   } catch (error) {
     console.error('导出失败:', error)
@@ -447,37 +700,80 @@ const submitExport = async () => {
     exporting.value = true
 
     const params: any = {
+      page: 1,
+      size: 1,
       status: exportForm.status,
       contactType: exportForm.contactType,
       source: exportForm.source
     }
 
     if (exportForm.dateRange) {
-      params.startDate = exportForm.dateRange[0].toISOString()
-      params.endDate = exportForm.dateRange[1].toISOString()
+      params.startDate = exportForm.dateRange[0].toISOString().split('T')[0]
+      params.endDate = exportForm.dateRange[1].toISOString().split('T')[0]
     }
 
-    await SubscriptionService.exportSubscriptions(params)
-    ElMessage.success('导出任务已创建')
+    // 先查询数据量
+    const result: any = await SubscriptionService.getSubscriptionList(params)
+    const total = result.pagination?.total || 0
+    
+    if (total === 0) {
+      ElMessage.warning('没有符合筛选条件的数据,无法导出')
+      exporting.value = false
+      return
+    }
+    
+    // 确认导出
+    await ElMessageBox.confirm(
+      `找到 ${total} 条符合条件的数据,确定要导出吗?`,
+      '确认导出',
+      {
+        type: 'info',
+        confirmButtonText: '确定导出',
+        cancelButtonText: '取消'
+      }
+    )
+
+    // 执行导出
+    const exportParams: any = {
+      status: exportForm.status,
+      contactType: exportForm.contactType,
+      source: exportForm.source
+    }
+
+    if (exportForm.dateRange) {
+      exportParams.startDate = exportForm.dateRange[0].toISOString().split('T')[0]
+      exportParams.endDate = exportForm.dateRange[1].toISOString().split('T')[0]
+    }
+
+    await SubscriptionService.exportSubscriptions(exportParams)
+    ElMessage.success('导出成功！文件已开始下载')
     
     // 添加到历史记录
+    const descriptions = []
+    if (exportForm.status) descriptions.push(`状态: ${exportForm.status}`)
+    if (exportForm.contactType) descriptions.push(`联系方式: ${exportForm.contactType}`)
+    if (exportForm.source) descriptions.push(`来源: ${exportForm.source}`)
+    if (exportForm.dateRange) descriptions.push(`日期范围`)
+    
     const newTask = {
       id: Date.now(),
-      name: exportForm.name,
-      description: '自定义导出任务',
+      name: exportForm.name || `自定义导出_${new Date().toLocaleDateString()}`,
+      description: descriptions.length > 0 ? descriptions.join(' | ') : '自定义导出任务',
       type: 'custom',
-      recordCount: Math.floor(Math.random() * 1000) + 100,
-      fileSize: 0,
-      status: 'processing',
+      recordCount: total,
+      fileSize: Math.round(total * 200),
+      status: 'completed',
       createdAt: new Date()
     }
     exportHistory.value.unshift(newTask)
+    saveExportHistory()
     
     exportDialogVisible.value = false
     
   } catch (error: any) {
     if (error !== 'cancel') {
-      ElMessage.error('创建导出任务失败')
+      console.error('导出失败:', error)
+      ElMessage.error('导出失败,请稍后重试')
     }
   } finally {
     exporting.value = false
@@ -504,6 +800,7 @@ const deleteTask = async (row: any) => {
     const index = exportHistory.value.findIndex(item => item.id === row.id)
     if (index > -1) {
       exportHistory.value.splice(index, 1)
+      saveExportHistory()
     }
     
     ElMessage.success('删除成功')
@@ -513,8 +810,16 @@ const deleteTask = async (row: any) => {
 }
 
 // 刷新历史
-const refreshHistory = () => {
-  ElMessage.success('历史记录已刷新')
+const refreshHistory = async () => {
+  loading.value = true
+  try {
+    await fetchStats()
+    ElMessage.success('数据已刷新')
+  } catch (error) {
+    ElMessage.error('刷新失败')
+  } finally {
+    loading.value = false
+  }
 }
 
 // 清空历史
@@ -525,7 +830,26 @@ const clearHistory = async () => {
     })
     
     exportHistory.value = []
+    saveExportHistory()
     ElMessage.success('历史记录已清空')
+  } catch (error) {
+    // 用户取消
+  }
+}
+
+// 删除单条历史
+const deleteExportTask = async (id: number) => {
+  try {
+    await ElMessageBox.confirm('确定要删除这条导出记录吗？', '提示', {
+      type: 'warning'
+    })
+    
+    const index = exportHistory.value.findIndex((item: any) => item.id === id)
+    if (index > -1) {
+      exportHistory.value.splice(index, 1)
+      saveExportHistory()
+      ElMessage.success('删除成功')
+    }
   } catch (error) {
     // 用户取消
   }
@@ -636,11 +960,32 @@ const getTimeAgo = (date: Date) => {
   return '刚刚'
 }
 
+// 页面可见性监听
+const handleVisibilityChange = () => {
+  if (document.visibilityState === 'visible') {
+    fetchStats()
+  }
+}
+
 // 生命周期
 onMounted(() => {
+  // 加载导出历史
+  loadExportHistory()
   pagination.total = exportHistory.value.length
   // 获取统计数据
   fetchStats()
+  // 监听页面可见性变化
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+})
+
+// keep-alive 激活时刷新
+onActivated(() => {
+  fetchStats()
+})
+
+// 清理监听器
+onBeforeUnmount(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
 })
 </script>
 
@@ -760,6 +1105,49 @@ onMounted(() => {
           }
         }
       }
+    }
+  }
+
+  // 类型导出对话框样式
+  .type-export-content {
+    .filter-section {
+      margin-bottom: 24px;
+      padding: 16px;
+      background: var(--el-fill-color-light);
+      border-radius: 8px;
+
+      .filter-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 12px 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--el-text-color-primary);
+
+        .el-icon {
+          font-size: 16px;
+          color: #409eff;
+        }
+      }
+
+      .el-checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        .el-checkbox {
+          margin: 0;
+        }
+      }
+    }
+
+    .selected-summary {
+      margin-top: 20px;
+      padding: 16px;
+      text-align: center;
+      background: var(--el-fill-color-lighter);
+      border-radius: 8px;
     }
   }
 

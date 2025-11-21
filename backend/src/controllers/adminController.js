@@ -42,7 +42,9 @@ class AdminController {
         source,
         contact,
         startDate,
-        endDate
+        endDate,
+        userSource,
+        subject
       } = req.query;
 
       const result = await subscriptionService.getSubscriptionList({
@@ -53,7 +55,9 @@ class AdminController {
         source,
         contact,
         startDate,
-        endDate
+        endDate,
+        userSource,
+        subject
       });
 
       res.json(formatResponse(200, '查询成功', result));
@@ -256,7 +260,9 @@ class AdminController {
         source,
         contact,
         startDate,
-        endDate
+        endDate,
+        userSource,
+        subject
       } = req.query;
 
       // 获取所有符合条件的数据（不分页）
@@ -268,8 +274,11 @@ class AdminController {
         source,
         contact,
         startDate,
-        endDate
+        endDate,
+        userSource,
+        subject
       });
+      
       // 创建工作簿
       const workbook = new ExcelJS.Workbook();
       const worksheet = workbook.addWorksheet('订阅用户');

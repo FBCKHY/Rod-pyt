@@ -26,7 +26,7 @@ const Subscription = sequelize.define('Subscription', {
     comment: '订阅来源'
   },
   status: {
-    type: DataTypes.ENUM('subscribed', 'unsubscribed'),
+    type: DataTypes.ENUM('subscribed', 'unsubscribed', 'pending', 'contacted'),
     defaultValue: 'subscribed',
     comment: '订阅状态'
   },
