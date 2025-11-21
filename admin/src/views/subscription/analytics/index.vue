@@ -189,7 +189,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, reactive, computed, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import { ElMessage } from 'element-plus'
 import {
@@ -197,27 +197,27 @@ import {
   InfoFilled, Clock, Location, Message
 } from '@element-plus/icons-vue'
 import { useSettingStore } from '@/store/modules/setting'
-import { SubscriptionService } from '@/api/subscriptionApi'
+import { SubscriptionStatsService } from '@/api/subscriptionStatsApi'
 import * as echarts from 'echarts'
 
 // 响应式数据
 const loading = ref(false)
-const dateRange = ref<[Date, Date] | null>(null)
+const dateRange = ref(null)
 const trendPeriod = ref('30d')
 
 // 图表引用
-const trendChartRef = ref<HTMLElement>()
-const sourceChartRef = ref<HTMLElement>()
-const contactTypeChartRef = ref<HTMLElement>()
-const hourlyChartRef = ref<HTMLElement>()
-const regionChartRef = ref<HTMLElement>()
+const trendChartRef = ref()
+const sourceChartRef = ref()
+const contactTypeChartRef = ref()
+const hourlyChartRef = ref()
+const regionChartRef = ref()
 
 // 图表实例
-let trendChart: echarts.ECharts | null = null
-let sourceChart: echarts.ECharts | null = null
-let contactTypeChart: echarts.ECharts | null = null
-let hourlyChart: echarts.ECharts | null = null
-let regionChart: echarts.ECharts | null = null
+let trendChart = null
+let sourceChart = null
+let contactTypeChart = null
+let hourlyChart = null
+let regionChart = null
 
 // 统计数据
 const stats = reactive({
@@ -458,18 +458,109 @@ const initRegionChart = () => {
   regionChart.setOption(option)
 }
 
-// 刷新数据
-const refreshData = async () => {
+// 获取统计数据
+const fetchStatsData = async () => {
   try {
     loading.value = true
-    // 这里可以调用实际的API
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('数据已刷新')
+    const res = await SubscriptionStatsService.getStats()
+    
+    // 适配不同的响应格式
+    let data = null
+    if (res.data && typeof res.data === 'object') {
+      data = res.data
+    } else if (res.total !== undefined) {
+      // 如果响应直接包含数据
+      data = res
+    }
+    
+    if (data) {
+      
+      // 更新统计数据
+      stats.activeUsers = data.total || 0
+      stats.newActiveUsers = data.todayNew || 0
+      stats.avgDaily = Math.round((data.thisMonthNew || 0) / 30)
+      
+      // 计算增长率
+      const lastMonthTotal = data.total - data.thisMonthNew
+      stats.growthRate = lastMonthTotal > 0 
+        ? ((data.thisMonthNew / lastMonthTotal) * 100).toFixed(1)
+        : 0
+      
+      // 计算转化率
+      stats.conversionRate = data.total > 0
+        ? ((data.subscribed / data.total) * 100).toFixed(1)
+        : 0
+      
+      // 更新图表数据
+      updateChartsWithData(data)
+    }
   } catch (error) {
-    ElMessage.error('刷新失败')
+    console.error('获取统计数据失败:', error)
+    ElMessage.error('获取数据失败')
   } finally {
     loading.value = false
   }
+}
+
+// 使用真实数据更新图表
+const updateChartsWithData = (data) => {
+  // 更新来源图表
+  if (data.bySource && sourceChart) {
+    const sourceData = [
+      { value: data.bySource.website_footer || 0, name: '网站底部' },
+      { value: data.bySource.contact_form || 0, name: '联系表单' },
+      { value: data.bySource.manual || 0, name: '手动添加' }
+    ]
+    sourceChart.setOption({
+      series: [{ data: sourceData }]
+    })
+  }
+  
+  // 更新联系方式图表
+  if (data.byContactType && contactTypeChart) {
+    const contactData = [
+      { value: data.byContactType.email || 0, name: '邮箱' },
+      { value: data.byContactType.wechat || 0, name: '微信' },
+      { value: data.byContactType.phone || 0, name: '电话' }
+    ]
+    contactTypeChart.setOption({
+      series: [{ data: contactData }]
+    })
+    
+    // 更新偏好联系方式
+    const maxContact = contactData.reduce((max, item) => 
+      item.value > max.value ? item : max, contactData[0]
+    )
+    stats.preferredContact = maxContact.name
+    stats.preferredContactPercent = data.total > 0
+      ? ((maxContact.value / data.total) * 100).toFixed(1)
+      : 0
+  }
+  
+  // 更新趋势图表
+  if (data.trend && trendChart) {
+    const dates = data.trend.map(item => {
+      const date = new Date(item.date)
+      return date.toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' })
+    })
+    const subscriptions = data.trend.map(item => item.newSubscriptions || 0)
+    const unsubscriptions = data.trend.map(item => item.unsubscriptions || 0)
+    
+    trendChart.setOption({
+      xAxis: { data: dates },
+      series: [
+        { data: subscriptions },
+        { data: unsubscriptions },
+        { data: subscriptions.map((sub, i) => sub - unsubscriptions[i]) }
+      ]
+    })
+  }
+}
+
+// 刷新数据
+const refreshData = async () => {
+  await fetchStatsData()
+  ElMessage.success('数据已刷新')
 }
 
 // 日期范围变化
@@ -507,7 +598,10 @@ const handleResize = () => {
 // 生命周期
 onMounted(() => {
   nextTick(() => {
+    // 先初始化图表
     updateAllCharts()
+    // 然后获取真实数据
+    fetchStatsData()
   })
   
   window.addEventListener('resize', handleResize)
