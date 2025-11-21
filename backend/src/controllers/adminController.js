@@ -278,11 +278,16 @@ class AdminController {
       // 设置列
       worksheet.columns = [
         { header: 'ID', key: 'id', width: 10 },
+        { header: '姓名', key: 'fullName', width: 15 },
         { header: '联系方式类型', key: 'contactType', width: 15 },
-        { header: '联系方式', key: 'contactValue', width: 30 },
-        { header: '来源', key: 'source', width: 20 },
-        { header: '状态', key: 'status', width: 15 },
-        { header: 'IP地址', key: 'ipAddress', width: 20 },
+        { header: '邮箱/微信/电话', key: 'contactValue', width: 30 },
+        { header: '公司名称', key: 'company', width: 25 },
+        { header: '来源平台', key: 'source', width: 20 },
+        { header: '状态', key: 'status', width: 12 },
+        { header: '咨询主题', key: 'subject', width: 25 },
+        { header: '留言内容', key: 'message', width: 50 },
+        { header: '备注', key: 'note', width: 30 },
+        { header: 'IP地址', key: 'ipAddress', width: 18 },
         { header: '订阅时间', key: 'subscribedAt', width: 20 }
       ];
 
@@ -298,10 +303,15 @@ class AdminController {
       result.list.forEach(item => {
         worksheet.addRow({
           id: item.id,
+          fullName: item.fullName || '-',
           contactType: this.getContactTypeText(item.contactType),
           contactValue: item.contactValue,
+          company: item.company || '-',
           source: this.getSourceText(item.source),
           status: item.status === 'subscribed' ? '已订阅' : '已取消',
+          subject: item.subject || '-',
+          message: item.message || '-',
+          note: item.note || '-',
           ipAddress: item.ipAddress || '-',
           subscribedAt: new Date(item.subscribedAt).toLocaleString('zh-CN')
         });
