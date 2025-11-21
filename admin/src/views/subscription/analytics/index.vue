@@ -770,10 +770,10 @@ onBeforeUnmount(() => {
 
       .chart-container {
         width: 100%;
-        height: 300px;
+        height: 280px;
 
         &.large {
-          height: 400px;
+          height: 320px;
         }
       }
     }

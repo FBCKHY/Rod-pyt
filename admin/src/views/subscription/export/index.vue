@@ -378,36 +378,42 @@ const quickExport = async (type: string) => {
     const params: any = {}
     switch (type) {
       case 'active':
+        // 仅导出已订阅用户
         params.status = 'subscribed'
         break
       case 'recent':
+        // 最近30天新增
         const thirtyDaysAgo = new Date()
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
         params.startDate = thirtyDaysAgo.toISOString()
         break
       case 'email':
+        // 仅导出邮箱用户
         params.contactType = 'email'
         break
     }
-
-    await SubscriptionService.exportSubscriptions(params)
-    ElMessage.success('导出成功')
     
-    // 添加到历史记录
+    // 调用导出API
+    await SubscriptionService.exportSubscriptions(params)
+    
+    ElMessage.success('导出成功！文件已开始下载')
+    
+    // 添加到导出历史
     const newTask = {
       id: Date.now(),
       name: getQuickExportName(type),
       description: getQuickExportDesc(type),
       type,
       recordCount: getQuickExportCount(type),
-      fileSize: Math.floor(Math.random() * 500000) + 100000,
+      fileSize: 0,
       status: 'completed',
       createdAt: new Date()
     }
     exportHistory.value.unshift(newTask)
     
   } catch (error) {
-    ElMessage.error('导出失败')
+    console.error('导出失败:', error)
+    ElMessage.error('导出失败，请稍后重试')
   } finally {
     exporting.value = false
   }
