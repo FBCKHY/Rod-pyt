@@ -302,11 +302,11 @@ class AdminController {
         // 智能判断显示用户来源还是公司
         let sourceOrCompany = '-'
         if (item.company) {
-          // 如果有公司名称，显示公司
-          sourceOrCompany = item.company
+          // 如果有公司名称，显示：公司 - XX公司
+          sourceOrCompany = `公司 - ${item.company}`
         } else if (item.userSource) {
-          // 如果有用户来源，显示用户来源
-          sourceOrCompany = item.userSource
+          // 如果有用户来源，显示：平台 - XX平台
+          sourceOrCompany = `平台 - ${item.userSource}`
         }
         
         worksheet.addRow({

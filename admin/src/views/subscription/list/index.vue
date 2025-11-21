@@ -301,18 +301,38 @@
               />
             </div>
             <div class="info-item">
-              <label>公司:</label>
+              <label>用户来源类型:</label>
+              <el-select 
+                v-model="currentDetail.sourceType" 
+                placeholder="请选择用户来源类型"
+                @change="handleSourceTypeChange"
+              >
+                <el-option label="平台" value="platform" />
+                <el-option label="公司客户" value="company" />
+                <el-option label="其他" value="other" />
+              </el-select>
+            </div>
+            <div v-if="currentDetail.sourceType === 'platform'" class="info-item">
+              <label>平台名称:</label>
+              <el-input 
+                v-model="currentDetail.userSource" 
+                placeholder="请输入平台名称（如：VC嗨聘）"
+                clearable
+              />
+            </div>
+            <div v-if="currentDetail.sourceType === 'company'" class="info-item">
+              <label>公司名称:</label>
               <el-input 
                 v-model="currentDetail.company" 
                 placeholder="请输入公司名称"
                 clearable
               />
             </div>
-            <div class="info-item">
-              <label>用户来源:</label>
+            <div v-if="currentDetail.sourceType === 'other'" class="info-item">
+              <label>其他来源:</label>
               <el-input 
                 v-model="currentDetail.userSource" 
-                placeholder="请输入用户来源"
+                placeholder="请输入其他来源"
                 clearable
               />
             </div>
@@ -549,7 +569,29 @@ const handleSelectionChange = (rows) => {
 // 查看详情
 const handleViewDetail = async (row) => {
   currentDetail.value = { ...row }
+  
+  // 初始化sourceType
+  if (row.company) {
+    currentDetail.value.sourceType = 'company'
+  } else if (row.userSource) {
+    currentDetail.value.sourceType = 'platform'
+  } else {
+    currentDetail.value.sourceType = ''
+  }
+  
   detailDialogVisible.value = true
+}
+
+// 处理用户来源类型变化
+const handleSourceTypeChange = () => {
+  // 清空其他字段
+  if (currentDetail.value.sourceType === 'platform') {
+    currentDetail.value.company = ''
+  } else if (currentDetail.value.sourceType === 'company') {
+    currentDetail.value.userSource = ''
+  } else if (currentDetail.value.sourceType === 'other') {
+    currentDetail.value.company = ''
+  }
 }
 
 // 更新备注
