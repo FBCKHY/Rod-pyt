@@ -114,9 +114,47 @@ export class SubscriptionService {
    * 导出订阅数据
    */
   static exportSubscriptions(params: Partial<SubscriptionListParams>) {
-    return request.get({
-      url: '/admin/subscriptions/export',
-      params
+    // 构建查询参数
+    const queryParams = new URLSearchParams()
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        queryParams.append(key, String(value))
+      }
+    })
+    
+    // 获取token
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+    
+    // 使用window.open直接下载
+    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
+    const url = `${baseURL}/api/admin/subscriptions/export?${queryParams.toString()}`
+    
+    // 创建一个隐藏的iframe来下载文件
+    const iframe = document.createElement('iframe')
+    iframe.style.display = 'none'
+    iframe.src = url
+    
+    // 添加token到请求头（使用fetch替代）
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': token || ''
+      }
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('导出失败')
+      }
+      return response.blob()
+    }).then(blob => {
+      // 创建下载链接
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `订阅用户_${new Date().toISOString().split('T')[0]}.xlsx`
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
     })
   }
 
