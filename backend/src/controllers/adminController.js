@@ -270,7 +270,6 @@ class AdminController {
         startDate,
         endDate
       });
-
       // 创建工作簿
       const workbook = new ExcelJS.Workbook();
       const worksheet = workbook.addWorksheet('订阅用户');
@@ -281,8 +280,7 @@ class AdminController {
         { header: '姓名', key: 'fullName', width: 15 },
         { header: '联系方式类型', key: 'contactType', width: 15 },
         { header: '邮箱/微信/电话', key: 'contactValue', width: 30 },
-        { header: '公司名称', key: 'company', width: 25 },
-        { header: '来源平台', key: 'source', width: 20 },
+        { header: '用户来源/公司', key: 'sourceOrCompany', width: 30 },
         { header: '状态', key: 'status', width: 12 },
         { header: '咨询主题', key: 'subject', width: 25 },
         { header: '留言内容', key: 'message', width: 50 },
@@ -301,13 +299,22 @@ class AdminController {
 
       // 添加数据
       result.list.forEach(item => {
+        // 智能判断显示用户来源还是公司
+        let sourceOrCompany = '-'
+        if (item.company) {
+          // 如果有公司名称，显示公司
+          sourceOrCompany = item.company
+        } else if (item.userSource) {
+          // 如果有用户来源，显示用户来源
+          sourceOrCompany = item.userSource
+        }
+        
         worksheet.addRow({
           id: item.id,
           fullName: item.fullName || '-',
           contactType: this.getContactTypeText(item.contactType),
           contactValue: item.contactValue,
-          company: item.company || '-',
-          source: this.getSourceText(item.source),
+          sourceOrCompany: sourceOrCompany,
           status: item.status === 'subscribed' ? '已订阅' : '已取消',
           subject: item.subject || '-',
           message: item.message || '-',
