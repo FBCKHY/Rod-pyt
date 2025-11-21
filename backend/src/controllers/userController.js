@@ -493,3 +493,74 @@ exports.resetPassword = async (req, res) => {
     });
   }
 };
+
+/**
+ * 获取用户密码（仅超级管理员）
+ * @route GET /api/user/:id/password
+ */
+exports.getUserPassword = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const currentUserId = req.user?.id;
+
+    // 检查当前用户是否为超级管理员
+    const currentUser = await User.findByPk(currentUserId, {
+      include: [{
+        model: Role,
+        as: 'roles',
+        attributes: ['role_code', 'role_name']
+      }]
+    });
+
+    if (!currentUser) {
+      return res.status(401).json({
+        code: 401,
+        msg: '未授权'
+      });
+    }
+
+    // 检查是否为超级管理员
+    const isSuperAdmin = currentUser.roles.some(role => 
+      role.role_code.toLowerCase().includes('super') || 
+      role.role_code.toLowerCase().includes('admin')
+    );
+
+    if (!isSuperAdmin) {
+      return res.status(403).json({
+        code: 403,
+        msg: '没有权限查看密码，仅超级管理员可以访问'
+      });
+    }
+
+    // 获取目标用户
+    const user = await User.findByPk(id, {
+      attributes: ['id', 'username', 'password']
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        code: 404,
+        msg: '用户不存在'
+      });
+    }
+
+    logger.info('超级管理员查看用户密码', { 
+      adminId: currentUserId, 
+      targetUserId: id 
+    });
+
+    res.json({
+      code: 200,
+      msg: '获取成功',
+      data: {
+        password: user.password
+      }
+    });
+  } catch (error) {
+    logger.error('获取用户密码失败', error);
+    res.status(500).json({
+      code: 500,
+      msg: '获取密码失败'
+    });
+  }
+};

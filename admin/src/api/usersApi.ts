@@ -69,4 +69,11 @@ export class UserService {
       params: { newPassword }
     })
   }
+
+  // 获取用户密码（仅超级管理员）
+  static getUserPassword(id: number) {
+    return request.get({
+      url: `/user/${id}/password`
+    })
+  }
 }

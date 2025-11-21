@@ -29,6 +29,46 @@
       <ElFormItem label="密码" prop="password" v-if="dialogType === 'add'">
         <ElInput v-model="formData.password" type="password" placeholder="请输入密码" show-password />
       </ElFormItem>
+      <ElFormItem label="当前密码" v-if="dialogType === 'edit'">
+        <div class="password-field">
+          <ElInput 
+            v-model="displayPassword" 
+            :type="showPasswordText ? 'text' : 'password'" 
+            placeholder="密码已加密" 
+            :disabled="!isSuperAdmin"
+            show-password 
+          />
+          <ElButton 
+            v-if="isSuperAdmin" 
+            type="primary" 
+            size="small" 
+            @click="fetchUserPassword"
+            :loading="passwordLoading"
+            style="margin-left: 8px;"
+          >
+            {{ passwordFetched ? '刷新' : '查看哈希值' }}
+          </ElButton>
+        </div>
+        <div class="password-tip" v-if="!isSuperAdmin">
+          注意：密码已使用 bcrypt 加密存储，无法解密为明文。如需修改密码，请使用重置密码功能。
+        </div>
+        <div class="password-tip-success" v-else-if="!passwordFetched">
+          超级管理员权限：可以查看密码哈希值和修改密码
+        </div>
+        <div class="password-tip-info" v-else>
+          🔒 当前显示的是 bcrypt 加密后的哈希值，无法解密为原始密码。<br/>
+          这是安全的单向加密，符合安全最佳实践。如需修改，请在下方输入新密码。
+        </div>
+      </ElFormItem>
+      <ElFormItem label="修改密码" v-if="dialogType === 'edit' && isSuperAdmin">
+        <ElInput 
+          v-model="formData.newPassword" 
+          type="password" 
+          placeholder="输入新密码即可修改（留空不修改）" 
+          show-password 
+          clearable
+        />
+      </ElFormItem>
       <ElFormItem label="昵称" prop="nickname">
         <ElInput v-model="formData.nickname" placeholder="请输入昵称" />
       </ElFormItem>
@@ -104,12 +144,37 @@
     id: 0,
     username: '',
     password: '',
+    currentPassword: '',
+    newPassword: '',
     nickname: '',
     email: '',
     mobile: '',
     department: '',
     avatar: '',
     roleIds: [] as number[]
+  })
+
+  // 密码显示相关
+  const displayPassword = ref('********')
+  const showPasswordText = ref(false)
+  const passwordLoading = ref(false)
+  const passwordFetched = ref(false)
+
+  // 检查是否为超级管理员
+  const userStore = useUserStore()
+  const isSuperAdmin = computed(() => {
+    const roles = userStore.info?.roles || []
+    // 检查是否包含超级管理员角色（可能是 'super_admin', 'admin', '超级管理员' 等）
+    return roles.some((role: any) => {
+      if (typeof role === 'string') {
+        return role.toLowerCase().includes('super') || role.toLowerCase().includes('admin')
+      }
+      if (typeof role === 'object' && role !== null) {
+        const roleName = role.name || role.role_name || role.code || ''
+        return roleName.toLowerCase().includes('super') || roleName.toLowerCase().includes('admin')
+      }
+      return false
+    })
   })
 
   // 上传配置
@@ -158,6 +223,12 @@
 
   // 初始化表单数据
   const initFormData = () => {
+    // 重置密码显示状态
+    displayPassword.value = '********'
+    showPasswordText.value = false
+    passwordFetched.value = false
+    passwordLoading.value = false
+
     const isEdit = props.type === 'edit' && props.userData
     const row = props.userData
 
@@ -226,6 +297,8 @@
         id: row.id || 0,
         username: row.username || '',
         password: '',
+        currentPassword: row.password || '********',
+        newPassword: '',
         nickname: row.nickname || '',
         email: row.email || '',
         mobile: row.mobile || '',
@@ -238,6 +311,8 @@
         id: 0,
         username: '',
         password: '',
+        currentPassword: '',
+        newPassword: '',
         nickname: '',
         email: '',
         mobile: '',
@@ -308,6 +383,32 @@
     return import.meta.env.VITE_API_BASE_URL + avatar
   }
 
+  // 获取用户密码（仅超级管理员）
+  const fetchUserPassword = async () => {
+    if (!isSuperAdmin.value || !formData.id) {
+      ElMessage.warning('没有权限查看密码')
+      return
+    }
+
+    try {
+      passwordLoading.value = true
+      const res: any = await UserService.getUserPassword(formData.id)
+      if (res && res.password) {
+        displayPassword.value = res.password
+        passwordFetched.value = true
+        showPasswordText.value = true
+        ElMessage.success('密码哈希值获取成功（bcrypt 加密，不可解密）')
+      } else {
+        ElMessage.warning('无法获取密码')
+      }
+    } catch (error: any) {
+      console.error('获取密码失败:', error)
+      ElMessage.error(error.msg || '获取密码失败')
+    } finally {
+      passwordLoading.value = false
+    }
+  }
+
   // 提交表单
   const handleSubmit = async () => {
     if (!formRef.value) return
@@ -316,7 +417,7 @@
       const valid = await formRef.value.validate()
       if (!valid) return
 
-      const params = {
+      const params: any = {
         username: formData.username,
         password: formData.password,
         nickname: formData.nickname,
@@ -325,6 +426,11 @@
         department: formData.department,
         avatar: formData.avatar,
         roleIds: formData.roleIds
+      }
+
+      // 如果是编辑模式且超级管理员输入了新密码，则添加到参数中
+      if (dialogType.value === 'edit' && isSuperAdmin.value && formData.newPassword) {
+        params.password = formData.newPassword
       }
 
       console.log('提交参数:', params)
@@ -384,5 +490,36 @@
   font-size: 12px;
   color: var(--el-text-color-secondary);
   margin-top: 8px;
+}
+
+.password-tip {
+  font-size: 12px;
+  color: var(--el-color-warning);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.password-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-tip-success {
+  font-size: 12px;
+  color: var(--el-color-success);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.password-tip-info {
+  font-size: 12px;
+  color: var(--el-color-info);
+  margin-top: 8px;
+  line-height: 1.8;
+  padding: 8px 12px;
+  background-color: var(--el-color-info-light-9);
+  border-radius: 4px;
+  border-left: 3px solid var(--el-color-info);
 }
 </style>

@@ -113,16 +113,63 @@
 
   .filter-bar {
     background: white;
-    padding: 20px;
+    padding: 24px;
     border-radius: 12px;
     margin-bottom: 20px;
     display: flex;
-    gap: 12px;
+    align-items: center;
+    gap: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    flex-wrap: wrap;
 
-    .search-input {
-      flex: 1;
-      max-width: 400px;
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      &.search-group {
+        flex: 1;
+        min-width: 280px;
+
+        .search-input {
+          width: 100%;
+          max-width: 500px;
+        }
+      }
+
+      &.select-group {
+        display: flex;
+        gap: 12px;
+        flex-wrap: nowrap;
+
+        .el-select {
+          min-width: 150px;
+          width: 150px;
+        }
+      }
+
+      &.date-group {
+        .el-date-editor {
+          min-width: 340px;
+          width: 340px;
+        }
+      }
+    }
+
+    // 为筛选控件添加统一的高度和样式
+    .el-input,
+    .el-select,
+    .el-date-editor {
+      :deep(.el-input__wrapper),
+      :deep(.el-select__wrapper) {
+        min-height: 40px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+
+        &:hover {
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+      }
     }
   }
 
@@ -458,6 +505,16 @@
 
       .search-input {
         max-width: 100%;
+        min-width: 100%;
+      }
+
+      .el-select {
+        width: 100%;
+      }
+
+      .el-date-editor {
+        width: 100%;
+        min-width: 100%;
       }
     }
   }

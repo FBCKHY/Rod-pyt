@@ -72,47 +72,53 @@
 
     <!-- 搜索和筛选 -->
     <div class="filter-bar">
-      <el-input
-        v-model="searchQuery"
-        placeholder="搜索联系方式、姓名或留言内容..."
-        :prefix-icon="Search"
-        clearable
-        class="search-input"
-        @input="handleSearch"
-      />
+      <div class="filter-group search-group">
+        <el-input
+          v-model="searchQuery"
+          placeholder="搜索联系方式、姓名或留言内容..."
+          :prefix-icon="Search"
+          clearable
+          class="search-input"
+          @input="handleSearch"
+        />
+      </div>
       
-      <el-select
-        v-model="filterStatus"
-        placeholder="状态筛选"
-        clearable
-        @change="handleFilter"
-      >
-        <el-option label="全部状态" value="" />
-        <el-option label="已订阅" value="subscribed" />
-        <el-option label="已联系" value="contacted" />
-        <el-option label="待处理" value="pending" />
-      </el-select>
+      <div class="filter-group select-group">
+        <el-select
+          v-model="filterStatus"
+          placeholder="状态筛选"
+          clearable
+          @change="handleFilter"
+        >
+          <el-option label="全部状态" value="" />
+          <el-option label="已订阅" value="subscribed" />
+          <el-option label="已联系" value="contacted" />
+          <el-option label="待处理" value="pending" />
+        </el-select>
+        
+        <el-select
+          v-model="filterSource"
+          placeholder="来源筛选"
+          clearable
+          @change="handleFilter"
+        >
+          <el-option label="全部来源" value="" />
+          <el-option label="网站表单" value="contact_form" />
+          <el-option label="页脚订阅" value="website_footer" />
+          <el-option label="手动添加" value="manual" />
+        </el-select>
+      </div>
       
-      <el-select
-        v-model="filterSource"
-        placeholder="来源筛选"
-        clearable
-        @change="handleFilter"
-      >
-        <el-option label="全部来源" value="" />
-        <el-option label="网站表单" value="contact_form" />
-        <el-option label="页脚订阅" value="website_footer" />
-        <el-option label="手动添加" value="manual" />
-      </el-select>
-      
-      <el-date-picker
-        v-model="dateRange"
-        type="daterange"
-        range-separator="至"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        @change="handleFilter"
-      />
+      <div class="filter-group date-group">
+        <el-date-picker
+          v-model="dateRange"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          @change="handleFilter"
+        />
+      </div>
     </div>
 
     <!-- 数据表格 - 增强版 -->
@@ -672,7 +678,15 @@ const getStatusLabel = (status) => {
 
 const formatDate = (date) => {
   if (!date) return '-'
-  return new Date(date).toLocaleDateString('zh-CN')
+  return new Date(date).toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  })
 }
 
 const formatDateTime = (date) => {
