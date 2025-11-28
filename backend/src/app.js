@@ -18,6 +18,7 @@ const adminRoutes = require('./routes/admin');
 const productRoutes = require('./routes/products');
 const productCategoryRoutes = require('./routes/productCategories');
 const productTagRoutes = require('./routes/productTags');
+const orderRoutes = require('./routes/orders');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const roleRoutes = require('./routes/roles');
@@ -119,35 +120,48 @@ if (RATE_LIMIT_ENABLED) {
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// 静态文件MIME类型中间件
+const setStaticHeaders = (req, res, next) => {
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
+  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
+  
+  // 根据文件扩展名设置正确的Content-Type
+  const ext = path.extname(req.path).toLowerCase()
+  const mimeTypes = {
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+    '.json': 'application/json',
+    '.html': 'text/html',
+    '.htm': 'text/html',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.webp': 'image/webp',
+    '.ico': 'image/x-icon',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+    '.ttf': 'font/ttf',
+    '.eot': 'application/vnd.ms-fontobject'
+  }
+  
+  if (mimeTypes[ext]) {
+    res.setHeader('Content-Type', mimeTypes[ext])
+  }
+  
+  next()
+}
+
 // 静态资源：对外暴露 uploads 与 products
-app.use('/uploads', (req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
-  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
-  next()
-}, express.static(path.join(__dirname, '../uploads')));
-app.use('/products', (req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
-  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
-  next()
-}, express.static(path.join(process.cwd(), 'public', 'products')));
+app.use('/uploads', setStaticHeaders, express.static(path.join(process.cwd(), 'public', 'uploads')));
+app.use('/products', setStaticHeaders, express.static(path.join(process.cwd(), 'public', 'products')));
 // 新增：对外暴露含有全站 CSS/JS/图片的 "web Site" 目录（使用项目根路径）
-app.use('/web Site', (req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
-  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
-  next()
-}, express.static(path.join(PROJECT_ROOT, 'web Site')));
+app.use('/web Site', setStaticHeaders, express.static(path.join(PROJECT_ROOT, 'web Site')));
 // 新增：常用根路径 /assets 直达 PC 端资源目录，提高兼容性（使用项目根路径）
-app.use('/assets', (req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
-  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
-  next()
-}, express.static(path.join(PROJECT_ROOT, 'web Site', 'web PC', 'assets')));
+app.use('/assets', setStaticHeaders, express.static(path.join(PROJECT_ROOT, 'web Site', 'web PC', 'assets')));
 // 新增：将网站根路径 '/' 映射到 PC 站点根目录，便于直接访问 /index.html、/pages/*
-app.use('/', (req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
-  res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none')
-  next()
-}, express.static(path.join(PROJECT_ROOT, 'web Site', 'web PC')));
+app.use('/', setStaticHeaders, express.static(path.join(PROJECT_ROOT, 'web Site', 'web PC')));
 
 // Swagger API文档
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, swaggerConfig));
@@ -179,6 +193,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/product-categories', productCategoryRoutes);
 app.use('/api/product-tags', productTagRoutes);
+app.use('/api/orders', orderRoutes);
 
 // 404处理
 app.use('*', (req, res) => {

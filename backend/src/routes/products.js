@@ -301,4 +301,73 @@ router.post('/card-image', authOptional, multer({ storage: multer.memoryStorage(
  */
 router.put('/sort-order', authOptional, productController.updateSortOrder);
 
-module.exports = router; 
+/**
+ * @swagger
+ * /api/products/{id}/config:
+ *   get:
+ *     summary: 获取产品配置
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 成功获取配置
+ *       404:
+ *         description: 配置不存在
+ */
+router.get('/:id/config', productController.getConfig);
+
+/**
+ * @swagger
+ * /api/products/{id}/config:
+ *   put:
+ *     summary: 保存产品配置
+ *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               configData:
+ *                 type: object
+ *     responses:
+ *       200:
+ *         description: 配置保存成功
+ */
+router.put('/:id/config', authOptional, productController.saveConfig);
+
+/**
+ * @swagger
+ * /api/products/{id}/config/history:
+ *   get:
+ *     summary: 获取产品配置历史
+ *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 成功获取配置历史
+ */
+router.get('/:id/config/history', authOptional, productController.getConfigHistory);
+
+module.exports = router;

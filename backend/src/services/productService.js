@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Product, ProductCategory, ProductTag, sequelize } = require('../models');
+const { Product, ProductCategory, ProductTag, ProductConfig, sequelize } = require('../models');
 const path = require('path');
 const fs = require('fs-extra');
 
@@ -53,6 +53,45 @@ async function saveBase64ImageIfNeeded(cardImage) {
   await fs.ensureDir(folder)
   await fs.writeFile(path.join(folder, name), buffer)
   return `/uploads/card_images/${name}`
+}
+
+// 生成产品ID (格式: RD-001, RD-002, ...)
+async function generateProductId() {
+  // 查找所有符合 RD-数字 格式的产品型号
+  const products = await Product.findAll({
+    where: {
+      model: {
+        [Op.regexp]: '^RD-[0-9]+$'  // 只匹配 RD-数字 格式
+      }
+    },
+    attributes: ['model'],
+    raw: true
+  });
+  
+  // 提取所有序号
+  const numbers = products
+    .map(p => {
+      const match = p.model.match(/^RD-(\d+)$/);
+      return match ? parseInt(match[1]) : 0;
+    })
+    .filter(n => n > 0);
+  
+  // 找到最大序号
+  const maxNumber = numbers.length > 0 ? Math.max(...numbers) : 0;
+  const nextNumber = maxNumber + 1;
+  
+  // 格式化为3位数字 (1 -> 001, 2 -> 002)
+  const productId = `RD-${String(nextNumber).padStart(3, '0')}`;
+  
+  console.log(' 产品型号生成:', {
+    已有型号: products.map(p => p.model),
+    提取序号: numbers,
+    最大序号: maxNumber,
+    新序号: nextNumber,
+    生成型号: productId
+  });
+  
+  return productId;
 }
 
 // 标准化产品输出：确保 features 为数组
@@ -173,11 +212,15 @@ class ProductService {
     try {
       const { tags, ...productInfo } = productData;
 
+      // 自动生成产品ID (model字段): RD-001, RD-002, ...
+      if (!productInfo.model) {
+        productInfo.model = await generateProductId();
+      }
+
       // 生成产品编码：RD-xxx，如果未传入且提供了型号
       if (!productInfo.product_code) {
-        const prefix = 'RD-';
-        const seq = String(Math.floor(Date.now() / 1000) % 100000).padStart(5, '0');
-        productInfo.product_code = `${prefix}${seq}`;
+        // 使用model作为product_code
+        productInfo.product_code = productInfo.model;
       }
 
       // 规范数据类型
@@ -349,8 +392,8 @@ class ProductService {
       throw new Error('产品不存在');
     }
 
-    // 创建产品专属文件夹
-    const productFolder = `products/product_${productId}`;
+    // 使用产品model(RD-001)作为文件夹名
+    const productFolder = `products/${product.model}`;
     const fullPath = path.join(process.cwd(), 'public', productFolder);
 
     // 确保文件夹存在
@@ -581,6 +624,82 @@ class ProductService {
 
     return { filePath: product.filePath, files: result.sort() }
   }
+
+  /**
+   * 获取产品配置（当前活跃版本）
+   */
+  async getProductConfig(productId) {
+    const config = await ProductConfig.findOne({
+      where: {
+        productId,
+        isActive: true
+      },
+      order: [['version', 'DESC']]
+    });
+    return config;
+  }
+
+  /**
+   * 保存产品配置
+   */
+  async saveProductConfig(productId, configData) {
+    const transaction = await sequelize.transaction();
+
+    try {
+      // 检查产品是否存在
+      const product = await Product.findByPk(productId);
+      if (!product) {
+        throw new Error('产品不存在');
+      }
+
+      // 获取当前最高版本号
+      const latestConfig = await ProductConfig.findOne({
+        where: { productId },
+        order: [['version', 'DESC']],
+        transaction
+      });
+
+      const newVersion = latestConfig ? latestConfig.version + 1 : 1;
+
+      // 将所有旧配置设为非活跃
+      await ProductConfig.update(
+        { isActive: false },
+        {
+          where: { productId },
+          transaction
+        }
+      );
+
+      // 创建新配置
+      const config = await ProductConfig.create(
+        {
+          productId,
+          configData,
+          version: newVersion,
+          isActive: true
+        },
+        { transaction }
+      );
+
+      await transaction.commit();
+      return config;
+    } catch (error) {
+      await transaction.rollback();
+      throw error;
+    }
+  }
+
+  /**
+   * 获取产品配置历史版本
+   */
+  async getProductConfigHistory(productId) {
+    const configs = await ProductConfig.findAll({
+      where: { productId },
+      order: [['version', 'DESC']],
+      attributes: ['id', 'version', 'isActive', 'createdAt', 'updatedAt']
+    });
+    return configs;
+  }
 }
 
-module.exports = new ProductService(); 
+module.exports = new ProductService();

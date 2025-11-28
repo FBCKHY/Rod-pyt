@@ -5,7 +5,7 @@
 
 // API基础配置
 const API_CONFIG = {
-    baseURL: 'http://localhost:3000/api',
+    baseURL: 'http://localhost:3001/api',
     timeout: 10000
 };
 

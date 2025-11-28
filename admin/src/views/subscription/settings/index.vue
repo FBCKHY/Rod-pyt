@@ -209,27 +209,27 @@
             <h4>可用变量</h4>
             <div class="variables-grid">
               <div class="variable-item">
-                <code>{{ '{{name}}' }}</code>
+                <code v-text="'{{name}}'"></code>
                 <span>用户姓名</span>
               </div>
               <div class="variable-item">
-                <code>{{ '{{email}}' }}</code>
+                <code v-text="'{{email}}'"></code>
                 <span>用户邮箱</span>
               </div>
               <div class="variable-item">
-                <code>{{ '{{confirmUrl}}' }}</code>
+                <code v-text="'{{confirmUrl}}'"></code>
                 <span>确认链接</span>
               </div>
               <div class="variable-item">
-                <code>{{ '{{unsubscribeUrl}}' }}</code>
+                <code v-text="'{{unsubscribeUrl}}'"></code>
                 <span>取消订阅链接</span>
               </div>
               <div class="variable-item">
-                <code>{{ '{{siteName}}' }}</code>
+                <code v-text="'{{siteName}}'"></code>
                 <span>网站名称</span>
               </div>
               <div class="variable-item">
-                <code>{{ '{{date}}' }}</code>
+                <code v-text="'{{date}}'"></code>
                 <span>当前日期</span>
               </div>
             </div>

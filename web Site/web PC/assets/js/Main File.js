@@ -431,7 +431,7 @@ async function submitSubscriptionToAPI(contactType, contactValue, source = 'webs
         // 获取用户IP和User Agent
         const userAgent = navigator.userAgent;
         
-        const response = await fetch('http://localhost:3000/api/subscriptions', {
+        const response = await fetch('http://localhost:3001/api/subscriptions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

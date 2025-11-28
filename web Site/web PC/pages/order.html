@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品订购 - 容电科技</title>
+    <meta name="description" content="容电科技产品订购，填写订购信息，我们将尽快与您联系">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- 全局样式 -->
+    <link rel="stylesheet" href="../assets/css/Main File.css">
+    
+    <style>
+        :root {
+            --primary-color: #074E9C;
+            --secondary-color: #0066CC;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            padding-top: 80px;
+        }
+
+        .order-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .order-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .order-header h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .order-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .order-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 0;
+        }
+
+        .step-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 600;
+            color: #999;
+            transition: all 0.3s;
+        }
+
+        .step-item.active .step-circle {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .step-item.completed .step-circle {
+            background: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .step-item.active .step-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .order-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        .order-form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-bg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-label .required {
+            color: var(--danger-color);
+            margin-left: 4px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(7, 78, 156, 0.1);
+        }
+
+        .address-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .order-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .product-preview {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .product-model {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--danger-color);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            padding-top: 20px;
+            margin-top: 10px;
+            border-top: 2px solid var(--light-bg);
+        }
+
+        .summary-label {
+            color: #666;
+        }
+
+        .summary-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .total-price {
+            font-size: 24px;
+            color: var(--danger-color);
+        }
+
+        .btn-submit-order {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-submit-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(7, 78, 156, 0.3);
+        }
+
+        .agreement {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .agreement input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-modal.show {
+            display: flex;
+        }
+
+        .success-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 500px;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .success-icon i {
+            font-size: 40px;
+            color: white;
+        }
+
+        @media (max-width: 992px) {
+            .order-content {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .address-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/images/Main File/容电log.png" alt="容电Logo" class="logo">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto main-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">产品中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">关于容电</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="order-container">
+        <!-- 订单头部 -->
+        <div class="order-header">
+            <h1><i class="bi bi-cart-check"></i> 产品订购</h1>
+            <p class="text-muted">请填写您的订购信息，我们将尽快与您联系</p>
+            
+            <!-- 订购步骤 -->
+            <div class="order-steps">
+                <div class="step-item active">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">填写信息</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">确认订单</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">提交成功</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 订单内容 -->
+        <div class="order-content">
+            <!-- 左侧表单 -->
+            <div>
+                <!-- 联系信息 -->
+                <div class="order-form-section">
+                    <h3 class="section-title"><i class="bi bi-person"></i> 联系信息</h3>
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label class="form-label">
+                                姓名 <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" name="customerName" 
+                                   placeholder="请输入您的姓名" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                手机号码 <span class="required">*</span>
+                            </label>
+                            <input type="tel" class="form-control" name="customerPhone" 
+                                   placeholder="请输入您的手机号码" pattern="1[3-9]\d{9}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">电子邮箱</label>
+                            <input type="email" class="form-control" name="customerEmail" 
+                                   placeholder="请输入您的邮箱（选填）">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 收货地址 -->
+                <div class="order-form-section mt-4">
+                    <h3 class="section-title"><i class="bi bi-geo-alt"></i> 收货地址</h3>
+                    
+                    <div class="address-selector">
+                        <div class="form-group">
+                            <label class="form-label">
+                                省份 <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="province" id="provinceSelect" required>
+                                <option value="">请选择省份</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                城市 <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="city" id="citySelect" required disabled>
+                                <option value="">请先选择省份</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                区县 <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="district" id="districtSelect" required disabled>
+                                <option value="">请先选择城市</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            详细地址 <span class="required">*</span>
+                        </label>
+                        <textarea class="form-control" name="address" rows="3" 
+                                  placeholder="请输入详细地址（街道、门牌号等）" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">邮政编码</label>
+                        <input type="text" class="form-control" name="postalCode" 
+                               placeholder="请输入邮政编码（选填）" pattern="\d{6}">
+                    </div>
+                </div>
+
+                <!-- 备注信息 -->
+                <div class="order-form-section mt-4">
+                    <h3 class="section-title"><i class="bi bi-chat-left-text"></i> 备注信息</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">订单备注</label>
+                        <textarea class="form-control" name="note" rows="4" 
+                                  placeholder="如有特殊要求，请在此说明（选填）"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧订单摘要 -->
+            <div>
+                <div class="order-summary">
+                    <h3 class="section-title"><i class="bi bi-receipt"></i> 订单摘要</h3>
+                    
+                    <!-- 产品预览 -->
+                    <div class="product-preview" id="productPreview">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">加载中...</span>
+                        </div>
+                    </div>
+
+                    <!-- 价格明细 -->
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span class="summary-label">商品价格</span>
+                            <span class="summary-value" id="productPrice">¥0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">数量</span>
+                            <span class="summary-value">1</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">运费</span>
+                            <span class="summary-value text-success">免运费</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">订单总计</span>
+                            <span class="summary-value total-price" id="totalPrice">¥0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <button type="button" class="btn btn-primary btn-submit-order" id="submitOrderBtn">
+                        <i class="bi bi-check-circle"></i> 提交订单
+                    </button>
+
+                    <!-- 协议 -->
+                    <div class="agreement">
+                        <label>
+                            <input type="checkbox" id="agreeCheckbox" required>
+                            我已阅读并同意 <a href="#" class="text-primary">《用户协议》</a> 和 <a href="#" class="text-primary">《隐私政策》</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成功提示模态框 -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="bi bi-check-lg"></i>
+            </div>
+            <h3>订单提交成功！</h3>
+            <p class="text-muted mt-3">您的订单号是：<strong id="orderNumber"></strong></p>
+            <p class="text-muted">我们将尽快与您联系，请保持手机畅通</p>
+            <div class="mt-4">
+                <button class="btn btn-primary me-2" onclick="location.href='products.html'">
+                    继续购物
+                </button>
+                <button class="btn btn-outline-primary" onclick="location.href='../index.html'">
+                    返回首页
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚将由Main File.js动态加载 -->
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- API配置 -->
+    <script src="../assets/js/api-config.js"></script>
+    
+    <!-- 省市区数据 -->
+    <script src="../assets/js/china-regions.js"></script>
+    
+    <!-- 订购页面脚本 -->
+    <script src="../assets/js/order.js"></script>
+    
+    <!-- 全局脚本 -->
+    <script src="../assets/js/Main File.js"></script>
+</body>
+</html>

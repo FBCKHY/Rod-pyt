@@ -44,8 +44,8 @@ let BACKEND_CATEGORIES = [];
 let CATEGORY_DESC_MAP = new Map(); // Map<number, Set<number>>
 let ALL_PRODUCTS = [];
 
-// API 基址（若当前不在3000端口，则指向后端3000）
-const API_BASE = (window.location.origin.includes(':3000') ? '' : 'http://localhost:3000');
+// API 基址（若当前不在3001端口，则指向后端3001）
+const API_BASE = (window.location.origin.includes(':3001') ? '' : 'http://localhost:3001');
 
 // 规范化后端静态资源URL（修正端口与路径）
 function normalizeBackendUrl(url) {

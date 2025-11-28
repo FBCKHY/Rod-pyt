@@ -266,6 +266,58 @@ class ProductController {
       return res.status(500).json(formatResponse.error('上传失败: ' + error.message))
     }
   }
+
+  /**
+   * 获取产品配置
+   */
+  async getConfig(req, res) {
+    try {
+      const { id } = req.params;
+      const config = await productService.getProductConfig(id);
+      
+      if (!config) {
+        return res.status(404).json(formatResponse.error('配置不存在'));
+      }
+
+      res.json(formatResponse.success(config));
+    } catch (error) {
+      logger.error('获取产品配置失败:', error);
+      res.status(500).json(formatResponse.error('获取配置失败'));
+    }
+  }
+
+  /**
+   * 保存产品配置
+   */
+  async saveConfig(req, res) {
+    try {
+      const { id } = req.params;
+      const { configData } = req.body;
+      
+      const config = await productService.saveProductConfig(id, configData);
+      
+      logger.info('保存产品配置成功:', { productId: id });
+      res.json(formatResponse.success(config, '配置保存成功'));
+    } catch (error) {
+      logger.error('保存产品配置失败:', error);
+      res.status(500).json(formatResponse.error('保存配置失败: ' + error.message));
+    }
+  }
+
+  /**
+   * 获取产品配置历史版本
+   */
+  async getConfigHistory(req, res) {
+    try {
+      const { id } = req.params;
+      const history = await productService.getProductConfigHistory(id);
+      
+      res.json(formatResponse.success(history));
+    } catch (error) {
+      logger.error('获取配置历史失败:', error);
+      res.status(500).json(formatResponse.error('获取配置历史失败'));
+    }
+  }
 }
 
-module.exports = new ProductController(); 
+module.exports = new ProductController();

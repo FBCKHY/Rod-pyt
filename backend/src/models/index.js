@@ -3,6 +3,9 @@ const Subscription = require('./subscription');
 const Product = require('./product');
 const ProductCategory = require('./productCategory');
 const ProductTag = require('./productTag');
+const ProductConfig = require('./ProductConfig');
+const Order = require('./Order');
+const OrderItem = require('./OrderItem');
 const User = require('./User');
 const Role = require('./Role');
 const Permission = require('./Permission');
@@ -67,6 +70,39 @@ ProductTag.belongsToMany(Product, {
   as: 'products'
 });
 
+// 产品与配置的关联
+Product.hasMany(ProductConfig, {
+  foreignKey: 'product_id',
+  as: 'configs'
+});
+
+ProductConfig.belongsTo(Product, {
+  foreignKey: 'product_id',
+  as: 'product'
+});
+
+// 订单与订单项的关联
+Order.hasMany(OrderItem, {
+  foreignKey: 'order_id',
+  as: 'items'
+});
+
+OrderItem.belongsTo(Order, {
+  foreignKey: 'order_id',
+  as: 'order'
+});
+
+// 订单项与产品的关联
+OrderItem.belongsTo(Product, {
+  foreignKey: 'product_id',
+  as: 'product'
+});
+
+Product.hasMany(OrderItem, {
+  foreignKey: 'product_id',
+  as: 'orderItems'
+});
+
 // 导出所有模型和sequelize实例
 module.exports = {
   sequelize,
@@ -74,6 +110,9 @@ module.exports = {
   Product,
   ProductCategory,
   ProductTag,
+  ProductConfig,
+  Order,
+  OrderItem,
   User,
   Role,
   Permission

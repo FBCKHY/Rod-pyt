@@ -38,24 +38,35 @@
       </ElFormItem>
       
       <ElFormItem label="分类图标" prop="icon">
-        <ElSelect 
-          v-model="formData.icon" 
-          placeholder="请选择图标（可选）"
-          clearable
-          style="width: 100%"
-        >
-          <ElOption
-            v-for="icon in iconOptions"
-            :key="icon.value"
-            :label="icon.label"
-            :value="icon.value"
+        <div class="icon-selector">
+          <ElSelect 
+            v-model="formData.icon" 
+            placeholder="请选择图标（可选）"
+            clearable
+            style="width: 100%"
+            filterable
           >
-            <ElIcon style="margin-right: 8px">
-              <component :is="icon.component" />
+            <ElOption
+              v-for="icon in iconOptions"
+              :key="icon.value"
+              :label="icon.label"
+              :value="icon.value"
+            >
+              <div class="icon-option">
+                <ElIcon class="icon-preview">
+                  <component :is="icon.component" />
+                </ElIcon>
+                <span class="icon-label">{{ icon.label }}</span>
+              </div>
+            </ElOption>
+          </ElSelect>
+          <div v-if="formData.icon" class="selected-icon-preview">
+            <ElIcon class="preview-icon">
+              <component :is="getIconComponent(formData.icon)" />
             </ElIcon>
-            {{ icon.label }}
-          </ElOption>
-        </ElSelect>
+            <span class="preview-label">当前图标</span>
+          </div>
+        </div>
       </ElFormItem>
       
       <ElFormItem label="分类描述" prop="description">
@@ -110,7 +121,29 @@ import {
   Goods,
   Box,
   ShoppingBag,
-  Star
+  Star,
+  ShoppingCart,
+  Refrigerator,
+  Microphone,
+  Dish,
+  KnifeFork,
+  ColdDrink,
+  IceCream,
+  Apple,
+  Orange,
+  Pear,
+  Cherry,
+  Grape,
+  Watermelon,
+  Lollipop,
+  IceTea,
+  Dessert,
+  Sugar,
+  Bowl,
+  Fries,
+  Chicken,
+  Food,
+  ForkSpoon
 } from '@element-plus/icons-vue'
 
 // Props 和 Emits
@@ -164,17 +197,53 @@ const formRules = {
   ]
 }
 
-// 图标选项
+// 图标选项 - 按类别分组
 const iconOptions = [
-  { label: '咖啡', value: 'Coffee', component: Coffee },
-  { label: '显示器', value: 'Monitor', component: Monitor },
-  { label: '工具', value: 'Tools', component: Tools },
-  { label: '房屋', value: 'House', component: House },
-  { label: '商品', value: 'Goods', component: Goods },
-  { label: '盒子', value: 'Box', component: Box },
-  { label: '购物袋', value: 'ShoppingBag', component: ShoppingBag },
-  { label: '星星', value: 'Star', component: Star }
+  // 厂房电器类
+  { label: '☕ 咖啡机', value: 'Coffee', component: Coffee },
+  { label: '🧊 冰箱', value: 'Refrigerator', component: Refrigerator },
+  { label: '🍽️ 餐具', value: 'KnifeFork', component: KnifeFork },
+  { label: '🍲 餐盘', value: 'Dish', component: Dish },
+  { label: '🍴 刀叉', value: 'ForkSpoon', component: ForkSpoon },
+  { label: '🍜 碗', value: 'Bowl', component: Bowl },
+  { label: '🍟 薯条', value: 'Fries', component: Fries },
+  { label: '🍗 鸡肉', value: 'Chicken', component: Chicken },
+  { label: '🍔 食物', value: 'Food', component: Food },
+  
+  // 饮品类
+  { label: '🥤 冷饮', value: 'ColdDrink', component: ColdDrink },
+  { label: '🍦 冰淇淋', value: 'IceCream', component: IceCream },
+  { label: '🧃 冰茶', value: 'IceTea', component: IceTea },
+  
+  // 甜品类
+  { label: '🍭 棒棒糖', value: 'Lollipop', component: Lollipop },
+  { label: '🍰 甘点', value: 'Dessert', component: Dessert },
+  { label: '🍬 糖果', value: 'Sugar', component: Sugar },
+  
+  // 水果类
+  { label: '🍎 苹果', value: 'Apple', component: Apple },
+  { label: '🍊 橙子', value: 'Orange', component: Orange },
+  { label: '🍐 梨', value: 'Pear', component: Pear },
+  { label: '🍒 樱桃', value: 'Cherry', component: Cherry },
+  { label: '🍇 葡萄', value: 'Grape', component: Grape },
+  { label: '🍉 西瓜', value: 'Watermelon', component: Watermelon },
+  // 其他类
+  { label: '💻 显示器', value: 'Monitor', component: Monitor },
+  { label: '🔧 工具', value: 'Tools', component: Tools },
+  { label: '🏠 房屋', value: 'House', component: House },
+  { label: '📦 商品', value: 'Goods', component: Goods },
+  { label: '📦 盒子', value: 'Box', component: Box },
+  { label: '🛍️ 购物袋', value: 'ShoppingBag', component: ShoppingBag },
+  { label: '🛒 购物车', value: 'ShoppingCart', component: ShoppingCart },
+  { label: '⭐ 星星', value: 'Star', component: Star },
+  { label: '🎤 麦克风', value: 'Microphone', component: Microphone }
 ]
+
+// 获取图标组件
+const getIconComponent = (iconValue: string) => {
+  const icon = iconOptions.find(opt => opt.value === iconValue)
+  return icon?.component
+}
 
 // 可选父分类（排除当前编辑的分类）
 const availableParents = ref<CategoryItem[]>([])
@@ -183,7 +252,8 @@ const availableParents = ref<CategoryItem[]>([])
 const loadAvailableParents = async () => {
   try {
     const res = await request.get<any>({ url: '/product-categories/flat', params: { status: 'active' } })
-    availableParents.value = (res?.data || []).map((c: any) => ({ id: c.id, name: c.name }))
+    const responseData = res?.data || res
+    availableParents.value = (Array.isArray(responseData) ? responseData : []).map((c: any) => ({ id: c.id, name: c.name }))
     
     // 如果是编辑模式，排除当前分类和其子分类
     if (isEdit.value && props.category) {
@@ -271,6 +341,60 @@ watch(visible, (newVal) => {
   }
 })
 </script>
+
+<style scoped lang="scss">
+.icon-selector {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  
+  .el-select {
+    flex: 1;
+  }
+  
+  .selected-icon-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 16px;
+    background: var(--el-fill-color-light);
+    border-radius: 8px;
+    border: 1px solid var(--el-border-color);
+    
+    .preview-icon {
+      font-size: 32px;
+      color: var(--el-color-primary);
+    }
+    
+    .preview-label {
+      font-size: 12px;
+      color: var(--el-text-color-secondary);
+    }
+  }
+}
+
+.icon-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  .icon-preview {
+    font-size: 18px;
+    color: var(--el-color-primary);
+  }
+  
+  .icon-label {
+    font-size: 14px;
+  }
+}
+
+.form-tip {
+  margin-left: 8px;
+  font-size: 12px;
+  color: var(--el-text-color-secondary);
+}
+</style>
 
 <style scoped lang="scss">
 .category-form {

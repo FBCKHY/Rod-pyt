@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 
     <!-- 统一全局样式 -->
-    <link rel="stylesheet" href="/assets/css/Main File.css">
+    <link rel="stylesheet" href="../../web Site/web PC/assets/css/Main File.css">
     
     <!-- 本页样式 -->
     <link rel="stylesheet" href="./样式逻辑/产品详情.css">
@@ -121,7 +121,7 @@
                         <!-- 主图展示 -->
                         <div class="main-gallery">
                             <div class="main-image-container">
-                                <img id="mainProductImage" src="./图片/主图/星火Pro 燃气灶.png" alt="星火Pro 燃气灶">
+                                <img id="mainProductImage" data-editable="main-image" src="./图片/主图/星火Pro 燃气灶.png" alt="星火Pro 燃气灶">
                                 <div class="image-magnifier">
                                     <i class="bi bi-zoom-in"></i>
                                     <span>点击放大</span>
@@ -185,8 +185,8 @@
                         <!-- 产品头部信息 -->
                         <div class="product-header">
                             <div class="product-title-section">
-                                <h1 class="product-title">星火Pro 智能燃气灶</h1>
-                                <p class="product-subtitle">高效节能 · 智能控温 · 安全可靠</p>
+                                <h1 class="product-title" data-editable="product-title">星火Pro 智能燃气灶</h1>
+                                <p class="product-subtitle" data-editable="product-subtitle">高效节能 · 智能控温 · 安全可靠</p>
                             </div>
                             <div class="product-rating-section">
                                 <div class="rating-stars">
@@ -217,12 +217,12 @@
                             <div class="price-display">
                                 <div class="current-price">
                                     <span class="currency">¥</span>
-                                    <span class="amount">2,499</span>
+                                    <span class="amount" data-editable="price">2,499</span>
                                     <span class="decimal">.00</span>
                                 </div>
                                 <div class="price-compare">
-                                    <span class="original-price">原价 ¥2,999</span>
-                                    <span class="save-amount">省¥500</span>
+                                    <span class="original-price" data-editable="original-price">原价 ¥2,999</span>
+                                    <span class="save-amount" data-editable="save-amount">省¥500</span>
                                 </div>
                             </div>
                             <div class="price-benefits">
@@ -2094,7 +2094,7 @@
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="/assets/js/Main File.js"></script>
+    <script src="../../web Site/web PC/assets/js/Main File.js"></script>
     <script src="./样式逻辑/产品详情.js"></script>
     <script>
       // 确保在全局脚本完成激活计算后再强制设置，避免"闪一下就消失"
@@ -2129,5 +2129,11 @@
         });
       })();
     </script>
+
+    <!-- 自动添加可编辑标记 -->
+    <script src="./自动可编辑.js"></script>
+    
+    <!-- 可视化编辑器 -->
+    <script src="../通用模板/visual-editor.js"></script>
 </body>
-</html> </html> 
+</html> 

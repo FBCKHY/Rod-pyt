@@ -43,9 +43,15 @@
                 <ElFormItem label="产品型号" prop="model">
                   <ElInput 
                     v-model="cardForm.model" 
-                    placeholder="请输入产品型号"
+                    :placeholder="isEdit ? cardForm.model : '系统将自动生成 (如: RD-001)'"
+                    :disabled="true"
                     @input="updateCardPreview"
-                  />
+                  >
+                    <template #prefix>
+                      <ElIcon><Key /></ElIcon>
+                    </template>
+                  </ElInput>
+                  <div class="form-tip">产品ID由系统自动生成,格式为 RD-001, RD-002...</div>
                 </ElFormItem>
                 
                 <ElFormItem label="产品价格" prop="price">
@@ -210,11 +216,11 @@
             >
               <template #default>
                 <ul>
-                  <li>请上传一个完整的产品详情“文件夹”：</li>
+                  <li>请上传一个完整的产品详情"文件夹"：</li>
                   <li>根目录需包含且仅包含 1 个 <code>*.html</code> 文件</li>
                   <li>必须包含子目录：<code>图片/</code> 与 <code>样式逻辑/</code></li>
                   <li><code>样式逻辑/</code> 内必须且仅有 1 个 <code>.css</code> 与 1 个 <code>.js</code>（直接位于该文件夹）</li>
-                  <li>产品型号以第一步填写为准，与文件夹名无关</li>
+                  <li><strong>重要：</strong>文件夹名称可以任意，系统会自动重命名为产品ID（如 RD-001）</li>
                 </ul>
               </template>
             </ElAlert>
@@ -507,7 +513,7 @@ const cardForm = reactive({
 
 const cardRules = {
   name: [{ required: true, message: '请输入产品名称', trigger: 'blur' }],
-  model: [{ required: true, message: '请输入产品型号', trigger: 'blur' }],
+  // model字段由后端自动生成,不需要前端验证
   price: [{ required: true, message: '请输入产品价格', trigger: 'blur' }],
   cardImage: [{ required: true, message: '请上传产品主图', trigger: 'change' }]
 }
@@ -635,9 +641,14 @@ const categoryPath = ref<number[]>([])
 async function loadCategoriesTree() {
   try {
     const res = await request.get<any>({ url: '/product-categories', params: { includeProducts: 'true' } })
-    const data = (res?.data || []) as CategoryItem[]
+    console.log('API响应:', res) // 调试日志
+    console.log('res是否为数组:', Array.isArray(res)) // 调试日志
+    // 修复: request.get直接返回数据数组,不需要访问.data
+    const data = (Array.isArray(res) ? res : (res?.data || [])) as CategoryItem[]
+    console.log('提取的分类数据:', data) // 调试日志
     categories.value = data
     categoryOptions.value = mapToCascaderOptions(data)
+    console.log('级联选择器选项:', categoryOptions.value) // 调试日志
     // 若已有选中分类，回填路径
     if (configForm.categoryId) {
       const p = findCategoryPathById(configForm.categoryId, data)
@@ -735,7 +746,9 @@ async function autoFillSortOrderForCategory(categoryId: number) {
       url: '/products',
       params: { categoryId, page: 1, limit: 1 }
     })
-    const maxItem = (res?.data?.items || [])[0]
+    // 兼容两种格式
+    const responseData = res?.data || res
+    const maxItem = (responseData?.items || [])[0]
     const maxOrder = Number(maxItem?.sortOrder || 0)
     const nextOrder = (Number.isFinite(maxOrder) ? maxOrder : 0) + 1
     configForm.sortOrder = nextOrder
@@ -807,12 +820,19 @@ const handleImageUpload = async (options: any) => {
     setPreviewImage(blobUrl)
   } catch {}
   try {
+    // 使用axios直接上传,因为FormData需要特殊处理
     const res: any = await request.request({
-      url: '/products/card-image',
+      url: '/products/card-image',  // 不需要/api前缀,baseURL已包含
       method: 'POST',
       data: form
     })
-    const url = res?.data?.url
+    console.log('图片上传响应:', res) // 调试日志
+    console.log('响应数据:', res.data) // 调试日志
+    // axios拦截器将data提取到response.data,所以实际数据在res.data
+    // 但如果res.data是undefined,说明数据直接在res上
+    const responseData = res.data || res
+    const url = responseData?.url || (typeof responseData === 'string' ? responseData : null)
+    console.log('提取的图片URL:', url) // 调试日志
     if (url) {
       const serverUrlAbs = toAbsoluteUrl(url)
       const ok = await preloadImage(serverUrlAbs)
@@ -824,7 +844,8 @@ const handleImageUpload = async (options: any) => {
         options?.onError && options.onError(new Error('image load failed'))
       }
     } else {
-      ElMessage.error('图片上传失败')
+      console.error('无法从响应中提取图片URL:', res) // 调试日志
+      ElMessage.error('图片上传失败: 无效的响应格式')
       options?.onError && options.onError(new Error('invalid response'))
     }
   } catch (e) {
@@ -888,8 +909,15 @@ const nextStep = async () => {
     } else if (currentStep.value === 1) {
       // 验证第二步：文件夹结构；若编辑且已有文件列表，则允许跳过重新上传
       const canSkip = isEdit.value && productFiles.files && productFiles.files.length > 0
-      if (!isFolderValid.value && !canSkip) {
-        ElMessage.error('请上传包含根HTML、图片/、样式逻辑/(1CSS+1JS)的完整文件夹，或使用已上传的文件')
+      const hasUploadedFolder = folderFiles.value.length > 0
+      
+      if (!hasUploadedFolder && !canSkip) {
+        ElMessage.error('请上传产品详情页文件夹')
+        return
+      }
+      
+      if (hasUploadedFolder && !isFolderValid.value) {
+        ElMessage.error('文件夹结构不符合要求：需要包含根HTML、图片/、样式逻辑/(1CSS+1JS)')
         return
       }
     }
@@ -937,12 +965,17 @@ const handleSubmit = async () => {
     let productId: number | undefined
     if (isEdit.value && props.product) {
       const updateRes = await request.put<any>({ url: `/products/${props.product.id}`, data: createPayload })
-      const updated = (updateRes as any)?.data
+      // request工具返回的数据可能直接是产品对象,也可能在data字段中
+      const updated = (updateRes as any)?.data || updateRes
       productId = updated?.id || props.product.id
     } else {
       const createRes = await request.post<any>({ url: '/products', data: createPayload })
-      const created = (createRes as any)?.data
+      console.log('创建产品响应:', createRes) // 调试日志
+      // request工具返回的数据可能直接是产品对象,也可能在data字段中
+      const created = (createRes as any)?.data || createRes
+      console.log('提取的产品数据:', created) // 调试日志
       productId = created?.id
+      console.log('产品ID:', productId) // 调试日志
     }
     if (!productId) {
       ElMessage.error('创建产品失败：未返回ID')
@@ -950,7 +983,18 @@ const handleSubmit = async () => {
     }
 
     // 2) 上传文件夹：将所有文件通过FormData发往 /api/products/{id}/files，并携带relativePaths[]
-    if (folderFiles.value.length > 0) {
+    // 在非编辑模式下，必须上传文件夹；编辑模式下可以跳过（保留原有文件）
+    const hasExistingFiles = isEdit.value && productFiles.files && productFiles.files.length > 0
+    const needsUpload = folderFiles.value.length > 0
+    
+    if (!needsUpload && !hasExistingFiles) {
+      ElMessage.error('请上传产品详情页文件夹')
+      isSubmitting.value = false
+      return
+    }
+    
+    if (needsUpload) {
+      console.log('📤 开始上传文件夹，文件数量:', folderFiles.value.length)
       const formData = new FormData()
       for (const f of folderFiles.value) {
         formData.append('files', f.file)
@@ -962,6 +1006,9 @@ const handleSubmit = async () => {
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
+      console.log('✅ 文件夹上传成功')
+    } else {
+      console.log('ℹ️ 编辑模式：保留原有文件，跳过上传')
     }
     
     ElMessage.success(isEdit.value ? '产品更新成功' : '产品创建成功')
@@ -1030,7 +1077,9 @@ const prefillFromProduct = async () => {
   try {
     if (props.product?.id) {
       const res = await request.get<any>({ url: `/products/${props.product.id}` })
-      const p = res?.data || {}
+      // 兼容两种格式
+      const responseData = res?.data || res
+      const p = responseData || {}
       Object.assign(cardForm, {
         name: p.name ?? cardForm.name,
         model: p.model ?? cardForm.model,
@@ -1064,8 +1113,10 @@ const refreshProductFiles = async () => {
   if (!props.product?.id) return
   try {
     const res = await request.get<any>({ url: `/products/${props.product.id}/files` })
-    productFiles.filePath = res?.data?.filePath || null
-    productFiles.files = res?.data?.files || []
+    // 兼容两种格式
+    const responseData = res?.data || res
+    productFiles.filePath = responseData?.filePath || null
+    productFiles.files = responseData?.files || []
   } catch {}
 }
 

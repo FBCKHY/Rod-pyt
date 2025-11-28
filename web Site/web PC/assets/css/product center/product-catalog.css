@@ -714,6 +714,31 @@
     background-color: rgba(25, 118, 210, 0.04);
 }
 
+/* 展开/收起按钮样式 */
+.category-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    color: #666;
+    font-size: 10px;
+    transition: all 0.2s ease;
+    user-select: none;
+    flex-shrink: 0;
+    background-color: transparent;
+    border-radius: 2px;
+    line-height: 1;
+}
+
+.category-toggle:hover {
+    color: var(--catalog-primary-blue);
+    background-color: rgba(25, 118, 210, 0.08);
+    transform: scale(1.2);
+}
+
 /* 自定义复选框样式 */
 .category-header input[type="checkbox"],
 .filter-subcategory input[type="checkbox"],

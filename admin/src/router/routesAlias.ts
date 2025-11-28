@@ -37,5 +37,7 @@ export enum RoutesAlias {
 
   // 产品管理
   ProductList = '/product/list', // 产品列表
-  ProductOrder = '/product/order' // 产品订单
+  ProductEditor = '/product/editor', // 可视化编辑器
+  ProductOrder = '/product/order', // 产品订单
+  ProductOrderDetail = '/product/order/detail' // 订单详情
 }

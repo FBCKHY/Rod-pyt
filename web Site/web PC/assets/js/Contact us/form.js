@@ -154,7 +154,7 @@ async function submitToSubscriptionSystem(formValues) {
         console.log('📤 提交订阅数据:', subscriptionData);
         
         // 发送到订阅系统API
-        const response = await fetch('http://localhost:3000/api/subscriptions', {
+        const response = await fetch('http://localhost:3001/api/subscriptions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

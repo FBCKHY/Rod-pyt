@@ -1,0 +1,290 @@
+/**
+ * 骨架屏样式
+ * 用于产品加载时的占位效果
+ */
+
+/* 骨架屏容器 */
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* 骨架屏卡片 */
+.skeleton-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 骨架屏图片区域 */
+.skeleton-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+/* 骨架屏内容区域 */
+.skeleton-content {
+    padding: 20px;
+}
+
+/* 骨架屏文本行 */
+.skeleton-line {
+    height: 16px;
+    margin-bottom: 12px;
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+.skeleton-line.short {
+    width: 60%;
+}
+
+.skeleton-line:last-child {
+    margin-bottom: 0;
+}
+
+/* 骨架屏加载动画 */
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* 关键词高亮样式 */
+mark {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* 筛选信息显示 */
+.filter-info {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-info::before {
+    content: "ℹ️";
+    font-size: 18px;
+}
+
+/* 搜索和筛选工具栏 */
+.filter-toolbar {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-toolbar .search-box {
+    flex: 1;
+    min-width: 250px;
+}
+
+.filter-toolbar .search-box input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.filter-toolbar .search-box input:focus {
+    outline: none;
+    border-color: #074E9C;
+    box-shadow: 0 0 0 3px rgba(7, 78, 156, 0.1);
+}
+
+.filter-toolbar .sort-box select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-toolbar .sort-box select:focus {
+    outline: none;
+    border-color: #074E9C;
+}
+
+.filter-toolbar .price-filter {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-toolbar .price-filter input {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.filter-toolbar .price-filter button {
+    padding: 10px 20px;
+    background: #074E9C;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-toolbar .price-filter button:hover {
+    background: #053a6f;
+}
+
+/* 图片懒加载占位符 */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .skeleton-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .filter-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-toolbar .search-box,
+    .filter-toolbar .sort-box,
+    .filter-toolbar .price-filter {
+        width: 100%;
+    }
+    
+    .filter-toolbar .price-filter {
+        flex-wrap: wrap;
+    }
+    
+    .filter-toolbar .price-filter input {
+        flex: 1;
+    }
+    
+    .filter-toolbar .price-filter button {
+        width: 100%;
+    }
+}
+
+/* 加载状态优化 */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.3s;
+}
+
+.loading-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #074E9C;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 空状态样式 */
+.no-products {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.no-products i {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.no-products p {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* 错误状态样式 */
+.error-message {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.error-message i {
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.error-message p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* 性能优化：减少重绘 */
+.product-card {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.product-image img {
+    will-change: opacity;
+}

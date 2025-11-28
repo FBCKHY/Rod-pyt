@@ -222,6 +222,16 @@ export const asyncRoutes: AppRouteRecord[] = [
         }
       },
       {
+        path: 'editor',
+        name: 'ProductEditor',
+        component: RoutesAlias.ProductEditor,
+        meta: {
+          title: '可视化编辑器',
+          isHide: true,
+          keepAlive: false
+        }
+      },
+      {
         path: 'order',
         name: 'ProductOrder',
         component: RoutesAlias.ProductOrder,
@@ -242,6 +252,16 @@ export const asyncRoutes: AppRouteRecord[] = [
               authMark: 'delete'
             }
           ]
+        }
+      },
+      {
+        path: 'order/detail',
+        name: 'ProductOrderDetail',
+        component: RoutesAlias.ProductOrderDetail,
+        meta: {
+          title: '订单详情',
+          isHide: true,
+          keepAlive: false
         }
       }
     ]

@@ -263,6 +263,11 @@
       "analytics": "数据分析",
       "export": "数据导出",
       "settings": "订阅设置"
+    },
+    "product": {
+      "title": "产品管理",
+      "list": "产品列表",
+      "order": "订单管理"
     }
   },
   "table": {

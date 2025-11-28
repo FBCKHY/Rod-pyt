@@ -289,7 +289,7 @@
               </div>
               <div class="header-actions">
                 <!-- 简化的排序下拉菜单 -->
-                <ElDropdown v-model:visible="sortDropdownVisible" :hide-on-click="false" placement="bottom-end">
+                <ElDropdown v-model:visible="sortDropdownVisible" :hide-on-click="false" placement="bottom-start" :offset="0">
                   <ElButton class="action-btn sort-btn modern-sort-trigger" size="small">
                     <ElIcon class="sort-icon"><Filter /></ElIcon>
                     排序
@@ -1161,8 +1161,15 @@ const deleteCategory = async (category: CategoryItem) => {
   }
 }
 
-const handleCategoryCreated = () => {
-  loadCategories()
+const handleCategoryCreated = async () => {
+  try {
+    await loadCategories()
+    // 刷新产品列表，因为分类可能影响产品显示
+    await loadProductList()
+    ElMessage.success('分类列表已更新')
+  } catch (error) {
+    ElMessage.error('刷新分类列表失败')
+  }
 }
 
 // 添加新分类到列表
@@ -1370,9 +1377,11 @@ async function getProductPreviewUrl(productId: number): Promise<string | null> {
   // 1) 优先调用后端文件列表接口，寻找 .html 文件
   try {
     const res = await request.get<any>({ url: `/products/${productId}/files` })
-    const data = res?.data as { filePath?: string | null; files?: string[] } | undefined
+    // 兼容两种格式
+    const responseData = res?.data || res
+    const data = responseData as { filePath?: string | null; files?: string[] } | undefined
     const base = (data?.filePath || '').replace(/^\/+/, '') // 去除开头斜杠，保持相对路径
-    const files = Array.isArray(data?.files) ? data!.files : []
+    const files = Array.isArray(data?.files) ? data?.files : []
 
     if (base && files.length) {
       // 优先产品详情首页文件名，其次任意第一个 HTML
@@ -1479,8 +1488,17 @@ const loadProductList = async () => {
       params
     })
 
-    const items = res?.data?.items || []
-    const total = res?.data?.total || 0
+    console.log('📦 产品API响应:', res)
+    console.log('📦 响应类型:', typeof res, '是否有data:', 'data' in (res || {}))
+    
+    // request 函数已经提取了 data,所以 res 直接就是 { items, total, page, limit, totalPages }
+    const responseData = res?.data || res
+    const items = responseData?.items || []
+    const total = responseData?.total || 0
+    
+    console.log('✅ 产品列表已加载:', items.length, '个产品')
+    console.log('📋 产品详情:', items)
+    
     productList.value = items as ProductItem[]
     pagination.total = total
   } catch (error) {
@@ -1492,16 +1510,31 @@ const loadProductList = async () => {
 
 const loadCategories = async () => {
   try {
-    const res = await request.get<any>({
+    // http/index.ts 的 request 函数已经将后端 API 返回的 {code, msg, data} 中的 data 提取出来了
+    // 所以 res 直接就是分类数组
+    const res = await request.get<CategoryItem[]>({
       url: '/product-categories',
       params: { includeProducts: 'true' }
     })
-    categories.value = (res?.data || []) as CategoryItem[]
+    
+    console.log('📦 API响应 (res):', res)
+    console.log('📦 是否为数组:', Array.isArray(res))
+    
+    // res 直接就是分类数组
+    categories.value = (Array.isArray(res) ? res : []) as CategoryItem[]
+    
+    console.log('✅ 分类列表已加载:', categories.value.length, '个分类')
+    console.log('📋 分类详情:', categories.value)
+    
     // 规范化每个分类节点的 productCount（后端注入或回退到 products.length）
     normalizeCategoryCounts(categories.value)
-    // 默认不展开分类，用户需要手动点击展开
-    expandedParentIds.value = new Set()
+    
+    // 默认展开所有有子分类的父分类
+    expandAllParents(categories.value)
+    
+    console.log('🎉 分类加载完成，展开的父分类:', Array.from(expandedParentIds.value))
   } catch (error) {
+    console.error('❌ 加载分类列表失败:', error)
     ElMessage.error('加载分类列表失败')
   }
 }
@@ -2118,6 +2151,38 @@ const getSortDesc = (by: 'createdAt'|'sales'|'price'|'sortOrder') => {
           }
           
           .search-form {
+            :deep(.el-form-item) {
+              margin-bottom: 0;
+              margin-right: 24px;
+              
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+            
+            :deep(.el-form-item__label) {
+              font-weight: 500;
+              color: var(--art-text-gray-700);
+              font-size: 14px;
+              line-height: 32px;
+              padding-right: 12px;
+            }
+            
+            :deep(.el-input__wrapper) {
+              border-radius: 8px;
+              transition: all 0.3s ease;
+              
+              &:hover {
+                border-color: rgb(var(--art-primary));
+                box-shadow: 0 0 0 2px rgba(var(--art-primary), 0.1);
+              }
+              
+              &.is-focus {
+                border-color: rgb(var(--art-primary));
+                box-shadow: 0 0 0 3px rgba(var(--art-primary), 0.15);
+              }
+            }
+            
             .search-main-row {
               display: flex;
               justify-content: space-between;
@@ -2345,13 +2410,63 @@ const getSortDesc = (by: 'createdAt'|'sales'|'price'|'sortOrder') => {
             
             .view-controls {
               .view-toggle {
-                .el-button {
-                  padding: 8px 12px;
-                  border-radius: 8px;
-                  font-size: 12px;
+                display: inline-flex;
+                border-radius: 8px;
+                overflow: hidden;
+                background: var(--art-main-bg-color);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                border: 1px solid var(--art-border-color);
+                
+                :deep(.el-button) {
+                  min-width: 80px;
+                  height: 32px;
+                  padding: 0 16px;
+                  margin: 0;
+                  border-radius: 0;
+                  font-size: 13px;
+                  font-weight: 500;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 6px;
+                  transition: all 0.3s ease;
+                  border: none;
+                  border-right: 1px solid var(--art-border-color);
+                  background: transparent;
+                  color: var(--art-text-gray-600);
+                  
+                  &:last-child {
+                    border-right: none;
+                  }
                   
                   .el-icon {
-                    margin-right: 4px;
+                    font-size: 14px;
+                  }
+                  
+                  // 未选中状态 - 增强可见性
+                  &:not(.el-button--primary) {
+                    &:hover {
+                      background: rgba(var(--art-hoverColor), 0.5);
+                      color: var(--art-text-gray-800);
+                    }
+                  }
+                  
+                  // 选中状态 - 更明显的样式
+                  &.el-button--primary {
+                    background: linear-gradient(135deg, rgb(var(--art-primary)) 0%, rgba(var(--art-primary), 0.85) 100%);
+                    color: white;
+                    box-shadow: 0 2px 6px rgba(var(--art-primary), 0.3);
+                    z-index: 1;
+                    
+                    &:hover {
+                      background: linear-gradient(135deg, rgba(var(--art-primary), 0.9) 0%, rgba(var(--art-primary), 0.75) 100%);
+                      box-shadow: 0 3px 8px rgba(var(--art-primary), 0.4);
+                    }
+                  }
+                  
+                  &:hover {
+                    transform: none;
+                    z-index: 2;
                   }
                 }
               }
@@ -3406,28 +3521,34 @@ const getSortDesc = (by: 'createdAt'|'sales'|'price'|'sortOrder') => {
 :deep(.el-dropdown__popper) {
   &:has(.compact-sort-dropdown) {
     border: none !important;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
-    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 10px !important;
     overflow: hidden !important;
-    backdrop-filter: blur(10px) !important;
-    background: rgba(255, 255, 255, 0.98) !important;
+    background: transparent !important;
     padding: 0 !important;
+    margin-top: 8px !important;
     
     .el-dropdown-menu {
       border: none !important;
       box-shadow: none !important;
-      border-radius: 12px !important;
+      border-radius: 10px !important;
       background: transparent !important;
       padding: 0 !important;
+      margin: 0 !important;
+    }
+    
+    .el-popper__arrow {
+      display: none !important;
     }
   }
 }
 
 .compact-sort-dropdown {
-  width: 280px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
-  border-radius: 12px;
+  width: 260px;
+  background: var(--art-main-bg-color);
+  border-radius: 10px;
   overflow: hidden;
+  border: 1px solid var(--art-border-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   
   .sort-header {
